@@ -1,0 +1,54 @@
+<html>
+<head>
+    <title>pixi.js example 1</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000000;
+        }
+    </style>
+    <script src="bower_components/pixi.js/pixi.dev.js"></script>
+</head>
+<body>
+    <script>
+		// create an new instance of a pixi stage
+	    var stage = new PIXI.Stage(0x66FF99);
+	 
+	    // create a renderer instance.
+	    var renderer = PIXI.autoDetectRenderer(400, 300);
+	 
+	    // add the renderer view element to the DOM
+	    document.body.appendChild(renderer.view);
+	 
+	    requestAnimFrame( animate );
+    	
+	    // create a texture from an image path
+	    var texture = PIXI.Texture.fromImage("content/images/spaceship.png");
+	    // create a new Sprite using the texture
+	    var spaceship = new PIXI.Sprite(texture);
+	 
+	    // center the sprites anchor point
+	    spaceship.anchor.x = 0.5;
+	    spaceship.anchor.y = 0.5;
+	 
+	    // move the sprite t the center of the screen
+	    spaceship.position.x = 200;
+	    spaceship.position.y = 150;
+	 
+	    stage.addChild(spaceship);
+	 
+	    function animate() {
+	 
+	        requestAnimFrame( animate );
+
+	        // just for fun, lets rotate mr rabbit a little
+        	spaceship.rotation += 0.01;
+	 
+	        // render the stage   
+	        renderer.render(stage);
+	    }
+    </script>
+ 
+    </body>
+</html>
