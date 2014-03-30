@@ -92,12 +92,20 @@
     <Content Include="bower_components\angular\bower.json" />
     <Content Include="bower_components\pixi.js\pixi.dev.js" />
     <Content Include="bower_components\pixi.js\pixi.js" />
+    <Content Include="Content\css\style.css">
+      <DependentUpon>style.less</DependentUpon>
+    </Content>
+    <Content Include="Content\css\style.min.css">
+      <DependentUpon>style.css</DependentUpon>
+    </Content>
+    <Content Include="Content\images\car.png" />
     <Content Include="Content\images\spaceship.gif" />
     <Content Include="Content\images\spaceship.png" />
     <Content Include="game.js" />
     <Content Include="Global.asax" />
     <Content Include="gruntfile.js" />
     <Content Include="index.html" />
+    <Content Include="js\supersprint.js" />
     <Content Include="karma.conf.js" />
     <Content Include="node_modules\grunt-contrib-cssmin\node_modules\chalk\index.js" />
     <Content Include="node_modules\grunt-contrib-cssmin\node_modules\chalk\node_modules\ansi-styles\ansi-styles.js" />
@@ -3183,6 +3191,7 @@
     <Content Include="node_modules\load-grunt-tasks\node_modules\multimatch\node_modules\minimatch\README.md" />
     <Content Include="node_modules\load-grunt-tasks\node_modules\multimatch\readme.md" />
     <Content Include="node_modules\load-grunt-tasks\readme.md" />
+    <Content Include="Content\css\style.less" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -3193,7 +3202,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\" />
-    <Folder Include="js\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <PropertyGroup>
