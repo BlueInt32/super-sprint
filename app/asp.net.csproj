@@ -72,24 +72,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="js\Car.js" />
     <Content Include="bower.json" />
-    <Content Include="bower_components\angular-animate\.bower.json" />
-    <Content Include="bower_components\angular-animate\angular-animate.js" />
-    <Content Include="bower_components\angular-animate\angular-animate.min.js" />
-    <Content Include="bower_components\angular-animate\bower.json" />
-    <Content Include="bower_components\angular-cookie\.bower.json" />
-    <Content Include="bower_components\angular-cookie\angular-cookie.js" />
-    <Content Include="bower_components\angular-cookie\angular-cookie.min.js" />
-    <Content Include="bower_components\angular-cookie\bower.json" />
-    <Content Include="bower_components\angular-cookie\package.json" />
-    <Content Include="bower_components\angular-mocks\.bower.json" />
-    <Content Include="bower_components\angular-mocks\angular-mocks.js" />
-    <Content Include="bower_components\angular-mocks\bower.json" />
-    <Content Include="bower_components\angular\.bower.json" />
-    <Content Include="bower_components\angular\angular-csp.css" />
-    <Content Include="bower_components\angular\angular.js" />
-    <Content Include="bower_components\angular\angular.min.js" />
-    <Content Include="bower_components\angular\bower.json" />
     <Content Include="bower_components\pixi.js\pixi.dev.js" />
     <Content Include="bower_components\pixi.js\pixi.js" />
     <Content Include="Content\css\style.css">
@@ -2276,12 +2260,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <Content Include="bower_components\angular-animate\angular-animate.min.js.map" />
-    <Content Include="bower_components\angular-animate\README.md" />
-    <Content Include="bower_components\angular-mocks\README.md" />
-    <Content Include="bower_components\angular\angular.min.js.gzip" />
-    <Content Include="bower_components\angular\angular.min.js.map" />
-    <Content Include="bower_components\angular\README.md" />
     <Content Include="node_modules\grunt-contrib-cssmin\LICENSE-MIT" />
     <Content Include="node_modules\grunt-contrib-cssmin\node_modules\.bin\cleancss" />
     <Content Include="node_modules\grunt-contrib-cssmin\node_modules\.bin\cleancss.cmd" />
