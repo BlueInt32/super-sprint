@@ -25,21 +25,5 @@ Car.prototype = Object.create(PIXI.Sprite.prototype, {
 		else
 			this.direction = 1;
 	},
-	get direction() { return this.direction; }
+	//get direction() { return this.direction; }
 });
-
-
-/*PIXI.inherits(Car, PIXI.Sprite, {
-	move: function ()
-	{
-		this.position.y += this.speed * this.direction;
-	},
-
-	setDirection: function (direction)
-	{
-		if (direction === 'left')
-			this.direction = -1;
-		else
-			this.direction = 1;
-	}
-});*/
