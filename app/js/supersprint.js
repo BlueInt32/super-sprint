@@ -14,18 +14,7 @@ requestAnimFrame(animate);
 // create a texture from an image path
 var texture = PIXI.Texture.fromImage("content/images/car.png");
 // create a new Sprite using the texture
-var car = new PIXI.Sprite(texture);
-
-// center the sprites anchor point
-car.anchor.x = 0.5;
-car.anchor.y = 0.5;
-
-// move the sprite t the center of the screen
-car.position.x = 400;
-car.position.y = 500;
-
-car.speed = 0;
-car.friction = 0.03;
+var car = new SuperSprintCar(texture);
 
 stage.addChild(car);
 

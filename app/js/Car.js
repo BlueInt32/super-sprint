@@ -1,22 +1,26 @@
 ﻿'use strict';
 
-function Car(color)
+SuperSprintCar.prototype =  Object.create(PIXI.Sprite.prototype);
+SuperSprintCar.prototype.constructor = SuperSprintCar;
+function SuperSprintCar(texture)
 {
-	this.color = color;
+	PIXI.Sprite.call(this, texture);
+	//PIXI.Sprite.prototype.texture = texture;
 	console.log('car instantiated');
+
+	//PIXI.Sprite.call(texture);
+	console.log(PIXI.Sprite.prototype);
+	// center the sprites anchor point
+	PIXI.Sprite.prototype.anchor.x = 0.5;
+	PIXI.Sprite.prototype.anchor.y = 0.5;
+
+	// move the sprite t the center of the screen
+	PIXI.Sprite.prototype.position.x = 400;
+	PIXI.Sprite.prototype.position.y = 500;
+
+	this.speed = 0;
+	this.friction = 0.03;
 }
 
-Car.prototype.color = '#00000';
-
-Car.prototype.sayColor = function()
-{
-	console.log("I'm "+ this.color);
-};
-
-
-
-var redCar = new Car('#F00');
-var carColorTeller = redCar.sayColor;
-
-redCar.sayColor();
-carColorTeller.call(redCar);
+SuperSprintCar.prototype.speed = 0;
+SuperSprintCar.prototype.friction = 0.03;
