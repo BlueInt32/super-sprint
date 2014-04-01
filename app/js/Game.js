@@ -10,22 +10,40 @@
 	// add the renderer view element to the DOM
 	document.getElementById('game').appendChild(this.renderer.view);
 
+	this.keyboardHandler = new KeyboardHandler();
+
 	this.animate = function()
 	{
+		if (self.keyboardHandler.Keys.accelerate)
+		{
+			self.car.Accelerate();
+		} else if (self.keyboardHandler.Keys.brake)
+		{
+			self.car.Brake();
+		}
+		else
+		{
+			self.car.Decelerate();
+		}
+		if (self.keyboardHandler.Keys.left)
+		{
+			self.car.TurnLeft();
+		}
+		if (self.keyboardHandler.Keys.right)
+		{
+			self.car.TurnRight();
+		}
+		//console.log(self.car);
+		self.car.updateData();
 		requestAnimFrame(self.animate);
-		var d = new Date();
+		
+		self.log("speed", self.car.speedValue);
+		self.log("rotation", self.car.rotation);
 		// just for fun, lets rotate mr rabbit a little
-		//car.rotation += 0.01;
-		self.car.position.y -= self.car.speed;
+		//self.car.rotation += 0.01;
 		// render the stage
 		self.renderer.render(self.stage);
-		for (var i = 0; i < 500 ;i++)
-		{
-			console.log(self);
-		}
-		var d2 = new Date() -d;
-		document.getElementById('fps').innerHTML = d2;
-	}
+	};
 
 	requestAnimFrame(this.animate);
 
@@ -35,18 +53,15 @@
 	this.car = new Car(this.carTexture);
 	this.stage.addChild(this.car);
 
+	document.onkeydown = self.keyboardHandler.HandleKeyDown.bind(self.keyboardHandler);
+	document.onkeyup = self.keyboardHandler.HandleKeyUp.bind(self.keyboardHandler);
+	//document.addEventListener('keydown', self.keyboardHandler.HandleKeyDown(event, self.keyboardHandler), false);
+	//document.addEventListener('keyup', self.keyboardHandler.HandleKeyUp(event, self.keyboardHandler), false);
 
-	document.addEventListener('keydown', function (event)
+	this.log = function(elId, val)
 	{
-		var key = event.which;
-		switch (key)
-		{
-			case 37: break;
-			case 38: car.speed += 0.05; break;
-			case 39: break;
-			case 40: break;
-		}
-	}, false);
+		document.getElementById(elId).innerHTML = val;
+	};
 }
 
 var superSprint = new Game();

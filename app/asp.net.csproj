@@ -92,6 +92,7 @@
     <Content Include="js\Game.js" />
     <Content Include="js\KeyboardHandler.js" />
     <Content Include="js\utils\inheritance.js" />
+    <Content Include="js\utils\Vec2.js" />
     <Content Include="karma.conf.js" />
     <Content Include="node_modules\grunt-contrib-cssmin\node_modules\chalk\index.js" />
     <Content Include="node_modules\grunt-contrib-cssmin\node_modules\chalk\node_modules\ansi-styles\ansi-styles.js" />
