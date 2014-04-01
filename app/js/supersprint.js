@@ -14,8 +14,8 @@ requestAnimFrame(animate);
 // create a texture from an image path
 var texture = PIXI.Texture.fromImage("content/images/car.png");
 // create a new Sprite using the texture
-var car = new SuperSprintCar(texture);
-
+var car = new Car(texture);
+console.log(car.direction);
 stage.addChild(car);
 
 function animate()

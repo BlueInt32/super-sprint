@@ -1,26 +1,45 @@
 ﻿'use strict';
 
-SuperSprintCar.prototype =  Object.create(PIXI.Sprite.prototype);
-SuperSprintCar.prototype.constructor = SuperSprintCar;
-function SuperSprintCar(texture)
+function Car(texture)
 {
 	PIXI.Sprite.call(this, texture);
-	//PIXI.Sprite.prototype.texture = texture;
-	console.log('car instantiated');
 
-	//PIXI.Sprite.call(texture);
-	console.log(PIXI.Sprite.prototype);
-	// center the sprites anchor point
-	PIXI.Sprite.prototype.anchor.x = 0.5;
-	PIXI.Sprite.prototype.anchor.y = 0.5;
-
-	// move the sprite t the center of the screen
-	PIXI.Sprite.prototype.position.x = 400;
-	PIXI.Sprite.prototype.position.y = 500;
-
+	this.direction = 1;
 	this.speed = 0;
-	this.friction = 0.03;
-}
 
-SuperSprintCar.prototype.speed = 0;
-SuperSprintCar.prototype.friction = 0.03;
+	this.anchor.x = 0.5;
+	this.anchor.y = 0.5;
+	this.position.x = 400;
+	this.position.y = 300;
+};
+Car.prototype = Object.create(PIXI.Sprite.prototype, {
+	move: function ()
+	{
+		this.position.y += this.speed * this.direction;
+	},
+
+	setDirection: function (direction)
+	{
+		if (direction === 'left')
+			this.direction = -1;
+		else
+			this.direction = 1;
+	},
+	get direction() { return this.direction; }
+});
+
+
+/*PIXI.inherits(Car, PIXI.Sprite, {
+	move: function ()
+	{
+		this.position.y += this.speed * this.direction;
+	},
+
+	setDirection: function (direction)
+	{
+		if (direction === 'left')
+			this.direction = -1;
+		else
+			this.direction = 1;
+	}
+});*/
