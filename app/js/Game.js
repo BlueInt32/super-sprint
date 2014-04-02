@@ -13,11 +13,26 @@
 		MouseConstraint = Matter.MouseConstraint;
 
 
+	// create a Matter.js engine
+	var engine = Engine.create(document.getElementById('game'), {
+		render: {
+			options: {
+				wireframes: false,
+				background: 'http://brm.io/matter-js-demo/img/wall-bg.jpg'
+			}
+		}
+	});
+
+
 	/// PIXI
+
+	const STAGE_WIDTH = window.innerWidth, STAGE_HEIGHT = window.innerHeight;
 	this.stage = new PIXI.Stage(0xFFFFFF); // create an new instance of a pixi stage
-	this.renderer = PIXI.autoDetectRenderer(800, 600, null, false, true); // create a renderer instance.
+	this.renderer = PIXI.autoDetectRenderer(STAGE_WIDTH, STAGE_HEIGHT, null, false, true); // create a renderer instance.
 	document.getElementById('game').appendChild(this.renderer.view);// add the renderer view element to the DOM
 
+	console.log(engine.render);
+	console.log(this.renderer);
 
 	this.animate = function()
 	{
