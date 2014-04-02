@@ -6,7 +6,7 @@ function Car(texture)
 
 	this.rotation = 0;
 	this.anchor.x = 0.5;
-	this.anchor.y = 0.5;
+	this.anchor.y = 0.2;
 	this.position.x = 400;
 	this.position.y = 300;
 	this.direction = new Vec2(0,1);
@@ -45,7 +45,6 @@ Car.prototype.Accelerate = function()
 };
 Car.prototype.Brake = function()
 {
-	console.log("Brake")
 	this.speedValue -= this.speedValue > 0 ? this.brakeValue : 0;
 };
 Car.prototype.Decelerate = function()
