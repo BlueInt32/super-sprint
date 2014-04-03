@@ -94,10 +94,10 @@
     <Content Include="js\libs\angular\angular.js" />
     <Content Include="js\libs\angular\angular.min.js" />
     <Content Include="js\libs\angular\bower.json" />
-    <Content Include="js\libs\matter-js\.bower.json" />
-    <Content Include="js\libs\matter-js\bower.json" />
-    <Content Include="js\libs\matter-js\Gruntfile.js" />
-    <Content Include="js\libs\matter-js\package.json" />
+    <Content Include="js\libs\box2dweb\Box2dWeb-2.1.a.3.js" />
+    <Content Include="js\libs\box2dweb\Box2dWeb-2.1.a.3.min.js" />
+    <Content Include="js\libs\box2dweb\demo.html" />
+    <Content Include="js\libs\box2dweb\example.html" />
     <Content Include="js\libs\pixi.js\.bower.json" />
     <Content Include="js\libs\pixi.js\pixi.dev.js" />
     <Content Include="js\libs\pixi.js\pixi.js" />
@@ -3589,9 +3589,6 @@
     <Content Include="js\libs\pixi.js\examples\example 3 - MovieClip\tp\SpriteSheet.tps" />
     <Content Include="js\libs\pixi.js\LICENSE" />
     <Content Include="js\libs\pixi.js\README.md" />
-    <Content Include="js\libs\matter-js\CHANGELOG.md" />
-    <Content Include="js\libs\matter-js\LICENSE" />
-    <Content Include="js\libs\matter-js\README.md" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
