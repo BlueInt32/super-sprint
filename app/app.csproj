@@ -497,7 +497,6 @@
     <Content Include="js\libs\pixi.js\src\pixi\utils\Polyk.js" />
     <Content Include="js\libs\pixi.js\src\pixi\utils\Utils.js" />
     <Content Include="js\libs\pixi.js\tasks\karma.js" />
-    <Content Include="js\utils\inheritance.js" />
     <Content Include="js\utils\Vec2.js" />
     <Content Include="karma.conf.js" />
     <Content Include="node_modules\grunt-contrib-cssmin\node_modules\chalk\index.js" />
