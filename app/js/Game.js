@@ -47,7 +47,7 @@
 		self.renderer.render(self.stage);
 		self.box2dUpdate();
 	};
-	this.AssetsLoaded = function ()
+	this.AssetsLoaded = function()
 	{
 		// box 2d web data !
 		self.b2Vec2 = Box2D.Common.Math.b2Vec2;
@@ -59,13 +59,13 @@
 		self.b2World = Box2D.Dynamics.b2World;
 		self.b2PolygonShape = Box2D.Collision.Shapes.b2PolygonShape;
 		self.b2DebugDraw = Box2D.Dynamics.b2DebugDraw;
-     
+
 		self.worldScale = 1;
-    
+
 		self.world = new self.b2World(new self.b2Vec2(0, 10), true);
-    
+
 		//var canvasPosition = getElementPosition(document.getElementsByTagName("canvas")[0]);
-    
+
 		//self.debugDraw();             
 		//window.setInterval(update,1000/60);
 
@@ -74,7 +74,7 @@
 		self.carbody = self.createBox(50, 50, self.STAGE_WIDTH / 2, self.STAGE_HEIGHT / 2, self.b2Body.b2_dynamicBody);
 		self.force = new self.b2Vec2(0, -100);
 		console.log(self.carbody);
-    
+
 		requestAnimFrame(self.animate);
 
 		// create a texture from an image path
@@ -87,11 +87,11 @@
 		document.onkeydown = self.keyboardHandler.HandleKeyDown.bind(self.keyboardHandler);
 		document.onkeyup = self.keyboardHandler.HandleKeyUp.bind(self.keyboardHandler);
 
-		this.log = function (elId, val)
+		this.log = function(elId, val)
 		{
 			document.getElementById(elId).innerHTML = val;
 		};
-	}
+	};
 	//this.debugDraw = function()
 	//{
 	//	var debugDraw = new self.b2DebugDraw();
@@ -119,7 +119,7 @@
 		var body = self.world.CreateBody(bodyDef);
 		var bodyFixture = body.CreateFixture(fixtureDef);
 		return body;
-	}
+	};
 
 	this.box2dUpdate = function ()
 	{
