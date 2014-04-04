@@ -16,6 +16,9 @@ function Car(texture)
 	this.rotationInnerSpeedFactor = 0.1;
 	this.frictionValue = 0.01;
 	this.brakeValue = 0.1;
+
+	// box2d properties
+	this.body;
 };
 
 Car.prototype.direction = new Vec2(0, 1);

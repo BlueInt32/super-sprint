@@ -1,0 +1,63 @@
+﻿// -------------------------------------------------
+// -------------------------------------------------
+//  /$$      /$$ /$$$$$$ /$$   /$$ /$$$$$$ /$$   /$$
+// | $$$    /$$$|_  $$_/| $$  / $$|_  $$_/| $$$ | $$
+// | $$$$  /$$$$  | $$  |  $$/ $$/  | $$  | $$$$| $$
+// | $$ $$/$$ $$  | $$   \  $$$$/   | $$  | $$ $$ $$
+// | $$  $$$| $$  | $$    >$$  $$   | $$  | $$  $$$$
+// | $$\  $ | $$  | $$   /$$/\  $$  | $$  | $$\  $$$
+// | $$ \/  | $$ /$$$$$$| $$  \ $$ /$$$$$$| $$ \  $$
+// |__/     |__/|______/|__/  |__/|______/|__/  \__/
+// -------------------------------------------------
+// -------------------------------------------------
+
+.boxshadow(@x: 0; @y: 0; @blur: 0; @spread: 0; @color: rgba(0,0,0,0.075); @type:inset)
+{
+    -webkit-box-shadow: @arguments;
+    -moz-box-shadow: @arguments;
+    box-shadow: @arguments;
+}
+.doubleboxshadow(@type: inset; @x: 0; @y: 0; @blur: 0; @color: rgba(0,0,0,0.075); @type2: inset; @x2: 0; @y2: 0; @blur2: 0; @color2: rgba(0,0,0,0.075))
+{
+    box-shadow: @type @x @y @blur @color, @type2 @x2 @y2 @blur2 @color2;
+    moz-box-shadow: @type @x @y @blur @color, @type2 @x2 @y2 @blur2 @color2;
+    webkit-box-shadow: @type @x @y @blur @color, @type2 @x2 @y2 @blur2 @color2;
+
+}
+.boxsizing(@mode:border-box)
+{
+    box-sizing: border-box;
+    moz-box-sizing: border-box;
+    webkit-box-sizing: border-box;
+}
+
+.borderradius(@radius: 5px)
+{
+    border-radius: @radius;
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+}
+
+
+.inlineblock()
+{
+  display:-moz-inline-stack;
+  display:inline-block;
+  zoom:1;
+  *display:inline;
+}
+
+.font0()
+{
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.font1()
+{
+  font-family:'niveaboldtext';
+}
+
+.font2()
+{
+  font-family:'nivealight';
+}
