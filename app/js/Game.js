@@ -36,13 +36,7 @@
 		me.carTexture = PIXI.Texture.fromFrame("content/images/car.png");
 		me.car = new Car(me.carTexture);
 
-
-		//Create the physics involved
-		me.physics = new Physics();
-		me.physics.createBody(me.STAGE_WIDTH, 30, 0, me.STAGE_HEIGHT, me.physics.b2Body.b2_staticBody); // wall
-		me.car.body = me.physics.createBody(50, 50, me.STAGE_WIDTH / 2, me.STAGE_HEIGHT / 2, me.physics.b2Body.b2_dynamicBody); // car
-		//me.force = new me.physics.b2Vec2(0, 1);
-		console.log(me.car.body.m_xf.position.y);
+		var gamePhysics = new GamePhysics();
 
 		requestAnimFrame(me.animate);
 
@@ -88,7 +82,7 @@
 		me.log("speed", me.car.speedValue);
 		me.log("rotation", me.car.rotation);
 		me.renderer.render(me.stage);
-		me.physics.updateElements(me.car);
+		//me.physics.updateElements(me.car);
 	};
 	//#endregion
 
