@@ -72,6 +72,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="index2.html" />
     <Content Include="js\Car.js" />
     <Content Include="bower.json" />
     <Content Include="Content\css\style.css">
@@ -83,21 +84,11 @@
     <Content Include="Content\images\car.png" />
     <Content Include="Content\images\spaceship.gif" />
     <Content Include="Content\images\spaceship.png" />
-    <Content Include="game.js" />
     <Content Include="Global.asax" />
     <Content Include="gruntfile.js" />
-    <Content Include="index.html" />
     <Content Include="js\Game.js" />
     <Content Include="js\KeyboardHandler.js" />
-    <Content Include="js\libs\angular\.bower.json" />
-    <Content Include="js\libs\angular\angular-csp.css" />
-    <Content Include="js\libs\angular\angular.js" />
-    <Content Include="js\libs\angular\angular.min.js" />
-    <Content Include="js\libs\angular\bower.json" />
     <Content Include="js\libs\box2dweb\Box2dWeb-2.1.a.3.js" />
-    <Content Include="js\libs\box2dweb\Box2dWeb-2.1.a.3.min.js" />
-    <Content Include="js\libs\box2dweb\demo.html" />
-    <Content Include="js\libs\box2dweb\example.html" />
     <Content Include="js\libs\pixi.js\.bower.json" />
     <Content Include="js\libs\pixi.js\pixi.dev.js" />
     <Content Include="js\libs\pixi.js\pixi.js" />
@@ -497,7 +488,12 @@
     <Content Include="js\libs\pixi.js\src\pixi\utils\Polyk.js" />
     <Content Include="js\libs\pixi.js\src\pixi\utils\Utils.js" />
     <Content Include="js\libs\pixi.js\tasks\karma.js" />
-    <Content Include="js\utils\Vec2.js" />
+    <Content Include="js\libs\requirejs\.bower.json" />
+    <Content Include="js\libs\requirejs\bower.json" />
+    <Content Include="js\libs\requirejs\require.js" />
+    <Content Include="js\libs\Stats.js" />
+    <Content Include="js\Main.js" />
+    <Content Include="js\utils\MathUtil.js" />
     <Content Include="karma.conf.js" />
     <Content Include="node_modules\grunt-contrib-cssmin\node_modules\chalk\index.js" />
     <Content Include="node_modules\grunt-contrib-cssmin\node_modules\chalk\node_modules\ansi-styles\ansi-styles.js" />
@@ -3578,9 +3574,6 @@
     <Content Include="node_modules\load-grunt-tasks\node_modules\multimatch\readme.md" />
     <Content Include="node_modules\load-grunt-tasks\readme.md" />
     <Content Include="Content\css\style.less" />
-    <Content Include="js\libs\angular\angular.min.js.gzip" />
-    <Content Include="js\libs\angular\angular.min.js.map" />
-    <Content Include="js\libs\angular\README.md" />
     <Content Include="js\libs\pixi.js\bin\pixi.dev.js.map" />
     <Content Include="js\libs\pixi.js\CONTRIBUTING.md" />
     <Content Include="js\libs\pixi.js\docs\assets\vendor\prettify\COPYING" />
@@ -3589,6 +3582,7 @@
     <Content Include="js\libs\pixi.js\examples\example 3 - MovieClip\tp\SpriteSheet.tps" />
     <Content Include="js\libs\pixi.js\LICENSE" />
     <Content Include="js\libs\pixi.js\README.md" />
+    <Content Include="js\libs\requirejs\README.md" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
