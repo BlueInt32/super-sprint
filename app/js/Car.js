@@ -7,6 +7,7 @@ function Car(renderer)
 	this.direction = Physics.vector(1, 0);
 	this.speed = 0;
 
+<<<<<<< HEAD
 	this.body = Physics.body('convex-polygon', {
 		// place the center of the square at (0, 0)
 		x: 100,
@@ -18,6 +19,24 @@ function Car(renderer)
 			{ x: 64, y: 0 }
 		]
 	});
+=======
+	this.rotation = 0;
+	this.anchor.x = 0.5;
+	this.anchor.y = 0.2;
+	this.position.x = 400;
+	this.position.y = 300;
+	this.direction = new Vec2(0,1);
+	this.accelerationValue = 0.02;
+	this.speedValue = 0.1;
+	this.rotationSpeedFactor = 0.5;
+	this.rotationInnerSpeedFactor = 0.1;
+	this.frictionValue = 0.01;
+	this.brakeValue = 0.1;
+
+	// box2d properties
+	this.body;
+};
+>>>>>>> origin/master
 
 	this.body.view = renderer.createDisplay('sprite', {
 		texture: 'content/images/car.png',

@@ -1,5 +1,6 @@
 ﻿function Game()
 {
+<<<<<<< HEAD
 	var self = this;
 	this.Load = function()
 	{
@@ -15,148 +16,109 @@
 		loader.load();
 	};
 	this.animate = function ()
+=======
+	var me = this;
+
+	this.STAGE_WIDTH = window.innerWidth;
+	this.STAGE_HEIGHT = window.innerHeight;
+
+	// Pixi's
+	this.stage;
+	this.renderer;
+	this.assetsLoader;
+
+	// Box2d's
+	this.physics;
+
+	//#region Load
+	this.LoadPixi = function ()
+>>>>>>> origin/master
 	{
-		if (self.keyboardHandler.Keys.accelerate)
-		{
-			self.car.Accelerate();
-		}
-		else if (self.keyboardHandler.Keys.brake)
-		{
-			self.car.Brake();
-		}
-		else
-		{
-			self.car.Decelerate();
-		}
-		if (self.keyboardHandler.Keys.left)
-		{
-			self.car.TurnLeft();
-		}
-		if (self.keyboardHandler.Keys.right)
-		{
-			self.car.TurnRight();
-		}
-		self.car.updateData();
-		requestAnimFrame(self.animate);
+		/// PIXI
+		me.stage = new PIXI.Stage(0xFFFFFF); // create an new instance of a pixi stage
+		me.renderer = PIXI.autoDetectRenderer(me.STAGE_WIDTH, me.STAGE_HEIGHT, null, false, true); // create a renderer instance.
+		document.getElementById('game').appendChild(me.renderer.view);// add the renderer view element to the DOM
 
-		self.log("speed", self.car.speedValue);
-		self.log("rotation", self.car.rotation);
-		self.renderer.render(self.stage);
-		self.box2dUpdate();
-	};
-	this.AssetsLoaded = function()
+		me.assetsLoader = new PIXI.AssetLoader(["content/images/car.png"]);
+		me.assetsLoader.onComplete = me.PixiLoaded;
+		me.assetsLoader.load();
+	}
+
+	//#endregion
+
+	//#region AssetsLoaded 
+
+	this.PixiLoaded = function()
 	{
-		// box 2d web data !
-		self.b2Vec2 = Box2D.Common.Math.b2Vec2;
-		self.b2AABB = Box2D.Collision.b2AABB;
-		self.b2BodyDef = Box2D.Dynamics.b2BodyDef;
-		self.b2Body = Box2D.Dynamics.b2Body;
-		self.b2FixtureDef = Box2D.Dynamics.b2FixtureDef;
-		self.b2Fixture = Box2D.Dynamics.b2Fixture;
-		self.b2World = Box2D.Dynamics.b2World;
-		self.b2PolygonShape = Box2D.Collision.Shapes.b2PolygonShape;
-		self.b2DebugDraw = Box2D.Dynamics.b2DebugDraw;
+		// Create the car pixi element
+		me.carTexture = PIXI.Texture.fromFrame("content/images/car.png");
+		me.car = new Car(me.carTexture);
 
-		self.worldScale = 1;
+		var gamePhysics = new GamePhysics();
 
-		self.world = new self.b2World(new self.b2Vec2(0, 10), true);
+		requestAnimFrame(me.animate);
 
-		//var canvasPosition = getElementPosition(document.getElementsByTagName("canvas")[0]);
+		me.stage.addChild(me.car);
 
-		//self.debugDraw();             
-		//window.setInterval(update,1000/60);
-
-
-		self.createBox(self.STAGE_WIDTH, 30, 0, self.STAGE_HEIGHT, self.b2Body.b2_staticBody);
-		self.carbody = self.createBox(50, 50, self.STAGE_WIDTH / 2, self.STAGE_HEIGHT / 2, self.b2Body.b2_dynamicBody);
-		self.force = new self.b2Vec2(0, -100);
-		console.log(self.carbody);
-
-		requestAnimFrame(self.animate);
-
-		// create a texture from an image path
-		self.carTexture = PIXI.Texture.fromFrame("content/images/car.png");
-		// create a new Sprite using the texture
-		self.car = new Car(self.carTexture);
-		self.stage.addChild(self.car);
-
-		self.keyboardHandler = new KeyboardHandler();
-		document.onkeydown = self.keyboardHandler.HandleKeyDown.bind(self.keyboardHandler);
-		document.onkeyup = self.keyboardHandler.HandleKeyUp.bind(self.keyboardHandler);
+		me.keyboardHandler = new KeyboardHandler();
+		document.onkeydown = me.keyboardHandler.HandleKeyDown.bind(me.keyboardHandler);
+		document.onkeyup = me.keyboardHandler.HandleKeyUp.bind(me.keyboardHandler);
 
 		this.log = function(elId, val)
 		{
 			document.getElementById(elId).innerHTML = val;
 		};
 	};
-	//this.debugDraw = function()
-	//{
-	//	var debugDraw = new self.b2DebugDraw();
-	//	debugDraw.SetSprite(document.getElementsByTagName("canvas")[0].getContext("2d"));
-		
-	//	debugDraw.SetDrawScale(30.0);
-	//	debugDraw.SetFillAlpha(0.5);
-	//	debugDraw.SetLineThickness(1.0);
-	//	debugDraw.SetFlags(self.b2DebugDraw.e_shapeBit | self.b2DebugDraw.e_jointBit);
-	//	world.SetDebugDraw(debugDraw);
-	//}
-	this.createBox = function(width, height, pX, pY, type)
-	{
-		var bodyDef = new self.b2BodyDef;
-		bodyDef.type = type;
-		bodyDef.position.Set(pX / self.worldScale, pY / self.worldScale);
-		//console.log(pX);
-		var polygonShape = new self.b2PolygonShape;
-		polygonShape.SetAsBox(width / 2 / self.worldScale, height / 2 / self.worldScale);
-		var fixtureDef = new self.b2FixtureDef;
-		fixtureDef.density = 1.0;
-		fixtureDef.friction = 0.5;
-		fixtureDef.restitution = 0.5;
-		fixtureDef.shape = polygonShape;
-		var body = self.world.CreateBody(bodyDef);
-		var bodyFixture = body.CreateFixture(fixtureDef);
-		return body;
-	};
+	//#endregion
 
-	this.box2dUpdate = function ()
+	//#region animate 
+	this.animate = function ()
 	{
-		self.world.Step(1 / 10, 10, 10);
-		self.world.DrawDebugData();
-		//self.world.ClearForces();
-		//console.log(self.carbody.m_xf.position.y);
-		self.car.position.y = self.carbody.m_xf.position.y;
-		self.carbody.ApplyImpulse(self.force, self.carbody.m_xf.position);
-	};
-
-	//http://js-tut.aardon.de/js-tut/tutorial/position.html
-	this.getElementPosition = function (element)
-	{
-		var elem = element, tagname = "", x = 0, y = 0;
-		while ((typeof (elem) == "object") && (typeof (elem.tagName) != "undefined"))
+		if (me.keyboardHandler.Keys.accelerate)
 		{
-			y += elem.offsetTop;
-			x += elem.offsetLeft;
-			tagname = elem.tagName.toUpperCase();
-			if (tagname == "BODY")
-			{
-				elem = 0;
-			}
-			if (typeof (elem) == "object")
-			{
-				if (typeof (elem.offsetParent) == "object")
-				{
-					elem = elem.offsetParent;
-				}
-			}
+			me.car.Accelerate();
 		}
-		return { x: x, y: y };
-	}
+		else if (me.keyboardHandler.Keys.brake)
+		{
+			me.car.Brake();
+		}
+		else
+		{
+			me.car.Decelerate();
+		}
+		if (me.keyboardHandler.Keys.left)
+		{
+			me.car.TurnLeft();
+		}
+		if (me.keyboardHandler.Keys.right)
+		{
+			me.car.TurnRight();
+		}
+		me.car.updateData();
+		requestAnimFrame(me.animate);
 
+		me.log("speed", me.car.speedValue);
+		me.log("rotation", me.car.rotation);
+		me.renderer.render(me.stage);
+		//me.physics.updateElements(me.car);
+	};
+	//#endregion
+
+	//#region log 
 	this.log = function (elId, val)
 	{
+		if (document.getElementById(elId) == null)
+		{
+			var span = document.createElement("span");
+			span.setAttribute("id", elId);
+			span.innerHtml = val;
+			// l'ajoute à la fin du corps du document
+			document.getElementById("info").appendChild(span);
+		}
 		document.getElementById(elId).innerHTML = val;
 	};
+	//#endregion
 }
 
 var superSprintGame = new Game();
-superSprintGame.Load();
+superSprintGame.LoadPixi();

@@ -72,7 +72,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Content Include="index2.html" />
+=======
+    <Content Include="Content\css\mixin.css">
+      <DependentUpon>mixin.less</DependentUpon>
+    </Content>
+>>>>>>> origin/master
     <Content Include="js\Car.js" />
     <Content Include="bower.json" />
     <Content Include="Content\css\style.css">
@@ -89,6 +95,16 @@
     <Content Include="js\Game.js" />
     <Content Include="js\KeyboardHandler.js" />
     <Content Include="js\libs\box2dweb\Box2dWeb-2.1.a.3.js" />
+<<<<<<< HEAD
+=======
+    <Content Include="js\libs\box2dweb\Box2dWeb-2.1.a.3.min.js" />
+    <Content Include="js\libs\box2dweb\demo.html" />
+    <Content Include="js\libs\box2dweb\example.html" />
+    <Content Include="js\libs\PhysicsJS-v0.5.4-alpha\dist\behaviors\constant-acceleration.js" />
+    <Content Include="js\libs\PhysicsJS-v0.5.4-alpha\dist\bodies\convex-polygon.js" />
+    <Content Include="js\libs\PhysicsJS-v0.5.4-alpha\dist\geometries\convex-polygon.js" />
+    <Content Include="js\libs\PhysicsJS-v0.5.4-alpha\dist\physicsjs-0.5.4.js" />
+>>>>>>> origin/master
     <Content Include="js\libs\pixi.js\.bower.json" />
     <Content Include="js\libs\pixi.js\pixi.dev.js" />
     <Content Include="js\libs\pixi.js\pixi.js" />
@@ -488,12 +504,17 @@
     <Content Include="js\libs\pixi.js\src\pixi\utils\Polyk.js" />
     <Content Include="js\libs\pixi.js\src\pixi\utils\Utils.js" />
     <Content Include="js\libs\pixi.js\tasks\karma.js" />
+<<<<<<< HEAD
     <Content Include="js\libs\requirejs\.bower.json" />
     <Content Include="js\libs\requirejs\bower.json" />
     <Content Include="js\libs\requirejs\require.js" />
     <Content Include="js\libs\Stats.js" />
     <Content Include="js\Main.js" />
     <Content Include="js\utils\MathUtil.js" />
+=======
+    <Content Include="js\GamePhysics.js" />
+    <Content Include="js\utils\Vec2.js" />
+>>>>>>> origin/master
     <Content Include="karma.conf.js" />
     <Content Include="node_modules\grunt-contrib-cssmin\node_modules\chalk\index.js" />
     <Content Include="node_modules\grunt-contrib-cssmin\node_modules\chalk\node_modules\ansi-styles\ansi-styles.js" />
@@ -3582,7 +3603,14 @@
     <Content Include="js\libs\pixi.js\examples\example 3 - MovieClip\tp\SpriteSheet.tps" />
     <Content Include="js\libs\pixi.js\LICENSE" />
     <Content Include="js\libs\pixi.js\README.md" />
+<<<<<<< HEAD
     <Content Include="js\libs\requirejs\README.md" />
+=======
+    <Content Include="Content\css\style.css.map">
+      <DependentUpon>style.css</DependentUpon>
+    </Content>
+    <Content Include="Content\css\mixin.less" />
+>>>>>>> origin/master
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
