@@ -499,6 +499,8 @@
     <Content Include="js\libs\requirejs\require.js" />
     <Content Include="js\libs\Stats.js" />
     <Content Include="js\Main.js" />
+    <Content Include="js\utils\b2.js" />
+    <Content Include="js\utils\Consts.js" />
     <Content Include="js\utils\MathUtil.js" />
     <Content Include="js\GamePhysics.js" />
     <Content Include="karma.conf.js" />
