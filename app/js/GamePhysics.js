@@ -18,7 +18,7 @@ function GamePhysics(viewWidth, viewHeight)
 			angle: Math.random()
 		});
 
-		console.log(box);
+		//console.log(box);
 
 		// add the circle to the world
 		world.add(box);

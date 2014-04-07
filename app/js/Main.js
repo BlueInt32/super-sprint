@@ -10,6 +10,8 @@
 	var isBegin;
 	var stats;
 
+	var b2Math = Box2D.Common.Math.b2Math;
+
 	var keyboardHandler = new KeyboardHandler();
 
 	(function init()
@@ -53,7 +55,7 @@
 
 	function onLoadAssets()
 	{
-		world = new Box2D.Dynamics.b2World(new Box2D.Common.Math.b2Vec2(1, 1), true);
+		world = new Box2D.Dynamics.b2World(new Box2D.Common.Math.b2Vec2(0, 0), true);
 
 		const polyFixture = new Box2D.Dynamics.b2FixtureDef();
 		polyFixture.shape = new Box2D.Collision.Shapes.b2PolygonShape();
@@ -84,8 +86,8 @@
 		
 		for (var i = 0; i < 1; i++)
 		{
-			bodyDef.position.Set(STAGE_WIDTH / 2 / METER, 0);
-			bodyDef.angle = -1;
+			bodyDef.position.Set(STAGE_WIDTH / 2 / METER, STAGE_HEIGHT / 2 / METER);
+			bodyDef.angle = 0;
 			//body.ApplyImpulse(impulse, body.GetWorldCenter());
 
 			var body = world.CreateBody(bodyDef);
@@ -103,7 +105,7 @@
 			box.scale.y = 1;
 			actors[actors.length] = box;
 		}
-		console.log(keyboardHandler.HandleKeyDown);
+		//console.log(keyboardHandler.HandleKeyDown);
 		document.onkeydown = keyboardHandler.HandleKeyDown.bind(keyboardHandler);
 		document.onkeyup = keyboardHandler.HandleKeyUp.bind(keyboardHandler);
 		document.addEventListener("mousedown", function (event)
@@ -222,16 +224,35 @@
 			var actor = actors[i];
 				
 
-			var currentRightNormal =body.GetWorldVector( new Box2D.Common.Math.b2Vec2(1, 0));
-			var vCurrentRightNormal = Box2D.Common.Math.b2Math.MulFV(Box2D.Common.Math.b2Math.Dot(currentRightNormal, body.GetLinearVelocity()), currentRightNormal);
+			var currentRightNormal = body.GetWorldVector(new Box2D.Common.Math.b2Vec2(0, 1));
+			
+			var vCurrentRightNormal = b2Math.MulFV(b2Math.Dot(currentRightNormal, body.GetLinearVelocity()), currentRightNormal);
 			//console.log(vCurrentRightNormal);
 
-			var impulse = Box2D.Common.Math.b2Math.MulFV(-body.GetMass(), vCurrentRightNormal);
+			var impulse = b2Math.MulFV(-body.GetMass(), vCurrentRightNormal);
 			body.ApplyImpulse(impulse, body.GetWorldCenter());
+
+			
+
 			if (keyboardHandler.Keys.accelerate)
 			{
-				body.ApplyForce(new Box2D.Common.Math.b2Vec2(1 / METER, 1 / METER), new Box2D.Common.Math.b2Vec2(0, 0));
-
+				body.ApplyForce(body.GetWorldVector(new Box2D.Common.Math.b2Vec2(1, 0)), body.GetWorldCenter());
+			}
+			else if (b2Math.Dot(body.GetLinearVelocity(), body.GetWorldVector(new Box2D.Common.Math.b2Vec2(1, 0))) > 0)
+			{
+				body.ApplyForce(body.GetWorldVector(new Box2D.Common.Math.b2Vec2(-0.2, 0)), body.GetWorldCenter());
+			}
+			else if(keyboardHandler.Keys.brake)
+			{
+				body.ApplyForce(body.GetWorldVector(new Box2D.Common.Math.b2Vec2(-1, 0)), body.GetWorldCenter());
+			}
+			if (keyboardHandler.Keys.left)
+			{
+				body.ApplyTorque(-0.1);
+			}
+			if (keyboardHandler.Keys.right)
+			{
+				body.ApplyTorque(0.1);
 			}
 			var position = body.GetPosition();
 			actor.position.x = position.x * 100;
