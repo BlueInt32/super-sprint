@@ -1,18 +1,19 @@
-﻿(function Main()
-{
-	const STAGE_WIDTH = window.innerWidth, STAGE_HEIGHT = window.innerHeight;
-	const METER = 100;
+﻿
 
-	var bodies = [], actors = [];
-	var stage, renderer;
-	var world, mouseJoint;
-	var touchX, touchY;
-	var isBegin;
-	var stats;
+(function Main()
+{
+	var bodies = [],
+		keyboardHandler = new KeyboardHandler(),
+		stage,
+		renderer,
+		world,
+		mouseJoint,
+		isBegin,
+		stats,
+		Consts = new ConstsDef(),
+		pixiSprite;
 
 	var b2Math = Box2D.Common.Math.b2Math;
-
-	var keyboardHandler = new KeyboardHandler();
 
 	(function init()
 	{
@@ -44,8 +45,8 @@
 		stats.domElement.style.position = "absolute";
 
 		stage = new PIXI.Stage(0xDDDDDD, true);
-
-		renderer = PIXI.autoDetectRenderer(STAGE_WIDTH, STAGE_HEIGHT, undefined, false);
+		console.log(Consts.STAGE_WIDTH_PIXEL);
+		renderer = PIXI.autoDetectRenderer(Consts.STAGE_WIDTH_PIXEL, Consts.STAGE_HEIGHT_PIXEL, undefined, false);
 		document.body.appendChild(renderer.view);
 
 		const loader = new PIXI.AssetLoader(["Content/images/car.png"]);
@@ -71,7 +72,7 @@
 
 		//down
 		polyFixture.shape.SetAsBox(10, 1);
-		bodyDef.position.Set(9, STAGE_HEIGHT / METER + 1);
+		bodyDef.position.Set(9, Consts.STAGE_HEIGHT_B2 + 1);
 		world.CreateBody(bodyDef).CreateFixture(polyFixture);
 
 		//left
@@ -80,32 +81,30 @@
 		world.CreateBody(bodyDef).CreateFixture(polyFixture);
 
 		//right
-		bodyDef.position.Set(STAGE_WIDTH / METER + 1, 0);
+		bodyDef.position.Set(Consts.STAGE_WIDTH_B2 + 1, 0);
 		world.CreateBody(bodyDef).CreateFixture(polyFixture);
 		bodyDef.type = Box2D.Dynamics.b2Body.b2_dynamicBody;
 
-		for (var i = 0; i < 1; i++)
-		{
-			bodyDef.position.Set(STAGE_WIDTH / 2 / METER, STAGE_HEIGHT / 2 / METER);
-			bodyDef.angle = 0;
-			//body.ApplyImpulse(impulse, body.GetWorldCenter());
+		console.log(Consts.STAGE_WIDTH_B2);
+		bodyDef.position.Set(Consts.STAGE_WIDTH_B2 / 2, Consts.STAGE_HEIGHT_B2 / 2);
+		bodyDef.angle = 0;
+		//body.ApplyImpulse(impulse, body.GetWorldCenter());
 
-			var body = world.CreateBody(bodyDef);
-			var s = MathUtil.rndRange(50, 100);
-			polyFixture.shape.SetAsBox(32 / METER, 16 / METER);
-			body.CreateFixture(polyFixture);
+		var body = world.CreateBody(bodyDef);
+		var s = MathUtil.rndRange(50, 100);
+		polyFixture.shape.SetAsBox(Consts.CAR_WIDTH_B2, Consts.CAR_HEIGHT_B2);
+		body.CreateFixture(polyFixture);
 
-			bodies.push(body);
+		bodies.push(body);
 
-			var box = new PIXI.Sprite(PIXI.Texture.fromFrame("Content/images/car.png"));
-			stage.addChild(box);
-			box.i = i;
-			box.anchor.x = box.anchor.y = 0.5;
-			box.scale.x = 1;
-			box.scale.y = 1;
-			actors[actors.length] = box;
-		}
-		//console.log(keyboardHandler.HandleKeyDown);
+		pixiSprite = new PIXI.Sprite(PIXI.Texture.fromFrame("Content/images/car.png"));
+		stage.addChild(pixiSprite);
+
+
+		pixiSprite.anchor.x = pixiSprite.anchor.y = 0.5;
+		pixiSprite.scale.x = 1;
+		pixiSprite.scale.y = 1;
+
 		document.onkeydown = keyboardHandler.HandleKeyDown.bind(keyboardHandler);
 		document.onkeyup = keyboardHandler.HandleKeyUp.bind(keyboardHandler);
 		document.addEventListener("mousedown", function (event)
@@ -166,21 +165,6 @@
 		return body;
 	}
 
-	function onMove(event)
-	{
-		if (event["changedTouches"])
-		{
-			var touche = event["changedTouches"][0];
-			touchX = touche.pageX / METER;
-			touchY = touche.pageY / METER;
-		}
-		else
-		{
-			touchX = event.clientX / METER;
-			touchY = event.clientY / METER;
-		}
-	}
-
 	function update()
 	{
 		requestAnimationFrame(update);
@@ -216,52 +200,44 @@
 		world.Step(1 / 60, 3, 3);
 		world.ClearForces();
 
-		const n = actors.length;
-		for (var i = 0; i < n; i++)
+		var body = bodies[0];
+		var thing = things[0];
+
+
+		var currentRightNormal = body.GetWorldVector(new Box2D.Common.Math.b2Vec2(0, 1));
+
+		var vCurrentRightNormal = b2Math.MulFV(b2Math.Dot(currentRightNormal, body.GetLinearVelocity()), currentRightNormal);
+
+		var impulse = b2Math.MulFV(-body.GetMass(), vCurrentRightNormal);
+		body.ApplyImpulse(impulse, body.GetWorldCenter());
+
+
+
+		if (keyboardHandler.Keys.accelerate)
 		{
-
-			var body = bodies[i];
-			var actor = actors[i];
-
-
-			var currentRightNormal = body.GetWorldVector(new Box2D.Common.Math.b2Vec2(0, 1));
-
-			var vCurrentRightNormal = b2Math.MulFV(b2Math.Dot(currentRightNormal, body.GetLinearVelocity()), currentRightNormal);
-			//console.log(vCurrentRightNormal);
-
-			var impulse = b2Math.MulFV(-body.GetMass(), vCurrentRightNormal);
-			body.ApplyImpulse(impulse, body.GetWorldCenter());
-
-
-
-			if (keyboardHandler.Keys.accelerate)
-			{
-				body.ApplyForce(body.GetWorldVector(new Box2D.Common.Math.b2Vec2(1, 0)), body.GetWorldCenter());
-			}
-			else if (b2Math.Dot(body.GetLinearVelocity(), body.GetWorldVector(new Box2D.Common.Math.b2Vec2(1, 0))) > 0)
-			{
-				body.ApplyForce(body.GetWorldVector(new Box2D.Common.Math.b2Vec2(-0.2, 0)), body.GetWorldCenter());
-			}
-			else if (keyboardHandler.Keys.brake)
-			{
-				body.ApplyForce(body.GetWorldVector(new Box2D.Common.Math.b2Vec2(-1, 0)), body.GetWorldCenter());
-			}
-			if (keyboardHandler.Keys.left)
-			{
-				body.ApplyTorque(-0.1);
-			}
-			if (keyboardHandler.Keys.right)
-			{
-				body.ApplyTorque(0.1);
-			}
-			var position = body.GetPosition();
-			actor.position.x = position.x * 100;
-			actor.position.y = position.y * 100;
-			actor.rotation = body.GetAngle();
-
-
-
+			body.ApplyForce(body.GetWorldVector(new Box2D.Common.Math.b2Vec2(1, 0)), body.GetWorldCenter());
 		}
+		else if (b2Math.Dot(body.GetLinearVelocity(), body.GetWorldVector(new Box2D.Common.Math.b2Vec2(1, 0))) > 0)
+		{
+			body.ApplyForce(body.GetWorldVector(new Box2D.Common.Math.b2Vec2(-0.2, 0)), body.GetWorldCenter());
+		}
+		else if (keyboardHandler.Keys.brake)
+		{
+			body.ApplyForce(body.GetWorldVector(new Box2D.Common.Math.b2Vec2(-1, 0)), body.GetWorldCenter());
+		}
+		if (keyboardHandler.Keys.left)
+		{
+			body.ApplyTorque(-Consts.CAR_ROTATE_FACTOR);
+		}
+		if (keyboardHandler.Keys.right)
+		{
+			body.ApplyTorque(Consts.CAR_ROTATE_FACTOR);
+		}
+		var position = body.GetPosition();
+		pixiSprite.position.x = position.x * Consts.METER;
+		pixiSprite.position.y = position.y * Consts.METER;
+		pixiSprite.rotation = body.GetAngle();
+
 
 		renderer.render(stage);
 		stats.update();
