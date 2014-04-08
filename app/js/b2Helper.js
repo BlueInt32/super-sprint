@@ -6,7 +6,7 @@
 
 	this.baseFixture.shape = new b2.shapes.b2PolygonShape();
 	this.baseFixture.density = 1;
-	this.baseFixture.restitution = 0.7;
+	this.baseFixture.restitution = 1;
 	
 	this.CreateWalls = function (stageWidth, stageHeight)
 	{

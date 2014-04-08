@@ -6,6 +6,7 @@ KeyboardHandler.prototype.Keys = { accelerate: false, brake: false, left: false,
 
 KeyboardHandler.prototype.HandleKeyDown = function(event)
 {
+	console.log("top");
 	var key = event.which;
 	switch (key)
 	{

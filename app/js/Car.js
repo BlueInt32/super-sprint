@@ -7,7 +7,7 @@ function Car(consts)
 	this.b2Body;
 	this.CAR_WIDTH_B2 = 64 / this.METER;
 	this.CAR_HEIGHT_B2 = 32 / this.METER;
-	this.CAR_ROTATE_FACTOR = 1;
+	this.CAR_ROTATE_FACTOR = 3;
 
 	this.pixiSprite = new PIXI.Sprite(PIXI.Texture.fromFrame(Sprites.car));
 	this.pixiSprite.anchor.x = this.pixiSprite.anchor.y = 0.5;
@@ -38,8 +38,8 @@ Car.prototype.updateData = function (keyboardData)
 	//console.log(keyboardData);
 	if (keyboardData.accelerate)
 		this.Accelerate();
-	else if (b2.math.Dot(this.b2Body.GetLinearVelocity(), this.b2Body.GetWorldVector(new b2.cMath.b2Vec2(1, 0))) > 0)
-		this.Decelerate();
+	//else if (b2.math.Dot(this.b2Body.GetLinearVelocity(), this.b2Body.GetWorldVector(new b2.cMath.b2Vec2(1, 0))) > 0)
+	//	this.Decelerate();
 	if (keyboardData.brake) this.Brake();
 	if (keyboardData.right) this.TurnRight();
 	else if (keyboardData.left) this.TurnLeft();
@@ -81,16 +81,30 @@ Car.prototype.TurnRight = function ()
 
 Car.prototype.GetLateralVelocity = function ()
 {
-	var currentRightNormal = this.b2Body.GetWorldVector(new Box2D.Common.Math.b2Vec2(0, 1));
-
+	var currentRightNormal = this.b2Body.GetWorldVector(new b2.cMath.b2Vec2(0, 1));
 	var vCurrentRightNormal = b2.math.MulFV(b2.math.Dot(currentRightNormal, this.b2Body.GetLinearVelocity()), currentRightNormal);
-	//console.log(vCurrentRightNormal);
 	return vCurrentRightNormal;
 };
 
+Car.prototype.GetForwardVelocity = function ()
+{
+	var currentRightForward = this.b2Body.GetWorldVector(new b2.cMath.b2Vec2(1, 0));
+	
+	var vCurrentRightForward = b2.math.MulFV(b2.math.Dot(currentRightForward, this.b2Body.GetLinearVelocity()), currentRightForward);
+
+	return vCurrentRightForward;
+};
+
+
 Car.prototype.UpdateFriction = function ()
 {
+	var maxLateralImpulse = 0.09;
+
 	var impulse = b2.math.MulFV(-this.b2Body.GetMass(), this.vCurrentRightNormal);
+	//console.log(impulse.Length());
+	if (impulse.Length() > maxLateralImpulse )
+    	impulse  = b2.math.MulFV(maxLateralImpulse / impulse.Length(), impulse);
+
 	this.b2Body.ApplyImpulse(impulse, this.b2Body.GetWorldCenter());
 
 	var inertia = this.b2Body.GetInertia();
@@ -98,10 +112,16 @@ Car.prototype.UpdateFriction = function ()
 	//console.log(inertia, vel);
 	this.b2Body.ApplyAngularImpulse(0.1 * this.b2Body.GetInertia() * -this.b2Body.GetAngularVelocity());
 
-	//var currentForwardNormal = this.b2Body.getForwardVelocity();
-	//float currentForwardSpeed = currentForwardNormal.Normalize();
-	//float dragForceMagnitude = -2 * currentForwardSpeed;
-	//m_body->ApplyForce( dragForceMagnitude * currentForwardNormal, m_body->GetWorldCenter() );
+
+
+	var currentForwardNormal = this.GetForwardVelocity();
+	var currentForwardSpeed = currentForwardNormal.Normalize();
+	document.getElementById("info").innerHTML = currentForwardSpeed;
+
+	//console.log(currentForwardSpeed);
+	//console.log(currentForwardNormal);
+	var dragForceMagnitude = -0.2 * currentForwardSpeed;
+	this.b2Body.ApplyForce( b2.math.MulFV(dragForceMagnitude, currentForwardNormal), this.b2Body.GetWorldCenter() );
 
 
 };
