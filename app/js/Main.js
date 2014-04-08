@@ -14,6 +14,7 @@
 	{
 		if (!window.requestAnimationFrame)
 		{
+			alert("no requestAnimationFrame");
 			window.requestAnimationFrame = (function ()
 			{
 				return window.webkitRequestAnimationFrame ||
@@ -32,7 +33,7 @@
 
 	function onLoad()
 	{
-		const container = document.createElement("div");
+		var container = document.createElement("div");
 		document.body.appendChild(container);
 
 		stats = new Stats();
@@ -43,7 +44,7 @@
 		pixiRenderer = PIXI.autoDetectRenderer(Consts.STAGE_WIDTH_PIXEL, Consts.STAGE_HEIGHT_PIXEL, undefined, false);
 		document.body.appendChild(pixiRenderer.view);
 		
-		const loader = new PIXI.AssetLoader([Sprites.car]);
+		var loader = new PIXI.AssetLoader([Sprites.car]);
 		loader.onComplete = onLoadAssets;
 		loader.load();
 	}
