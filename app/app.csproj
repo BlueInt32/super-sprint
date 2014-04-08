@@ -76,6 +76,7 @@
     <Content Include="Content\css\mixin.css">
       <DependentUpon>mixin.less</DependentUpon>
     </Content>
+    <Content Include="js\b2Helper.js" />
     <Content Include="js\Car.js" />
     <Content Include="bower.json" />
     <Content Include="Content\css\style.css">
@@ -89,7 +90,6 @@
     <Content Include="Content\images\spaceship.png" />
     <Content Include="Global.asax" />
     <Content Include="gruntfile.js" />
-    <Content Include="js\Game.js" />
     <Content Include="js\KeyboardHandler.js" />
     <Content Include="js\libs\box2dweb\Box2dWeb-2.1.a.3.js" />
     <Content Include="js\libs\box2dweb\Box2dWeb-2.1.a.3.min.js" />
@@ -499,10 +499,10 @@
     <Content Include="js\libs\requirejs\require.js" />
     <Content Include="js\libs\Stats.js" />
     <Content Include="js\Main.js" />
+    <Content Include="js\Sprites.js" />
     <Content Include="js\utils\b2.js" />
     <Content Include="js\utils\Consts.js" />
     <Content Include="js\utils\MathUtil.js" />
-    <Content Include="js\GamePhysics.js" />
     <Content Include="karma.conf.js" />
     <Content Include="node_modules\grunt-contrib-cssmin\node_modules\chalk\index.js" />
     <Content Include="node_modules\grunt-contrib-cssmin\node_modules\chalk\node_modules\ansi-styles\ansi-styles.js" />

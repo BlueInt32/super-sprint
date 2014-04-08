@@ -1,28 +1,33 @@
 ﻿'use strict';
 
-function Car(pixiStage)
+function Car(consts)
 {
-	//console.log("Car creation");
-	var pixiSprite = new PIXI.Sprite(PIXI.Texture.fromFrame("Content/images/car.png"));
-	var vCurrentRightNormal;
+	//console.log("ctor Car");
 
-	pixiSprite.i = 0;
-	pixiSprite.anchor.x = pixiSprite.anchor.y = 0.5;
-	pixiSprite.scale.x = 1;
-	pixiSprite.scale.y = 1;
-	pixiStage.addChild(pixiSprite);
+	this.carBodyDef = new b2.dyn.b2BodyDef();
+	this.b2Body;
+	this.CAR_WIDTH_B2 = 64 / consts.METER;
+	this.CAR_HEIGHT_B2 = 32 / consts.METER;
+	this.CAR_ROTATE_FACTOR = 1;
+
+	this.pixiSprite = new PIXI.Sprite(PIXI.Texture.fromFrame(Sprites.car));
+	this.pixiSprite.anchor.x = this.pixiSprite.anchor.y = 0.5;
+	this.pixiSprite.scale.x = 1;
+	this.pixiSprite.scale.y = 1;
+
 };
-
-Car.prototype.createBody = function (bodyDef, world, polyFixture)
+Car.prototype.createb2Body = function (b2Helper, x, y)
 {
-	//console.log("Car createBody");
-	bodyDef.position.Set(Consts.STAGE_WIDTH / 2, Consts.STAGE_HEIGHT / 2);
-	bodyDef.angle = 0;
+	this.carBodyDef.type = Box2D.Dynamics.b2Body.b2_dynamicBody;
+	this.carBodyDef.position.Set(x, y);
+	this.carBodyDef.angle = 0;
 
-	this.body = world.CreateBody(bodyDef);
+	this.b2Body = b2Helper.world.CreateBody(this.carBodyDef);
 
-	polyFixture.shape.SetAsBox(32 / Consts.METER, 16 / Consts.METER);
-	this.body.CreateFixture(polyFixture);
+	var s = MathUtil.rndRange(50, 100);
+	b2Helper.baseFixture.shape.SetAsBox(this.CAR_WIDTH_B2, this.CAR_HEIGHT_B2);
+	this.b2Body.CreateFixture(b2Helper.baseFixture);
+
 }
 
 
