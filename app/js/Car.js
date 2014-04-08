@@ -2,18 +2,20 @@
 
 function Car(consts)
 {
-	//console.log("ctor Car");
-
+	this.METER = consts.METER;
 	this.carBodyDef = new b2.dyn.b2BodyDef();
 	this.b2Body;
-	this.CAR_WIDTH_B2 = 64 / consts.METER;
-	this.CAR_HEIGHT_B2 = 32 / consts.METER;
+	this.CAR_WIDTH_B2 = 64 / this.METER;
+	this.CAR_HEIGHT_B2 = 32 / this.METER;
 	this.CAR_ROTATE_FACTOR = 1;
 
 	this.pixiSprite = new PIXI.Sprite(PIXI.Texture.fromFrame(Sprites.car));
 	this.pixiSprite.anchor.x = this.pixiSprite.anchor.y = 0.5;
 	this.pixiSprite.scale.x = 1;
 	this.pixiSprite.scale.y = 1;
+
+
+	this.vCurrentRightNormal;
 
 };
 Car.prototype.createb2Body = function (b2Helper, x, y)
@@ -36,7 +38,7 @@ Car.prototype.updateData = function (keyboardData)
 	//console.log(keyboardData);
 	if (keyboardData.accelerate)
 		this.Accelerate();
-	else if (b2.math.Dot(this.body.GetLinearVelocity(), this.body.GetWorldVector(new Box2D.Common.Math.b2Vec2(1, 0))) > 0)
+	else if (b2.math.Dot(this.b2Body.GetLinearVelocity(), this.b2Body.GetWorldVector(new b2.cMath.b2Vec2(1, 0))) > 0)
 		this.Decelerate();
 	if (keyboardData.brake) this.Brake();
 	if (keyboardData.right) this.TurnRight();
@@ -45,44 +47,49 @@ Car.prototype.updateData = function (keyboardData)
 	this.vCurrentRightNormal = this.GetLateralVelocity();
 
 
-	document.getElementById("info").innerHTML = this.direction;
 	this.UpdateFriction();
+
+	var position = this.b2Body.GetPosition();
+	this.pixiSprite.position.x = position.x * this.METER;
+	this.pixiSprite.position.y = position.y * this.METER;
+	this.pixiSprite.rotation = this.b2Body.GetAngle();
+
 };
 
 Car.prototype.Accelerate = function ()
 {
-	this.body.ApplyForce(this.body.GetWorldVector(new Box2D.Common.Math.b2Vec2(1, 0)), this.body.GetWorldCenter());
+	this.b2Body.ApplyForce(this.b2Body.GetWorldVector(new Box2D.Common.Math.b2Vec2(1, 0)), this.b2Body.GetWorldCenter());
 
 };
 Car.prototype.Brake = function ()
 {
-	this.body.ApplyForce(this.body.GetWorldVector(new Box2D.Common.Math.b2Vec2(-1, 0)), this.body.GetWorldCenter());
+	this.b2Body.ApplyForce(this.b2Body.GetWorldVector(new Box2D.Common.Math.b2Vec2(-1, 0)), this.b2Body.GetWorldCenter());
 };
 Car.prototype.Decelerate = function ()
 {
-	this.body.ApplyForce(this.body.GetWorldVector(new Box2D.Common.Math.b2Vec2(-0.2, 0)), this.body.GetWorldCenter());
+	this.b2Body.ApplyForce(this.b2Body.GetWorldVector(new Box2D.Common.Math.b2Vec2(-0.2, 0)), this.b2Body.GetWorldCenter());
 };
 
 Car.prototype.TurnLeft = function ()
 {
-	this.body.ApplyTorque(-0.1);
+	this.b2Body.ApplyTorque(-this.CAR_ROTATE_FACTOR);
 };
 Car.prototype.TurnRight = function ()
 {
-	this.body.ApplyTorque(0.1);
+	this.b2Body.ApplyTorque(this.CAR_ROTATE_FACTOR);
 };
 
 Car.prototype.GetLateralVelocity = function ()
 {
-	var currentRightNormal = this.body.GetWorldVector(new Box2D.Common.Math.b2Vec2(0, 1));
+	var currentRightNormal = this.b2Body.GetWorldVector(new Box2D.Common.Math.b2Vec2(0, 1));
 
-	var vCurrentRightNormal = b2.math.MulFV(b2.math.Dot(currentRightNormal, this.body.GetLinearVelocity()), currentRightNormal);
+	var vCurrentRightNormal = b2.math.MulFV(b2.math.Dot(currentRightNormal, this.b2Body.GetLinearVelocity()), currentRightNormal);
 	//console.log(vCurrentRightNormal);
 	return vCurrentRightNormal;
 };
 
 Car.prototype.UpdateFriction = function ()
 {
-	var impulse = b2.math.MulFV(-this.body.GetMass(), this.vCurrentRightNormal);
-	this.body.ApplyImpulse(impulse, this.body.GetWorldCenter());
+	var impulse = b2.math.MulFV(-this.b2Body.GetMass(), this.vCurrentRightNormal);
+	this.b2Body.ApplyImpulse(impulse, this.b2Body.GetWorldCenter());
 };
