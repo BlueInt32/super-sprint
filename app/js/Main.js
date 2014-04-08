@@ -15,17 +15,17 @@
 	var keyboardHandler = new KeyboardHandler();
 
 	(function init()
-{
+	{
 		if (!window.requestAnimationFrame)
-{
+		{
 			window.requestAnimationFrame = (function ()
-{
+			{
 				return window.webkitRequestAnimationFrame ||
 				window.mozRequestAnimationFrame ||
 				window.oRequestAnimationFrame ||
 				window.msRequestAnimationFrame ||
 				function (callback)
-{
+				{
 					window.setTimeout(callback, 1000 / 60);
 				};
 			})();
@@ -35,7 +35,7 @@
 	})();
 
 	function onLoad()
-{
+	{
 		const container = document.createElement("div");
 		document.body.appendChild(container);
 
@@ -54,7 +54,7 @@
 	}
 
 	function onLoadAssets()
-{
+	{
 		world = new Box2D.Dynamics.b2World(new Box2D.Common.Math.b2Vec2(0, 0), true);
 
 		const polyFixture = new Box2D.Dynamics.b2FixtureDef();
@@ -85,7 +85,7 @@
 		bodyDef.type = Box2D.Dynamics.b2Body.b2_dynamicBody;
 
 		for (var i = 0; i < 1; i++)
-{
+		{
 			bodyDef.position.Set(STAGE_WIDTH / 2 / METER, STAGE_HEIGHT / 2 / METER);
 			bodyDef.angle = 0;
 			//body.ApplyImpulse(impulse, body.GetWorldCenter());
@@ -109,14 +109,14 @@
 		document.onkeydown = keyboardHandler.HandleKeyDown.bind(keyboardHandler);
 		document.onkeyup = keyboardHandler.HandleKeyUp.bind(keyboardHandler);
 		document.addEventListener("mousedown", function (event)
-{
+		{
 			isBegin = true;
 			onMove(event);
 			document.addEventListener("mousemove", onMove, true);
 		}, true);
 
 		document.addEventListener("mouseup", function (event)
-{
+		{
 			document.removeEventListener("mousemove", onMove, true);
 			isBegin = false;
 			touchX = undefined;
@@ -124,14 +124,14 @@
 		}, true);
 
 		renderer.view.addEventListener("touchstart", function (event)
-{
+		{
 			isBegin = true;
 			onMove(event);
 			renderer.view.addEventListener("touchmove", onMove, true);
 		}, true);
 
 		renderer.view.addEventListener("touchend", function (event)
-{
+		{
 			renderer.view.removeEventListener("touchmove", onMove, true);
 			isBegin = false;
 			touchX = undefined;
@@ -142,7 +142,7 @@
 	}
 
 	function getBodyAtMouse()
-{
+	{
 		const mousePos = new Box2D.Common.Math.b2Vec2(touchX, touchY);
 		const aabb = new Box2D.Collision.b2AABB();
 		aabb.lowerBound.Set(touchX - 0.001, touchY - 0.001);
@@ -151,11 +151,11 @@
 		var body;
 		world.QueryAABB(
             function (fixture)
-{
+            {
             	if (fixture.GetBody().GetType() != Box2D.Dynamics.b2BodyDef.b2_staticBody)
-{
+            	{
             		if (fixture.GetShape().TestPoint(fixture.GetBody().GetTransform(), mousePos))
-{
+            		{
             			body = fixture.GetBody();
             			return false;
             		}
@@ -167,29 +167,29 @@
 	}
 
 	function onMove(event)
-{
+	{
 		if (event["changedTouches"])
-{
+		{
 			var touche = event["changedTouches"][0];
 			touchX = touche.pageX / METER;
 			touchY = touche.pageY / METER;
 		}
 		else
-{
+		{
 			touchX = event.clientX / METER;
 			touchY = event.clientY / METER;
 		}
 	}
 
 	function update()
-{
+	{
 		requestAnimationFrame(update);
 
 		if (isBegin && !mouseJoint)
-{
+		{
 			const dragBody = getBodyAtMouse();
 			if (dragBody)
-{
+			{
 				const jointDef = new Box2D.Dynamics.Joints.b2MouseJointDef();
 				jointDef.bodyA = world.GetGroundBody();
 				jointDef.bodyB = dragBody;
@@ -202,11 +202,11 @@
 		}
 
 		if (mouseJoint)
-{
+		{
 			if (isBegin)
 				mouseJoint.SetTarget(new Box2D.Common.Math.b2Vec2(touchX, touchY));
 			else
-{
+			{
 				world.DestroyJoint(mouseJoint);
 				mouseJoint = null;
 			}
@@ -218,7 +218,7 @@
 
 		const n = actors.length;
 		for (var i = 0; i < n; i++)
-{
+		{
 
 			var body = bodies[i];
 			var actor = actors[i];
@@ -235,23 +235,23 @@
 
 
 			if (keyboardHandler.Keys.accelerate)
-{
+			{
 				body.ApplyForce(body.GetWorldVector(new Box2D.Common.Math.b2Vec2(1, 0)), body.GetWorldCenter());
 			}
 			else if (b2Math.Dot(body.GetLinearVelocity(), body.GetWorldVector(new Box2D.Common.Math.b2Vec2(1, 0))) > 0)
-{
+			{
 				body.ApplyForce(body.GetWorldVector(new Box2D.Common.Math.b2Vec2(-0.2, 0)), body.GetWorldCenter());
 			}
 			else if (keyboardHandler.Keys.brake)
-{
+			{
 				body.ApplyForce(body.GetWorldVector(new Box2D.Common.Math.b2Vec2(-1, 0)), body.GetWorldCenter());
 			}
 			if (keyboardHandler.Keys.left)
-{
+			{
 				body.ApplyTorque(-0.1);
 			}
 			if (keyboardHandler.Keys.right)
-{
+			{
 				body.ApplyTorque(0.1);
 			}
 			var position = body.GetPosition();
