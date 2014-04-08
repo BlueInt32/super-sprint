@@ -7,35 +7,23 @@
 	this.baseFixture.shape = new b2.shapes.b2PolygonShape();
 	this.baseFixture.density = 1;
 	this.baseFixture.restitution = 0.7;
-
-	this.CreateWorld = function ()
-	{
-
-	}
-
-
-	this.CreateWalls = function (b2World)
+	
+	this.CreateWalls = function (stageWidth, stageHeight)
 	{
 		this.wallBodyDef.type = b2.shapes.b2_staticBody;
 		//down
 		this.baseFixture.shape.SetAsBox(10, 1);
-		this.wallBodyDef.position.Set(9, Consts.STAGE_HEIGHT_B2 + 1);
+		this.wallBodyDef.position.Set(9, stageHeight + 1);
 		this.world.CreateBody(this.wallBodyDef).CreateFixture(this.baseFixture);
 
 		//left
 		this.baseFixture.shape.SetAsBox(1, 100);
 		this.wallBodyDef.position.Set(-1, 0);
-		this.world.CreateBody(bodyDef).CreateFixture(this.baseFixture);
+		this.world.CreateBody(this.wallBodyDef).CreateFixture(this.baseFixture);
 
 		//right
-		this.wallBodyDef.position.Set(Consts.STAGE_WIDTH_B2 + 1, 0);
-		this.world.CreateBody(bodyDef).CreateFixture(this.baseFixture);
+		this.wallBodyDef.position.Set(stageWidth + 1, 0);
+		this.world.CreateBody(this.wallBodyDef).CreateFixture(this.baseFixture);
 
 	}
-
-	this.CreateCar = function ()
-	{
-	}
-
-
 }

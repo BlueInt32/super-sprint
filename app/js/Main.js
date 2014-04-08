@@ -1,6 +1,4 @@
-﻿
-
-(function Main()
+﻿(function Main()
 {
 	var b2Helper = new B2Helper(),
 		keyboardHandler = new KeyboardHandler(),
@@ -52,6 +50,8 @@
 
 	function onLoadAssets()
 	{
+		b2Helper.CreateWalls(Consts.STAGE_WIDTH_B2, Consts.STAGE_HEIGHT_B2);
+
 		car = new Car(Consts);
 		car.createb2Body(b2Helper, Consts.STAGE_WIDTH_B2 / 2, Consts.STAGE_HEIGHT_B2 / 2);
 		pixiStage.addChild(car.pixiSprite);

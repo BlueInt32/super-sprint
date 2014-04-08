@@ -4605,6 +4605,14 @@ Box2D.postDefs = [];
       this.m_linearVelocity.y += this.m_invMass * impulse.y;
       this.m_angularVelocity += this.m_invI * ((point.x - this.m_sweep.c.x) * impulse.y - (point.y - this.m_sweep.c.y) * impulse.x);
    }
+   b2Body.prototype.ApplyAngularImpulse = function (impulse)
+   {
+   	if (this.IsAwake() == false)
+   	{
+   		this.SetAwake(true);
+   	}
+   	this.m_angularVelocity += this.m_invI * impulse;
+   };
    b2Body.prototype.Split = function (callback) {
       var linearVelocity = this.GetLinearVelocity().Copy();
       var angularVelocity = this.GetAngularVelocity();

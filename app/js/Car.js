@@ -92,4 +92,17 @@ Car.prototype.UpdateFriction = function ()
 {
 	var impulse = b2.math.MulFV(-this.b2Body.GetMass(), this.vCurrentRightNormal);
 	this.b2Body.ApplyImpulse(impulse, this.b2Body.GetWorldCenter());
+
+	var inertia = this.b2Body.GetInertia();
+	var vel = this.b2Body.GetAngularVelocity();
+	//console.log(inertia, vel);
+	this.b2Body.ApplyAngularImpulse(0.1 * this.b2Body.GetInertia() * -this.b2Body.GetAngularVelocity());
+
+	//var currentForwardNormal = this.b2Body.getForwardVelocity();
+	//float currentForwardSpeed = currentForwardNormal.Normalize();
+	//float dragForceMagnitude = -2 * currentForwardSpeed;
+	//m_body->ApplyForce( dragForceMagnitude * currentForwardNormal, m_body->GetWorldCenter() );
+
+
 };
+
