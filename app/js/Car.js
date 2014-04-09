@@ -5,12 +5,13 @@ function Car(consts)
 	this.METER = consts.METER;
 	this.carBodyDef = new b2.dyn.b2BodyDef();
 	this.b2Body;
-	this.CAR_WIDTH_B2 = 64 / this.METER;
-	this.CAR_HEIGHT_B2 = 32 / this.METER;
-	this.CAR_ROTATE_FACTOR = 3;
+	this.CAR_WIDTH_B2 = 32 / this.METER;
+	this.CAR_HEIGHT_B2 = 16 / this.METER;
+	this.CAR_ROTATE_FACTOR = 0.3;
 
 	this.pixiSprite = new PIXI.Sprite(PIXI.Texture.fromFrame(Sprites.car));
-	this.pixiSprite.anchor.x = this.pixiSprite.anchor.y = 0.5;
+	this.pixiSprite.anchor.x  = 0.5;
+	this.pixiSprite.anchor.y = 0.5;
 	this.pixiSprite.scale.x = 1;
 	this.pixiSprite.scale.y = 1;
 
@@ -59,7 +60,6 @@ Car.prototype.updateData = function (keyboardData)
 Car.prototype.Accelerate = function ()
 {
 	this.b2Body.ApplyForce(this.b2Body.GetWorldVector(new Box2D.Common.Math.b2Vec2(1, 0)), this.b2Body.GetWorldCenter());
-
 };
 Car.prototype.Brake = function ()
 {
@@ -101,7 +101,6 @@ Car.prototype.UpdateFriction = function ()
 	var maxLateralImpulse = 0.09;
 
 	var impulse = b2.math.MulFV(-this.b2Body.GetMass(), this.vCurrentRightNormal);
-	//console.log(impulse.Length());
 	if (impulse.Length() > maxLateralImpulse )
     	impulse  = b2.math.MulFV(maxLateralImpulse / impulse.Length(), impulse);
 
@@ -109,7 +108,6 @@ Car.prototype.UpdateFriction = function ()
 
 	var inertia = this.b2Body.GetInertia();
 	var vel = this.b2Body.GetAngularVelocity();
-	//console.log(inertia, vel);
 	this.b2Body.ApplyAngularImpulse(0.1 * this.b2Body.GetInertia() * -this.b2Body.GetAngularVelocity());
 
 

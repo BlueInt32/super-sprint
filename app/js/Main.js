@@ -3,13 +3,15 @@
 	var b2Helper = new B2Helper(),
 		keyboardHandler = new KeyboardHandler(),
 		Consts = new ConstsDef(),
+		b2DebugDraw = Box2D.Dynamics.b2DebugDraw,
 		stats,
 		pixiRenderer,
 		pixiStage,
 		pixiSprite,
 		car;
-
-
+	document.getElementById("canvas").setAttribute("width", window.innerWidth);
+	document.getElementById("canvas").setAttribute("height", window.innerHeight);
+	debugDraw();
 	(function init()
 	{
 		if (!window.requestAnimationFrame)
@@ -63,10 +65,30 @@
 		update();
 	}
 
+	function debugDraw()
+	{
+		var debugDraw = new b2DebugDraw();
+		debugDraw.SetSprite(document.getElementById("canvas").getContext("2d"));
+		debugDraw.SetDrawScale(100.0);
+		debugDraw.SetFillAlpha(0.5);
+		debugDraw.SetLineThickness(1.0);
+		debugDraw.SetFlags(b2DebugDraw.e_shapeBit | b2DebugDraw.e_jointBit);
+		b2Helper.world.SetDebugDraw(debugDraw);
+
+		
+	}
+
 	function update()
 	{
+
 		requestAnimationFrame(update);
 		b2Helper.world.Step(1 / 60, 3, 3);
+		b2Helper.world.DrawDebugData();
+
+		//var ctx = document.getElementById("canvas").getContext("2d");
+		//ctx.drawImage(document.getElementById("canvas"), 0, 0, 200, 200);
+
+
 		b2Helper.world.ClearForces();
 		car.updateData(keyboardHandler.Keys);
 		pixiRenderer.render(pixiStage);

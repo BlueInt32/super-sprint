@@ -10,10 +10,11 @@
 	
 	this.CreateWalls = function (stageWidth, stageHeight)
 	{
+		console.log(stageWidth, stageHeight);
 		this.wallBodyDef.type = b2.shapes.b2_staticBody;
 		//down
-		this.baseFixture.shape.SetAsBox(10, 1);
-		this.wallBodyDef.position.Set(9, stageHeight + 1);
+		this.baseFixture.shape.SetAsBox(19, 1);
+		this.wallBodyDef.position.Set(stageWidth / 2, stageHeight + 1);
 		this.world.CreateBody(this.wallBodyDef).CreateFixture(this.baseFixture);
 
 		//left
