@@ -89,7 +89,7 @@
 
 		b2Helper.world.ClearForces();
 		car.updateData(keyboardHandler.Keys);
-		pixiRenderer.render(pixiStage);
+		//pixiRenderer.render(pixiStage);
 		stats.update();
 	}
 })();
