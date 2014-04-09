@@ -74,8 +74,6 @@
 		debugDraw.SetLineThickness(1.0);
 		debugDraw.SetFlags(b2DebugDraw.e_shapeBit | b2DebugDraw.e_jointBit);
 		b2Helper.world.SetDebugDraw(debugDraw);
-
-		
 	}
 
 	function update()
