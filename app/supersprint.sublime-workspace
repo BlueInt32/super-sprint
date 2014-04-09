@@ -1,0 +1,421 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"rever",
+				"reverseFilter"
+			],
+			[
+				"border",
+				"borderradius"
+			],
+			[
+				"text",
+				"text-align"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "/C/Users/Simon/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+			"settings":
+			{
+				"buffer_size": 614,
+				"line_ending": "Unix"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 94.0,
+		"selected_items":
+		[
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"pack",
+				"Package Control: Remove Package"
+			],
+			[
+				"html",
+				"Set Syntax: HTML"
+			],
+			[
+				"css",
+				"Set Syntax: CSS"
+			],
+			[
+				"brow",
+				"Preferences: Browse Packages"
+			]
+		],
+		"width": 368.0
+	},
+	"console":
+	{
+		"height": 392.0,
+		"history":
+		[
+			"import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/C/Users/Simon/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/D/Prog/Git/SuperSprint/app/index.html",
+		"/C/Users/Simon/AppData/Roaming/Sublime Text 3/Packages/AdvancedNewFile/Default (Windows).sublime-keymap",
+		"/D/Prog/Git/SuperSprint/app/js/game.js",
+		"/D/Prog/Git/SuperSprint/app/js/utils/salut.js",
+		"/D/Prog/Git/SuperSprint/app/index2.html",
+		"/D/Prog/Git/SuperSprint/app/js/utils/b2.js",
+		"/D/Prog/Git/SuperSprint/app/js/b2Helper.js",
+		"/D/Prog/Git/SuperSprint/app/js/Car.js",
+		"/D/Prog/Git/SuperSprint/app/js/Main.js",
+		"/D/Prog/Git/SuperSprint/app/js/KeyboardHandler.js",
+		"/D/Prog/Git/SuperSprint/app/js/libs/pixi.js/docs/files/src_pixi_utils_Polyk.js.html",
+		"/D/Prog/Git/SuperSprint/app/js/libs/pixi.js/src/pixi/utils/Utils.js",
+		"/D/Prog/Git/SuperSprint/app/js/libs/box2dweb/Box2dWeb-2.1.a.3.js",
+		"/D/Prog/Git/SuperSprint/app/js/Game.js",
+		"/C/Users/Simon/AppData/Roaming/Sublime Text 3/Packages/LiveReload/LiveReload.sublime-settings",
+		"/C/Users/Simon/AppData/Roaming/Sublime Text 3/Packages/User/LiveReload.sublime-settings",
+		"/C/Users/Simon/AppData/Local/Temp/.ssh/SSH_AUTH_SOCK.env",
+		"/C/Users/Simon/AppData/Local/Temp/.ssh/SSH_AGENT_PID.env",
+		"/C/Users/Simon/.ssh/known_hosts",
+		"/C/Users/Simon/.ssh/id_rsa.pub",
+		"/C/Users/Simon/.ssh/id_rsa",
+		"/D/Prog/Git/SuperSprint/app/app.csproj",
+		"/D/Prog/Git/SuperSprint/samples/pixijs_box2d/MouseJoint/src/utils/MathUtil.js",
+		"/D/Prog/Git/SuperSprint/samples/pixijs_box2d/MouseJoint/src/Main.js",
+		"/D/Prog/Git/SuperSprint/app/js/libs/PhysicsJS/examples/sims/basket.js",
+		"/D/Prog/Git/SuperSprint/samples/pixijs_box2d/MouseJoint/index.html",
+		"/D/Prog/Git/SuperSprint/app/.bowerrc",
+		"/D/Prog/Git/SuperSprint/app/bower.json",
+		"/D/Prog/Git/SuperSprint/app/js/libs/physics/examples/showcase.html",
+		"/D/Prog/Git/SuperSprint/app/js/libs/physics/examples/sims/impact.js",
+		"/D/Prog/Git/SuperSprint/app/js/libs/physics/examples/sims/newtonian.js",
+		"/D/Prog/Git/SuperSprint/app/js/libs/physics/examples/sims/simple.js",
+		"/D/Prog/Git/Patterns/Commande/README.md",
+		"/D/Prog/Git/Patterns/Commande/commande.cs",
+		"/C/Users/Simon/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/D/prog/git/PixiJsLib/examples/example 2 - SpriteSheet/SpriteSheet.json",
+		"/D/Prog/Git/2048-angular/Webapp/js/app/app.js",
+		"/C/Users/Simon/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/deletePremiereCache.bat",
+		"/D/_Setups/___Premium/Console-2.00b148-Beta_32bit/console.xml",
+		"/D/Prog/Git/PixiJsLib/examples/example 12 - Spine/data/spineboySpineData.json",
+		"/D/Prog/Git/PixiJsLib/examples/example 12 - Spine/data/spineboy.json",
+		"/D/prog/git/PixiJsLib/examples/example 2 - SpriteSheet/index.html",
+		"/D/prog/git/angular-phonecat/scripts/web-server.js",
+		"/D/Prog/Git/SuperSprint/samples/pixijs_box2d/MouseJoint/test.html",
+		"/C/Users/Simon/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/deleteLightroomCache.bat",
+		"/D/prog/git/WindowsUtils/FileDeletor/README.md",
+		"/D/Prog/Git/WindowsUtils/FileDeletor/deleteAdobeCache.bat",
+		"/D/prog/git/WindowsUtils/FileDeletor/FileDeletor.sln",
+		"/D/prog/git/WindowsUtils/FileDeletor/FileDeletor/FileDeletor.csproj",
+		"/D/Dropbox/Prog/Utilities/DeleteAdobeCacheFiles/deleteAdobeCache.bat",
+		"/D/Prog/Git/SuperSprint/app/package.json",
+		"/D/Prog/Git/SuperSprint/asp.net.sln",
+		"/D/Prog/Git/SuperSprint/.gitattributes",
+		"/D/Prog/Git/SuperSprint/index.html",
+		"/D/Prog/Git/SuperSprint/app/Global.asax.cs",
+		"/D/Prog/Git/SuperSprint/node_modules/karma-chrome-launcher/index.js",
+		"/D/prog/git/SuperSprint/package.json",
+		"/D/Prog/Git/SuperSprint/.gitignore",
+		"/D/Prog/Git/SuperSprint/4112-0.gitignore",
+		"/D/prog/git/2048-angular/Webapp/js/bower.json",
+		"/D/Dropbox/SpeedDialConfig/speeddialconfig.js",
+		"/D/prog/git/SuperSprint/game.js",
+		"/C/Users/Simon/Documents/WindowsPowerShell/Microsoft.PowerShell_profile.ps1",
+		"/D/prog/git/SuperSprint/index.html",
+		"/D/Prog/Git/SuperSprint/bower_components/pixi.js/bin/pixi.js",
+		"/D/Prog/Git/2048-angular/Webapp/Properties/PublishProfiles/Journeyman.pubxml",
+		"/G/_TUTOS/The Structure of Man/HumanBeingHD070.txt",
+		"/D/Prog/Git/2048-angular/.gitignore",
+		"/D/Prog/Git/2048-angular/Webapp/js/bower.json",
+		"/D/Dropbox/1p/test.1pif",
+		"/G/_TUTOS/The Structure of Man/HumanBeingHD066.txt",
+		"/D/Prog/Git/angular-phonecat/app/index.html",
+		"/D/Prog/Git/angular-phonecat/test/unit/controllersSpec.js",
+		"/D/Prog/Git/angular-phonecat/app/js/controllers.js",
+		"/D/Prog/Git/angular-phonecat/app/js/app.js",
+		"/D/Prog/Git/angular-phonecat/scripts/e2e-test.bat",
+		"/D/Prog/Git/angular-phonecat/config/karma.conf.js",
+		"/D/Prog/Git/angular-phonecat/test/e2e/scenarios.js",
+		"/D/Prog/Git/angular-phonecat/test/e2e/runner.html",
+		"/D/Prog/Git/angular-phonecat/app/js/services.js",
+		"/D/Prog/Git/angular-phonecat/app/js/filters.js",
+		"/D/Prog/Git/angular-phonecat/app/js/directives.js",
+		"/D/Dropbox/Mel&Simon/Films que Louloute voudrait.txt",
+		"/G/_TUTOS/The Structure of Man/HumanBeingHD064.txt",
+		"/D/Prog/Git/NodeJs/OpenClassRoomTuto/node_modules/sayhello.js",
+		"/D/Prog/Git/NodeJs/OpenClassRoomTuto/node_modules/markdown/README.markdown",
+		"/D/Prog/Git/NodeJs/OpenClassRoomTuto/server.js",
+		"/D/Prog/Git/NodeJs/OpenClassRoomTuto/node_modules/sayhello",
+		"/C/Users/Simon/Desktop/_temp/chap_IV_9/QuickSort.dpr",
+		"/C/Users/Simon/AppData/Local/Temp/Rar$DR44.984/Unit1.pas",
+		"/C/Users/Simon/AppData/Local/Temp/Rar$DR44.984/Unit1.dfm",
+		"/G/BigSetups/Adobe Premiere.Pro_CC_Multi-XFORCE/Crack-Windows/disable_activation.cmd",
+		"/C/Windows/System32/drivers/etc/hosts",
+		"/D/Prog/Git/angular60ish/index.html",
+		"/D/Prog/Git/angular-phonecat/app/lib/angular/angular-scenario.js",
+		"/D/Prog/Git/angular-phonecat/test/e2e/app/lib/angular/angular-scenario.js",
+		"/D/Prog/Git/angular-phonecat/scripts/test.bat",
+		"/D/Prog/Git/gokeyboard/.gitignore",
+		"/D/Dropbox/Prog/ASP.NET MVC/GoKeyboard/GoKeyboard.Webapp/Content/Site.less",
+		"/D/Dropbox/Prog/ASP.NET MVC/GoKeyboard/GoKeyboard.Webapp/Content/mixin.less",
+		"/D/Dropbox/Prog/ASP.NET MVC/GoKeyboard/TemplatingHTML/Gabarits/styles/base.css",
+		"/D/Dropbox/Prog/ASP.NET MVC/GoKeyboard/TemplatingHTML/Gabarits/styles/modele06.css",
+		"/D/Dropbox/Prog/ASP.NET MVC/GoKeyboard/TemplatingHTML/Gabarits/modele06.html",
+		"/C/Users/Simon/Downloads/Madagascar 2005 H264 DVDRip 5.1 ch-SecretMyth/Madagascar.srt",
+		"/C/Users/Simon/Desktop/test.html",
+		"/D/Dropbox/Prog/PHP/lagarennebossard/sftp-config.json",
+		"/D/Dropbox/Prog/ASP.NET MVC/GoKeyboard/GoKeyboard.Webapp/Content/bootstrap.css",
+		"/D/Dropbox/Prog/ASP.NET MVC/Sc2TutsBase/Sc2TutsBase/Content/css/MFInLess.less",
+		"/D/Dropbox/Prog/ASP.NET MVC/GoKeyboard/GoKeyboard.sln",
+		"/D/Dropbox/Prog/ASP.NET MVC/GoKeyboard/GoKeyboard.DAL/bin/Release/Logs/Info.log",
+		"/D/Dropbox/Prog/ASP.NET MVC/Tools/Snippets/CharSnippet.snippet",
+		"/D/AutoIt Scripts/GoTv.au3",
+		"/D/Dropbox/Prog/ASP.NET MVC/GoKeyboard/GoKeyboard/Models/LessonModel.cs",
+		"/D/Dropbox/Prog/ASP.NET MVC/GoKeyboard/GoKeyboard/Controllers/HomeController.cs",
+		"/D/Dropbox/Prog/ASP.NET MVC/GoKeyboard/GoKeyboard.Api/Controllers/Exercicesontroller.cs",
+		"/C/Users/Simon/AppData/Roaming/Sublime Text 3/Packages/Default/Default (Windows).sublime-keymap"
+	],
+	"find":
+	{
+		"height": 31.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"console",
+			");\n",
+			"<<<",
+			"#17b",
+			"find",
+			"search",
+			"highl",
+			"var",
+			"AdobeCacheDeleter",
+			"keyboardHandler",
+			"3",
+			"test",
+			"renderer",
+			"Renderer",
+			"renderer",
+			"Renderer",
+			"renderer",
+			"Renderer",
+			"renderer",
+			"Renderer",
+			"renderer",
+			"Renderer",
+			"renderer",
+			"Renderer",
+			"renderer",
+			"load",
+			"Load",
+			"load",
+			">\n",
+			"Assets",
+			"assets",
+			"Assets",
+			"assets",
+			"..",
+			"extensionWith",
+			"ado",
+			"bunny",
+			"<<<",
+			".db",
+			"127.0.0.1 lm.licenses.adobe.com",
+			"127.0.0.1 lmlicenses.wip4.adobe.com",
+			"#332510",
+			"#F0E39E",
+			"#363B29",
+			"#181A12",
+			"img/",
+			"nav",
+			"galleria-image-nav-right",
+			"body",
+			"animation",
+			"scroll"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"@linkColor",
+			"@globalColor",
+			"@contentTextColor",
+			"@contentBgColor",
+			"./images/"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "/C/Users/Simon/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 614,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								148,
+								148
+							]
+						],
+						"settings":
+						{
+							"incomplete_sync": null,
+							"remote_loading": false,
+							"synced": false,
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 31.0
+	},
+	"input":
+	{
+		"height": 36.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.sftp":
+	{
+		"height": 220.0
+	},
+	"output.unsaved_changes":
+	{
+		"height": 118.0
+	},
+	"project": "supersprint.sublime-project",
+	"replace":
+	{
+		"height": 58.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"index",
+				"app\\index.html"
+			],
+			[
+				"index.",
+				"index.html"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"",
+				"D:\\Dropbox\\Prog\\ASP.NET MVC\\GoKeyboard\\GoKeyboard.Webapp\\Content\\gok.sublime-workspace"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 178.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}
