@@ -1,4 +1,4 @@
 ﻿var Sprites = 
 {
-	car: "Content/images/car.png"
+	car: "images/car.png"
 };
