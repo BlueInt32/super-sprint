@@ -9,7 +9,7 @@ function Car(consts)
 	this.CAR_HEIGHT_B2 = 16 / this.METER;
 	this.CAR_ROTATE_FACTOR = 0.2;
 
-	this.pixiSprite = new PIXI.Sprite(PIXI.Texture.fromFrame(Sprites.car));
+	this.pixiSprite = new PIXI.Sprite(PIXI.Texture.fromFrame(Cars[0].sprite));
 	this.pixiSprite.anchor.x  = 0.5;
 	this.pixiSprite.anchor.y = 0.5;
 	this.pixiSprite.scale.x = 1;
@@ -74,7 +74,7 @@ Car.prototype.Brake = function ()
 
 Car.prototype.TurnLeft = function ()
 {
-	
+
 	this.b2Body.ApplyTorque(-this.CAR_ROTATE_FACTOR * this.NegateTorque());
 };
 Car.prototype.TurnRight = function ()
@@ -98,7 +98,7 @@ Car.prototype.GetLateralVelocity = function ()
 Car.prototype.GetForwardVelocity = function ()
 {
 	var currentRightForward = this.b2Body.GetWorldVector(new b2.cMath.b2Vec2(1, 0));
-	
+
 	var vCurrentRightForward = b2.math.MulFV(b2.math.Dot(currentRightForward, this.b2Body.GetLinearVelocity()), currentRightForward);
 
 	return vCurrentRightForward;
@@ -107,23 +107,21 @@ Car.prototype.GetForwardVelocity = function ()
 
 Car.prototype.UpdateFriction = function ()
 {
+	// Prevent car from sliding. Let it slide where lateral velocity is high (drift);
 	var maxLateralImpulse = 0.035;
-
 	var impulse = b2.math.MulFV(-this.b2Body.GetMass(), this.vCurrentRightNormal);
 	//console.log(impulse.Length());
 	if (impulse.Length() > maxLateralImpulse )
     	impulse  = b2.math.MulFV(maxLateralImpulse / impulse.Length(), impulse);
-
 	this.b2Body.ApplyImpulse(impulse, this.b2Body.GetWorldCenter());
 
+
+	// natural friction against movement. This is a F = -kv type force.
 	var inertia = this.b2Body.GetInertia();
 	var vel = this.b2Body.GetAngularVelocity();
 	this.b2Body.ApplyAngularImpulse(0.1 * this.b2Body.GetInertia() * -vel);
-
 	var currentForwardNormal = this.GetForwardVelocity();
 	var currentForwardSpeed = currentForwardNormal.Normalize();
-	// document.getElementById("info").innerHTML = currentForwardSpeed;
-
 	var dragForceMagnitude = -0.2 * currentForwardSpeed;
 	this.b2Body.ApplyForce( b2.math.MulFV(dragForceMagnitude, currentForwardNormal), this.b2Body.GetWorldCenter() );
 };

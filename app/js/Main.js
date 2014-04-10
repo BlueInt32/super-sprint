@@ -28,7 +28,7 @@
 					window.setTimeout(callback, 1000 / 60);
 				};
 			})();
-		} 
+		}
 
 		window.onload = onLoad;
 	})();
@@ -45,8 +45,8 @@
 		pixiStage = new PIXI.Stage(0xDDDDDD, true);
 		pixiRenderer = PIXI.autoDetectRenderer(Consts.STAGE_WIDTH_PIXEL, Consts.STAGE_HEIGHT_PIXEL, undefined, false);
 		document.body.appendChild(pixiRenderer.view);
-		
-		var loader = new PIXI.AssetLoader([Sprites.car]);
+
+		var loader = new PIXI.AssetLoader([Cars[0].sprite]);
 		loader.onComplete = onLoadAssets;
 		loader.load();
 	}
@@ -89,7 +89,7 @@
 
 		b2Helper.world.ClearForces();
 		car.updateData(keyboardHandler.Keys);
-		//pixiRenderer.render(pixiStage);
+		pixiRenderer.render(pixiStage);
 		stats.update();
 	}
 })();
