@@ -16,7 +16,7 @@
 							'js/KeyboardHandler.js',
 							'js/Sprites.js',
 							'js/utils/b2.js',
-							'js/b2Helper.js',
+							'js/b2Universe.js',
 							'js/utils/Consts.js',
 							'js/Main.js',
 							'js/Car.js',

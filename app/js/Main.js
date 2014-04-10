@@ -1,6 +1,6 @@
 ﻿(function Main()
 {
-	var b2Helper = new B2Helper(),
+	var b2Universe = new B2Universe(),
 		keyboardHandler = new KeyboardHandler(),
 		Consts = new ConstsDef(),
 		b2DebugDraw = Box2D.Dynamics.b2DebugDraw,
@@ -53,11 +53,14 @@
 
 	function onLoadAssets()
 	{
-		b2Helper.CreateWalls(Consts.STAGE_WIDTH_B2, Consts.STAGE_HEIGHT_B2);
+		b2Universe.CreateWalls(Consts.STAGE_WIDTH_B2, Consts.STAGE_HEIGHT_B2);
+		b2Universe.CreatePuddles(Consts.STAGE_WIDTH_B2, Consts.STAGE_HEIGHT_B2);
 
-		car = new Car(Consts);
-		car.createb2Body(b2Helper, Consts.STAGE_WIDTH_B2 / 2, Consts.STAGE_HEIGHT_B2 / 2);
+		car = new Car(Consts, 0);
+		car.createb2Body(b2Universe, Consts.STAGE_WIDTH_B2 / 2, Consts.STAGE_HEIGHT_B2 / 2);
 		pixiStage.addChild(car.pixiSprite);
+
+		b2Universe.cars.push(car);
 
 		document.onkeydown = keyboardHandler.HandleKeyDown.bind(keyboardHandler);
 		document.onkeyup = keyboardHandler.HandleKeyUp.bind(keyboardHandler);
@@ -73,21 +76,21 @@
 		debugDraw.SetFillAlpha(0.5);
 		debugDraw.SetLineThickness(1.0);
 		debugDraw.SetFlags(b2DebugDraw.e_shapeBit | b2DebugDraw.e_jointBit);
-		b2Helper.world.SetDebugDraw(debugDraw);
+		b2Universe.world.SetDebugDraw(debugDraw);
 	}
 
 	function update()
 	{
 
 		requestAnimationFrame(update);
-		b2Helper.world.Step(1 / 60, 3, 3);
-		b2Helper.world.DrawDebugData();
+		b2Universe.world.Step(1 / 60, 3, 3);
+		b2Universe.world.DrawDebugData();
 
 		//var ctx = document.getElementById("canvas").getContext("2d");
 		//ctx.drawImage(document.getElementById("canvas"), 0, 0, 200, 200);
 
 
-		b2Helper.world.ClearForces();
+		b2Universe.world.ClearForces();
 		car.updateData(keyboardHandler.Keys);
 		pixiRenderer.render(pixiStage);
 		stats.update();

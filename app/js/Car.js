@@ -1,7 +1,8 @@
 ﻿'use strict';
 
-function Car(consts)
+function Car(consts, carIndex)
 {
+	this.id = carIndex;
 	this.METER = consts.METER;
 	this.carBodyDef = new b2.dyn.b2BodyDef();
 	this.b2Body;
@@ -9,11 +10,14 @@ function Car(consts)
 	this.CAR_HEIGHT_B2 = 16 / this.METER;
 	this.CAR_ROTATE_FACTOR = 0.2;
 
-	this.pixiSprite = new PIXI.Sprite(PIXI.Texture.fromFrame(Cars[0].sprite));
+	this.pixiSprite = new PIXI.Sprite(PIXI.Texture.fromFrame(Cars[carIndex].sprite));
 	this.pixiSprite.anchor.x  = 0.5;
 	this.pixiSprite.anchor.y = 0.5;
 	this.pixiSprite.scale.x = 1;
 	this.pixiSprite.scale.y = 1;
+
+	this.adherence = true;
+	this.paddleEffect = 0;
 
 
 	this.carFixture = new b2.dyn.b2FixtureDef();
@@ -24,14 +28,18 @@ function Car(consts)
 
 	this.vCurrentRightNormal;
 
+	this.linearVelocity = null; // updated each turn (see updateData) this is the (vx, vy) vector in world ref.
+	this.currentRightForward = null; // updated each turn (see updateData) this is the 1-length vector in world ref, corresponding to the pilot look straight ahead.
+
+
 };
-Car.prototype.createb2Body = function (b2Helper, x, y)
+Car.prototype.createb2Body = function (b2Universe, x, y)
 {
 	this.carBodyDef.type = Box2D.Dynamics.b2Body.b2_dynamicBody;
 	this.carBodyDef.position.Set(x, y);
 	this.carBodyDef.angle = 0;
 
-	this.b2Body = b2Helper.world.CreateBody(this.carBodyDef);
+	this.b2Body = b2Universe.world.CreateBody(this.carBodyDef);
 
 	var s = MathUtil.rndRange(50, 100);
 	this.carFixture.shape.SetAsBox(this.CAR_WIDTH_B2, this.CAR_HEIGHT_B2);
@@ -39,17 +47,20 @@ Car.prototype.createb2Body = function (b2Helper, x, y)
 
 }
 
-
 Car.prototype.updateData = function (keyboardData)
 {
+	//compute velocity which is used several times per turn
+	this.linearVelocity = this.b2Body.GetLinearVelocity();
+	this.currentRightForward = this.b2Body.GetWorldVector(new b2.cMath.b2Vec2(1, 0));
+
 	//console.log(keyboardData);
 	if (keyboardData.accelerate)
 		this.Accelerate();
 	//else if (b2.math.Dot(this.b2Body.GetLinearVelocity(), this.b2Body.GetWorldVector(new b2.cMath.b2Vec2(1, 0))) > 0)
 	//	this.Decelerate();
 	if (keyboardData.brake) this.Brake();
-	if (keyboardData.right) this.TurnRight();
-	else if (keyboardData.left) this.TurnLeft();
+	if (keyboardData.right && this.paddleEffect == 0) this.TurnRight();
+	else if (keyboardData.left && this.paddleEffect == 0) this.TurnLeft();
 
 	this.vCurrentRightNormal = this.GetLateralVelocity();
 
@@ -84,45 +95,55 @@ Car.prototype.TurnRight = function ()
 
 Car.prototype.NegateTorque = function()
 {
-	var currentRightForward = this.b2Body.GetWorldVector(new b2.cMath.b2Vec2(1, 0));
-	return b2.math.Dot(currentRightForward, this.b2Body.GetLinearVelocity()) < 0 ? -1 : 1;
+	
+	return b2.math.Dot(this.currentRightForward, this.linearVelocity) < -0.01 ? -1 : 1;
 }
 
 Car.prototype.GetLateralVelocity = function ()
 {
 	var currentRightNormal = this.b2Body.GetWorldVector(new b2.cMath.b2Vec2(0, 1));
-	var vCurrentRightNormal = b2.math.MulFV(b2.math.Dot(currentRightNormal, this.b2Body.GetLinearVelocity()), currentRightNormal);
+	var vCurrentRightNormal = b2.math.MulFV(b2.math.Dot(currentRightNormal, this.linearVelocity), currentRightNormal);
 	return vCurrentRightNormal;
 };
 
 Car.prototype.GetForwardVelocity = function ()
 {
-	var currentRightForward = this.b2Body.GetWorldVector(new b2.cMath.b2Vec2(1, 0));
-
-	var vCurrentRightForward = b2.math.MulFV(b2.math.Dot(currentRightForward, this.b2Body.GetLinearVelocity()), currentRightForward);
-
+	var vCurrentRightForward = b2.math.MulFV(b2.math.Dot(this.currentRightForward, this.linearVelocity), this.currentRightForward);
 	return vCurrentRightForward;
 };
 
 
 Car.prototype.UpdateFriction = function ()
 {
-	// Prevent car from sliding. Let it slide where lateral velocity is high (drift);
-	var maxLateralImpulse = 0.035;
-	var impulse = b2.math.MulFV(-this.b2Body.GetMass(), this.vCurrentRightNormal);
-	//console.log(impulse.Length());
-	if (impulse.Length() > maxLateralImpulse )
-    	impulse  = b2.math.MulFV(maxLateralImpulse / impulse.Length(), impulse);
-	this.b2Body.ApplyImpulse(impulse, this.b2Body.GetWorldCenter());
+	if(this.adherence)
+	{
+		// Prevent car from sliding. Let it slide where lateral velocity is high (drift);
+		var maxLateralImpulse = 0.035;
+		var impulse = b2.math.MulFV(-this.b2Body.GetMass(), this.vCurrentRightNormal);
+		//console.log(impulse.Length());
+		if (impulse.Length() > maxLateralImpulse )
+	    	impulse  = b2.math.MulFV(maxLateralImpulse / impulse.Length(), impulse);
+		this.b2Body.ApplyImpulse(impulse, this.b2Body.GetWorldCenter());
+	}
 
 
-	// natural friction against movement. This is a F = -kv type force.
+
 	var inertia = this.b2Body.GetInertia();
 	var vel = this.b2Body.GetAngularVelocity();
 	this.b2Body.ApplyAngularImpulse(0.1 * this.b2Body.GetInertia() * -vel);
+
+
+	// natural friction against movement. This is a F = -kv type force.
 	var currentForwardNormal = this.GetForwardVelocity();
 	var currentForwardSpeed = currentForwardNormal.Normalize();
 	var dragForceMagnitude = -0.2 * currentForwardSpeed;
 	this.b2Body.ApplyForce( b2.math.MulFV(dragForceMagnitude, currentForwardNormal), this.b2Body.GetWorldCenter() );
+
+
+	// here we update how the car behave when its paddleEffect is on (sliding on a paddle).
+	if(this.paddleEffect != 0)
+	{
+		this.b2Body.ApplyTorque(this.paddleEffect * this.CAR_ROTATE_FACTOR);
+	}
 };
 
