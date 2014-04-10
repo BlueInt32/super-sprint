@@ -10,14 +10,19 @@
 		uglify: {
 			dist: {
 				files: {
-					'min.js'
-						: [
-							'bower_components/angular/angular.js',
-							'bower_components/angular/angular-animate.js',
-							'services/gameService.js',
-							'app.js',
-							'directives.js'
-							]
+					'js/min.js' : [
+							'js/libs/box2dweb/Box2dWeb-2.1.a.3.js',
+							'js/libs/pixi.js/pixi.dev.js',
+							'js/KeyboardHandler.js',
+							'js/Sprites.js',
+							'js/utils/b2.js',
+							'js/b2Helper.js',
+							'js/utils/Consts.js',
+							'js/Main.js',
+							'js/Car.js',
+							'js/libs/Stats.js',
+							'js/utils/MathUtil.js',
+						]
 				}
 			}
 		},
@@ -39,7 +44,7 @@
 				tasks: ['cssmin']
 			}
 		},
-		imagemin: {   
+		imagemin: {
 			dynamic: {                         // Another target
 				files: [{
 					expand: true,                  // Enable dynamic expansion
