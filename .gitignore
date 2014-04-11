@@ -64,3 +64,5 @@ node_modules/
 ehthumbs.db
 Icon?
 thumbs.db
+
+app/js/min.js
