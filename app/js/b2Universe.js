@@ -8,19 +8,18 @@
 	var DEGTORAD  = 2 * Math.PI / 360;
 
 
-//    /$$$$$$   /$$$$$$  /$$   /$$ /$$$$$$$$ /$$$$$$   /$$$$$$  /$$$$$$$$ /$$$$$$ 
+//    /$$$$$$   /$$$$$$  /$$   /$$ /$$$$$$$$ /$$$$$$   /$$$$$$  /$$$$$$$$ /$$$$$$
 //   /$$__  $$ /$$__  $$| $$$ | $$|__  $$__//$$__  $$ /$$__  $$|__  $$__//$$__  $$
 //  | $$  \__/| $$  \ $$| $$$$| $$   | $$  | $$  \ $$| $$  \__/   | $$  | $$  \__/
-//  | $$      | $$  | $$| $$ $$ $$   | $$  | $$$$$$$$| $$         | $$  |  $$$$$$ 
+//  | $$      | $$  | $$| $$ $$ $$   | $$  | $$$$$$$$| $$         | $$  |  $$$$$$
 //  | $$      | $$  | $$| $$  $$$$   | $$  | $$__  $$| $$         | $$   \____  $$
 //  | $$    $$| $$  | $$| $$\  $$$   | $$  | $$  | $$| $$    $$   | $$   /$$  \ $$
 //  |  $$$$$$/|  $$$$$$/| $$ \  $$   | $$  | $$  | $$|  $$$$$$/   | $$  |  $$$$$$/
-//   \______/  \______/ |__/  \__/   |__/  |__/  |__/ \______/    |__/   \______/ 
+//   \______/  \______/ |__/  \__/   |__/  |__/  |__/ \______/    |__/   \______/
 
 	this.HandleContact = function(contact, began)
 	{
 		var r = new Array(1, -1);
-		;
 		if(began)
 		{
 			me.cars[0].adherence = false;
@@ -32,26 +31,26 @@
 			me.cars[0].paddleEffect = 0;
 		}
 
-	}
-	var contactListener = new Box2D.Dynamics.b2ContactListener;
+	};
+	var contactListener = new Box2D.Dynamics.b2ContactListener();
 	contactListener.BeginContact = function(contact, manifold) {
-	   me.HandleContact(contact, true);
+		me.HandleContact(contact, true);
 	};
 	contactListener.EndContact = function(contact, manifold) {
-	   me.HandleContact(contact, false);
-	};		
+		me.HandleContact(contact, false);
+	};
 	this.world.SetContactListener(contactListener);
 
 
-//   /$$      /$$  /$$$$$$  /$$       /$$        /$$$$$$ 
+//   /$$      /$$  /$$$$$$  /$$       /$$        /$$$$$$
 //  | $$  /$ | $$ /$$__  $$| $$      | $$       /$$__  $$
 //  | $$ /$$$| $$| $$  \ $$| $$      | $$      | $$  \__/
-//  | $$/$$ $$ $$| $$$$$$$$| $$      | $$      |  $$$$$$ 
+//  | $$/$$ $$ $$| $$$$$$$$| $$      | $$      |  $$$$$$
 //  | $$$$_  $$$$| $$__  $$| $$      | $$       \____  $$
 //  | $$$/ \  $$$| $$  | $$| $$      | $$       /$$  \ $$
 //  | $$/   \  $$| $$  | $$| $$$$$$$$| $$$$$$$$|  $$$$$$/
-//  |__/     \__/|__/  |__/|________/|________/ \______/ 
-	
+//  |__/     \__/|__/  |__/|________/|________/ \______/
+
 	this.CreateWalls = function (b2StageWidth, b2StageHeight)
 	{
 
@@ -84,7 +83,7 @@
 		//right
 		this.wallBodyDef.position.Set(b2StageWidth - this.wallThickness, this.wallThickness);
 		this.world.CreateBody(this.wallBodyDef).CreateFixture(this.wallFixtureDef, 0);
-	}
+	};
 
 	this.CreatePuddles = function(b2StageWidth, b2StageHeight)
 	{
@@ -107,6 +106,6 @@
 		// groundAreaFixture.SetUserData( {friction:0.2} );
 
 
-	}
+	};
 
-}
+};

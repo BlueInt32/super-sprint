@@ -5,12 +5,25 @@
 	// Project configuration.
 	grunt.initConfig({
 		jshint: {
-			all: ['app.js', 'directives.js', 'services/gameService.js', '!min.js']
+			all: [
+							'!js/libs/box2dweb/Box2dWeb-2.1.a.3.js',
+							'!js/libs/pixi.js/pixi.dev.js',
+							'!js/libs/Stats.js',
+							'js/KeyboardHandler.js',
+							'js/Sprites.js',
+							'js/utils/b2.js',
+							'js/b2Universe.js',
+							'js/utils/Consts.js',
+							'js/Main.js',
+							'js/conf/Cars.js',
+							'js/Car.js',
+							'js/utils/MathUtil.js',
+							'!publish/min.js']
 		},
 		uglify: {
 			dist: {
 				files: {
-					'js/min.js' : [
+					'publish/js/min.js' : [
 							'js/libs/box2dweb/Box2dWeb-2.1.a.3.js',
 							'js/libs/pixi.js/pixi.dev.js',
 							'js/KeyboardHandler.js',
@@ -19,6 +32,7 @@
 							'js/b2Universe.js',
 							'js/utils/Consts.js',
 							'js/Main.js',
+							'js/conf/Cars.js',
 							'js/Car.js',
 							'js/libs/Stats.js',
 							'js/utils/MathUtil.js',
@@ -29,7 +43,7 @@
 		cssmin: {
 			combine: {
 				files: {
-					'../Content/css/min.css': ['../Content/css/styles.css']
+					'publish/css/min.css': ['css/style.css']
 				}
 			}
 		},
@@ -60,10 +74,30 @@
 			unit: {
 				configFile: 'karma.conf.js'
 			}
+		},
+
+		copy: {
+			main: {
+				files: [
+				// includes files within path
+				//{expand: true, src: ['path/*'], dest: 'dest/', filter: 'isFile'},
+
+				// includes files within path and its sub-directories
+				//{expand: true, src: ['path/**'], dest: 'dest/'},
+				{expand: true, src: ['images/**'], dest: 'publish/images/'},
+				{expand: true, src: ['index.html'], dest: 'publish/', filter: 'isFile'},
+
+				// makes all src relative to cwd
+				//{expand: true, cwd: 'path/', src: ['**'], dest: 'dest/'},
+
+				// flattens results to a single level
+				//{expand: true, flatten: true, src: ['path/**'], dest: 'dest/', filter: 'isFile'}
+				]
+			}
 		}
 
 	});
 
 
-	grunt.registerTask('default', ['jshint', 'uglify:dist', 'cssmin']);
+	grunt.registerTask('default', ['jshint', 'uglify:dist', 'cssmin', 'copy']);
 };

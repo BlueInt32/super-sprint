@@ -9,22 +9,22 @@ function MathUtil() { }
 MathUtil.rndRange = function(min, max)
 {
     return min + (Math.random() * (max - min));
-}
+};
 
 MathUtil.rndIntRange = function(min, max)
 {
     return Math.round(MathUtil.rndRange(min, max));
-}
+};
 
 MathUtil.toRadians = function(degrees)
 {
     return degrees * MathUtil.RADIANS;
-}
+};
 
 MathUtil.toDegrees = function(radians)
 {
     return radians * MathUtil.DEGREES;
-}
+};
 
 MathUtil.hitTest = function(x1, y1, w1, h1,
                             x2, y2, w2, h2)
@@ -36,4 +36,4 @@ MathUtil.hitTest = function(x1, y1, w1, h1,
                     return true;
 
     return false;
-}
+};

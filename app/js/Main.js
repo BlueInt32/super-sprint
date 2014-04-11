@@ -70,12 +70,12 @@
 
 	function debugDraw()
 	{
-		var debugDraw = new b2DebugDraw();
-		debugDraw.SetSprite(document.getElementById("canvas").getContext("2d"));
-		debugDraw.SetDrawScale(100.0);
-		debugDraw.SetFillAlpha(0.5);
-		debugDraw.SetLineThickness(1.0);
-		debugDraw.SetFlags(b2DebugDraw.e_shapeBit | b2DebugDraw.e_jointBit);
+		var debugDrawer = new b2DebugDraw();
+		debugDrawer.SetSprite(document.getElementById("canvas").getContext("2d"));
+		debugDrawer.SetDrawScale(100.0);
+		debugDrawer.SetFillAlpha(0.5);
+		debugDrawer.SetLineThickness(1.0);
+		debugDrawer.SetFlags(b2DebugDraw.e_shapeBit | b2DebugDraw.e_jointBit);
 		b2Universe.world.SetDebugDraw(debugDraw);
 	}
 
