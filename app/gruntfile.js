@@ -65,5 +65,5 @@
 	});
 
 
-	grunt.registerTask('default', ['jshint', 'karma', 'uglify:dist', 'cssmin', 'imagemin']);
+	grunt.registerTask('default', ['jshint', 'uglify:dist', 'cssmin']);
 };
