@@ -1,0 +1,76 @@
+
+{
+   "box2d": {
+   "images": {
+   },
+      "bodies": {
+      "body": [
+         {
+            "name":"tri",
+            "x":"74",
+            "y":"192",
+            "type":"static",
+            "bullet":"false",
+            "image":"null",
+            "fixtures": {
+            "fixture": [
+               {
+                  "name":"851",
+                  "shapeType":"polygonShape",
+                  "restitution":"1",
+                  "density":"1",
+                  "friction":"1",
+                  "isSensor":"false",
+               "vertex": [
+               {
+                  "x":"82",
+                  "y":"52"
+               },
+               {
+                  "x":"-45",
+                  "y":"68"
+               },
+               {
+                  "x":"80",
+                  "y":"-50"
+               }
+               ]
+               },
+               {
+                  "name":"852",
+                  "shapeType":"polygonShape",
+                  "restitution":"1",
+                  "density":"1",
+                  "friction":"1",
+                  "isSensor":"false",
+               "vertex": [
+               {
+                  "x":"-66",
+                  "y":"-27"
+               },
+               {
+                  "x":"80",
+                  "y":"-50"
+               },
+               {
+                  "x":"-45",
+                  "y":"68"
+               }
+               ]
+               }
+            ]
+            }
+         }
+      ]
+      },
+   "joints": {
+   },
+   "metaData": {
+   },
+      "settings": {
+      "setting": {
+         "isLocked":"true"
+      }
+      }
+   }
+}

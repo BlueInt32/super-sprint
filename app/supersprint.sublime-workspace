@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"fix",
+				"fixDef"
+			],
+			[
+				"body",
+				"bodyDef"
+			],
+			[
+				"set",
+				"SetAsArray"
+			],
+			[
+				"tarck",
+				"trackIndex"
+			],
+			[
 				"rever",
 				"reverseFilter"
 			],
@@ -19,62 +35,11 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "js/b2Helper.js",
-			"settings":
-			{
-				"buffer_size": 2708,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "js/utils/Consts.js",
-			"settings":
-			{
-				"buffer_size": 263,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "js/Car.js",
-			"settings":
-			{
-				"buffer_size": 4078,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "var Sprites = \n{\n	car: \"images/car.png\"\n};",
-			"file": "js/Sprites.js",
-			"file_size": -1,
-			"file_write_time": -1,
-			"settings":
-			{
-				"buffer_size": 42,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "js/Main.js",
-			"settings":
-			{
-				"buffer_size": 2552,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "index.html",
-			"settings":
-			{
-				"buffer_size": 872,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 66.0,
+		"height": 60.0,
 		"selected_items":
 		[
 			[
@@ -109,6 +74,10 @@
 		"height": 392.0,
 		"history":
 		[
+			"view.run_command('alttabr')",
+			"view.run_command('test')",
+			"view.run_command('alttabr')",
+			"view.run_command('example')",
 			"import urllib.request,os; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); open(os.path.join(ipp, pf), 'wb').write(urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ','%20')).read())"
 		]
 	},
@@ -123,13 +92,43 @@
 	},
 	"file_history":
 	[
+		"/D/prog/git/SuperSprint/app/testLoadJson.html",
+		"/D/prog/git/SuperSprint/app/index.html",
+		"/D/prog/git/SuperSprint/app/js/Car.js",
+		"/D/prog/git/SuperSprint/app/js/Main.js",
+		"/D/prog/git/SuperSprint/app/js/utils/jsonB2Loader.js",
+		"/D/prog/git/SuperSprint/app/js/utils/Consts.js",
+		"/D/prog/git/SuperSprint/app/js/b2Universe.js",
+		"/D/Prog/Git/SuperSprint/app/images/tracks/track2.json",
+		"/D/prog/git/SuperSprint/app/images/tracks/track1.json",
+		"/D/prog/git/SuperSprint/app/js/utils/b2.js",
+		"/D/Prog/Git/SuperSprint/docs/pixijs&box2d sample/pixijs_box2d/MouseJoint/src/Main.js",
+		"/D/prog/git/SuperSprint/app/app/js/utils/jsonB2Loader.js",
+		"/D/prog/git/SuperSprint/app/app/testLoadJson.html",
+		"/D/prog/git/SuperSprint/app/css/style.less",
+		"/D/Prog/Git/SuperSprint/app/images/tracks/track1.json",
+		"/D/prog/git/SuperSprint/app/css/style.css",
+		"/D/prog/git/SuperSprint/app/js/libs/pixi.js/examples/example 14 - Masking/Copy of index.html",
+		"/C/Users/Simon/AppData/Roaming/Sublime Text 3/Installed Packages/Copy of Schemr.sublime-package/schemr.py",
+		"/C/Users/Simon/.ssh/julien_maison.pub",
+		"/D/Prog/Git/SublimeTextPlugins/Openfilr.py",
+		"/D/Prog/Git/SuperSprint/app/js/Main.js",
+		"/D/Prog/Git/SuperSprint/app/js/b2Universe.js",
 		"/C/Users/Simon/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
-		"/D/Prog/Git/SuperSprint/README.md",
+		"/D/Prog/Git/SuperSprint/app/js/Car.js",
+		"/C/Users/Simon/AppData/Roaming/Sublime Text 3/Packages/Default/Default (Windows).sublime-keymap",
+		"/C/Users/Simon/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/D/Prog/Git/SuperSprint/app/index.html",
+		"/D/Prog/Git/SuperSprint/app/gruntfile.js",
+		"/D/Prog/Git/SuperSprint/app/supersprint.sublime-workspace",
+		"/D/Prog/Git/SuperSprint/app/js/conf/Cars.js",
+		"/D/Prog/Git/SuperSprint/app/js/utils/Consts.js",
 		"/D/Prog/Git/SuperSprint/app/js/b2Helper.js",
+		"/D/Prog/Git/SuperSprint/app/js/Sprites.js",
+		"/D/Prog/Git/SuperSprint/README.md",
 		"/C/Windows/System32/drivers/etc/hosts",
 		"/D/Prog/Git/SuperSprint/docs/Top Down Car with Box2D (c++).url",
 		"/D/Prog/Git/SuperSprint/app/node_modules/grunt-contrib-uglify/node_modules/uglify-js/lib/mozilla-ast.js",
-		"/D/Prog/Git/SuperSprint/app/js/Main.js",
 		"/D/Prog/Git/SuperSprint/app/js/libs/box2dweb/Box2dWeb-2.1.a.3.js",
 		"/D/Prog/Git/SuperSprint/app/bower.json",
 		"/D/Prog/Git/SuperSprint/app/node_modules/karma/node_modules/log4js/test/consoleAppender-test.js",
@@ -148,13 +147,11 @@
 		"/D/Prog/Git/SuperSprint/app/js/libs/pixi.js/docs/files/src_pixi_renderers_canvas_utils_CanvasTinter.js.html",
 		"/D/Prog/Git/SuperSprint/app/node_modules/grunt/node_modules/findup-sync/node_modules/glob/test/readme-issue.js",
 		"/D/Prog/Git/SuperSprint/app/js/libs/pixi.js/docs/files/src_pixi_filters_RGBSplitFilter.js.html",
-		"/D/Prog/Git/SuperSprint/app/index.html",
 		"/C/Users/Simon/AppData/Roaming/Sublime Text 3/Packages/AdvancedNewFile/Default (Windows).sublime-keymap",
 		"/D/Prog/Git/SuperSprint/app/js/game.js",
 		"/D/Prog/Git/SuperSprint/app/js/utils/salut.js",
 		"/D/Prog/Git/SuperSprint/app/index2.html",
 		"/D/Prog/Git/SuperSprint/app/js/utils/b2.js",
-		"/D/Prog/Git/SuperSprint/app/js/Car.js",
 		"/D/Prog/Git/SuperSprint/app/js/KeyboardHandler.js",
 		"/D/Prog/Git/SuperSprint/app/js/libs/pixi.js/docs/files/src_pixi_utils_Polyk.js.html",
 		"/D/Prog/Git/SuperSprint/app/js/libs/pixi.js/src/pixi/utils/Utils.js",
@@ -178,7 +175,6 @@
 		"/D/Prog/Git/SuperSprint/app/js/libs/physics/examples/sims/simple.js",
 		"/D/Prog/Git/Patterns/Commande/README.md",
 		"/D/Prog/Git/Patterns/Commande/commande.cs",
-		"/C/Users/Simon/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
 		"/D/prog/git/PixiJsLib/examples/example 2 - SpriteSheet/SpriteSheet.json",
 		"/D/Prog/Git/2048-angular/Webapp/js/app/app.js",
 		"/C/Users/Simon/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/deletePremiereCache.bat",
@@ -223,38 +219,11 @@
 		"/D/Prog/Git/angular-phonecat/config/karma.conf.js",
 		"/D/Prog/Git/angular-phonecat/test/e2e/scenarios.js",
 		"/D/Prog/Git/angular-phonecat/test/e2e/runner.html",
-		"/D/Prog/Git/angular-phonecat/app/js/services.js",
-		"/D/Prog/Git/angular-phonecat/app/js/filters.js",
-		"/D/Prog/Git/angular-phonecat/app/js/directives.js",
-		"/D/Dropbox/Mel&Simon/Films que Louloute voudrait.txt",
-		"/G/_TUTOS/The Structure of Man/HumanBeingHD064.txt",
-		"/D/Prog/Git/NodeJs/OpenClassRoomTuto/node_modules/sayhello.js",
-		"/D/Prog/Git/NodeJs/OpenClassRoomTuto/node_modules/markdown/README.markdown",
-		"/D/Prog/Git/NodeJs/OpenClassRoomTuto/server.js",
-		"/D/Prog/Git/NodeJs/OpenClassRoomTuto/node_modules/sayhello",
-		"/C/Users/Simon/Desktop/_temp/chap_IV_9/QuickSort.dpr",
-		"/C/Users/Simon/AppData/Local/Temp/Rar$DR44.984/Unit1.pas",
-		"/C/Users/Simon/AppData/Local/Temp/Rar$DR44.984/Unit1.dfm",
-		"/G/BigSetups/Adobe Premiere.Pro_CC_Multi-XFORCE/Crack-Windows/disable_activation.cmd",
-		"/D/Prog/Git/angular60ish/index.html",
-		"/D/Prog/Git/angular-phonecat/app/lib/angular/angular-scenario.js",
-		"/D/Prog/Git/angular-phonecat/test/e2e/app/lib/angular/angular-scenario.js",
-		"/D/Prog/Git/angular-phonecat/scripts/test.bat",
-		"/D/Prog/Git/gokeyboard/.gitignore",
-		"/D/Dropbox/Prog/ASP.NET MVC/GoKeyboard/GoKeyboard.Webapp/Content/Site.less",
-		"/D/Dropbox/Prog/ASP.NET MVC/GoKeyboard/GoKeyboard.Webapp/Content/mixin.less",
-		"/D/Dropbox/Prog/ASP.NET MVC/GoKeyboard/TemplatingHTML/Gabarits/styles/base.css",
-		"/D/Dropbox/Prog/ASP.NET MVC/GoKeyboard/TemplatingHTML/Gabarits/styles/modele06.css",
-		"/D/Dropbox/Prog/ASP.NET MVC/GoKeyboard/TemplatingHTML/Gabarits/modele06.html",
-		"/C/Users/Simon/Downloads/Madagascar 2005 H264 DVDRip 5.1 ch-SecretMyth/Madagascar.srt",
-		"/C/Users/Simon/Desktop/test.html",
-		"/D/Dropbox/Prog/PHP/lagarennebossard/sftp-config.json",
-		"/D/Dropbox/Prog/ASP.NET MVC/GoKeyboard/GoKeyboard.Webapp/Content/bootstrap.css",
-		"/D/Dropbox/Prog/ASP.NET MVC/Sc2TutsBase/Sc2TutsBase/Content/css/MFInLess.less"
+		"/D/Prog/Git/angular-phonecat/app/js/services.js"
 	],
 	"find":
 	{
-		"height": 55.0
+		"height": 36.0
 	},
 	"find_in_files":
 	{
@@ -269,6 +238,33 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"b2World",
+			"b2StageHeight",
+			"b2StageWidth",
+			"walls",
+			"debugDraw",
+			"console.log",
+			"console.log//",
+			"console.log",
+			"window",
+			"viewport",
+			"show_quick_pane",
+			"list_schemes",
+			"parse_scheme",
+			"show_quick_panel",
+			"user",
+			"setting",
+			"pref",
+			"console",
+			"auto",
+			"wallFixture",
+			"b2Vec2",
+			"CreateWalls",
+			"auto",
+			"flaque",
+			"b2Helper",
+			"B2Helper",
+			"new car",
 			"images/",
 			"baseFixture",
 			"b2_staticBody",
@@ -332,6 +328,10 @@
 		"regex": true,
 		"replace_history":
 		[
+			"this.consts.STAGE_HEIGHT_B2",
+			"this.consts.STAGE_WIDTH_B2",
+			"wallFixtureDef",
+			"puddle",
 			"wallFixture",
 			"@linkColor",
 			"@globalColor",
@@ -340,213 +340,22 @@
 			"./images/"
 		],
 		"reverse": false,
-		"show_context": true,
-		"use_buffer2": true,
+		"show_context": false,
+		"use_buffer2": false,
 		"whole_word": false,
-		"wrap": false
+		"wrap": true
 	},
 	"groups":
 	[
 		{
-			"selected": 3,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "js/b2Universe.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2708,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1260,
-								1260
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 540.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "js/utils/Consts.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 263,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								46,
-								46
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "js/Car.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4078,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								231,
-								231
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "js/Sprites.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 42,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								24,
-								24
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "js/Main.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2552,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2496,
-								2496
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 882.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "index.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 872,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								119,
-								121
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/HTML/HTML.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 31.0
+		"height": 26.0
 	},
 	"input":
 	{
@@ -577,7 +386,7 @@
 	"menu_visible": true,
 	"output.find_results":
 	{
-		"height": 0.0
+		"height": 215.0
 	},
 	"output.sftp":
 	{
@@ -590,7 +399,7 @@
 	"project": "supersprint.sublime-project",
 	"replace":
 	{
-		"height": 106.0
+		"height": 64.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -599,12 +408,24 @@
 		"selected_items":
 		[
 			[
+				"main",
+				"js\\Main.js"
+			],
+			[
+				"consts",
+				"js\\utils\\Consts.js"
+			],
+			[
 				"car",
 				"js\\Car.js"
 			],
 			[
-				"main",
+				"main.js",
 				"js\\Main.js"
+			],
+			[
+				"const",
+				"js\\utils\\Consts.js"
 			],
 			[
 				"b2hel",

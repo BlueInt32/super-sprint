@@ -1,0 +1,20 @@
+<box2d>
+  <images/>
+  <bodies>
+    <body name="tri" x="74" y="192" type="static" bullet="false" image="null">
+      <fixtures>
+        <fixture name="85" shapeType="polygonShape" restitution="1" density="1" friction="1" isSensor="false">
+          <vertex x="82" y="52"/>
+          <vertex x="80" y="-50"/>
+          <vertex x="-66" y="-27"/>
+          <vertex x="-45" y="68"/>
+        </fixture>
+      </fixtures>
+    </body>
+  </bodies>
+  <joints/>
+  <metaData/>
+  <settings>
+    <setting isLocked="true"/>
+  </settings>
+</box2d>

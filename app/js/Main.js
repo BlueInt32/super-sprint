@@ -1,17 +1,28 @@
 ﻿(function Main()
 {
-	var b2Universe = new B2Universe(),
-		keyboardHandler = new KeyboardHandler(),
+	var keyboardHandler = new KeyboardHandler(),
 		Consts = new ConstsDef(),
-		b2DebugDraw = Box2D.Dynamics.b2DebugDraw,
 		stats,
 		pixiRenderer,
 		pixiStage,
 		pixiSprite,
 		car;
-	document.getElementById("canvas").setAttribute("width", window.innerWidth);
-	document.getElementById("canvas").setAttribute("height", window.innerHeight);
-	debugDraw();
+	var b2Universe = new B2Universe(Consts);
+
+		var canvas = document.getElementById('canvas');
+		canvas.width = Consts.STAGE_WIDTH_PIXEL;
+		canvas.height = Consts.STAGE_HEIGHT_PIXEL;
+		debugDraw();
+
+		var scaleX = canvas.width / window.innerWidth;
+		var scaleY = canvas.height / window.innerHeight;
+		var scaleToFit = Math.min(scaleX, scaleY);
+
+		// stage.style.transformOrigin = "0 0";
+		// stage.style.transform = "scale("+scaleToFit+")";
+
+
+
 	(function init()
 	{
 		if (!window.requestAnimationFrame)
@@ -53,11 +64,13 @@
 
 	function onLoadAssets()
 	{
-		b2Universe.CreateWalls(Consts.STAGE_WIDTH_B2, Consts.STAGE_HEIGHT_B2);
-		b2Universe.CreatePuddles(Consts.STAGE_WIDTH_B2, Consts.STAGE_HEIGHT_B2);
+		//b2Universe.CreateWalls();
+		b2Universe.LoadTrack(2);
+		//b2Universe.CreatePuddles();
 
 		car = new Car(Consts, 0);
 		car.createb2Body(b2Universe, Consts.STAGE_WIDTH_B2 / 2, Consts.STAGE_HEIGHT_B2 / 2);
+		console.log(b2Universe.world);
 		pixiStage.addChild(car.pixiSprite);
 
 		b2Universe.cars.push(car);
@@ -70,13 +83,13 @@
 
 	function debugDraw()
 	{
-		var debugDrawer = new b2DebugDraw();
+		var debugDrawer = new b2.dyn.b2DebugDraw();
 		debugDrawer.SetSprite(document.getElementById("canvas").getContext("2d"));
 		debugDrawer.SetDrawScale(100.0);
 		debugDrawer.SetFillAlpha(0.5);
 		debugDrawer.SetLineThickness(1.0);
-		debugDrawer.SetFlags(b2DebugDraw.e_shapeBit | b2DebugDraw.e_jointBit);
-		b2Universe.world.SetDebugDraw(debugDraw);
+		debugDrawer.SetFlags(b2.dyn.b2DebugDraw.e_shapeBit | b2.dyn.b2DebugDraw.e_jointBit);
+		b2Universe.world.SetDebugDraw(debugDrawer);
 	}
 
 	function update()
