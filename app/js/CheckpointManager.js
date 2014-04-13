@@ -45,4 +45,4 @@ CheckPointManager.prototype.Step = function(checkpointIndex)
 	{
 		this.CurrentCheckPointIndex++;
 	}
-}
+};

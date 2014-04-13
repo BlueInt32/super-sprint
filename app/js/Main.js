@@ -97,7 +97,7 @@
 		//ctx.drawImage(document.getElementById("canvas"), 0, 0, 200, 200);
 
 		b2Universe.world.ClearForces();
-		for(carIndex in b2Universe.cars)
+		for(var carIndex in b2Universe.cars)
 		{
 			b2Universe.cars[carIndex].updateData(keyboardHandler.Keys);
 		}

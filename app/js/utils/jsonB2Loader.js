@@ -12,7 +12,7 @@ function jsonB2Loader(trackPath, consts, world)
 		me.loadTrack(jsonresponse.box2d, me.consts.STAGE_WIDTH_B2, me.consts.STAGE_HEIGHT_B2);
 	});
 		
-};
+}
 
 
 jsonB2Loader.prototype.debugDraw = function()
@@ -52,11 +52,10 @@ jsonB2Loader.prototype.loadTrack = function(bodyEntities)
 			default:
 			this.bodyDef.type = b2.dyn.b2Body.b2_staticBody; break;
 		}
-		
-	    this.bodyDef.userData = jsonBody.name + i;
-	    var body = this.world.CreateBody(this.bodyDef);
+		this.bodyDef.userData = jsonBody.name + i;
+		var body = this.world.CreateBody(this.bodyDef);
 
-	    for(var j = 0, m = jsonBody.fixtures.fixture.length; j < m; j++) 
+		for(var j = 0, m = jsonBody.fixtures.fixture.length; j < m; j++) 
 		{
 			var fixture = jsonBody.fixtures.fixture[j];
 			this.fixDef.isSensor = (jsonBody.type === "dynamic");// within a track, dynamic bodies have to be treated like checkpoints : sensors !
@@ -67,10 +66,10 @@ jsonB2Loader.prototype.loadTrack = function(bodyEntities)
 			var vertices = [];
 			for (var k = fixture.vertex.length - 1; k >= 0; k--) {
 				vertices.push(new b2.cMath.b2Vec2(fixture.vertex[k].x / 100,fixture.vertex[k].y / -100));
-			};
+			}
 
 			this.fixDef.shape.SetAsArray(vertices, 3);
-			var fixture = body.CreateFixture(this.fixDef, 0);
+			fixture = body.CreateFixture(this.fixDef, 0);
 			//if(jsonBody.type === "dynamic") 
 			switch(jsonBody.type)
 			{
@@ -97,7 +96,7 @@ jsonB2Loader.prototype.loadJSON = function (filePath, callback)
 			// .open will NOT return a value but simply returns undefined in async mode so use a callback
 			callback(xobj.responseText);
 		}
-	}
+	};
 	xobj.send(null);
 
 };

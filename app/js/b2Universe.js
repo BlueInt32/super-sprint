@@ -57,7 +57,7 @@
 			return {"type":"cp", "id":aData.substr(2, 3)};
 		if(bData.indexOf("cp") === 0)
 			return {"type":"cp", "id":bData.substr(2, 3)};
-	}
+	};
 
 	contactListener.BeginContact = function(contact) 
 	{
@@ -144,8 +144,8 @@
 
 	this.LoadTrack = function(trackIndex)
 	{
-		new jsonB2Loader("/assets/tracks/track"+trackIndex+".json", this.consts, this.world);
-	}
+		new jsonB2Loader("assets/tracks/track"+trackIndex+".json", this.consts, this.world);
+	};
 
 	this.AddCar = function(carIndex, pixiStage)
 	{
@@ -161,7 +161,6 @@
 
 		// TODO : position the car differently one each other
 
-
-	}
+	};
 
 };

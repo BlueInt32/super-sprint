@@ -1,7 +1,7 @@
 var Tracks = 
 [
     {
-    	id:1,
-    	nbCheckpoints:3
+		id:1,
+		nbCheckpoints:3
     }
 ];
