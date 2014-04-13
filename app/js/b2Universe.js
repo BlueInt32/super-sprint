@@ -22,7 +22,7 @@
 	this.HandleContact = function(contact, began)
 	{
 
-		 console.log(contact);
+		//console.log(began);
 		var r = new Array(1, -1);
 		if(began)
 		{
@@ -37,10 +37,15 @@
 
 	};
 	var contactListener = new Box2D.Dynamics.b2ContactListener();
-	contactListener.BeginContact = function(contact, manifold) {
+	contactListener.BeginContact = function(contact) 
+	{
+		if(contact.GetFixtureA().GetUserData() == null && contact.GetFixtureB().GetUserData() == null)
+		{
+			return;
+		}
 		me.HandleContact(contact, true);
 	};
-	contactListener.EndContact = function(contact, manifold) {
+	contactListener.EndContact = function(contact) {
 		me.HandleContact(contact, false);
 	};
 	this.world.SetContactListener(contactListener);
@@ -73,20 +78,28 @@
 
 		this.wallFixtureDef.shape.SetAsBox(this.consts.STAGE_WIDTH_B2 / 2, this.wallThickness);
 		this.wallBodyDef.position.Set(this.consts.STAGE_WIDTH_B2 / 2, this.consts.STAGE_HEIGHT_B2 - this.wallThickness / 2);
-		this.world.CreateBody(this.wallBodyDef).CreateFixture(this.wallFixtureDef, 0);
+		var body = this.world.CreateBody(this.wallBodyDef);
+		body.CreateFixture(this.wallFixtureDef, 0);
+		body.SetUserData("Down Wall");
 
 		// top
 		this.wallBodyDef.position.Set(this.consts.STAGE_WIDTH_B2 / 2, this.wallThickness / 2);
-		this.world.CreateBody(this.wallBodyDef).CreateFixture(this.wallFixtureDef, 0);
+		body = this.world.CreateBody(this.wallBodyDef);
+		body.CreateFixture(this.wallFixtureDef, 0);
+		body.SetUserData("top Wall");
 
 		//left
 		this.wallFixtureDef.shape.SetAsBox(this.wallThickness, this.consts.STAGE_HEIGHT_B2 - 2 * this.wallThickness);
 		this.wallBodyDef.position.Set(this.wallThickness, this.wallThickness);
-		this.world.CreateBody(this.wallBodyDef).CreateFixture(this.wallFixtureDef, 0);
+		body = this.world.CreateBody(this.wallBodyDef);
+		body.CreateFixture(this.wallFixtureDef, 0);
+		body.SetUserData("left Wall");
 
 		//right
 		this.wallBodyDef.position.Set(this.consts.STAGE_WIDTH_B2 - this.wallThickness, this.wallThickness);
-		this.world.CreateBody(this.wallBodyDef).CreateFixture(this.wallFixtureDef, 0);
+		body = this.world.CreateBody(this.wallBodyDef);
+		body.CreateFixture(this.wallFixtureDef, 0);
+		body.SetUserData("right Wall");
 	};
 
 	this.CreatePuddles = function()
@@ -115,7 +128,8 @@
 
 	this.LoadTrack = function(trackIndex)
 	{
-		loader = new jsonB2Loader("/images/tracks/track"+trackIndex+".json", this.consts, this.world);
+		//this.world.simon = true;
+		new jsonB2Loader("/assets/tracks/track"+trackIndex+".json", this.consts, this.world);
 	}
 
 };

@@ -64,7 +64,7 @@
 
 	function onLoadAssets()
 	{
-		b2Universe.CreateWalls();
+		//b2Universe.CreateWalls();
 		b2Universe.LoadTrack(1);
 		//b2Universe.CreatePuddles();
 
@@ -112,7 +112,7 @@
 
 		b2Universe.world.ClearForces();
 		car.updateData(keyboardHandler.Keys);
-		//pixiRenderer.render(pixiStage);
+		pixiRenderer.render(pixiStage);
 		stats.update();
 	}
 })();

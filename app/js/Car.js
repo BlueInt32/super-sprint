@@ -9,6 +9,7 @@ function Car(consts, carIndex)
 	this.CAR_WIDTH_B2 = 32 / this.METER;
 	this.CAR_HEIGHT_B2 = 16 / this.METER;
 	this.CAR_ROTATE_FACTOR = 0.2;
+	this.CAR_NATURAL_DECELERATION = 0.1;
 
 	this.pixiSprite = new PIXI.Sprite(PIXI.Texture.fromFrame(Cars[carIndex].sprite));
 	this.pixiSprite.anchor.x  = 0.5;
@@ -136,7 +137,7 @@ Car.prototype.UpdateFriction = function ()
 	// natural friction against movement. This is a F = -kv type force.
 	var currentForwardNormal = this.GetForwardVelocity();
 	var currentForwardSpeed = currentForwardNormal.Normalize();
-	var dragForceMagnitude = -0.2 * currentForwardSpeed;
+	var dragForceMagnitude = -this.CAR_NATURAL_DECELERATION * currentForwardSpeed;
 	this.b2Body.ApplyForce( b2.math.MulFV(dragForceMagnitude, currentForwardNormal), this.b2Body.GetWorldCenter() );
 
 

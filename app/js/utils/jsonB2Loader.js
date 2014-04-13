@@ -60,7 +60,7 @@ jsonB2Loader.prototype.setBodies = function(bodyEntities)
 			var fixture = jsonBody.fixtures.fixture[j];
 			this.fixDef.isSensor = false;
 			this.fixDef.density = 1;
-			this.fixDef.restitution = 0.1;
+			this.fixDef.restitution = 0.3;
 
 			var vertices = [];
 			for (var k = fixture.vertex.length - 1; k >= 0; k--) {
