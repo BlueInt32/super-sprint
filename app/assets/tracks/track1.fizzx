@@ -1,74 +1,97 @@
 <box2d>
   <images>
-    <image path="file://D:\Prog\Git\SuperSprint\app\images\tracks\track1.png" name="track1.png" x="0" y="0" rotation="0" scaleX="1" scaleY="1" zDepth="42" pinned="true" atlas="null"/>
+    <image path="file://D:\Prog\Git\SuperSprint\app\assets\tracks\images\track1.png" name="track1.png" x="-1" y="0" rotation="0" scaleX="1" scaleY="1" zDepth="0" pinned="false" atlas="null"/>
   </images>
   <bodies>
-    <body name="top" x="10" y="368" type="static" bullet="false" image="null">
+    <body name="botright" x="317" y="-367" type="static" bullet="false" image="null">
       <fixtures>
-        <fixture name="12" shapeType="polygonShape" restitution="1" density="1" friction="1" isSensor="false">
-          <vertex x="-512" y="6"/>
-          <vertex x="489" y="6"/>
-          <vertex x="489" y="-8"/>
-          <vertex x="-512" y="-8"/>
+        <fixture name="87" shapeType="polygonShape" restitution="1" density="1" friction="1" isSensor="false">
+          <vertex x="-211" y="16"/>
+          <vertex x="202" y="16"/>
+          <vertex x="202" y="-33"/>
+          <vertex x="-211" y="-33"/>
         </fixture>
       </fixtures>
     </body>
-    <body name="botright" x="90" y="-275" type="static" bullet="false" image="null">
+    <body name="botweird" x="80" y="-295" type="static" bullet="false" image="null">
       <fixtures>
-        <fixture name="17" shapeType="polygonShape" restitution="1" density="1" friction="1" isSensor="false">
-          <vertex x="410" y="-101"/>
-          <vertex x="-588" y="-102"/>
-          <vertex x="-590" y="-53"/>
-          <vertex x="-576" y="-52"/>
-          <vertex x="-115" y="-53"/>
-          <vertex x="-16" y="31"/>
-          <vertex x="-19" y="171"/>
-          <vertex x="-104" y="257"/>
-          <vertex x="-254" y="260"/>
-          <vertex x="-256" y="329"/>
-          <vertex x="-145" y="327"/>
-          <vertex x="63" y="121"/>
-          <vertex x="63" y="-75"/>
-          <vertex x="394" y="-75"/>
-          <vertex x="393" y="633"/>
-          <vertex x="409" y="634"/>
+        <fixture name="97" shapeType="polygonShape" restitution="1" density="1" friction="1" isSensor="false">
+          <vertex x="-223" y="-134"/>
+          <vertex x="-9" y="51"/>
+          <vertex x="-9" y="192"/>
+          <vertex x="-101" y="279"/>
+          <vertex x="-244" y="281"/>
+          <vertex x="-246" y="349"/>
+          <vertex x="-135" y="346"/>
+          <vertex x="70" y="140"/>
+          <vertex x="75" y="-142"/>
         </fixture>
       </fixtures>
     </body>
-    <body name="centralPart" x="-136" y="214" type="static" bullet="false" image="null">
+    <body name="right" x="501" y="90" type="static" bullet="false" image="null">
       <fixtures>
-        <fixture name="52" shapeType="polygonShape" restitution="1" density="1" friction="1" isSensor="false">
-          <vertex x="138" y="10"/>
-          <vertex x="473" y="-345"/>
-          <vertex x="473" y="-452"/>
-          <vertex x="445" y="-451"/>
-          <vertex x="444" y="-344"/>
-          <vertex x="129" y="-13"/>
-          <vertex x="-200" y="-13"/>
-          <vertex x="-200" y="-377"/>
-          <vertex x="65" y="-378"/>
-          <vertex x="66" y="-405"/>
-          <vertex x="-225" y="-403"/>
-          <vertex x="-226" y="10"/>
+        <fixture name="92" shapeType="polygonShape" restitution="1" density="1" friction="1" isSensor="false">
+          <vertex x="37" y="-453"/>
+          <vertex x="-20" y="-453"/>
+          <vertex x="-20" y="340"/>
+          <vertex x="37" y="340"/>
         </fixture>
       </fixtures>
     </body>
-    <body name="trianglepart" x="254" y="170" type="static" bullet="false" image="null">
+    <body name="tri" x="264" y="141" type="static" bullet="false" image="null">
       <fixtures>
-        <fixture name="66" shapeType="polygonShape" restitution="1" density="1" friction="1" isSensor="false">
-          <vertex x="-160" y="54"/>
-          <vertex x="84" y="53"/>
-          <vertex x="81" y="-199"/>
+        <fixture name="108" shapeType="polygonShape" restitution="1" density="1" friction="1" isSensor="false">
+          <vertex x="-161" y="68"/>
+          <vertex x="56" y="68"/>
+          <vertex x="54" y="-156"/>
         </fixture>
       </fixtures>
     </body>
-    <body name="Left" x="-501" y="200" type="static" bullet="false" image="null">
+    <body name="weirdcenter" x="86" y="119" type="static" bullet="false" image="null">
       <fixtures>
-        <fixture name="46" shapeType="polygonShape" restitution="1" density="1" friction="1" isSensor="false">
-          <vertex x="14" y="-527"/>
-          <vertex x="1" y="-528"/>
-          <vertex x="0" y="160"/>
-          <vertex x="16" y="158"/>
+        <fixture name="112" shapeType="polygonShape" restitution="1" density="1" friction="1" isSensor="false">
+          <vertex x="221" y="-250"/>
+          <vertex x="-92" y="81"/>
+          <vertex x="-423" y="82"/>
+          <vertex x="-423" y="-292"/>
+          <vertex x="-159" y="-294"/>
+          <vertex x="-159" y="-299"/>
+          <vertex x="-431" y="-299"/>
+          <vertex x="-434" y="92"/>
+          <vertex x="-70" y="90"/>
+          <vertex x="233" y="-232"/>
+          <vertex x="231" y="-357"/>
+          <vertex x="222" y="-356"/>
+        </fixture>
+      </fixtures>
+    </body>
+    <body name="top" x="-71" y="389" type="static" bullet="false" image="null">
+      <fixtures>
+        <fixture name="72" shapeType="polygonShape" restitution="1" density="1" friction="1" isSensor="false">
+          <vertex x="-465" y="24"/>
+          <vertex x="646" y="24"/>
+          <vertex x="646" y="-25"/>
+          <vertex x="-465" y="-25"/>
+        </fixture>
+      </fixtures>
+    </body>
+    <body name="left" x="-542" y="205" type="static" bullet="false" image="null">
+      <fixtures>
+        <fixture name="77" shapeType="polygonShape" restitution="1" density="1" friction="1" isSensor="false">
+          <vertex x="-23" y="178"/>
+          <vertex x="45" y="178"/>
+          <vertex x="45" y="-595"/>
+          <vertex x="-23" y="-595"/>
+        </fixture>
+      </fixtures>
+    </body>
+    <body name="botleft" x="-282" y="-386" type="static" bullet="false" image="null">
+      <fixtures>
+        <fixture name="82" shapeType="polygonShape" restitution="1" density="1" friction="1" isSensor="false">
+          <vertex x="-250" y="20"/>
+          <vertex x="269" y="20"/>
+          <vertex x="269" y="-26"/>
+          <vertex x="-250" y="-26"/>
         </fixture>
       </fixtures>
     </body>
