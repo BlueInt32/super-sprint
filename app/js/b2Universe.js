@@ -3,10 +3,9 @@
 	var me = this;
 	//World & Gravity
 	this.world = new b2.dyn.b2World(new b2.cMath.b2Vec2(0, 0), true);
-	
+	var contactListener = new Box2D.Dynamics.b2ContactListener();
 	this.cars = [];
 	this.consts = consts;
-
 	var DEGTORAD  = 2 * Math.PI / 360;
 
 
@@ -21,28 +20,47 @@
 
 	this.HandleContact = function(contact, began)
 	{
-
-		//console.log(began);
+		var contactInfo = this.ExtractContactType(contact);
+		if(contactInfo.type === "wall")
+			return;
 		var r = new Array(1, -1);
 		if(began)
 		{
-			me.cars[0].adherence = false;
-			me.cars[0].paddleEffect = r[Math.floor(Math.random()*2)];
+			if(contactInfo.type === "cp")
+			{
+				//console.log("Checkpoint " + contactInfo.id);
+				me.cars[0].checkPointManager.Step(parseInt(contactInfo.id));
+			}
+			else if(contactInfo.type === "puddle")
+			{
+				me.cars[0].adherence = false;
+				me.cars[0].paddleEffect = r[Math.floor(Math.random()*2)];
+			}
 		}
 		else
 		{
 			me.cars[0].adherence = true;
 			me.cars[0].paddleEffect = 0;
 		}
-
 	};
-	var contactListener = new Box2D.Dynamics.b2ContactListener();
+
+	this.ExtractContactType = function(contact)
+	{
+		aData = contact.GetFixtureA().GetUserData();
+		bData = contact.GetFixtureB().GetUserData();
+		if(aData === "wall" || bData === "wall")
+		{
+			return {"type":"wall"};
+		}
+
+		if(aData.indexOf("cp") === 0)
+			return {"type":"cp", "id":aData.substr(2, 3)};
+		if(bData.indexOf("cp") === 0)
+			return {"type":"cp", "id":bData.substr(2, 3)};
+	}
+
 	contactListener.BeginContact = function(contact) 
 	{
-		if(contact.GetFixtureA().GetUserData() == null && contact.GetFixtureB().GetUserData() == null)
-		{
-			return;
-		}
 		me.HandleContact(contact, true);
 	};
 	contactListener.EndContact = function(contact) {
@@ -121,15 +139,29 @@
 		// puddleFixtureDef.shape.SetAsBox( 9, 5, new b2.cMath.b2Vec2(5,20), -40*DEGTORAD );
 		// groundAreaFixture = groundBody.CreateFixture(puddleFixtureDef);
 		// groundAreaFixture.SetUserData( {friction:0.2} );
-
-
 	};
 
 
 	this.LoadTrack = function(trackIndex)
 	{
-		//this.world.simon = true;
 		new jsonB2Loader("/assets/tracks/track"+trackIndex+".json", this.consts, this.world);
+	}
+
+	this.AddCar = function(carIndex, pixiStage)
+	{
+		// TODO : load a car from json
+
+		// TODO : add the car to the carsArray
+		var car = new Car(this.consts, carIndex);
+		car.createb2Body(this, this.consts.STAGE_WIDTH_B2 / 2, this.consts.STAGE_HEIGHT_B2 / 2);
+		car.checkPointManager = new CheckPointManager(3);
+		this.cars.push(car);
+		pixiStage.addChild(car.pixiSprite);
+
+
+		// TODO : position the car differently one each other
+
+
 	}
 
 };

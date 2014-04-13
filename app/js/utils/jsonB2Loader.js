@@ -9,7 +9,7 @@ function jsonB2Loader(trackPath, consts, world)
 		jsonresponse = JSON.parse(response);
 		me.trackData = jsonresponse;
 
-		me.setBodies(jsonresponse.box2d, me.consts.STAGE_WIDTH_B2, me.consts.STAGE_HEIGHT_B2);
+		me.loadTrack(jsonresponse.box2d, me.consts.STAGE_WIDTH_B2, me.consts.STAGE_HEIGHT_B2);
 	});
 		
 };
@@ -32,12 +32,12 @@ jsonB2Loader.prototype.debugDraw = function()
 	this.world.SetDebugDraw(debugDrawer);
 };
 
-jsonB2Loader.prototype.setBodies = function(bodyEntities) 
+jsonB2Loader.prototype.loadTrack = function(bodyEntities) 
 {
 	this.bodyDef = new b2.dyn.b2BodyDef();
 	this.fixDef = new b2.dyn.b2FixtureDef();
 	this.fixDef.shape = new b2.shapes.b2PolygonShape();
-
+	var checkPointIndex = 0;
 	for(var i = 0, l = bodyEntities.bodies.body.length; i < l; i++)
 	{
 		var jsonBody = bodyEntities.bodies.body[i];
@@ -45,7 +45,8 @@ jsonB2Loader.prototype.setBodies = function(bodyEntities)
 		switch	(jsonBody.type)
 		{
 			case "dynamic":
-			this.bodyDef.type = b2.dyn.b2Body.b2_dynamicBody; break;
+			this.bodyDef.type = b2.dyn.b2Body.b2_dynamicBody; break; 
+
 			case "static":
 			this.bodyDef.type = b2.dyn.b2Body.b2_staticBody; break;
 			default:
@@ -58,7 +59,8 @@ jsonB2Loader.prototype.setBodies = function(bodyEntities)
 	    for(var j = 0, m = jsonBody.fixtures.fixture.length; j < m; j++) 
 		{
 			var fixture = jsonBody.fixtures.fixture[j];
-			this.fixDef.isSensor = false;
+			this.fixDef.isSensor = (jsonBody.type === "dynamic");// within a track, dynamic bodies have to be treated like checkpoints : sensors !
+
 			this.fixDef.density = 1;
 			this.fixDef.restitution = 0;
 
@@ -68,11 +70,19 @@ jsonB2Loader.prototype.setBodies = function(bodyEntities)
 			};
 
 			this.fixDef.shape.SetAsArray(vertices, 3);
-			body.CreateFixture(this.fixDef, 0);
+			var fixture = body.CreateFixture(this.fixDef, 0);
+			//if(jsonBody.type === "dynamic") 
+			switch(jsonBody.type)
+			{
+				case "dynamic":
+				fixture.SetUserData(jsonBody.name);break;
+				case "static":
+				fixture.SetUserData("wall");break;
+			}
+
 			body.SetUserData("trackData "+ i + " " + j);
 		}
 	}
-	//console.log(this.world.simon);
 };
 
 jsonB2Loader.prototype.loadJSON = function (filePath, callback) 

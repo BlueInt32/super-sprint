@@ -5,8 +5,7 @@
 		stats,
 		pixiRenderer,
 		pixiStage,
-		pixiSprite,
-		car;
+		pixiSprite;
 	var b2Universe = new B2Universe(Consts);
 
 		var canvas = document.getElementById('canvas');
@@ -68,19 +67,7 @@
 		b2Universe.LoadTrack(1);
 		//b2Universe.CreatePuddles();
 
-		car = new Car(Consts, 0);
-		car.createb2Body(b2Universe, Consts.STAGE_WIDTH_B2 / 2, Consts.STAGE_HEIGHT_B2 / 2);
-
-		var testBodies = b2Universe.world.GetBodyList();
-		do
-		{
-			console.log(testBodies);
-		}
-		while(testBodies = testBodies.GetNext());
-		console.log(b2Universe.world);
-		pixiStage.addChild(car.pixiSprite);
-
-		b2Universe.cars.push(car);
+		b2Universe.AddCar(0, pixiStage);
 
 		document.onkeydown = keyboardHandler.HandleKeyDown.bind(keyboardHandler);
 		document.onkeyup = keyboardHandler.HandleKeyUp.bind(keyboardHandler);
@@ -109,10 +96,12 @@
 		//var ctx = document.getElementById("canvas").getContext("2d");
 		//ctx.drawImage(document.getElementById("canvas"), 0, 0, 200, 200);
 
-
 		b2Universe.world.ClearForces();
-		car.updateData(keyboardHandler.Keys);
-		pixiRenderer.render(pixiStage);
+		for(carIndex in b2Universe.cars)
+		{
+			b2Universe.cars[carIndex].updateData(keyboardHandler.Keys);
+		}
+		//pixiRenderer.render(pixiStage);
 		stats.update();
 	}
 })();

@@ -7,11 +7,11 @@
          "path":"track1.png",
          "name":"track1.png",
          "x":"-1",
-         "y":"0",
+         "y":"-1",
          "rotation":"0",
          "scaleX":"1",
          "scaleY":"1",
-         "zDepth":"0",
+         "zDepth":"31",
          "pinned":"false",
          "atlas":"null"
       }
@@ -37,16 +37,16 @@
                   "isSensor":"false",
                "vertex": [
                {
-                  "x":"-211",
-                  "y":"16"
+                  "x":"-209",
+                  "y":"0"
                },
                {
-                  "x":"-211",
-                  "y":"-33"
+                  "x":"-209",
+                  "y":"-49"
                },
                {
-                  "x":"202",
-                  "y":"16"
+                  "x":"204",
+                  "y":"0"
                }
                ]
                },
@@ -59,16 +59,16 @@
                   "isSensor":"false",
                "vertex": [
                {
-                  "x":"202",
-                  "y":"-33"
+                  "x":"204",
+                  "y":"-49"
                },
                {
-                  "x":"202",
-                  "y":"16"
+                  "x":"204",
+                  "y":"0"
                },
                {
-                  "x":"-211",
-                  "y":"-33"
+                  "x":"-209",
+                  "y":"-49"
                }
                ]
                }
@@ -93,16 +93,16 @@
                   "isSensor":"false",
                "vertex": [
                {
-                  "x":"-223",
-                  "y":"-134"
+                  "x":"-187",
+                  "y":"-138"
                },
                {
                   "x":"75",
                   "y":"-142"
                },
                {
-                  "x":"-9",
-                  "y":"51"
+                  "x":"-7",
+                  "y":"34"
                }
                ]
                },
@@ -115,8 +115,8 @@
                   "isSensor":"false",
                "vertex": [
                {
-                  "x":"-9",
-                  "y":"51"
+                  "x":"-7",
+                  "y":"34"
                },
                {
                   "x":"75",
@@ -267,8 +267,8 @@
                   "y":"340"
                },
                {
-                  "x":"-20",
-                  "y":"-453"
+                  "x":"-11",
+                  "y":"-455"
                }
                ]
                },
@@ -281,12 +281,12 @@
                   "isSensor":"false",
                "vertex": [
                {
-                  "x":"-20",
-                  "y":"340"
+                  "x":"-13",
+                  "y":"339"
                },
                {
-                  "x":"-20",
-                  "y":"-453"
+                  "x":"-11",
+                  "y":"-455"
                },
                {
                   "x":"37",
@@ -306,6 +306,94 @@
             "image":"null",
             "fixtures": {
             "fixture": [
+               {
+                  "name":"1631",
+                  "shapeType":"polygonShape",
+                  "restitution":"1",
+                  "density":"1",
+                  "friction":"1",
+                  "isSensor":"false",
+               "vertex": [
+               {
+                  "x":"-706",
+                  "y":"-510"
+               },
+               {
+                  "x":"-759",
+                  "y":"-457"
+               },
+               {
+                  "x":"-763",
+                  "y":"-517"
+               }
+               ]
+               },
+               {
+                  "name":"1671",
+                  "shapeType":"polygonShape",
+                  "restitution":"1",
+                  "density":"1",
+                  "friction":"1",
+                  "isSensor":"false",
+               "vertex": [
+               {
+                  "x":"-57",
+                  "y":"-509"
+               },
+               {
+                  "x":"-112",
+                  "y":"-456"
+               },
+               {
+                  "x":"-100",
+                  "y":"-518"
+               }
+               ]
+               },
+               {
+                  "name":"1531",
+                  "shapeType":"polygonShape",
+                  "restitution":"1",
+                  "density":"1",
+                  "friction":"1",
+                  "isSensor":"false",
+               "vertex": [
+               {
+                  "x":"-762",
+                  "y":"172"
+               },
+               {
+                  "x":"-710",
+                  "y":"223"
+               },
+               {
+                  "x":"-771",
+                  "y":"228"
+               }
+               ]
+               },
+               {
+                  "name":"1711",
+                  "shapeType":"polygonShape",
+                  "restitution":"1",
+                  "density":"1",
+                  "friction":"1",
+                  "isSensor":"false",
+               "vertex": [
+               {
+                  "x":"227",
+                  "y":"-459"
+               },
+               {
+                  "x":"179",
+                  "y":"-508"
+               },
+               {
+                  "x":"246",
+                  "y":"-524"
+               }
+               ]
+               },
                {
                   "name":"1081",
                   "shapeType":"polygonShape",
@@ -327,6 +415,28 @@
                   "y":"-156"
                }
                ]
+               },
+               {
+                  "name":"1591",
+                  "shapeType":"polygonShape",
+                  "restitution":"1",
+                  "density":"1",
+                  "friction":"1",
+                  "isSensor":"false",
+               "vertex": [
+               {
+                  "x":"172",
+                  "y":"226"
+               },
+               {
+                  "x":"224",
+                  "y":"174"
+               },
+               {
+                  "x":"239",
+                  "y":"243"
+               }
+               ]
                }
             ]
             }
@@ -341,7 +451,29 @@
             "fixtures": {
             "fixture": [
                {
-                  "name":"1121",
+                  "name":"1771",
+                  "shapeType":"polygonShape",
+                  "restitution":"1",
+                  "density":"1",
+                  "friction":"1",
+                  "isSensor":"false",
+               "vertex": [
+               {
+                  "x":"222",
+                  "y":"-359"
+               },
+               {
+                  "x":"232",
+                  "y":"-358"
+               },
+               {
+                  "x":"221",
+                  "y":"-250"
+               }
+               ]
+               },
+               {
+                  "name":"1772",
                   "shapeType":"polygonShape",
                   "restitution":"1",
                   "density":"1",
@@ -353,17 +485,17 @@
                   "y":"-294"
                },
                {
-                  "x":"-423",
-                  "y":"-292"
+                  "x":"-339",
+                  "y":"-294"
                },
                {
                   "x":"-159",
-                  "y":"-299"
+                  "y":"-301"
                }
                ]
                },
                {
-                  "name":"1122",
+                  "name":"1773",
                   "shapeType":"polygonShape",
                   "restitution":"1",
                   "density":"1",
@@ -372,20 +504,20 @@
                "vertex": [
                {
                   "x":"-159",
-                  "y":"-299"
+                  "y":"-301"
                },
                {
-                  "x":"-423",
-                  "y":"-292"
+                  "x":"-339",
+                  "y":"-294"
                },
                {
-                  "x":"-431",
-                  "y":"-299"
+                  "x":"-345",
+                  "y":"-301"
                }
                ]
                },
                {
-                  "name":"1123",
+                  "name":"1774",
                   "shapeType":"polygonShape",
                   "restitution":"1",
                   "density":"1",
@@ -393,21 +525,21 @@
                   "isSensor":"false",
                "vertex": [
                {
-                  "x":"-423",
-                  "y":"-292"
+                  "x":"-339",
+                  "y":"-294"
                },
                {
-                  "x":"-423",
-                  "y":"82"
+                  "x":"-425",
+                  "y":"-207"
                },
                {
-                  "x":"-431",
-                  "y":"-299"
+                  "x":"-345",
+                  "y":"-301"
                }
                ]
                },
                {
-                  "name":"1124",
+                  "name":"1775",
                   "shapeType":"polygonShape",
                   "restitution":"1",
                   "density":"1",
@@ -415,21 +547,21 @@
                   "isSensor":"false",
                "vertex": [
                {
-                  "x":"-431",
-                  "y":"-299"
+                  "x":"-345",
+                  "y":"-301"
                },
                {
-                  "x":"-423",
-                  "y":"82"
+                  "x":"-425",
+                  "y":"-207"
                },
                {
-                  "x":"-434",
-                  "y":"92"
+                  "x":"-433",
+                  "y":"-211"
                }
                ]
                },
                {
-                  "name":"1125",
+                  "name":"1776",
                   "shapeType":"polygonShape",
                   "restitution":"1",
                   "density":"1",
@@ -437,21 +569,65 @@
                   "isSensor":"false",
                "vertex": [
                {
-                  "x":"-423",
-                  "y":"82"
+                  "x":"-425",
+                  "y":"-207"
                },
                {
-                  "x":"-92",
+                  "x":"-425",
+                  "y":"15"
+               },
+               {
+                  "x":"-433",
+                  "y":"-211"
+               }
+               ]
+               },
+               {
+                  "name":"1777",
+                  "shapeType":"polygonShape",
+                  "restitution":"1",
+                  "density":"1",
+                  "friction":"1",
+                  "isSensor":"false",
+               "vertex": [
+               {
+                  "x":"-433",
+                  "y":"-211"
+               },
+               {
+                  "x":"-425",
+                  "y":"15"
+               },
+               {
+                  "x":"-432",
+                  "y":"23"
+               }
+               ]
+               },
+               {
+                  "name":"1778",
+                  "shapeType":"polygonShape",
+                  "restitution":"1",
+                  "density":"1",
+                  "friction":"1",
+                  "isSensor":"false",
+               "vertex": [
+               {
+                  "x":"-425",
+                  "y":"15"
+               },
+               {
+                  "x":"-358",
                   "y":"81"
                },
                {
-                  "x":"-434",
-                  "y":"92"
+                  "x":"-432",
+                  "y":"23"
                }
                ]
                },
                {
-                  "name":"1126",
+                  "name":"1779",
                   "shapeType":"polygonShape",
                   "restitution":"1",
                   "density":"1",
@@ -459,21 +635,65 @@
                   "isSensor":"false",
                "vertex": [
                {
-                  "x":"-434",
-                  "y":"92"
+                  "x":"-432",
+                  "y":"23"
                },
                {
-                  "x":"-92",
+                  "x":"-358",
                   "y":"81"
                },
                {
-                  "x":"-70",
+                  "x":"-364",
+                  "y":"89"
+               }
+               ]
+               },
+               {
+                  "name":"17710",
+                  "shapeType":"polygonShape",
+                  "restitution":"1",
+                  "density":"1",
+                  "friction":"1",
+                  "isSensor":"false",
+               "vertex": [
+               {
+                  "x":"-358",
+                  "y":"81"
+               },
+               {
+                  "x":"-91",
+                  "y":"80"
+               },
+               {
+                  "x":"-364",
+                  "y":"89"
+               }
+               ]
+               },
+               {
+                  "name":"17711",
+                  "shapeType":"polygonShape",
+                  "restitution":"1",
+                  "density":"1",
+                  "friction":"1",
+                  "isSensor":"false",
+               "vertex": [
+               {
+                  "x":"-364",
+                  "y":"89"
+               },
+               {
+                  "x":"-91",
+                  "y":"80"
+               },
+               {
+                  "x":"-72",
                   "y":"90"
                }
                ]
                },
                {
-                  "name":"1127",
+                  "name":"17712",
                   "shapeType":"polygonShape",
                   "restitution":"1",
                   "density":"1",
@@ -481,21 +701,21 @@
                   "isSensor":"false",
                "vertex": [
                {
-                  "x":"-92",
-                  "y":"81"
+                  "x":"-91",
+                  "y":"80"
                },
                {
                   "x":"221",
                   "y":"-250"
                },
                {
-                  "x":"-70",
+                  "x":"-72",
                   "y":"90"
                }
                ]
                },
                {
-                  "name":"1128",
+                  "name":"17713",
                   "shapeType":"polygonShape",
                   "restitution":"1",
                   "density":"1",
@@ -503,7 +723,7 @@
                   "isSensor":"false",
                "vertex": [
                {
-                  "x":"-70",
+                  "x":"-72",
                   "y":"90"
                },
                {
@@ -512,34 +732,46 @@
                },
                {
                   "x":"233",
-                  "y":"-232"
+                  "y":"-233"
                }
                ]
                },
                {
-                  "name":"1129",
+                  "name":"17714",
                   "shapeType":"polygonShape",
                   "restitution":"1",
                   "density":"1",
                   "friction":"1",
                   "isSensor":"false",
                "vertex": [
+               {
+                  "x":"233",
+                  "y":"-233"
+               },
                {
                   "x":"221",
                   "y":"-250"
                },
                {
-                  "x":"222",
-                  "y":"-356"
-               },
-               {
-                  "x":"233",
-                  "y":"-232"
+                  "x":"232",
+                  "y":"-358"
                }
                ]
-               },
+               }
+            ]
+            }
+         },
+         {
+            "name":"cp1",
+            "x":"-125",
+            "y":"-93",
+            "type":"dynamic",
+            "bullet":"false",
+            "image":"null",
+            "fixtures": {
+            "fixture": [
                {
-                  "name":"11210",
+                  "name":"2041",
                   "shapeType":"polygonShape",
                   "restitution":"1",
                   "density":"1",
@@ -547,16 +779,84 @@
                   "isSensor":"false",
                "vertex": [
                {
-                  "x":"231",
-                  "y":"-357"
+                  "x":"-12",
+                  "y":"-77"
                },
                {
-                  "x":"233",
-                  "y":"-232"
+                  "x":"14",
+                  "y":"72"
                },
                {
-                  "x":"222",
-                  "y":"-356"
+                  "x":"-10",
+                  "y":"72"
+               }
+               ]
+               }
+            ]
+            }
+         },
+         {
+            "name":"cp2",
+            "x":"231",
+            "y":"-207",
+            "type":"dynamic",
+            "bullet":"false",
+            "image":"null",
+            "fixtures": {
+            "fixture": [
+               {
+                  "name":"2081",
+                  "shapeType":"polygonShape",
+                  "restitution":"1",
+                  "density":"1",
+                  "friction":"1",
+                  "isSensor":"false",
+               "vertex": [
+               {
+                  "x":"73",
+                  "y":"18"
+               },
+               {
+                  "x":"-77",
+                  "y":"20"
+               },
+               {
+                  "x":"-73",
+                  "y":"-14"
+               }
+               ]
+               }
+            ]
+            }
+         },
+         {
+            "name":"cp0",
+            "x":"-123",
+            "y":"286",
+            "type":"dynamic",
+            "bullet":"false",
+            "image":"null",
+            "fixtures": {
+            "fixture": [
+               {
+                  "name":"1991",
+                  "shapeType":"polygonShape",
+                  "restitution":"1",
+                  "density":"1",
+                  "friction":"1",
+                  "isSensor":"false",
+               "vertex": [
+               {
+                  "x":"-12",
+                  "y":"-72"
+               },
+               {
+                  "x":"4",
+                  "y":"73"
+               },
+               {
+                  "x":"-14",
+                  "y":"74"
                }
                ]
                }
@@ -693,16 +993,16 @@
                   "isSensor":"false",
                "vertex": [
                {
-                  "x":"-250",
-                  "y":"20"
+                  "x":"-239",
+                  "y":"18"
                },
                {
-                  "x":"-250",
-                  "y":"-26"
+                  "x":"-239",
+                  "y":"-28"
                },
                {
-                  "x":"269",
-                  "y":"20"
+                  "x":"280",
+                  "y":"18"
                }
                ]
                },
@@ -715,16 +1015,16 @@
                   "isSensor":"false",
                "vertex": [
                {
-                  "x":"269",
-                  "y":"-26"
+                  "x":"280",
+                  "y":"-28"
                },
                {
-                  "x":"269",
-                  "y":"20"
+                  "x":"280",
+                  "y":"18"
                },
                {
-                  "x":"-250",
-                  "y":"-26"
+                  "x":"-239",
+                  "y":"-28"
                }
                ]
                }

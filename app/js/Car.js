@@ -6,10 +6,12 @@ function Car(consts, carIndex)
 	this.METER = consts.METER;
 	this.carBodyDef = new b2.dyn.b2BodyDef();
 	this.b2Body = null;
-	this.CAR_WIDTH_B2 = 32 / this.METER;
-	this.CAR_HEIGHT_B2 = 16 / this.METER;
-	this.CAR_ROTATE_FACTOR = 0.2;
+	this.CAR_WIDTH_B2 = Cars[carIndex].width / 2 / this.METER;
+	this.CAR_HEIGHT_B2 = Cars[carIndex].height / 2 / this.METER;
+	this.CAR_ROTATE_FACTOR = Cars[carIndex].rotateFactor;
 	this.CAR_NATURAL_DECELERATION = 0.1;
+	this.CAR_ACCELERATION_FACTOR = Cars[carIndex].accelerationFactor;
+	this.CAR_DRIFT_TRIGGER = Cars[carIndex].driftTrigger ;
 
 	this.pixiSprite = new PIXI.Sprite(PIXI.Texture.fromFrame(Cars[carIndex].sprite));
 	this.pixiSprite.anchor.x  = 0.5;
@@ -32,6 +34,7 @@ function Car(consts, carIndex)
 	this.linearVelocity = null; // updated each turn (see updateData) this is the (vx, vy) vector in world ref.
 	this.currentRightForward = null; // updated each turn (see updateData) this is the 1-length vector in world ref, corresponding to the pilot look straight ahead.
 
+	this.checkPointManager = null;
 
 }
 Car.prototype.createb2Body = function (b2Universe, x, y)
@@ -44,7 +47,8 @@ Car.prototype.createb2Body = function (b2Universe, x, y)
 
 	var s = MathUtil.rndRange(50, 100);
 	this.carFixture.shape.SetAsBox(this.CAR_WIDTH_B2, this.CAR_HEIGHT_B2);
-	this.b2Body.CreateFixture(this.carFixture);
+	var carFixture = this.b2Body.CreateFixture(this.carFixture);
+	carFixture.SetUserData("car");
 
 };
 
@@ -77,11 +81,11 @@ Car.prototype.updateData = function (keyboardData)
 
 Car.prototype.Accelerate = function ()
 {
-	this.b2Body.ApplyForce(this.b2Body.GetWorldVector(new Box2D.Common.Math.b2Vec2(1.4, 0)), this.b2Body.GetWorldCenter());
+	this.b2Body.ApplyForce(this.b2Body.GetWorldVector(new Box2D.Common.Math.b2Vec2(this.CAR_ACCELERATION_FACTOR, 0)), this.b2Body.GetWorldCenter());
 };
 Car.prototype.Brake = function ()
 {
-	this.b2Body.ApplyForce(this.b2Body.GetWorldVector(new Box2D.Common.Math.b2Vec2(-1, 0)), this.b2Body.GetWorldCenter());
+	this.b2Body.ApplyForce(this.b2Body.GetWorldVector(new Box2D.Common.Math.b2Vec2(this.CAR_ACCELERATION_FACTOR / -3, 0)), this.b2Body.GetWorldCenter());
 };
 
 Car.prototype.TurnLeft = function ()
@@ -119,11 +123,10 @@ Car.prototype.UpdateFriction = function ()
 	if(this.adherence)
 	{
 		// Prevent car from sliding. Let it slide where lateral velocity is high (drift);
-		var maxLateralImpulse = 0.035;
 		var impulse = b2.math.MulFV(-this.b2Body.GetMass(), this.vCurrentRightNormal);
 		//console.log(impulse.Length());
-		if (impulse.Length() > maxLateralImpulse)
-			impulse  = b2.math.MulFV(maxLateralImpulse / impulse.Length(), impulse);
+		if (impulse.Length() > this.CAR_DRIFT_TRIGGER)
+			impulse  = b2.math.MulFV(this.CAR_DRIFT_TRIGGER / impulse.Length(), impulse);
 		this.b2Body.ApplyImpulse(impulse, this.b2Body.GetWorldCenter());
 	}
 

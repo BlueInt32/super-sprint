@@ -4,6 +4,21 @@ body {
   padding: 0;
   background-color: #000000;
 }
+body div#lapTime {
+  position: absolute;
+  z-index: 10;
+  top: 244px;
+  right: 511px;
+  color: #FFF;
+}
+body div#bestLapTime {
+  position: absolute;
+  z-index: 10;
+  top: 264px;
+  right: 504px;
+  color: #FF0;
+  font-weight: bold;
+}
 body #info {
   top: 10px;
   left: 10px;
