@@ -64,12 +64,19 @@
 
 	function onLoadAssets()
 	{
-		//b2Universe.CreateWalls();
-		b2Universe.LoadTrack(2);
+		b2Universe.CreateWalls();
+		b2Universe.LoadTrack(1);
 		//b2Universe.CreatePuddles();
 
 		car = new Car(Consts, 0);
 		car.createb2Body(b2Universe, Consts.STAGE_WIDTH_B2 / 2, Consts.STAGE_HEIGHT_B2 / 2);
+
+		var testBodies = b2Universe.world.GetBodyList();
+		do
+		{
+			console.log(testBodies);
+		}
+		while(testBodies = testBodies.GetNext());
 		console.log(b2Universe.world);
 		pixiStage.addChild(car.pixiSprite);
 
@@ -105,7 +112,7 @@
 
 		b2Universe.world.ClearForces();
 		car.updateData(keyboardHandler.Keys);
-		pixiRenderer.render(pixiStage);
+		//pixiRenderer.render(pixiStage);
 		stats.update();
 	}
 })();
