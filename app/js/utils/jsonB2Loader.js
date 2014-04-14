@@ -3,7 +3,6 @@ function jsonB2Loader(consts, world)
 	var me = this;
 	this.world = world;
 	this.consts = consts;
-
 	this.car = null;
 }
 
