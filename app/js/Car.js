@@ -44,7 +44,7 @@ function Car(consts, carIndex)
 
 Car.prototype.createb2Body = function (b2Universe, x, y)
 {
-	this.carBodyDef.type = Box2D.Dynamics.b2Body.b2_dynamicBody;
+
 	this.carBodyDef.position.Set(x, y);
 	this.carBodyDef.angle = 0;
 

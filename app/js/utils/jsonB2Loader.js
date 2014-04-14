@@ -4,6 +4,7 @@ function jsonB2Loader(consts, world)
 	this.world = world;
 	this.consts = consts;
 
+	this.car = null;
 }
 
 jsonB2Loader.prototype.loadCar = function()
@@ -32,7 +33,6 @@ jsonB2Loader.prototype.debugDraw = function()
 
 jsonB2Loader.prototype.loadTrack = function(trackDescriptorPath)
 {
-
 	var me = this;
 	this.loadJSON(trackDescriptorPath, function(response)
 	{
@@ -49,7 +49,6 @@ jsonB2Loader.prototype.loadTrack = function(trackDescriptorPath)
 			{
 				case "dynamic":
 				me.bodyDef.type = b2.dyn.b2Body.b2_dynamicBody; break;
-
 				case "static":
 				me.bodyDef.type = b2.dyn.b2Body.b2_staticBody; break;
 				default:

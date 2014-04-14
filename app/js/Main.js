@@ -63,10 +63,12 @@
 	function onLoadAssets()
 	{
 		//b2Universe.CreateWalls();
-		b2Universe.LoadTrack(0);
+		b2Universe.LoadTrack(1);
 		//b2Universe.CreatePuddles();
 
 		b2Universe.AddCar(0, pixiStage);
+
+		var rCar = new RealCar(Consts, 0, b2Universe);
 
 		document.onkeydown = keyboardHandler.HandleKeyDown.bind(keyboardHandler);
 		document.onkeyup = keyboardHandler.HandleKeyUp.bind(keyboardHandler);

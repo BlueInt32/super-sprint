@@ -1,0 +1,65 @@
+<box2d>
+  <images/>
+  <bodies>
+    <body name="frontLeftWheel" x="-93" y="20" type="dynamic" bullet="false" image="null">
+      <fixtures>
+        <fixture name="47" shapeType="polygonShape" restitution="1" density="1" friction="1" isSensor="false">
+          <vertex x="-17" y="70"/>
+          <vertex x="33" y="70"/>
+          <vertex x="33" y="-35"/>
+          <vertex x="-17" y="-35"/>
+        </fixture>
+      </fixtures>
+    </body>
+    <body name="frontrightwheel" x="103" y="15" type="dynamic" bullet="false" image="null">
+      <fixtures>
+        <fixture name="52" shapeType="polygonShape" restitution="1" density="1" friction="1" isSensor="false">
+          <vertex x="-43" y="75"/>
+          <vertex x="7" y="75"/>
+          <vertex x="7" y="-30"/>
+          <vertex x="-43" y="-30"/>
+        </fixture>
+      </fixtures>
+    </body>
+    <body name="rearleftwheel" x="-83" y="-185" type="dynamic" bullet="false" image="null">
+      <fixtures>
+        <fixture name="57" shapeType="polygonShape" restitution="1" density="1" friction="1" isSensor="false">
+          <vertex x="-27" y="75"/>
+          <vertex x="23" y="75"/>
+          <vertex x="23" y="-30"/>
+          <vertex x="-27" y="-30"/>
+        </fixture>
+      </fixtures>
+    </body>
+    <body name="rearrightwheel" x="98" y="-185" type="dynamic" bullet="false" image="null">
+      <fixtures>
+        <fixture name="62" shapeType="polygonShape" restitution="1" density="1" friction="1" isSensor="false">
+          <vertex x="-38" y="75"/>
+          <vertex x="12" y="75"/>
+          <vertex x="12" y="-30"/>
+          <vertex x="-38" y="-30"/>
+        </fixture>
+      </fixtures>
+    </body>
+    <body name="centralBody" x="6" y="-65" type="dynamic" bullet="false" image="null">
+      <fixtures>
+        <fixture name="41" shapeType="polygonShape" restitution="1" density="1" friction="1" isSensor="false">
+          <vertex x="-111" y="169"/>
+          <vertex x="99" y="169"/>
+          <vertex x="99" y="-175"/>
+          <vertex x="-111" y="-175"/>
+        </fixture>
+      </fixtures>
+    </body>
+  </bodies>
+  <joints>
+    <joint name="joint6" x="-40" y="-30" collideConnected="false" bodyA="centralBody" bodyB="frontLeftWheel" enableMotor="false" motorSpeed="1" maxMotorTorque="1" type="RevoluteJoint" lowerAngle="-360" upperAngle="360" enableLimit="false"/>
+    <joint name="joint7" x="49" y="-29" collideConnected="false" bodyA="centralBody" bodyB="frontrightwheel" enableMotor="false" motorSpeed="1" maxMotorTorque="1" type="RevoluteJoint" lowerAngle="-360" upperAngle="360" enableLimit="false"/>
+    <joint name="joint8" x="-34" y="-100" collideConnected="false" bodyA="centralBody" bodyB="rearleftwheel" enableMotor="false" motorSpeed="1" maxMotorTorque="1" type="RevoluteJoint" lowerAngle="-360" upperAngle="360" enableLimit="false"/>
+    <joint name="joint9" x="34" y="-95" collideConnected="false" bodyA="centralBody" bodyB="rearrightwheel" enableMotor="false" motorSpeed="1" maxMotorTorque="1" type="RevoluteJoint" lowerAngle="-360" upperAngle="360" enableLimit="false"/>
+  </joints>
+  <metaData/>
+  <settings>
+    <setting isLocked="true"/>
+  </settings>
+</box2d>
