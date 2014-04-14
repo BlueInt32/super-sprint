@@ -8,14 +8,14 @@
 		pixiSprite;
 	var b2Universe = new B2Universe(Consts);
 
-		var canvas = document.getElementById('canvas');
-		canvas.width = Consts.STAGE_WIDTH_PIXEL;
-		canvas.height = Consts.STAGE_HEIGHT_PIXEL;
-		debugDraw();
+	var canvas = document.getElementById('canvas');
+	canvas.width = Consts.STAGE_WIDTH_PIXEL;
+	canvas.height = Consts.STAGE_HEIGHT_PIXEL;
+	debugDraw();
 
-		var scaleX = canvas.width / window.innerWidth;
-		var scaleY = canvas.height / window.innerHeight;
-		var scaleToFit = Math.min(scaleX, scaleY);
+	var scaleX = canvas.width / window.innerWidth;
+	var scaleY = canvas.height / window.innerHeight;
+	var scaleToFit = Math.min(scaleX, scaleY);
 
 		// stage.style.transformOrigin = "0 0";
 		// stage.style.transform = "scale("+scaleToFit+")";
@@ -66,7 +66,7 @@
 		b2Universe.LoadTrack(1);
 		//b2Universe.CreatePuddles();
 
-		b2Universe.AddCar(0, pixiStage);
+		//b2Universe.AddCar(0, pixiStage);
 
 		var rCar = new RealCar(Consts, 0, b2Universe);
 
@@ -83,7 +83,13 @@
 		debugDrawer.SetDrawScale(100.0);
 		debugDrawer.SetFillAlpha(0.5);
 		debugDrawer.SetLineThickness(1.0);
-		debugDrawer.SetFlags(b2.dyn.b2DebugDraw.e_shapeBit | b2.dyn.b2DebugDraw.e_jointBit);
+		debugDrawer.SetFlags(
+			b2.dyn.b2DebugDraw.e_shapeBit 
+			| b2.dyn.b2DebugDraw.e_jointBit
+			| b2.dyn.b2DebugDraw.e_centerOfMassBit
+			| b2.dyn.b2DebugDraw.e_controllerBit
+			| b2.dyn.b2DebugDraw.e_pairBit
+			);
 		b2Universe.world.SetDebugDraw(debugDrawer);
 	}
 

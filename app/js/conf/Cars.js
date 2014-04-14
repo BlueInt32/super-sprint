@@ -4,6 +4,7 @@ var Cars =
         width : 40, // px unit
         height: 25, // px unit
         sprite: "assets/cars/images/Voiture_03.png",
+        json: "assets/cars/car0.js",
 
         // physics properties
         rotateFactor: 0.05,
@@ -13,9 +14,6 @@ var Cars =
         natural_deceleration: 0.1,
 
         // car body
-        restitution: 0.1,
-
-
-
+        restitution: 0.1
     }
 ];
