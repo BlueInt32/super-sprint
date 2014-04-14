@@ -66,3 +66,4 @@ Icon?
 thumbs.db
 
 app/js/min.js
+*.sublime-workspace
