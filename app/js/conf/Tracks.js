@@ -1,7 +1,9 @@
-var Tracks = 
+var Tracks =
 [
     {
-		id:1,
-		nbCheckpoints:3
+		id:0,
+		nbCheckpoints:3,
+        filePath: "assets/tracks/track0.js",
+        imagePath: "assets/tracks/images/track0.png"
     }
 ];

@@ -2,16 +2,19 @@
 
 function Car(consts, carIndex)
 {
+	this.CarConfig = Cars[carIndex];
+
+	//this.previousKeyboardData = null;
+
 	this.id = carIndex;
 	this.METER = consts.METER;
 	this.carBodyDef = new b2.dyn.b2BodyDef();
 	this.b2Body = null;
-	this.CAR_WIDTH_B2 = Cars[carIndex].width / 2 / this.METER;
-	this.CAR_HEIGHT_B2 = Cars[carIndex].height / 2 / this.METER;
-	this.CAR_ROTATE_FACTOR = Cars[carIndex].rotateFactor;
-	this.CAR_NATURAL_DECELERATION = 0.1;
-	this.CAR_ACCELERATION_FACTOR = Cars[carIndex].accelerationFactor;
-	this.CAR_DRIFT_TRIGGER = Cars[carIndex].driftTrigger ;
+	this.CAR_WIDTH_B2 = this.CarConfig.width / 2 / this.METER;
+	this.CAR_HEIGHT_B2 = this.CarConfig.height / 2 / this.METER;
+
+	this.Current_Drift_trigger = this.CarConfig.driftTrigger;
+
 
 	this.pixiSprite = new PIXI.Sprite(PIXI.Texture.fromFrame(Cars[carIndex].sprite));
 	this.pixiSprite.anchor.x  = 0.5;
@@ -22,11 +25,10 @@ function Car(consts, carIndex)
 	this.adherence = true;
 	this.paddleEffect = 0;
 
-
 	this.carFixture = new b2.dyn.b2FixtureDef();
 	this.carFixture.shape = new b2.shapes.b2PolygonShape();
 	this.carFixture.density = 1;
-	this.carFixture.restitution = 0;
+	this.carFixture.restitution = this.CarConfig.restitution;
 
 
 	this.vCurrentRightNormal = null;
@@ -37,6 +39,9 @@ function Car(consts, carIndex)
 	this.checkPointManager = null;
 
 }
+
+
+
 Car.prototype.createb2Body = function (b2Universe, x, y)
 {
 	this.carBodyDef.type = Box2D.Dynamics.b2Body.b2_dynamicBody;
@@ -59,11 +64,15 @@ Car.prototype.updateData = function (keyboardData)
 	this.currentRightForward = this.b2Body.GetWorldVector(new b2.cMath.b2Vec2(1, 0));
 
 	//console.log(keyboardData);
-	if (keyboardData.accelerate)
-		this.Accelerate();
+	if (keyboardData.accelerate) this.Accelerate();
 	//else if (b2.math.Dot(this.b2Body.GetLinearVelocity(), this.b2Body.GetWorldVector(new b2.cMath.b2Vec2(1, 0))) > 0)
 	//	this.Decelerate();
-	if (keyboardData.brake) this.Brake();
+	if (keyboardData.handbrake)
+		this.HandBrake();
+	else
+		this.HandBrakeRelease();
+	if(keyboardData.brake)
+		this.Brake();
 	if (keyboardData.right && this.paddleEffect === 0) this.TurnRight();
 	else if (keyboardData.left && this.paddleEffect === 0) this.TurnLeft();
 
@@ -77,25 +86,36 @@ Car.prototype.updateData = function (keyboardData)
 	this.pixiSprite.position.y = position.y * this.METER;
 	this.pixiSprite.rotation = this.b2Body.GetAngle();
 
+	//this.previousKeyboardData = keyboardData;
 };
 
 Car.prototype.Accelerate = function ()
 {
-	this.b2Body.ApplyForce(this.b2Body.GetWorldVector(new Box2D.Common.Math.b2Vec2(this.CAR_ACCELERATION_FACTOR, 0)), this.b2Body.GetWorldCenter());
+	this.b2Body.ApplyForce(this.b2Body.GetWorldVector(new Box2D.Common.Math.b2Vec2(this.CarConfig.accelerationFactor, 0)), this.b2Body.GetWorldCenter());
 };
 Car.prototype.Brake = function ()
 {
-	this.b2Body.ApplyForce(this.b2Body.GetWorldVector(new Box2D.Common.Math.b2Vec2(this.CAR_ACCELERATION_FACTOR / -3, 0)), this.b2Body.GetWorldCenter());
+	this.b2Body.ApplyForce(this.b2Body.GetWorldVector(new Box2D.Common.Math.b2Vec2(this.CarConfig.accelerationFactor / -3, 0)), this.b2Body.GetWorldCenter());
+};
+
+Car.prototype.HandBrake = function ()
+{
+	this.b2Body.ApplyForce(this.b2Body.GetWorldVector(new Box2D.Common.Math.b2Vec2(this.CarConfig.accelerationFactor / -4, 0)), this.b2Body.GetWorldCenter());
+	this.Current_Drift_trigger = this.CarConfig.driftTriggerWithHandbrake;
+};
+Car.prototype.HandBrakeRelease = function ()
+{
+	this.Current_Drift_trigger = this.CarConfig.driftTrigger;
 };
 
 Car.prototype.TurnLeft = function ()
 {
 
-	this.b2Body.ApplyTorque(-this.CAR_ROTATE_FACTOR * this.NegateTorque());
+	this.b2Body.ApplyTorque(-this.CarConfig.rotateFactor * this.NegateTorque());
 };
 Car.prototype.TurnRight = function ()
 {
-	this.b2Body.ApplyTorque(this.NegateTorque() * this.CAR_ROTATE_FACTOR);
+	this.b2Body.ApplyTorque(this.NegateTorque() * this.CarConfig.rotateFactor);
 };
 
 Car.prototype.NegateTorque = function()
@@ -125,8 +145,8 @@ Car.prototype.UpdateFriction = function ()
 		// Prevent car from sliding. Let it slide where lateral velocity is high (drift);
 		var impulse = b2.math.MulFV(-this.b2Body.GetMass(), this.vCurrentRightNormal);
 		//console.log(impulse.Length());
-		if (impulse.Length() > this.CAR_DRIFT_TRIGGER)
-			impulse  = b2.math.MulFV(this.CAR_DRIFT_TRIGGER / impulse.Length(), impulse);
+		if (impulse.Length() > this.Current_Drift_trigger)
+			impulse  = b2.math.MulFV(this.Current_Drift_trigger / impulse.Length(), impulse);
 		this.b2Body.ApplyImpulse(impulse, this.b2Body.GetWorldCenter());
 	}
 
@@ -140,14 +160,14 @@ Car.prototype.UpdateFriction = function ()
 	// natural friction against movement. This is a F = -kv type force.
 	var currentForwardNormal = this.GetForwardVelocity();
 	var currentForwardSpeed = currentForwardNormal.Normalize();
-	var dragForceMagnitude = -this.CAR_NATURAL_DECELERATION * currentForwardSpeed;
+	var dragForceMagnitude = -this.CarConfig.natural_deceleration * currentForwardSpeed;
 	this.b2Body.ApplyForce( b2.math.MulFV(dragForceMagnitude, currentForwardNormal), this.b2Body.GetWorldCenter() );
 
 
 	// here we update how the car behave when its paddleEffect is on (sliding on a paddle).
 	if(this.paddleEffect !== 0)
 	{
-		this.b2Body.ApplyTorque(this.paddleEffect * this.CAR_ROTATE_FACTOR);
+		this.b2Body.ApplyTorque(this.paddleEffect * this.CarConfig.rotateFactor);
 	}
 };
 

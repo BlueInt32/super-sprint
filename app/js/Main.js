@@ -26,17 +26,16 @@
 	{
 		if (!window.requestAnimationFrame)
 		{
-			alert("no requestAnimationFrame");
 			window.requestAnimationFrame = (function ()
 			{
-				return window.webkitRequestAnimationFrame ||
-				window.mozRequestAnimationFrame ||
-				window.oRequestAnimationFrame ||
-				window.msRequestAnimationFrame ||
-				function (callback)
-				{
-					window.setTimeout(callback, 1000 / 60);
-				};
+				return  window.requestAnimationFrame       ||
+              window.webkitRequestAnimationFrame ||
+              window.mozRequestAnimationFrame    ||
+              window.oRequestAnimationFrame      ||
+              window.msRequestAnimationFrame     ||
+              function(/* function */ callback, /* DOMElement */ element){
+                window.setTimeout(callback, 1000 / 60);
+              };
 			})();
 		}
 
@@ -64,7 +63,7 @@
 	function onLoadAssets()
 	{
 		//b2Universe.CreateWalls();
-		b2Universe.LoadTrack(1);
+		b2Universe.LoadTrack(0);
 		//b2Universe.CreatePuddles();
 
 		b2Universe.AddCar(0, pixiStage);

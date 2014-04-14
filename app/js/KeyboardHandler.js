@@ -3,7 +3,7 @@
 	this.keyArray = [];
 }
 
-KeyboardHandler.prototype.Keys = { accelerate: false, brake: false, left: false, right: false };
+KeyboardHandler.prototype.Keys = { accelerate: false, brake: false, left: false, right: false, handbrake:false };
 
 KeyboardHandler.prototype.HandleKeyDown = function(event)
 {
@@ -12,13 +12,13 @@ KeyboardHandler.prototype.HandleKeyDown = function(event)
 	if (this.keyArray.indexOf(key) > -1)
 		return;
 	var knowKey = true;
-	
 	switch (key)
 	{
 		case 37: this.Keys.left = true; break;
 		case 38: this.Keys.accelerate = true; break;
 		case 39: this.Keys.right = true; break;
 		case 40: this.Keys.brake = true; break;
+		case 32: this.Keys.handbrake = true; break;
 		default: knowKey = false;
 	}
 	if (knowKey) this.keyArray.push(key);
@@ -38,5 +38,6 @@ KeyboardHandler.prototype.HandleKeyUp = function(event)
 		case 38: this.Keys.accelerate = false; break;
 		case 39: this.Keys.right = false; break;
 		case 40: this.Keys.brake = false; break;
+		case 32: this.Keys.handbrake = false; break;
 	}
 };

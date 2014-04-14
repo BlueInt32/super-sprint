@@ -25,7 +25,7 @@
 
 		(function init()
 		{
-			loader = new jsonB2Loader("/assets/tracks/track1.json", Consts, world);
+			loader = new jsonB2Loader(Tracks[0].filePath, Consts, world);
 
 			loader.world.Step(1 / 60, 3, 3);
 			loader.debugDraw();

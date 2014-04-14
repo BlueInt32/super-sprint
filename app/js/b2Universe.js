@@ -8,16 +8,6 @@
 	this.consts = consts;
 	var DEGTORAD  = 2 * Math.PI / 360;
 
-
-//    /$$$$$$   /$$$$$$  /$$   /$$ /$$$$$$$$ /$$$$$$   /$$$$$$  /$$$$$$$$ /$$$$$$
-//   /$$__  $$ /$$__  $$| $$$ | $$|__  $$__//$$__  $$ /$$__  $$|__  $$__//$$__  $$
-//  | $$  \__/| $$  \ $$| $$$$| $$   | $$  | $$  \ $$| $$  \__/   | $$  | $$  \__/
-//  | $$      | $$  | $$| $$ $$ $$   | $$  | $$$$$$$$| $$         | $$  |  $$$$$$
-//  | $$      | $$  | $$| $$  $$$$   | $$  | $$__  $$| $$         | $$   \____  $$
-//  | $$    $$| $$  | $$| $$\  $$$   | $$  | $$  | $$| $$    $$   | $$   /$$  \ $$
-//  |  $$$$$$/|  $$$$$$/| $$ \  $$   | $$  | $$  | $$|  $$$$$$/   | $$  |  $$$$$$/
-//   \______/  \______/ |__/  \__/   |__/  |__/  |__/ \______/    |__/   \______/
-
 	this.HandleContact = function(contact, began)
 	{
 		var contactInfo = this.ExtractContactType(contact);
@@ -59,7 +49,7 @@
 			return {"type":"cp", "id":bData.substr(2, 3)};
 	};
 
-	contactListener.BeginContact = function(contact) 
+	contactListener.BeginContact = function(contact)
 	{
 		me.HandleContact(contact, true);
 	};
@@ -69,18 +59,9 @@
 	this.world.SetContactListener(contactListener);
 
 
-//   /$$      /$$  /$$$$$$  /$$       /$$        /$$$$$$
-//  | $$  /$ | $$ /$$__  $$| $$      | $$       /$$__  $$
-//  | $$ /$$$| $$| $$  \ $$| $$      | $$      | $$  \__/
-//  | $$/$$ $$ $$| $$$$$$$$| $$      | $$      |  $$$$$$
-//  | $$$$_  $$$$| $$__  $$| $$      | $$       \____  $$
-//  | $$$/ \  $$$| $$  | $$| $$      | $$       /$$  \ $$
-//  | $$/   \  $$| $$  | $$| $$$$$$$$| $$$$$$$$|  $$$$$$/
-//  |__/     \__/|__/  |__/|________/|________/ \______/
-
+	/* Deprecated since Track Loader */
 	this.CreateWalls = function ()
 	{
-
 		this.wallBodyDef = new b2.dyn.b2BodyDef();
 		this.wallBodyDef.type = b2.dyn.b2Body.b2_staticBody;
 
@@ -144,7 +125,9 @@
 
 	this.LoadTrack = function(trackIndex)
 	{
-		new jsonB2Loader("assets/tracks/track"+trackIndex+".js", this.consts, this.world);
+		var loader = new jsonB2Loader(this.consts, this.world);
+		loader.loadTrack(Tracks[trackIndex].filePath);
+
 	};
 
 	this.AddCar = function(carIndex, pixiStage)
