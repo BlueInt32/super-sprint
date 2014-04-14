@@ -1,43 +1,44 @@
 ﻿@import "mixin.less";
 body {
 	.font0();
-	margin: 50px auto;
 	padding: 0;
 	background-color: #000000;
 
-	canvas
+	div#gameContainer
 	{
-	}
-	div#lapTime 
-	{
-		position: absolute;
-		z-index: 10;
-		top: 244px;
-		right: 511px;
-		color: #FFF;
-	}
-	div#bestLapTime
-	{
-		position: absolute;
-		z-index: 10;
-		top: 264px;
-		right: 504px;
-		color: #FF0;
-		font-weight: bold;
-	}
-	#info 
-	{
-		top:10px;
-		left:10px;
-		position:absolute;
-		.borderradius(5px);
-		width:300px;
-		height:200px;
-		border:1px solid black;
+		text-align:center;
 
-		span
+		div#lapTime 
 		{
-			color:black;
+			position: absolute;
+			z-index: 10;
+			top: 244px;
+			right: 511px;
+			color: #FFF;
+		}
+		div#bestLapTime
+		{
+			position: absolute;
+			z-index: 10;
+			top: 264px;
+			right: 504px;
+			color: #FF0;
+			font-weight: bold;
+		}
+		#info 
+		{
+			top:10px;
+			left:10px;
+			position:absolute;
+			.borderradius(5px);
+			width:300px;
+			height:200px;
+			border:1px solid black;
+
+			span
+			{
+				color:black;
+			}
 		}
 	}
 }

@@ -4,6 +4,22 @@
 		"selected_items":
 		[
 			[
+				"start",
+				"startLap"
+			],
+			[
+				"conta",
+				"contactInfo"
+			],
+			[
+				"car",
+				"carFixture"
+			],
+			[
+				"CheckPoint",
+				"checkpointIndex"
+			],
+			[
 				"fix",
 				"fixDef"
 			],
@@ -35,51 +51,11 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "js/Main.js",
-			"settings":
-			{
-				"buffer_size": 3016,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "js/Car.js",
-			"settings":
-			{
-				"buffer_size": 4786,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "js/b2Universe.js",
-			"settings":
-			{
-				"buffer_size": 4434,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "js/utils/jsonB2Loader.js",
-			"settings":
-			{
-				"buffer_size": 2496,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "images/tracks/track2.json",
-			"settings":
-			{
-				"buffer_size": 1621,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"command_palette":
 	{
-		"height": 60.0,
+		"height": 285.0,
 		"selected_items":
 		[
 			[
@@ -107,7 +83,7 @@
 				"Preferences: Browse Packages"
 			]
 		],
-		"width": 386.0
+		"width": 402.0
 	},
 	"console":
 	{
@@ -132,34 +108,61 @@
 	},
 	"file_history":
 	[
-		"/D/prog/git/SuperSprint/app/testLoadJson.html",
+		"/C/Users/Simon/AppData/Local/Temp/fz3temp-1/index 2.html",
+		"/C/Users/Simon/AppData/Local/Temp/fz3temp-1/index.html",
+		"/D/Prog/Git/SuperSprint/app/js/b2Universe.js",
+		"/D/Prog/Git/SuperSprint/app/testLoadJson.html",
+		"/D/Prog/Git/SuperSprint/app/js/Main.js",
+		"/D/Prog/Git/SuperSprint/app/js/utils/jsonB2Loader.js",
+		"/D/Prog/Git/SuperSprint/app/gruntfile.js",
+		"/D/Prog/Git/SuperSprint/app/publish/index.html",
+		"/D/prog/git/SuperSprint/app/js/utils/b2.js",
 		"/D/prog/git/SuperSprint/app/index.html",
-		"/D/prog/git/SuperSprint/app/js/Car.js",
+		"/D/prog/git/SuperSprint/app/js/conf/Tracks.js",
 		"/D/prog/git/SuperSprint/app/js/Main.js",
-		"/D/prog/git/SuperSprint/app/js/utils/jsonB2Loader.js",
-		"/D/prog/git/SuperSprint/app/js/utils/Consts.js",
+		"/D/prog/git/SuperSprint/app/js/CheckpointManager.js",
 		"/D/prog/git/SuperSprint/app/js/b2Universe.js",
+		"/D/prog/git/SuperSprint/app/js/utils/jsonB2Loader.js",
+		"/D/prog/git/SuperSprint/app/gruntfile.js",
+		"/D/Prog/Git/SuperSprint/app/publish/js/min.js",
+		"/D/prog/git/SuperSprint/app/assets/tracks/track1.fizzx",
+		"/D/prog/git/SuperSprint/app/node_modules/karma/node_modules/log4js/test/streams/test-rolling-file-stream",
+		"/D/prog/git/SuperSprint/app/testLoadJson.html",
+		"/D/prog/git/SuperSprint/app/js/libs/pixi.js/src/pixi/filters/CrossHatchFilter.js",
+		"/D/prog/git/SuperSprint/app/node_modules/grunt-contrib-cssmin/node_modules/chalk/node_modules/has-color/has-color.js",
+		"/D/prog/git/SuperSprint/app/js/Car.js",
+		"/D/prog/git/SuperSprint/app/node_modules/grunt-contrib-jshint/node_modules/.bin/jshint",
+		"/D/prog/git/SuperSprint/app/package.json",
+		"/D/prog/git/SuperSprint/app/css/style.less",
+		"/D/prog/git/SuperSprint/app/css/mixin.less",
+		"/D/prog/git/SuperSprint/app/node_modules/karma/node_modules/log4js/examples/example-socket.js",
+		"/D/prog/git/SuperSprint/app/node_modules/grunt-contrib-jshint/node_modules/jshint/node_modules/htmlparser2/test/Events/18-legacy_entities.json",
+		"/D/prog/git/SuperSprint/app/node_modules/grunt-karma/LICENSE",
+		"/D/prog/git/SuperSprint/app/js/conf/Cars.js",
+		"/D/prog/git/SuperSprint/app/images/tracks/track2.json",
+		"/D/Prog/Git/SuperSprint/app/assets/cars/car1.json",
+		"/D/prog/git/SuperSprint/app/js/Sprites.js",
+		"/D/prog/git/SuperSprint/app/js/libs/box2dweb/Box2dWeb-2.1.a.3.min.js",
+		"/D/prog/git/SuperSprint/app/js/libs/box2dweb/Box2dWeb-2.1.a.3.js",
+		"/D/prog/git/SuperSprint/app/bower.json",
+		"/D/prog/git/SuperSprint/app/supersprint.sublime-workspace",
+		"/D/prog/git/SuperSprint/app/js/utils/Consts.js",
 		"/D/Prog/Git/SuperSprint/app/images/tracks/track2.json",
 		"/D/prog/git/SuperSprint/app/images/tracks/track1.json",
-		"/D/prog/git/SuperSprint/app/js/utils/b2.js",
 		"/D/Prog/Git/SuperSprint/docs/pixijs&box2d sample/pixijs_box2d/MouseJoint/src/Main.js",
 		"/D/prog/git/SuperSprint/app/app/js/utils/jsonB2Loader.js",
 		"/D/prog/git/SuperSprint/app/app/testLoadJson.html",
-		"/D/prog/git/SuperSprint/app/css/style.less",
 		"/D/Prog/Git/SuperSprint/app/images/tracks/track1.json",
 		"/D/prog/git/SuperSprint/app/css/style.css",
 		"/D/prog/git/SuperSprint/app/js/libs/pixi.js/examples/example 14 - Masking/Copy of index.html",
 		"/C/Users/Simon/AppData/Roaming/Sublime Text 3/Installed Packages/Copy of Schemr.sublime-package/schemr.py",
 		"/C/Users/Simon/.ssh/julien_maison.pub",
 		"/D/Prog/Git/SublimeTextPlugins/Openfilr.py",
-		"/D/Prog/Git/SuperSprint/app/js/Main.js",
-		"/D/Prog/Git/SuperSprint/app/js/b2Universe.js",
 		"/C/Users/Simon/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
 		"/D/Prog/Git/SuperSprint/app/js/Car.js",
 		"/C/Users/Simon/AppData/Roaming/Sublime Text 3/Packages/Default/Default (Windows).sublime-keymap",
 		"/C/Users/Simon/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
 		"/D/Prog/Git/SuperSprint/app/index.html",
-		"/D/Prog/Git/SuperSprint/app/gruntfile.js",
 		"/D/Prog/Git/SuperSprint/app/supersprint.sublime-workspace",
 		"/D/Prog/Git/SuperSprint/app/js/conf/Cars.js",
 		"/D/Prog/Git/SuperSprint/app/js/utils/Consts.js",
@@ -232,34 +235,7 @@
 		"/D/Dropbox/Prog/Utilities/DeleteAdobeCacheFiles/deleteAdobeCache.bat",
 		"/D/Prog/Git/SuperSprint/app/package.json",
 		"/D/Prog/Git/SuperSprint/asp.net.sln",
-		"/D/Prog/Git/SuperSprint/.gitattributes",
-		"/D/Prog/Git/SuperSprint/index.html",
-		"/D/Prog/Git/SuperSprint/app/Global.asax.cs",
-		"/D/Prog/Git/SuperSprint/node_modules/karma-chrome-launcher/index.js",
-		"/D/prog/git/SuperSprint/package.json",
-		"/D/Prog/Git/SuperSprint/.gitignore",
-		"/D/Prog/Git/SuperSprint/4112-0.gitignore",
-		"/D/prog/git/2048-angular/Webapp/js/bower.json",
-		"/D/Dropbox/SpeedDialConfig/speeddialconfig.js",
-		"/D/prog/git/SuperSprint/game.js",
-		"/C/Users/Simon/Documents/WindowsPowerShell/Microsoft.PowerShell_profile.ps1",
-		"/D/prog/git/SuperSprint/index.html",
-		"/D/Prog/Git/SuperSprint/bower_components/pixi.js/bin/pixi.js",
-		"/D/Prog/Git/2048-angular/Webapp/Properties/PublishProfiles/Journeyman.pubxml",
-		"/G/_TUTOS/The Structure of Man/HumanBeingHD070.txt",
-		"/D/Prog/Git/2048-angular/.gitignore",
-		"/D/Prog/Git/2048-angular/Webapp/js/bower.json",
-		"/D/Dropbox/1p/test.1pif",
-		"/G/_TUTOS/The Structure of Man/HumanBeingHD066.txt",
-		"/D/Prog/Git/angular-phonecat/app/index.html",
-		"/D/Prog/Git/angular-phonecat/test/unit/controllersSpec.js",
-		"/D/Prog/Git/angular-phonecat/app/js/controllers.js",
-		"/D/Prog/Git/angular-phonecat/app/js/app.js",
-		"/D/Prog/Git/angular-phonecat/scripts/e2e-test.bat",
-		"/D/Prog/Git/angular-phonecat/config/karma.conf.js",
-		"/D/Prog/Git/angular-phonecat/test/e2e/scenarios.js",
-		"/D/Prog/Git/angular-phonecat/test/e2e/runner.html",
-		"/D/Prog/Git/angular-phonecat/app/js/services.js"
+		"/D/Prog/Git/SuperSprint/.gitattributes"
 	],
 	"find":
 	{
@@ -278,6 +254,20 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"json",
+			".json",
+			"maxLateralImpulse",
+			"car",
+			"\")",
+			"console.log",
+			"GetFixtureB",
+			"cp",
+			"setBodies",
+			"images",
+			"entity",
+			"World",
+			"console.log",
+			"console",
 			"sensor",
 			"b2World",
 			"b2StageHeight",
@@ -389,170 +379,8 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "js/Main.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3016,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1930,
-								1930
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 756.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "js/Car.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4786,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1228,
-								1228
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 432.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "js/b2Universe.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4434,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								4339,
-								4339
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1566.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "js/utils/jsonB2Loader.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2496,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								318,
-								112
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "images/tracks/track2.json",
-					"semi_transient": true,
-					"settings":
-					{
-						"buffer_size": 1621,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								1621
-							]
-						],
-						"settings":
-						{
-							"incomplete_sync": null,
-							"remote_loading": false,
-							"synced": false,
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
-							"tab_size": 3,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				}
 			]
 		}
 	],
@@ -589,7 +417,7 @@
 	"menu_visible": true,
 	"output.find_results":
 	{
-		"height": 215.0
+		"height": 181.0
 	},
 	"output.sftp":
 	{
@@ -611,12 +439,44 @@
 		"selected_items":
 		[
 			[
-				"car",
-				"js\\Car.js"
+				"b2un",
+				"js\\b2Universe.js"
 			],
 			[
 				"main",
 				"js\\Main.js"
+			],
+			[
+				"b2l",
+				"js\\utils\\jsonB2Loader.js"
+			],
+			[
+				"tracks",
+				"js\\conf\\Tracks.js"
+			],
+			[
+				"check",
+				"js\\CheckpointManager.js"
+			],
+			[
+				"json",
+				"js\\utils\\jsonB2Loader.js"
+			],
+			[
+				"less",
+				"css\\style.less"
+			],
+			[
+				"index",
+				"index.html"
+			],
+			[
+				"b2",
+				"js\\utils\\b2.js"
+			],
+			[
+				"car",
+				"js\\Car.js"
 			],
 			[
 				"consts",
@@ -637,10 +497,6 @@
 			[
 				"car.js",
 				"js\\Car.js"
-			],
-			[
-				"index",
-				"app\\index.html"
 			],
 			[
 				"index.",

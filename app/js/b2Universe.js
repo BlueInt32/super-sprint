@@ -144,7 +144,7 @@
 
 	this.LoadTrack = function(trackIndex)
 	{
-		new jsonB2Loader("assets/tracks/track"+trackIndex+".json", this.consts, this.world);
+		new jsonB2Loader("assets/tracks/track"+trackIndex+".js", this.consts, this.world);
 	};
 
 	this.AddCar = function(carIndex, pixiStage)
