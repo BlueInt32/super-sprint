@@ -12,10 +12,13 @@
 							'js/KeyboardHandler.js',
 							'js/Sprites.js',
 							'js/utils/b2.js',
+							'js/utils/jsonB2Loader.js',
 							'js/b2Universe.js',
+							'js/CheckpointManager.js',
 							'js/utils/Consts.js',
 							'js/Main.js',
 							'js/conf/Cars.js',
+							'js/conf/Tracks.js',
 							'js/Car.js',
 							'js/utils/MathUtil.js',
 							'!publish/min.js']
@@ -29,10 +32,13 @@
 							'js/KeyboardHandler.js',
 							'js/Sprites.js',
 							'js/utils/b2.js',
+							'js/utils/jsonB2Loader.js',
 							'js/b2Universe.js',
 							'js/utils/Consts.js',
+							'js/CheckpointManager.js',
 							'js/Main.js',
 							'js/conf/Cars.js',
+							'js/conf/Tracks.js',
 							'js/Car.js',
 							'js/libs/Stats.js',
 							'js/utils/MathUtil.js',
@@ -84,7 +90,7 @@
 
 				// includes files within path and its sub-directories
 				//{expand: true, src: ['path/**'], dest: 'dest/'},
-				{expand: true, src: ['images/**'], dest: 'publish/images/'},
+				{expand: true, src: ['assets/**'], dest: 'publish/'},
 				{expand: true, src: ['index.html'], dest: 'publish/', filter: 'isFile'},
 
 				// makes all src relative to cwd

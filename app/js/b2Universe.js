@@ -1,10 +1,11 @@
-﻿var B2Universe = function ()
+﻿var B2Universe = function (consts)
 {
 	var me = this;
 	//World & Gravity
 	this.world = new b2.dyn.b2World(new b2.cMath.b2Vec2(0, 0), true);
+	var contactListener = new Box2D.Dynamics.b2ContactListener();
 	this.cars = [];
-
+	this.consts = consts;
 	var DEGTORAD  = 2 * Math.PI / 360;
 
 
@@ -19,24 +20,50 @@
 
 	this.HandleContact = function(contact, began)
 	{
+		var contactInfo = this.ExtractContactType(contact);
+		if(contactInfo.type === "wall")
+			return;
 		var r = new Array(1, -1);
 		if(began)
 		{
-			me.cars[0].adherence = false;
-			me.cars[0].paddleEffect = r[Math.floor(Math.random()*2)];
+			if(contactInfo.type === "cp")
+			{
+				//console.log("Checkpoint " + contactInfo.id);
+				me.cars[0].checkPointManager.Step(parseInt(contactInfo.id));
+			}
+			else if(contactInfo.type === "puddle")
+			{
+				me.cars[0].adherence = false;
+				me.cars[0].paddleEffect = r[Math.floor(Math.random()*2)];
+			}
 		}
 		else
 		{
 			me.cars[0].adherence = true;
 			me.cars[0].paddleEffect = 0;
 		}
-
 	};
-	var contactListener = new Box2D.Dynamics.b2ContactListener();
-	contactListener.BeginContact = function(contact, manifold) {
+
+	this.ExtractContactType = function(contact)
+	{
+		aData = contact.GetFixtureA().GetUserData();
+		bData = contact.GetFixtureB().GetUserData();
+		if(aData === "wall" || bData === "wall")
+		{
+			return {"type":"wall"};
+		}
+
+		if(aData.indexOf("cp") === 0)
+			return {"type":"cp", "id":aData.substr(2, 3)};
+		if(bData.indexOf("cp") === 0)
+			return {"type":"cp", "id":bData.substr(2, 3)};
+	};
+
+	contactListener.BeginContact = function(contact) 
+	{
 		me.HandleContact(contact, true);
 	};
-	contactListener.EndContact = function(contact, manifold) {
+	contactListener.EndContact = function(contact) {
 		me.HandleContact(contact, false);
 	};
 	this.world.SetContactListener(contactListener);
@@ -51,7 +78,7 @@
 //  | $$/   \  $$| $$  | $$| $$$$$$$$| $$$$$$$$|  $$$$$$/
 //  |__/     \__/|__/  |__/|________/|________/ \______/
 
-	this.CreateWalls = function (b2StageWidth, b2StageHeight)
+	this.CreateWalls = function ()
 	{
 
 		this.wallBodyDef = new b2.dyn.b2BodyDef();
@@ -67,28 +94,36 @@
 		//down
 		// note : bodydef positions are computed from their mass center (width/2, height/2) (and not top left as we would naturally expect)
 
-		this.wallFixtureDef.shape.SetAsBox(b2StageWidth / 2, this.wallThickness);
-		this.wallBodyDef.position.Set(b2StageWidth / 2, b2StageHeight - this.wallThickness / 2);
-		this.world.CreateBody(this.wallBodyDef).CreateFixture(this.wallFixtureDef, 0);
+		this.wallFixtureDef.shape.SetAsBox(this.consts.STAGE_WIDTH_B2 / 2, this.wallThickness);
+		this.wallBodyDef.position.Set(this.consts.STAGE_WIDTH_B2 / 2, this.consts.STAGE_HEIGHT_B2 - this.wallThickness / 2);
+		var body = this.world.CreateBody(this.wallBodyDef);
+		body.CreateFixture(this.wallFixtureDef, 0);
+		body.SetUserData("Down Wall");
 
 		// top
-		this.wallBodyDef.position.Set(b2StageWidth / 2, this.wallThickness / 2);
-		this.world.CreateBody(this.wallBodyDef).CreateFixture(this.wallFixtureDef, 0);
+		this.wallBodyDef.position.Set(this.consts.STAGE_WIDTH_B2 / 2, this.wallThickness / 2);
+		body = this.world.CreateBody(this.wallBodyDef);
+		body.CreateFixture(this.wallFixtureDef, 0);
+		body.SetUserData("top Wall");
 
 		//left
-		this.wallFixtureDef.shape.SetAsBox(this.wallThickness, b2StageHeight - 2 * this.wallThickness);
+		this.wallFixtureDef.shape.SetAsBox(this.wallThickness, this.consts.STAGE_HEIGHT_B2 - 2 * this.wallThickness);
 		this.wallBodyDef.position.Set(this.wallThickness, this.wallThickness);
-		this.world.CreateBody(this.wallBodyDef).CreateFixture(this.wallFixtureDef, 0);
+		body = this.world.CreateBody(this.wallBodyDef);
+		body.CreateFixture(this.wallFixtureDef, 0);
+		body.SetUserData("left Wall");
 
 		//right
-		this.wallBodyDef.position.Set(b2StageWidth - this.wallThickness, this.wallThickness);
-		this.world.CreateBody(this.wallBodyDef).CreateFixture(this.wallFixtureDef, 0);
+		this.wallBodyDef.position.Set(this.consts.STAGE_WIDTH_B2 - this.wallThickness, this.wallThickness);
+		body = this.world.CreateBody(this.wallBodyDef);
+		body.CreateFixture(this.wallFixtureDef, 0);
+		body.SetUserData("right Wall");
 	};
 
-	this.CreatePuddles = function(b2StageWidth, b2StageHeight)
+	this.CreatePuddles = function()
 	{
 		var bodyDef = new b2.dyn.b2BodyDef();
-		bodyDef.position.Set(b2StageWidth / 4, b2StageHeight / 2);
+		bodyDef.position.Set(this.consts.STAGE_WIDTH_B2 / 4, this.consts.STAGE_HEIGHT_B2 / 2);
 		var groundBody = this.world.CreateBody(bodyDef);
 
 		var puddleFixtureDef = new b2.dyn.b2FixtureDef();
@@ -96,15 +131,35 @@
 		puddleFixtureDef.isSensor = true;
 		puddleFixtureDef.shape.SetAsBox( 1, 1, new b2.cMath.b2Vec2(-10,15), 20*DEGTORAD );
 
+
 		var groundAreaFixture = groundBody.CreateFixture(puddleFixtureDef);
 		groundAreaFixture.SetUserData( { friction:0.5 });
-
 		// me.world.CreateBody(bodyDef).CreateFixture(groundAreaFixture, 0);
 
 		// puddleFixtureDef.shape.SetAsBox( 9, 5, new b2.cMath.b2Vec2(5,20), -40*DEGTORAD );
 		// groundAreaFixture = groundBody.CreateFixture(puddleFixtureDef);
 		// groundAreaFixture.SetUserData( {friction:0.2} );
+	};
 
+
+	this.LoadTrack = function(trackIndex)
+	{
+		new jsonB2Loader("assets/tracks/track"+trackIndex+".js", this.consts, this.world);
+	};
+
+	this.AddCar = function(carIndex, pixiStage)
+	{
+		// TODO : load a car from json
+
+		// TODO : add the car to the carsArray
+		var car = new Car(this.consts, carIndex);
+		car.createb2Body(this, this.consts.STAGE_WIDTH_B2 / 2, this.consts.STAGE_HEIGHT_B2 / 2);
+		car.checkPointManager = new CheckPointManager(3);
+		this.cars.push(car);
+		pixiStage.addChild(car.pixiSprite);
+
+
+		// TODO : position the car differently one each other
 
 	};
 

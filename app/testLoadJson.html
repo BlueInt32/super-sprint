@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Test load Json track</title>
+	<style>
+	body {  }
+	div { margin:0 auto; }
+	</style>
+</head>
+<body>
+	<div>
+		<canvas id="canvas"></canvas>
+	</div>
+	<script src="js/libs/box2dweb/Box2dWeb-2.1.a.3.js"></script>
+	<script src="js/utils/b2.js"></script>
+	<script src="js/utils/jsonB2Loader.js"></script>
+	<script src="js/utils/Consts.js"></script>
+	<script>
+		var loader,
+			canvas = document.getElementById('canvas'),
+			Consts = new ConstsDef();
+		canvas.width = Consts.STAGE_WIDTH_PIXEL;
+		canvas.height = Consts.STAGE_HEIGHT_PIXEL;
+		world = new b2.dyn.b2World(new b2.cMath.b2Vec2(0, 0), true);
+
+		(function init()
+		{
+			loader = new jsonB2Loader("/assets/tracks/track1.json", Consts, world);
+
+			loader.world.Step(1 / 60, 3, 3);
+			loader.debugDraw();
+			loader.world.DrawDebugData();
+
+			window.onload = update();
+		})();
+
+		function update()
+		{
+			requestAnimationFrame(update);
+			loader.world.Step(1 / 60, 3, 3);
+			loader.world.DrawDebugData();
+			loader.world.ClearForces();
+		};
+
+	</script>
+</body>
+</html>

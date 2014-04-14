@@ -1,17 +1,27 @@
 ﻿(function Main()
 {
-	var b2Universe = new B2Universe(),
-		keyboardHandler = new KeyboardHandler(),
+	var keyboardHandler = new KeyboardHandler(),
 		Consts = new ConstsDef(),
-		b2DebugDraw = Box2D.Dynamics.b2DebugDraw,
 		stats,
 		pixiRenderer,
 		pixiStage,
-		pixiSprite,
-		car;
-	document.getElementById("canvas").setAttribute("width", window.innerWidth);
-	document.getElementById("canvas").setAttribute("height", window.innerHeight);
-	debugDraw();
+		pixiSprite;
+	var b2Universe = new B2Universe(Consts);
+
+		var canvas = document.getElementById('canvas');
+		canvas.width = Consts.STAGE_WIDTH_PIXEL;
+		canvas.height = Consts.STAGE_HEIGHT_PIXEL;
+		debugDraw();
+
+		var scaleX = canvas.width / window.innerWidth;
+		var scaleY = canvas.height / window.innerHeight;
+		var scaleToFit = Math.min(scaleX, scaleY);
+
+		// stage.style.transformOrigin = "0 0";
+		// stage.style.transform = "scale("+scaleToFit+")";
+
+
+
 	(function init()
 	{
 		if (!window.requestAnimationFrame)
@@ -53,14 +63,11 @@
 
 	function onLoadAssets()
 	{
-		b2Universe.CreateWalls(Consts.STAGE_WIDTH_B2, Consts.STAGE_HEIGHT_B2);
-		b2Universe.CreatePuddles(Consts.STAGE_WIDTH_B2, Consts.STAGE_HEIGHT_B2);
+		//b2Universe.CreateWalls();
+		b2Universe.LoadTrack(1);
+		//b2Universe.CreatePuddles();
 
-		car = new Car(Consts, 0);
-		car.createb2Body(b2Universe, Consts.STAGE_WIDTH_B2 / 2, Consts.STAGE_HEIGHT_B2 / 2);
-		pixiStage.addChild(car.pixiSprite);
-
-		b2Universe.cars.push(car);
+		b2Universe.AddCar(0, pixiStage);
 
 		document.onkeydown = keyboardHandler.HandleKeyDown.bind(keyboardHandler);
 		document.onkeyup = keyboardHandler.HandleKeyUp.bind(keyboardHandler);
@@ -70,13 +77,13 @@
 
 	function debugDraw()
 	{
-		var debugDrawer = new b2DebugDraw();
+		var debugDrawer = new b2.dyn.b2DebugDraw();
 		debugDrawer.SetSprite(document.getElementById("canvas").getContext("2d"));
 		debugDrawer.SetDrawScale(100.0);
 		debugDrawer.SetFillAlpha(0.5);
 		debugDrawer.SetLineThickness(1.0);
-		debugDrawer.SetFlags(b2DebugDraw.e_shapeBit | b2DebugDraw.e_jointBit);
-		b2Universe.world.SetDebugDraw(debugDraw);
+		debugDrawer.SetFlags(b2.dyn.b2DebugDraw.e_shapeBit | b2.dyn.b2DebugDraw.e_jointBit);
+		b2Universe.world.SetDebugDraw(debugDrawer);
 	}
 
 	function update()
@@ -89,10 +96,12 @@
 		//var ctx = document.getElementById("canvas").getContext("2d");
 		//ctx.drawImage(document.getElementById("canvas"), 0, 0, 200, 200);
 
-
 		b2Universe.world.ClearForces();
-		car.updateData(keyboardHandler.Keys);
-		pixiRenderer.render(pixiStage);
+		for(var carIndex in b2Universe.cars)
+		{
+			b2Universe.cars[carIndex].updateData(keyboardHandler.Keys);
+		}
+		//pixiRenderer.render(pixiStage);
 		stats.update();
 	}
 })();
