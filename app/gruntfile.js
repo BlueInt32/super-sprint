@@ -23,6 +23,7 @@
 				'js/conf/Cars.js',
 				'js/conf/Tracks.js',
 				'js/Car.js',
+				'js/RealCar.js',
 				'js/utils/MathUtil.js',
 				'!publish/min.js'
 			]
