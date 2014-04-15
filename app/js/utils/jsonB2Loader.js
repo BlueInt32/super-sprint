@@ -48,10 +48,10 @@ jsonB2Loader.prototype.loadCar = function(carDescriptorPath)
 		}
 
 		// Joints
-		for(var i = 0, l = jsonData.joints.joint.length; i < l; i++)
+		for(o = 0, p = jsonData.joints.joint.length; o < p; o++)
 		{
-			var jsonJoint = jsonData.joints.joint[i];
-			var jointDef = new b2.joints.b2RevoluteJointDef;
+			var jsonJoint = jsonData.joints.joint[o];
+			var jointDef = new b2.joints.b2RevoluteJointDef();
 			jointDef.bodyA = b2Bodies[jsonJoint.bodyA];
 			jointDef.bodyB = b2Bodies[jsonJoint.bodyB];
 			enableMotor = jsonJoint.enableMotor;
@@ -61,7 +61,7 @@ jsonB2Loader.prototype.loadCar = function(carDescriptorPath)
 			var joint = me.world.CreateJoint(jointDef);
 		}
 	});
-}
+};
 
 
 jsonB2Loader.prototype.debugDraw = function()

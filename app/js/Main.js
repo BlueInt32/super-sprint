@@ -84,9 +84,9 @@
 		debugDrawer.SetFillAlpha(0.5);
 		debugDrawer.SetLineThickness(1.0);
 		debugDrawer.SetFlags(
-			b2.dyn.b2DebugDraw.e_shapeBit 
+			b2.dyn.b2DebugDraw.e_shapeBit
 			| b2.dyn.b2DebugDraw.e_jointBit
-			| b2.dyn.b2DebugDraw.e_centerOfMassBit
+			// | b2.dyn.b2DebugDraw.e_centerOfMassBit
 			| b2.dyn.b2DebugDraw.e_controllerBit
 			| b2.dyn.b2DebugDraw.e_pairBit
 			);
