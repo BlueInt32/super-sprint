@@ -11,6 +11,7 @@ jsonB2Loader.prototype.loadCar = function(carDescriptorPath)
 	var me = this;
 	this.loadJSON(carDescriptorPath, function(response)
 	{
+
 		// console.log(response);
 		var world = loadWorldFromRUBE(response);
 		console.log(world);
@@ -67,7 +68,7 @@ jsonB2Loader.prototype.loadCar = function(carDescriptorPath)
 		// 	var joint = me.world.CreateJoint(jointDef);
 		// }
 	});
-}
+};
 
 
 jsonB2Loader.prototype.debugDraw = function()
