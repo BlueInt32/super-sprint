@@ -278,7 +278,7 @@ function loadJointFromRUBE(jointJso, world, loadedBodies)
         joint = world.CreateJoint(jd);
     }
     else if ( jointJso.type == "weld" ) {
-        var jd = new b2WeldJointDef();
+        var jd = new b2.joints.b2WeldJointDef();
         loadJointCommonProperties(jd, jointJso, loadedBodies);
         if ( jointJso.hasOwnProperty('referenceAngle') )
             jd.referenceAngle = jointJso.referenceAngle;

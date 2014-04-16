@@ -403,82 +403,12 @@
         "bodyA" : 2,
         "bodyB" : 1,
         "collideConnected" : false,
-        "enableLimit" : true,
-        "enableMotor" : false,
-        "id" : 2,
-        "lowerLimit" : 0,
-        "maxMotorTorque" : 0,
-        "motorSpeed" : 0,
+        "dampingRatio" : 0,
+        "frequency" : 0,
+        "id" : 1,
         "name" : "joint0",
         "referenceAngle" : 0,
-        "type" : "revolute",
-        "upperLimit" : 0
-      },
-      
-      {
-        "anchorA" : 
-        {
-          "x" : 0.1489530056715012,
-          "y" : 0.1489530056715012
-        },
-        "anchorB" : 0,
-        "bodyA" : 2,
-        "bodyB" : 3,
-        "collideConnected" : false,
-        "enableLimit" : true,
-        "enableMotor" : false,
-        "id" : 4,
-        "lowerLimit" : 0,
-        "maxMotorTorque" : 0,
-        "motorSpeed" : 0,
-        "name" : "joint1",
-        "referenceAngle" : 0,
-        "type" : "revolute",
-        "upperLimit" : 0
-      },
-      
-      {
-        "anchorA" : 
-        {
-          "x" : -0.1675720065832138,
-          "y" : -0.1675720065832138
-        },
-        "anchorB" : 0,
-        "bodyA" : 2,
-        "bodyB" : 5,
-        "collideConnected" : false,
-        "enableLimit" : true,
-        "enableMotor" : false,
-        "id" : 5,
-        "lowerLimit" : 0,
-        "maxMotorTorque" : 0,
-        "motorSpeed" : 0,
-        "name" : "joint2",
-        "referenceAngle" : 0,
-        "type" : "revolute",
-        "upperLimit" : 0
-      },
-      
-      {
-        "anchorA" : 
-        {
-          "x" : 0.1675720065832138,
-          "y" : -0.1675720065832138
-        },
-        "anchorB" : 0,
-        "bodyA" : 2,
-        "bodyB" : 4,
-        "collideConnected" : false,
-        "enableLimit" : true,
-        "enableMotor" : false,
-        "id" : 6,
-        "lowerLimit" : 0,
-        "maxMotorTorque" : 0,
-        "motorSpeed" : 0,
-        "name" : "joint3",
-        "referenceAngle" : 0,
-        "type" : "revolute",
-        "upperLimit" : 0
+        "type" : "weld"
       }
     ],
     "positionIterations" : 3,

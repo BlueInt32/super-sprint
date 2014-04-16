@@ -47,7 +47,7 @@ RealCar.prototype.updateData = function (keyboardData)
     //console.log(keyboardData);
     //compute velocity which is used several times per turn
     this.linearVelocity = this.b2Body.GetLinearVelocity();
-    this.currentRightForward = this.b2Body.GetWorldVector(new b2.cMath.b2Vec2(1, 0));
+    this.currentRightForward = this.b2Body.GetWorldVector(new b2.cMath.b2Vec2(0, 1));
 
     if (keyboardData.accelerate) this.Accelerate();
     if (keyboardData.handbrake)
@@ -76,18 +76,24 @@ RealCar.prototype.Accelerate = function ()
 {
     for (var i = 0, l = this.tires.length; i < l; i++)
     {
-        this.tires[i].ApplyForce(this.tires[i].GetWorldVector(new Box2D.Common.Math.b2Vec2(this.CarConfig.accelerationFactor, 0)), this.tires[i].GetWorldCenter());
+        this.tires[i].ApplyForce(this.tires[i].GetWorldVector(new Box2D.Common.Math.b2Vec2(0, this.CarConfig.accelerationFactor)), this.tires[i].GetWorldCenter());
     }
 };
 RealCar.prototype.Brake = function ()
 {
-    this.b2Body.ApplyForce(this.b2Body.GetWorldVector(new Box2D.Common.Math.b2Vec2(this.CarConfig.accelerationFactor / -3, 0)), this.b2Body.GetWorldCenter());
+    for (var i = 0, l = this.tires.length; i < l; i++)
+    {
+        this.tires[i].ApplyForce(this.b2Body.GetWorldVector(new Box2D.Common.Math.b2Vec2(0,this.CarConfig.accelerationFactor / -3)), this.tires[i].GetWorldCenter());
+    }
 };
 
 RealCar.prototype.HandBrake = function ()
 {
-    this.b2Body.ApplyForce(this.b2Body.GetWorldVector(new Box2D.Common.Math.b2Vec2(this.CarConfig.accelerationFactor / -4, 0)), this.b2Body.GetWorldCenter());
-    this.Current_Drift_trigger = this.CarConfig.driftTriggerWithHandbrake;
+    for (var i = 0, l = this.tires.length; i < l; i++)
+    {
+        this.tires[i].ApplyForce(this.b2Body.GetWorldVector(new Box2D.Common.Math.b2Vec2(0, this.CarConfig.accelerationFactor / -4)), this.tires[i].GetWorldCenter());
+        this.Current_Drift_trigger = this.CarConfig.driftTriggerWithHandbrake;
+    }
 };
 RealCar.prototype.HandBrakeRelease = function ()
 {
@@ -96,11 +102,18 @@ RealCar.prototype.HandBrakeRelease = function ()
 
 RealCar.prototype.TurnLeft = function ()
 {
-    this.b2Body.ApplyTorque(-this.CarConfig.rotateFactor * this.NegateTorque());
+
+    for (var i = 0, l = this.tires.length; i < l; i++)
+    {
+        this.tires[i].ApplyTorque(-this.CarConfig.rotateFactor * this.NegateTorque());
+    }
 };
 RealCar.prototype.TurnRight = function ()
 {
-    this.b2Body.ApplyTorque(this.NegateTorque() * this.CarConfig.rotateFactor);
+    for (var i = 0, l = this.tires.length; i < l; i++)
+    {
+        this.tires[i].ApplyTorque(this.NegateTorque() * this.CarConfig.rotateFactor);
+    }
 };
 
 RealCar.prototype.NegateTorque = function()
@@ -110,7 +123,7 @@ RealCar.prototype.NegateTorque = function()
 
 RealCar.prototype.GetLateralVelocity = function ()
 {
-    var currentRightNormal = this.b2Body.GetWorldVector(new b2.cMath.b2Vec2(0, 1));
+    var currentRightNormal = this.b2Body.GetWorldVector(new b2.cMath.b2Vec2(1, 0));
     var vCurrentRightNormal = b2.math.MulFV(b2.math.Dot(currentRightNormal, this.linearVelocity), currentRightNormal);
     return vCurrentRightNormal;
 };

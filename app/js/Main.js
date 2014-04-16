@@ -71,6 +71,7 @@
 	function box2dLoaded(loaderTrack, loaderCars)
 	{
 		var rcar = new RealCar(Consts, 0);
+
 		rcar.SetBox2dData(loaderCars[0]);
 		b2Universe.AddCar(rcar, pixiStage);
 		document.onkeydown = keyboardHandler.HandleKeyDown.bind(keyboardHandler);
@@ -101,12 +102,13 @@
 	{
 		requestAnimationFrame(update);
 		b2Universe.world.Step(1 / 60, 3, 3);
+		b2Universe.world.ClearForces();
+
 		b2Universe.world.DrawDebugData();
 
 		//var ctx = document.getElementById("canvas").getContext("2d");
 		//ctx.drawImage(document.getElementById("canvas"), 0, 0, 200, 200);
 
-		b2Universe.world.ClearForces();
 		for(var carIndex in b2Universe.cars)
 		{
 			b2Universe.cars[carIndex].updateData(keyboardHandler.Keys);

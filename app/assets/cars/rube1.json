@@ -345,8 +345,50 @@
 		{
 			"anchorA" : 
 			{
-				"x" : 0.1494253575801849,
-				"y" : 0.1486928761005402
+				"x" : 0.1675720065832138,
+				"y" : -0.1675720065832138
+			},
+			"anchorB" : 0,
+			"bodyA" : 3,
+			"bodyB" : 1,
+			"enableLimit" : true,
+			"enableMotor" : false,
+			"jointSpeed" : 0,
+			"lowerLimit" : 0,
+			"maxMotorTorque" : 0,
+			"motorSpeed" : 0,
+			"name" : "joint3",
+			"refAngle" : 0,
+			"type" : "revolute",
+			"upperLimit" : 0
+		},
+		
+		{
+			"anchorA" : 
+			{
+				"x" : -0.1675720065832138,
+				"y" : -0.1675720065832138
+			},
+			"anchorB" : 0,
+			"bodyA" : 3,
+			"bodyB" : 0,
+			"enableLimit" : true,
+			"enableMotor" : false,
+			"jointSpeed" : 0,
+			"lowerLimit" : 0,
+			"maxMotorTorque" : 0,
+			"motorSpeed" : 0,
+			"name" : "joint2",
+			"refAngle" : 0,
+			"type" : "revolute",
+			"upperLimit" : 0
+		},
+		
+		{
+			"anchorA" : 
+			{
+				"x" : 0.1489530056715012,
+				"y" : 0.1489530056715012
 			},
 			"anchorB" : 0,
 			"bodyA" : 3,
@@ -357,7 +399,7 @@
 			"lowerLimit" : 0,
 			"maxMotorTorque" : 0,
 			"motorSpeed" : 0,
-			"name" : "joint_front_right",
+			"name" : "joint1",
 			"refAngle" : 0,
 			"type" : "revolute",
 			"upperLimit" : 0
@@ -378,49 +420,7 @@
 			"lowerLimit" : 0,
 			"maxMotorTorque" : 0,
 			"motorSpeed" : 0,
-			"name" : "joint_front_left",
-			"refAngle" : 0,
-			"type" : "revolute",
-			"upperLimit" : 0
-		},
-		
-		{
-			"anchorA" : 
-			{
-				"x" : -0.1672089248895645,
-				"y" : -0.1672758907079697
-			},
-			"anchorB" : 0,
-			"bodyA" : 3,
-			"bodyB" : 0,
-			"enableLimit" : true,
-			"enableMotor" : false,
-			"jointSpeed" : 0,
-			"lowerLimit" : 0,
-			"maxMotorTorque" : 0,
-			"motorSpeed" : 0,
-			"name" : "joint_rear_left",
-			"refAngle" : 0,
-			"type" : "revolute",
-			"upperLimit" : 0
-		},
-		
-		{
-			"anchorA" : 
-			{
-				"x" : 0.1677372902631760,
-				"y" : -0.1670048385858536
-			},
-			"anchorB" : 0,
-			"bodyA" : 3,
-			"bodyB" : 1,
-			"enableLimit" : true,
-			"enableMotor" : false,
-			"jointSpeed" : 0,
-			"lowerLimit" : 0,
-			"maxMotorTorque" : 0,
-			"motorSpeed" : 0,
-			"name" : "joint_rear_right",
+			"name" : "joint0",
 			"refAngle" : 0,
 			"type" : "revolute",
 			"upperLimit" : 0
@@ -429,6 +429,6 @@
 	"positionIterations" : 3,
 	"stepsPerSecond" : 60.0,
 	"subStepping" : false,
-	"velocityIterations" : 8,
+	"velocityIterations" : 3,
 	"warmStarting" : true
 }
