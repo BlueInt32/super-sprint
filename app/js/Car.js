@@ -40,8 +40,6 @@ function Car(consts, carIndex)
 
 }
 
-
-
 Car.prototype.createb2Body = function (b2Universe, x, y)
 {
 

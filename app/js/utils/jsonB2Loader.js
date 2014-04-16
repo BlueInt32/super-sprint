@@ -1,9 +1,11 @@
-function jsonB2Loader(consts, world)
+function jsonB2Loader(consts, world, carPointer)
 {
 	var me = this;
 	this.world = world;
 	this.consts = consts;
-	this.car = null;
+	this.car = carPointer;
+
+	this.onLoadComplete = null;
 }
 
 jsonB2Loader.prototype.loadCar = function(carDescriptorPath)
@@ -11,62 +13,9 @@ jsonB2Loader.prototype.loadCar = function(carDescriptorPath)
 	var me = this;
 	this.loadJSON(carDescriptorPath, function(response)
 	{
-
-		// console.log(response);
-		var world = loadWorldFromRUBE(response);
-		console.log(world);
-		var test = getBodiesByCustomProperty(world, "string", "category", "wheel");
-		console.log(test);
-
-
-
-		// var jsonData = JSON.parse(response);
-		// me.carBodyDef = new b2.dyn.b2BodyDef();
-		// me.carFixtureDef = new b2.dyn.b2FixtureDef();
-		// me.carFixtureDef.shape = new b2.shapes.b2PolygonShape();
-
-		// // Bodies
-		// var b2Bodies = [];
-		// for(var i = 0, l = jsonData.body.length; i < l; i++)
-		// {
-		// 	var jsonBody = jsonData.body[i];
-		// 	console.log(jsonBody);
-		// 	me.carBodyDef.position.Set(jsonBody.position.x/me.consts.METER + me.consts.STAGE_WIDTH_B2 / 2, jsonBody.position.y/-me.consts.METER  + me.consts.STAGE_HEIGHT_B2 / 2);
-
-		// 	var body = me.world.CreateBody(me.carBodyDef);
-		// 	b2Bodies[jsonBody.name] = body;
-
-		// 	for(var j = 0, m = jsonBody.fixture.length; j < m; j++)
-		// 	{
-		// 		var jsonFixture = jsonBody.fixtures.fixture[j];
-		// 		me.carFixtureDef.density = 1;
-		// 		me.carFixtureDef.restitution = 0;
-
-		// 		var vertices = [];
-		// 		for (var k = 0, n = jsonFixture.vertices.x.length; k < n; k++) 
-		// 		{
-		// 			vertices.push(new b2.cMath.b2Vec2(jsonFixture.vertices.x[k] / me.consts.METER, jsonFixture.vertices.y[k] / -me.consts.METER));
-		// 		}
-
-		// 		me.carFixtureDef.shape.SetAsArray(vertices, jsonFixture.vertex.length);
-		// 		jsonFixture = body.CreateFixture(me.carFixtureDef, 0);
-		// 		body.SetUserData("carData "+ i + " " + j);
-		// 	}
-		// }
-
-		// // Joints
-		// for(var i = 0, l = jsonData.joints.joint.length; i < l; i++)
-		// {
-		// 	var jsonJoint = jsonData.joints.joint[i];
-		// 	var jointDef = new b2.joints.b2RevoluteJointDef;
-		// 	jointDef.bodyA = b2Bodies[jsonJoint.bodyA];
-		// 	jointDef.bodyB = b2Bodies[jsonJoint.bodyB];
-		// 	enableMotor = jsonJoint.enableMotor;
-		// 	enableLimit = jsonJoint.enableLimit;
-		// 	jointDef.localAnchorB.SetZero(); // in FizzX, I've set bodyA to the car body, and bodyB to the wheel.
-
-		// 	var joint = me.world.CreateJoint(jointDef);
-		// }
+		me.world = loadWorldFromRUBE(JSON.parse(response), me.world);
+		var carBody = getBodiesByCustomProperty(world, "string", "category", "car_body");
+		carPointer.b2Body = getBodiesByCustomProperty(world, "string", "category", "car_body");
 	});
 };
 

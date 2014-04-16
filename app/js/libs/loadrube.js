@@ -65,24 +65,23 @@ var b2Color = Box2D.Common.b2Color,
       IBroadPhase = Box2D.Collision.IBroadPhase;
 
 function loadBodyFromRUBE(bodyJso, world) {
-    //console.log(bodyJso);
-    
+
     if ( ! bodyJso.hasOwnProperty('type') ) {
         console.log("Body does not have a 'type' property");
         return null;
-    }    
-    
+    }
+
     var bd = new b2BodyDef();
     if ( bodyJso.type == 2 )
-        bd.type = b2_dynamicBody;
+        bd.type = b2.dyn.b2Body.b2_dynamicBody;
     else if ( bodyJso.type == 1 )
-        bd.type = b2_kinematicBody;
+        bd.type = b2.dyn.b2Body.b2_kinematicBody;
     if ( bodyJso.hasOwnProperty('angle') )
         bd.angle = bodyJso.angle;
     if ( bodyJso.hasOwnProperty('angularVelocity') )
         bd.angularVelocity = bodyJso.angularVelocity;
     if ( bodyJso.hasOwnProperty('active') )
-        bd.awake = bodyJso.active;        
+        bd.awake = bodyJso.active;
     if ( bodyJso.hasOwnProperty('fixedRotation') )
         bd.fixedRotation = bodyJso.fixedRotation;
     if ( bodyJso.hasOwnProperty('linearVelocity') && bodyJso.linearVelocity instanceof Object )
@@ -103,12 +102,13 @@ function loadBodyFromRUBE(bodyJso, world) {
     if ( bodyJso.hasOwnProperty('name') )
         body.name = bodyJso.name;
     if ( bodyJso.hasOwnProperty('customProperties') )
+    {
         body.customProperties = bodyJso.customProperties;
+    }
     return body;
 }
 
-function loadFixtureFromRUBE(body, fixtureJso) {    
-    //console.log(fixtureJso);
+function loadFixtureFromRUBE(body, fixtureJso) {
     var fd = new b2FixtureDef();
     if (fixtureJso.hasOwnProperty('friction'))
         fd.friction = fixtureJso.friction;
@@ -129,17 +129,17 @@ function loadFixtureFromRUBE(body, fixtureJso) {
         fd.shape.m_radius = fixtureJso.circle.radius;
         if ( fixtureJso.circle.center )
             fd.shape.m_p.SetV(fixtureJso.circle.center);
-        var fixture = body.CreateFixture(fd);        
+        var fixture = body.CreateFixture(fd);
         if ( fixtureJso.name )
             fixture.name = fixtureJso.name;
     }
     else if (fixtureJso.hasOwnProperty('polygon')) {
         fd.shape = new b2PolygonShape();
         var verts = [];
-        for (v = 0; v < fixtureJso.polygon.vertices.x.length; v++) 
+        for (v = 0; v < fixtureJso.polygon.vertices.x.length; v++)
            verts.push( new b2Vec2( fixtureJso.polygon.vertices.x[v], fixtureJso.polygon.vertices.y[v] ) );
         fd.shape.SetAsArray(verts, verts.length);
-        var fixture = body.CreateFixture(fd);        
+        var fixture = body.CreateFixture(fd);
         if ( fixture && fixtureJso.name )
             fixture.name = fixtureJso.name;
     }
@@ -150,7 +150,7 @@ function loadFixtureFromRUBE(body, fixtureJso) {
             var thisVertex = new b2Vec2( fixtureJso.chain.vertices.x[v], fixtureJso.chain.vertices.y[v] );
             if ( v > 0 ) {
                 fd.shape.SetAsEdge( lastVertex, thisVertex );
-                var fixture = body.CreateFixture(fd);        
+                var fixture = body.CreateFixture(fd);
                 if ( fixtureJso.name )
                     fixture.name = fixtureJso.name;
             }
@@ -169,7 +169,7 @@ function getVectorValue(val) {
         return { x:0, y:0 };
 }
 
-function loadJointCommonProperties(jd, jointJso, loadedBodies) {    
+function loadJointCommonProperties(jd, jointJso, loadedBodies) {
     jd.bodyA = loadedBodies[jointJso.bodyA];
     jd.bodyB = loadedBodies[jointJso.bodyB];
     jd.localAnchorA.SetV( getVectorValue(jointJso.anchorA) );
@@ -183,19 +183,19 @@ function loadJointFromRUBE(jointJso, world, loadedBodies)
     if ( ! jointJso.hasOwnProperty('type') ) {
         console.log("Joint does not have a 'type' property");
         return null;
-    }    
+    }
     if ( jointJso.bodyA >= loadedBodies.length ) {
         console.log("Index for bodyA is invalid: " + jointJso.bodyA );
         return null;
-    }    
+    }
     if ( jointJso.bodyB >= loadedBodies.length ) {
         console.log("Index for bodyB is invalid: " + jointJso.bodyB );
         return null;
     }
-    
+
     var joint = null;
     if ( jointJso.type == "revolute" ) {
-        var jd = new b2RevoluteJointDef();
+        var jd = new b2.joints.b2RevoluteJointDef();
         loadJointCommonProperties(jd, jointJso, loadedBodies);
         if ( jointJso.hasOwnProperty('refAngle') )
             jd.referenceAngle = jointJso.refAngle;
@@ -228,9 +228,9 @@ function loadJointFromRUBE(jointJso, world, loadedBodies)
     }
     else if ( jointJso.type == "prismatic" ) {
         var jd = new b2PrismaticJointDef();
-        loadJointCommonProperties(jd, jointJso, loadedBodies);        
+        loadJointCommonProperties(jd, jointJso, loadedBodies);
         if ( jointJso.hasOwnProperty('localAxisA') )
-            jd.localAxisA.SetV( getVectorValue(jointJso.localAxisA) );         
+            jd.localAxisA.SetV( getVectorValue(jointJso.localAxisA) );
         if ( jointJso.hasOwnProperty('refAngle') )
             jd.referenceAngle = jointJso.refAngle;
         if ( jointJso.hasOwnProperty('enableLimit') )
@@ -244,14 +244,14 @@ function loadJointFromRUBE(jointJso, world, loadedBodies)
         if ( jointJso.hasOwnProperty('maxMotorForce') )
             jd.maxMotorForce = jointJso.maxMotorForce;
         if ( jointJso.hasOwnProperty('motorSpeed') )
-            jd.motorSpeed = jointJso.motorSpeed;            
+            jd.motorSpeed = jointJso.motorSpeed;
         joint = world.CreateJoint(jd);
     }
     else if ( jointJso.type == "wheel" ) {
         //Make a fake wheel joint using a line joint and a distance joint.
         //Return the line joint because it has the linear motor controls.
         //Use ApplyTorque on the bodies to spin the wheel...
-        
+
         var jd = new b2DistanceJointDef();
         loadJointCommonProperties(jd, jointJso, loadedBodies);
         jd.length = 0.0;
@@ -260,12 +260,12 @@ function loadJointFromRUBE(jointJso, world, loadedBodies)
         if ( jointJso.hasOwnProperty('springFrequency') )
             jd.frequencyHz = jointJso.springFrequency;
         world.CreateJoint(jd);
-        
+
         jd = new b2LineJointDef();
         loadJointCommonProperties(jd, jointJso, loadedBodies);
         if ( jointJso.hasOwnProperty('localAxisA') )
             jd.localAxisA.SetV( getVectorValue(jointJso.localAxisA) );
-            
+
         joint = world.CreateJoint(jd);
     }
     else if ( jointJso.type == "friction" ) {
@@ -296,7 +296,7 @@ function loadJointFromRUBE(jointJso, world, loadedBodies)
 function makeClone(obj) {
   var newObj = (obj instanceof Array) ? [] : {};
   for (var i in obj) {
-    if (obj[i] && typeof obj[i] == "object") 
+    if (obj[i] && typeof obj[i] == "object")
       newObj[i] = makeClone(obj[i]);
     else
         newObj[i] = obj[i];
@@ -307,15 +307,15 @@ function makeClone(obj) {
 function loadImageFromRUBE(imageJso, world, loadedBodies)
 {
     var image = makeClone(imageJso);
-    
+
     if ( image.hasOwnProperty('body') && image.body >= 0 )
         image.body = loadedBodies[image.body];//change index to the actual body
     else
         image.body = null;
-        
+
     image.center = new b2Vec2();
     image.center.SetV( getVectorValue(imageJso.center) );
-    
+
     return image;
 }
 
@@ -329,7 +329,6 @@ function loadSceneFromRUBE(worldJso) {
 //load the scene into an already existing world variable
 function loadSceneIntoWorld(worldJso, world) {
     var success = true;
-    
     var loadedBodies = [];
     if ( worldJso.hasOwnProperty('body') ) {
         for (var i = 0; i < worldJso.body.length; i++) {
@@ -341,7 +340,7 @@ function loadSceneIntoWorld(worldJso, world) {
                 success = false;
         }
     }
-    
+
     var loadedJoints = [];
     if ( worldJso.hasOwnProperty('joint') ) {
         for (var i = 0; i < worldJso.joint.length; i++) {
@@ -353,7 +352,7 @@ function loadSceneIntoWorld(worldJso, world) {
             //    success = false;
         }
     }
-    
+
     var loadedImages = [];
     if ( worldJso.hasOwnProperty('image') ) {
         for (var i = 0; i < worldJso.image.length; i++) {
@@ -363,19 +362,27 @@ function loadSceneIntoWorld(worldJso, world) {
                 loadedImages.push( image );
             else
                 success = false;
-        }        
+        }
         world.images = loadedImages;
     }
-    
+
     return success;
 }
 
 //create a world variable and return it if loading succeeds
-function loadWorldFromRUBE(worldJso) {
+function loadWorldFromRUBE(worldJso, inputWorld) {
     var gravity = new b2Vec2(0,0);
     if ( worldJso.hasOwnProperty('gravity') && worldJso.gravity instanceof Object )
         gravity.SetV( worldJso.gravity );
-    var world = new b2World( gravity );
+    var world;
+    //typeof inputWorld
+    if(typeof inputWorld !== "undefined" && inputWorld !== null)
+    {
+        world = inputWorld;
+    }
+    else
+        world = new b2World( gravity );
+
     if ( ! loadSceneIntoWorld(worldJso, world) )
         return false;
     return world;
@@ -425,6 +432,7 @@ function getBodiesByCustomProperty(world, propertyType, propertyName, valueToMat
     for (b = world.m_bodyList; b; b = b.m_next) {
         if ( ! b.hasOwnProperty('customProperties') )
             continue;
+
         for (var i = 0; i < b.customProperties.length; i++) {
             if ( ! b.customProperties[i].hasOwnProperty("name") )
                 continue;
@@ -433,7 +441,7 @@ function getBodiesByCustomProperty(world, propertyType, propertyName, valueToMat
             if ( b.customProperties[i].name == propertyName &&
                  b.customProperties[i][propertyType] == valueToMatch)
                 bodies.push(b);
-        }        
+        }
     }
     return bodies;
 }

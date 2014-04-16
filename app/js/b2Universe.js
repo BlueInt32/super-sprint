@@ -36,8 +36,12 @@
 
 	this.ExtractContactType = function(contact)
 	{
+		console.log(contact);
 		aData = contact.GetFixtureA().GetUserData();
 		bData = contact.GetFixtureB().GetUserData();
+
+		if(aData === null || bData === null)
+			return {"type":""};
 		if(aData === "wall" || bData === "wall")
 		{
 			return {"type":"wall"};
@@ -130,20 +134,14 @@
 
 	};
 
-	this.AddCar = function(carIndex, pixiStage)
+	this.AddCar = function(carInstance, pixiStage)
 	{
-		// TODO : load a car from json
-
 		// TODO : add the car to the carsArray
-		var car = new Car(this.consts, carIndex);
-		car.createb2Body(this, this.consts.STAGE_WIDTH_B2 / 2, this.consts.STAGE_HEIGHT_B2 / 2);
-		car.checkPointManager = new CheckPointManager(3);
-		this.cars.push(car);
-		pixiStage.addChild(car.pixiSprite);
-
-
-		// TODO : position the car differently one each other
-
+		carInstance.checkPointManager = new CheckPointManager(3);
+		this.cars.push(carInstance);
+		carInstance.b2Body.SetPosition(new b2.cMath.b2Vec2(3, 3));
+		//this.world.
+		pixiStage.addChild(carInstance.pixiSprite);
 	};
 
 };

@@ -11,6 +11,11 @@ var Tracks =
         nbCheckpoints:3,
         filePath: "assets/tracks/track2.json",
         imagePath: "assets/tracks/images/track0.png"
+    },
+    {
+        id:2,
+        nbCheckpoints:3,
+        filePath: "assets/tracks/track2.json",
+        imagePath: "assets/tracks/images/track0.png"
     }
-
     ];

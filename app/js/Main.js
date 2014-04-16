@@ -62,19 +62,23 @@
 
 	function onLoadAssets()
 	{
-		//b2Universe.CreateWalls();
-		b2Universe.LoadTrack(1);
-		//b2Universe.CreatePuddles();
+		// create a rube json universe loader
+		var rubeFilesLoader = new RubeFilesLoader({track:{/*, Tracks[2].json*/}, cars:[Cars[0].json]});
+		rubeFilesLoader.setWorld(b2Universe.world);
+		rubeFilesLoader.load(box2dLoaded);
+	}
 
-		//b2Universe.AddCar(0, pixiStage);
-
-		var rCar = new RealCar(Consts, 0, b2Universe);
-
+	function box2dLoaded(loaderTrack, loaderCars)
+	{
+		var rcar = new RealCar(Consts, 0);
+		rcar.SetBox2dData(loaderCars[0]);
+		b2Universe.AddCar(rcar, pixiStage);
 		document.onkeydown = keyboardHandler.HandleKeyDown.bind(keyboardHandler);
 		document.onkeyup = keyboardHandler.HandleKeyUp.bind(keyboardHandler);
 
 		update();
 	}
+
 
 	function debugDraw()
 	{
@@ -95,7 +99,6 @@
 
 	function update()
 	{
-
 		requestAnimationFrame(update);
 		b2Universe.world.Step(1 / 60, 3, 3);
 		b2Universe.world.DrawDebugData();
