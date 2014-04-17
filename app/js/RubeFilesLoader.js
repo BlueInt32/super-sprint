@@ -1,9 +1,15 @@
 function RubeFilesLoader(jsonsToLoad)
 {
     this.jsonsToLoad = jsonsToLoad; // object containing track and cars[]
+    this.jsonLinkedList = new LinkedList();
+    this.jsonLinkedList.add(jsonsToLoad.track, "track");
+    for (var i = 0, l = jsonsToLoad.cars.length; i < l; i++)
+    {
+        this.jsonLinkedList.add(jsonsToLoad.cars[i], "car");
+    };
     this.cars = [];
     this.tires = [];
-    this.track = {};
+    this.trackWalls = [];
     this.mainLoaderCallback = null;
     this.refWorld = null;
 }
@@ -12,10 +18,10 @@ RubeFilesLoader.prototype.load = function(callback)
 {
     this.mainLoaderCallback = callback;
 
-    // Loading cars
-    if(this.jsonsToLoad.cars.length > 0)
+    // Loading jsons as a linkedList
+    if(this.jsonsToLoad.track != null)
     {
-        LoadNextCar(this.jsonsToLoad.cars, this.jsonsToLoad.cars.length, this.mainLoaderCallback, this.cars, this.refWorld);
+        this.LoadResource(this.jsonLinkedList.firstNode);
     }
 }
 
@@ -24,20 +30,31 @@ RubeFilesLoader.prototype.setWorld = function(world)
     this.refWorld = world;
 }
 
-function LoadNextCar(pathArray, index, finalCallBack, carsArray, world)
+
+RubeFilesLoader.prototype.LoadResource = function(resourceNode)
 {
-    loadJSON(pathArray[index - 1], function(rawJson)
+    var me = this;
+    loadJSON(resourceNode.data, function(rawJson)
     {
-        world = loadWorldFromRUBE(JSON.parse(rawJson), world);
+        console.log(resourceNode.dataType);
+        me.refWorld = loadWorldFromRUBE(JSON.parse(rawJson), me.refWorld);
 
-        var carBody = getBodiesByCustomProperty(world, "string", "category", "car_body")[0];
-        var carTires = getBodiesByCustomProperty(world, "string", "category", "wheel");
-        carsArray.push({carBody : carBody, tires : carTires});
-
-        if(--index > 0)
-            LoadNextCar(pathArray, index, finalCallBack, carsArray, world);
+        if(resourceNode.dataType == "car")
+        {
+            var carBody = getBodiesByCustomProperty(me.refWorld, "string", "category", "car_body")[0];
+            var carTires = getBodiesByCustomProperty(me.refWorld, "string", "category", "wheel");
+            var dirJoints = getNamedJoints(me.refWorld, "direction");
+            me.cars.push({carBody : carBody, tires : carTires, directionJoints : dirJoints});
+        }
+        else if (resourceNode.dataType == "track")
+        {
+            // we've got nothing to do as track is static and just has to be loaded in b2Universe.
+            me.trackWalls = getNamedBodies(me.refWorld, "wall");
+        }
+        if(resourceNode.next != null) //if there are still node to load, we load them. else, we launch the main callback
+            me.LoadResource(resourceNode.next);
         else
-            finalCallBack(null/* HERE THERE SHOULD BE A FUTURE TRACK ARGUMEindexT */, carsArray);
+            me.mainLoaderCallback(me.trackWalls, me.cars);
     });
 }
 

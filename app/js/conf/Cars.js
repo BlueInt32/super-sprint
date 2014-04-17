@@ -9,7 +9,7 @@ var Cars =
         // physics properties
         rotateFactor: 0.05,
         accelerationFactor: 0.5,
-        driftTrigger: 0.025,
+        driftTrigger: 0.25,
         driftTriggerWithHandbrake: 0.012,
         natural_deceleration: 0.1,
 

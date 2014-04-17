@@ -87,7 +87,10 @@ function loadBodyFromRUBE(bodyJso, world) {
     if ( bodyJso.hasOwnProperty('linearVelocity') && bodyJso.linearVelocity instanceof Object )
         bd.linearVelocity.SetV( bodyJso.linearVelocity );
     if ( bodyJso.hasOwnProperty('position') && bodyJso.position instanceof Object )
+    {
+        bd.position.y = bd.position.y * -1;
         bd.position.SetV( bodyJso.position );
+    }
     if ( bodyJso.hasOwnProperty('awake') )
         bd.awake = bodyJso.awake;
     else
@@ -137,7 +140,7 @@ function loadFixtureFromRUBE(body, fixtureJso) {
         fd.shape = new b2PolygonShape();
         var verts = [];
         for (v = 0; v < fixtureJso.polygon.vertices.x.length; v++)
-           verts.push( new b2Vec2( fixtureJso.polygon.vertices.x[v], fixtureJso.polygon.vertices.y[v] ) );
+           verts.push( new b2Vec2( fixtureJso.polygon.vertices.x[v], -1 * fixtureJso.polygon.vertices.y[v]) );
         fd.shape.SetAsArray(verts, verts.length);
         var fixture = body.CreateFixture(fd);
         if ( fixture && fixtureJso.name )
@@ -147,7 +150,7 @@ function loadFixtureFromRUBE(body, fixtureJso) {
         fd.shape = new b2PolygonShape();
         var lastVertex = new b2Vec2();
         for (v = 0; v < fixtureJso.chain.vertices.x.length; v++) {
-            var thisVertex = new b2Vec2( fixtureJso.chain.vertices.x[v], fixtureJso.chain.vertices.y[v] );
+            var thisVertex = new b2Vec2( fixtureJso.chain.vertices.x[v], -1 * fixtureJso.chain.vertices.y[v] );
             if ( v > 0 ) {
                 fd.shape.SetAsEdge( lastVertex, thisVertex );
                 var fixture = body.CreateFixture(fd);
@@ -164,12 +167,27 @@ function loadFixtureFromRUBE(body, fixtureJso) {
 
 function getVectorValue(val) {
     if ( val instanceof Object )
+    {
+        val.y = -1 * val.y;
         return val;
+    }
     else
         return { x:0, y:0 };
 }
 
 function loadJointCommonProperties(jd, jointJso, loadedBodies) {
+    console.log(jointJso);
+    // Quick & dirty way to negate y on joints anchors
+    // if(jointJso.anchorA.hasOwnProperty("y"))
+    // {
+    //     jointJso.anchorA.y = jointJso.anchorA.y * -1;
+    // }
+    // if(jointJso.anchorB.hasOwnProperty("y"))
+    // {
+    //     jointJso.anchorB.y = jointJso.anchorB.y * -1;
+    // }
+
+    //jointJso
     jd.bodyA = loadedBodies[jointJso.bodyA];
     jd.bodyB = loadedBodies[jointJso.bodyB];
     jd.localAnchorA.SetV( getVectorValue(jointJso.anchorA) );
@@ -197,19 +215,19 @@ function loadJointFromRUBE(jointJso, world, loadedBodies)
     if ( jointJso.type == "revolute" ) {
         var jd = new b2.joints.b2RevoluteJointDef();
         loadJointCommonProperties(jd, jointJso, loadedBodies);
-        if ( jointJso.hasOwnProperty('refAngle') )
+        if ( jointJso.hasOwnProperty('refAngle'))
             jd.referenceAngle = jointJso.refAngle;
-        if ( jointJso.hasOwnProperty('lowerLimit') )
+        if ( jointJso.hasOwnProperty('lowerLimit'))
             jd.lowerAngle = jointJso.lowerLimit;
-        if ( jointJso.hasOwnProperty('upperLimit') )
+        if ( jointJso.hasOwnProperty('upperLimit'))
             jd.upperAngle = jointJso.upperLimit;
-        if ( jointJso.hasOwnProperty('maxMotorTorque') )
+        if ( jointJso.hasOwnProperty('maxMotorTorque'))
             jd.maxMotorTorque = jointJso.maxMotorTorque;
-        if ( jointJso.hasOwnProperty('motorSpeed') )
+        if ( jointJso.hasOwnProperty('motorSpeed'))
             jd.motorSpeed = jointJso.motorSpeed;
-        if ( jointJso.hasOwnProperty('enableLimit') )
+        if ( jointJso.hasOwnProperty('enableLimit'))
             jd.enableLimit = jointJso.enableLimit;
-        if ( jointJso.hasOwnProperty('enableMotor') )
+        if ( jointJso.hasOwnProperty('enableMotor'))
             jd.enableMotor = jointJso.enableMotor;
         joint = world.CreateJoint(jd);
     }

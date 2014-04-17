@@ -36,7 +36,6 @@
 
 	this.ExtractContactType = function(contact)
 	{
-		console.log(contact);
 		aData = contact.GetFixtureA().GetUserData();
 		bData = contact.GetFixtureB().GetUserData();
 
@@ -98,6 +97,14 @@
 		body.CreateFixture(this.wallFixtureDef, 0);
 		body.SetUserData("left Wall");
 
+
+		//Box
+		this.wallFixtureDef.shape.SetAsBox(1, 1);
+		this.wallBodyDef.position.Set(this.consts.STAGE_WIDTH_B2 - this.wallThickness, this.wallThickness);
+		body = this.world.CreateBody(this.wallBodyDef);
+		body.CreateFixture(this.wallFixtureDef, 0);
+		body.SetUserData("right Wall");
+
 		//right
 		this.wallBodyDef.position.Set(this.consts.STAGE_WIDTH_B2 - this.wallThickness, this.wallThickness);
 		body = this.world.CreateBody(this.wallBodyDef);
@@ -127,10 +134,14 @@
 	};
 
 
-	this.LoadTrack = function(trackIndex)
+	this.PositionTrack = function(trackWalls)
 	{
-		var loader = new jsonB2Loader(this.consts, this.world);
-		loader.loadTrack(Tracks[trackIndex].filePath);
+		for (var i = trackWalls.length - 1; i >= 0; i--)
+		{
+			console.log(this.consts.STAGE_WIDTH_B2 / 2, this.consts.STAGE_HEIGHT_B2 / 2);
+			trackWalls[i].SetPosition(new b2.cMath.b2Vec2(this.consts.STAGE_WIDTH_B2 / 2, this.consts.STAGE_HEIGHT_B2 / 2));
+
+		};
 
 	};
 
