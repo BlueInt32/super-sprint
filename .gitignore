@@ -67,3 +67,8 @@ thumbs.db
 
 app/js/min.js
 *.sublime-workspace
+
+#rube data
+*.rs
+**/*rube-backups/
+**/*rube-backups/**
