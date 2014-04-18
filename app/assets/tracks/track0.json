@@ -13,9 +13,96 @@
 			[
 				
 				{
+					"chain" : 
+					{
+						"vertices" : 
+						{
+							"x" : [ 3.232199907302856, 4.847040176391602 ],
+							"y" : [ -2.288939952850342, -2.288939952850342 ]
+						}
+					},
 					"density" : 1,
 					"friction" : 0.2,
-					"name" : "fixture1",
+					"name" : "cp2",
+					"sensor" : true
+				}
+			],
+			"linearVelocity" : 0,
+			"massData-mass" : 1,
+			"name" : "cp2",
+			"position" : 0,
+			"type" : 2
+		},
+		
+		{
+			"angle" : 0,
+			"angularVelocity" : 0,
+			"awake" : true,
+			"fixture" : 
+			[
+				
+				{
+					"chain" : 
+					{
+						"vertices" : 
+						{
+							"x" : [ -1, -1 ],
+							"y" : [ -1.650359988212585, -0.1941599994897842 ]
+						}
+					},
+					"density" : 1,
+					"friction" : 0.2,
+					"name" : "cp1",
+					"sensor" : true
+				}
+			],
+			"linearVelocity" : 0,
+			"massData-mass" : 1,
+			"name" : "cp1",
+			"position" : 0,
+			"type" : 2
+		},
+		
+		{
+			"angle" : 0,
+			"angularVelocity" : 0,
+			"awake" : true,
+			"fixture" : 
+			[
+				
+				{
+					"chain" : 
+					{
+						"vertices" : 
+						{
+							"x" : [ -0.64, -0.64 ],
+							"y" : [ 2.163810014724731, 3.635119915008545 ]
+						}
+					},
+					"density" : 1,
+					"friction" : 0.2,
+					"name" : "cp0",
+					"sensor" : true
+				}
+			],
+			"linearVelocity" : 0,
+			"massData-mass" : 1,
+			"name" : "cp0",
+			"position" : 0,
+			"type" : 2
+		},
+		
+		{
+			"angle" : 0,
+			"angularVelocity" : 0,
+			"awake" : true,
+			"fixture" : 
+			[
+				
+				{
+					"density" : 1,
+					"friction" : 0.2,
+					"name" : "wallFixture",
 					"polygon" : 
 					{
 						"vertices" : 
@@ -27,7 +114,7 @@
 				}
 			],
 			"linearVelocity" : 0,
-			"name" : "body0",
+			"name" : "middleWall2",
 			"position" : 0,
 			"type" : 0
 		},
@@ -70,11 +157,11 @@
 					},
 					"density" : 1,
 					"friction" : 0.2,
-					"name" : "fixture2"
+					"name" : "wallFixture"
 				}
 			],
 			"linearVelocity" : 0,
-			"name" : "body1",
+			"name" : "middleWall1",
 			"position" : 0,
 			"type" : 0
 		},
@@ -89,7 +176,7 @@
 				{
 					"density" : 1,
 					"friction" : 0.2,
-					"name" : "fixture0",
+					"name" : "wallFixture",
 					"polygon" : 
 					{
 						"vertices" : 
@@ -115,7 +202,7 @@
 				{
 					"density" : 1,
 					"friction" : 0.2,
-					"name" : "fixture0",
+					"name" : "wallFixture",
 					"polygon" : 
 					{
 						"vertices" : 
@@ -129,7 +216,7 @@
 				{
 					"density" : 1,
 					"friction" : 0.2,
-					"name" : "fixture0",
+					"name" : "wallFixture",
 					"polygon" : 
 					{
 						"vertices" : 
@@ -155,7 +242,7 @@
 				{
 					"density" : 1,
 					"friction" : 0.2,
-					"name" : "fixture0",
+					"name" : "wallFixture",
 					"polygon" : 
 					{
 						"vertices" : 
@@ -183,7 +270,7 @@
 				{
 					"density" : 1,
 					"friction" : 0.2,
-					"name" : "fixture0",
+					"name" : "wallFixture",
 					"polygon" : 
 					{
 						"vertices" : 
@@ -209,7 +296,7 @@
 				{
 					"density" : 1,
 					"friction" : 0.2,
-					"name" : "fixture0",
+					"name" : "wallFixture",
 					"polygon" : 
 					{
 						"vertices" : 
@@ -235,7 +322,7 @@
 				{
 					"density" : 1,
 					"friction" : 0.2,
-					"name" : "fixture0",
+					"name" : "wallFixture",
 					"polygon" : 
 					{
 						"vertices" : 
@@ -261,7 +348,7 @@
 				{
 					"density" : 1,
 					"friction" : 0.2,
-					"name" : "fixture0",
+					"name" : "wallFixture",
 					"polygon" : 
 					{
 						"vertices" : 
@@ -287,7 +374,7 @@
 				{
 					"density" : 1,
 					"friction" : 0.2,
-					"name" : "fixture0",
+					"name" : "wallFixture",
 					"polygon" : 
 					{
 						"vertices" : 
@@ -301,7 +388,7 @@
 				{
 					"density" : 1,
 					"friction" : 0.2,
-					"name" : "fixture0",
+					"name" : "wallFixture",
 					"polygon" : 
 					{
 						"vertices" : 
@@ -327,7 +414,7 @@
 				{
 					"density" : 1,
 					"friction" : 0.2,
-					"name" : "fixture0",
+					"name" : "wallFixture",
 					"polygon" : 
 					{
 						"vertices" : 
@@ -341,7 +428,7 @@
 				{
 					"density" : 1,
 					"friction" : 0.2,
-					"name" : "fixture0",
+					"name" : "wallFixture",
 					"polygon" : 
 					{
 						"vertices" : 
@@ -367,7 +454,7 @@
 				{
 					"density" : 1,
 					"friction" : 0.2,
-					"name" : "fixture0",
+					"name" : "wallFixture",
 					"polygon" : 
 					{
 						"vertices" : 
@@ -404,7 +491,7 @@
 	{
 		"names" : 
 		[
-			"bitplane1",
+			" ",
 			"bitplane2",
 			"bitplane3",
 			"bitplane4",

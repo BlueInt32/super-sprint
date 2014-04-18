@@ -6,7 +6,7 @@ function RubeFilesLoader(jsonsToLoad)
     for (var i = 0, l = jsonsToLoad.cars.length; i < l; i++)
     {
         this.jsonLinkedList.add(jsonsToLoad.cars[i], "car");
-    };
+    }
     this.cars = [];
     this.tires = [];
     this.trackWalls = [];
@@ -19,16 +19,16 @@ RubeFilesLoader.prototype.load = function(callback)
     this.mainLoaderCallback = callback;
 
     // Loading jsons as a linkedList
-    if(this.jsonsToLoad.track != null)
+    if(this.jsonsToLoad.track !== null)
     {
         this.LoadResource(this.jsonLinkedList.firstNode);
     }
-}
+};
 
 RubeFilesLoader.prototype.setWorld = function(world)
 {
     this.refWorld = world;
-}
+};
 
 
 RubeFilesLoader.prototype.LoadResource = function(resourceNode)
@@ -55,12 +55,12 @@ RubeFilesLoader.prototype.LoadResource = function(resourceNode)
             // if it's a track, we take all the bodies as is.
             me.trackWalls = getBodies(me.refWorld);
         }
-        if(resourceNode.next != null) //if there are still node to load, we load them. else, we launch the main callback
+        if(resourceNode.next !== null) //if there are still node to load, we load them. else, we launch the main callback
             me.LoadResource(resourceNode.next);
         else
             me.mainLoaderCallback(me.trackWalls, me.cars);
     });
-}
+};
 
 
 RubeFilesLoader.prototype.PreprocessRube = function(parsedJson)
@@ -93,21 +93,21 @@ RubeFilesLoader.prototype.PreprocessRube = function(parsedJson)
             if(fixture.hasOwnProperty("chain"))
             {
 
-                for (var k = fixture.chain.vertices.y.length - 1; k >= 0; k--)
+                for (var l = fixture.chain.vertices.y.length - 1; l >= 0; l--)
                 {
-                    fixture.chain.vertices.y[k] = -fixture.chain.vertices.y[k];
+                    fixture.chain.vertices.y[l] = -fixture.chain.vertices.y[l];
                 }
-                // very important : if we invert y, the array becomes clockwise, which is bad, we have to reverse it
+                // very important : if we invert y, the array becomes cloclwise, which is bad, we have to reverse it
                 fixture.chain.vertices.x.reverse();
                 fixture.chain.vertices.y.reverse();
             }
-        };
-    };
+        }
+    }
 
     //invert y on joint anchors
     if(parsedJson.hasOwnProperty("joint"))
     {
-        for (var i = parsedJson.joint.length - 1; i >= 0; i--) {
+        for (i = parsedJson.joint.length - 1; i >= 0; i--) {
             var joint = parsedJson.joint[i];
             if(joint.anchorA !== 0)
                 joint.anchorA.y = joint.anchorA.y * -1;
@@ -117,14 +117,12 @@ RubeFilesLoader.prototype.PreprocessRube = function(parsedJson)
             //joint.upperLimit = - joint.upperLimit;
             //joint.lowerLimit = - joint.lowerLimit;
 
-        };
+        }
     }
 
     return parsedJson;
 
-}
-
-
+};
 
 function loadJSON (filePath, callback)
 {
@@ -140,4 +138,4 @@ function loadJSON (filePath, callback)
         }
     };
     xobj.send(null);
-};
+}

@@ -8,6 +8,11 @@
 		pixiSprite;
 	var b2Universe = new B2Universe(Consts);
 
+	var carConfigPointer = null;
+
+
+
+
 	var canvas = document.getElementById('canvas');
 	canvas.width = Consts.STAGE_WIDTH_PIXEL;
 	canvas.height = Consts.STAGE_HEIGHT_PIXEL;
@@ -62,11 +67,13 @@
 
 	function onLoadAssets()
 	{
-		// create a rube json universe loader
+		carConfigPointer = new Car0Config();
+
+
 		var rubeFilesLoader = new RubeFilesLoader(
 			{
 				track:Tracks[0].json/**/,
-				cars:[Cars[0].json]
+				cars:[carConfigPointer.json]
 			});
 		rubeFilesLoader.setWorld(b2Universe.world);
 		rubeFilesLoader.load(box2dLoaded);
@@ -74,7 +81,11 @@
 
 	function box2dLoaded(loaderTrackWalls, loaderCars)
 	{
-		var rcar = new RealCar(Consts, 0);
+		var rcar = new Car(Consts, 0, carConfigPointer);
+setUpDatGui(rcar);
+
+
+
 		//console.log(loaderTrackWalls);
 		b2Universe.PositionTrack(loaderTrackWalls);
 
@@ -126,4 +137,15 @@
 		//pixiRenderer.render(pixiStage);
 		stats.update();
 	}
+
+	function setUpDatGui(refObject)
+	{
+		var gui = new dat.GUI();
+
+		var f1 = gui.addFolder('Car Behaviour');
+		f1.add(refObject, 'accelerationFactor', 0.05, 0.5);
+		f1.add(refObject, 'lockAngleDeg', 20, 50);
+	}
+
+
 })();

@@ -1,6 +1,6 @@
-
+/* jshint -W001 */
 Object.prototype.hasOwnProperty = function(property) {
-    return typeof(this[property]) !== 'undefined'
+    return typeof(this[property]) !== 'undefined';
 };
 
 var b2Color = Box2D.Common.b2Color,
@@ -97,8 +97,8 @@ function loadBodyFromRUBE(bodyJso, world) {
         bd.awake = false;
     var body = world.CreateBody(bd);
     if ( bodyJso.hasOwnProperty('fixture') ) {
-        for (k = 0; k < bodyJso['fixture'].length; k++) {
-            var fixtureJso = bodyJso['fixture'][k];
+        for (k = 0; k < bodyJso.fixture.length; k++) {
+            var fixtureJso = bodyJso.fixture[k];
             loadFixtureFromRUBE(body, fixtureJso);
         }
     }
@@ -127,12 +127,13 @@ function loadFixtureFromRUBE(body, fixtureJso) {
         fd.filter.maskBits = fixtureJso['filter-maskBits'];
     if ( fixtureJso.hasOwnProperty('filter-groupIndex') )
         fd.filter.groupIndex = fixtureJso['filter-groupIndex'];
+    var fixture;
     if (fixtureJso.hasOwnProperty('circle')) {
         fd.shape = new b2CircleShape();
         fd.shape.m_radius = fixtureJso.circle.radius;
         if ( fixtureJso.circle.center )
             fd.shape.m_p.SetV(fixtureJso.circle.center);
-        var fixture = body.CreateFixture(fd);
+        fixture = body.CreateFixture(fd);
         if ( fixtureJso.name )
             fixture.name = fixtureJso.name;
     }
@@ -142,7 +143,7 @@ function loadFixtureFromRUBE(body, fixtureJso) {
         for (v = 0; v < fixtureJso.polygon.vertices.x.length; v++)
            verts.push( new b2Vec2( fixtureJso.polygon.vertices.x[v], fixtureJso.polygon.vertices.y[v]) );
         fd.shape.SetAsArray(verts, verts.length);
-        var fixture = body.CreateFixture(fd);
+        fixture = body.CreateFixture(fd);
         if ( fixture && fixtureJso.name )
             fixture.name = fixtureJso.name;
     }
@@ -153,7 +154,7 @@ function loadFixtureFromRUBE(body, fixtureJso) {
             var thisVertex = new b2Vec2( fixtureJso.chain.vertices.x[v], fixtureJso.chain.vertices.y[v] );
             if ( v > 0 ) {
                 fd.shape.SetAsEdge( lastVertex, thisVertex );
-                var fixture = body.CreateFixture(fd);
+                fixture = body.CreateFixture(fd);
                 if ( fixtureJso.name )
                     fixture.name = fixtureJso.name;
             }
@@ -201,8 +202,9 @@ function loadJointFromRUBE(jointJso, world, loadedBodies)
     }
 
     var joint = null;
+    var jd;
     if ( jointJso.type == "revolute" ) {
-        var jd = new b2.joints.b2RevoluteJointDef();
+        jd = new b2.joints.b2RevoluteJointDef();
         loadJointCommonProperties(jd, jointJso, loadedBodies);
         if ( jointJso.hasOwnProperty('refAngle'))
             jd.referenceAngle = jointJso.refAngle;
@@ -223,7 +225,7 @@ function loadJointFromRUBE(jointJso, world, loadedBodies)
     else if ( jointJso.type == "distance" || jointJso.type == "rope" ) {
         if ( jointJso.type == "rope" )
             console.log("Replacing unsupported rope joint with distance joint!");
-        var jd = new b2DistanceJointDef();
+        jd = new b2DistanceJointDef();
         loadJointCommonProperties(jd, jointJso, loadedBodies);
         if ( jointJso.hasOwnProperty('length') )
             jd.length = jointJso.length;
@@ -234,7 +236,7 @@ function loadJointFromRUBE(jointJso, world, loadedBodies)
         joint = world.CreateJoint(jd);
     }
     else if ( jointJso.type == "prismatic" ) {
-        var jd = new b2PrismaticJointDef();
+        jd = new b2PrismaticJointDef();
         loadJointCommonProperties(jd, jointJso, loadedBodies);
         if ( jointJso.hasOwnProperty('localAxisA') )
             jd.localAxisA.SetV( getVectorValue(jointJso.localAxisA) );
@@ -259,7 +261,7 @@ function loadJointFromRUBE(jointJso, world, loadedBodies)
         //Return the line joint because it has the linear motor controls.
         //Use ApplyTorque on the bodies to spin the wheel...
 
-        var jd = new b2DistanceJointDef();
+        jd = new b2DistanceJointDef();
         loadJointCommonProperties(jd, jointJso, loadedBodies);
         jd.length = 0.0;
         if ( jointJso.hasOwnProperty('springDampingRatio') )
@@ -276,7 +278,7 @@ function loadJointFromRUBE(jointJso, world, loadedBodies)
         joint = world.CreateJoint(jd);
     }
     else if ( jointJso.type == "friction" ) {
-        var jd = new b2FrictionJointDef();
+        jd = new b2FrictionJointDef();
         loadJointCommonProperties(jd, jointJso, loadedBodies);
         if ( jointJso.hasOwnProperty('maxForce') )
             jd.maxForce = jointJso.maxForce;
@@ -285,7 +287,7 @@ function loadJointFromRUBE(jointJso, world, loadedBodies)
         joint = world.CreateJoint(jd);
     }
     else if ( jointJso.type == "weld" ) {
-        var jd = new b2.joints.b2WeldJointDef();
+        jd = new b2.joints.b2WeldJointDef();
         loadJointCommonProperties(jd, jointJso, loadedBodies);
         if ( jointJso.hasOwnProperty('referenceAngle') )
             jd.referenceAngle = jointJso.referenceAngle;
@@ -309,7 +311,7 @@ function makeClone(obj) {
         newObj[i] = obj[i];
   }
   return newObj;
-};
+}
 
 function loadImageFromRUBE(imageJso, world, loadedBodies)
 {
@@ -350,8 +352,8 @@ function loadSceneIntoWorld(worldJso, world) {
 
     var loadedJoints = [];
     if ( worldJso.hasOwnProperty('joint') ) {
-        for (var i = 0; i < worldJso.joint.length; i++) {
-            var jointJso = worldJso.joint[i];
+        for (var j = 0; j < worldJso.joint.length; j++) {
+            var jointJso = worldJso.joint[j];
             var joint = loadJointFromRUBE(jointJso, world, loadedBodies);
             if ( joint )
                 loadedJoints.push( joint );
@@ -362,8 +364,8 @@ function loadSceneIntoWorld(worldJso, world) {
 
     var loadedImages = [];
     if ( worldJso.hasOwnProperty('image') ) {
-        for (var i = 0; i < worldJso.image.length; i++) {
-            var imageJso = worldJso.image[i];
+        for (var k = 0; k < worldJso.image.length; k++) {
+            var imageJso = worldJso.image[k];
             var image = loadImageFromRUBE(imageJso, world, loadedBodies);
             if ( image )
                 loadedImages.push( image );

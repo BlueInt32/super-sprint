@@ -8,23 +8,22 @@
 	this.consts = consts;
 	var DEGTORAD  = 2 * Math.PI / 360;
 
+	var puddleRandomDirectionArray = new Array(1, -1);
 	this.HandleContact = function(contact, began)
 	{
 		var contactInfo = this.ExtractContactType(contact);
 		if(contactInfo.type === "wall")
 			return;
-		var r = new Array(1, -1);
 		if(began)
 		{
 			if(contactInfo.type === "cp")
 			{
-				//console.log("Checkpoint " + contactInfo.id);
 				me.cars[0].checkPointManager.Step(parseInt(contactInfo.id));
 			}
 			else if(contactInfo.type === "puddle")
 			{
 				me.cars[0].adherence = false;
-				me.cars[0].paddleEffect = r[Math.floor(Math.random()*2)];
+				me.cars[0].paddleEffect = puddleRandomDirectionArray[Math.floor(Math.random()*2)];
 			}
 		}
 		else
@@ -36,12 +35,14 @@
 
 	this.ExtractContactType = function(contact)
 	{
-		aData = contact.GetFixtureA().GetUserData();
-		bData = contact.GetFixtureB().GetUserData();
-
-		if(aData === null || bData === null)
-			return {"type":""};
-		if(aData === "wall" || bData === "wall")
+		aData = contact.GetFixtureA().name;
+		//aData.indexOf("carFixture");
+		bData = contact.GetFixtureB().name;
+		if(aData.indexOf("carFixture") === 0 && bData.indexOf("carFixture") === 0)
+		{
+			return {"type":""}; // carContact with itself, do nothing
+		}
+		if(aData === "wallFixture" || bData === "wallFixture")
 		{
 			return {"type":"wall"};
 		}
@@ -142,7 +143,7 @@
 			//console.log(this.consts.STAGE_WIDTH_B2 / 2, this.consts.STAGE_HEIGHT_B2 / 2);
 			trackWalls[i].SetPosition(new b2.cMath.b2Vec2(position.x + this.consts.STAGE_WIDTH_B2 / 2, position.y +this.consts.STAGE_HEIGHT_B2 / 2));
 
-		};
+		}
 
 	};
 

@@ -17,7 +17,7 @@ LinkedList.prototype.add = function(data, dataType)
     newNode.data = data;
     newNode.dataType = dataType;
 
-    if (this.firstNode == null)
+    if (this.firstNode === null)
     {
         this.firstNode = newNode;
         this.lastNode = newNode;
