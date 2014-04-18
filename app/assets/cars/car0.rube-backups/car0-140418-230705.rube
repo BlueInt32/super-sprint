@@ -53,13 +53,6 @@
       "displayName" : "direction",
       "name" : "direction",
       "type" : "bool"
-    },
-    
-    {
-      "class" : "body",
-      "displayName" : "isBackWheel",
-      "name" : "isBackWheel",
-      "type" : "bool"
     }
   ],
   "metaworld" : 
@@ -90,11 +83,6 @@
           {
             "name" : "category",
             "string" : "wheel"
-          },
-          
-          {
-            "bool" : false,
-            "name" : "isBackWheel"
           }
         ],
         "fixture" : 
@@ -235,11 +223,6 @@
           {
             "name" : "category",
             "string" : "wheel"
-          },
-          
-          {
-            "bool" : false,
-            "name" : "isBackWheel"
           }
         ],
         "fixture" : 
@@ -304,11 +287,6 @@
           {
             "name" : "category",
             "string" : "wheel"
-          },
-          
-          {
-            "bool" : true,
-            "name" : "isBackWheel"
           }
         ],
         "fixture" : 
@@ -373,11 +351,6 @@
           {
             "name" : "category",
             "string" : "wheel"
-          },
-          
-          {
-            "bool" : true,
-            "name" : "isBackWheel"
           }
         ],
         "fixture" : 

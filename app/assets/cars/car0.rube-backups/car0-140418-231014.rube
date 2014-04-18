@@ -90,11 +90,6 @@
           {
             "name" : "category",
             "string" : "wheel"
-          },
-          
-          {
-            "bool" : false,
-            "name" : "isBackWheel"
           }
         ],
         "fixture" : 
@@ -235,11 +230,6 @@
           {
             "name" : "category",
             "string" : "wheel"
-          },
-          
-          {
-            "bool" : false,
-            "name" : "isBackWheel"
           }
         ],
         "fixture" : 

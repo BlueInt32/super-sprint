@@ -367,14 +367,14 @@
                 "name" : "boostVector",
                 "vec2" : 
                 {
-                  "x" : -0.007000000216066837,
+                  "x" : 0.1,
                   "y" : 0
                 }
               }
             ],
             "density" : 1,
             "friction" : 0.2,
-            "id" : 11,
+            "id" : 10,
             "name" : "boost",
             "sensor" : true,
             "shapes" : 
@@ -391,65 +391,14 @@
             }
           }
         ],
-        "id" : 10,
+        "id" : 9,
         "linearVelocity" : 0,
         "massData-mass" : 1,
         "name" : "boost",
         "position" : 
         {
-          "x" : 3.512167453765869,
-          "y" : 3.481611490249634
-        },
-        "type" : "dynamic"
-      },
-      
-      {
-        "angle" : 0,
-        "angularVelocity" : 0,
-        "awake" : true,
-        "fixture" : 
-        [
-          
-          {
-            "customProperties" : 
-            [
-              
-              {
-                "name" : "boostVector",
-                "vec2" : 
-                {
-                  "x" : -0.004000000189989805,
-                  "y" : 0
-                }
-              }
-            ],
-            "density" : 1,
-            "friction" : 0.2,
-            "id" : 12,
-            "name" : "boost",
-            "sensor" : true,
-            "shapes" : 
-            [
-              
-              {
-                "type" : "line"
-              }
-            ],
-            "vertices" : 
-            {
-              "x" : [ -0.5, 0.5 ],
-              "y" : [ 0.0, 0.0 ]
-            }
-          }
-        ],
-        "id" : 11,
-        "linearVelocity" : 0,
-        "massData-mass" : 1,
-        "name" : "boost",
-        "position" : 
-        {
-          "x" : 3.536625385284424,
-          "y" : 3.224803686141968
+          "x" : -1.477240681648254,
+          "y" : 1.598354220390320
         },
         "type" : "dynamic"
       }

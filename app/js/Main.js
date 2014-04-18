@@ -83,13 +83,13 @@
 	{
 		var rcar = new Car(Consts, 0, carConfigPointer);
 		setUpDatGui(rcar);
-
-
-
 		//console.log(loaderTrackWalls);
 		b2Universe.PositionTrack(loaderTrackWalls);
 
 		rcar.SetBox2dData(loaderCars[0]);
+
+		console.log(rcar);
+
 		b2Universe.AddCar(rcar, pixiStage);
 
 		//b2Universe.CreateWalls();
@@ -145,6 +145,8 @@
 		var f1 = gui.addFolder('Car Behaviour');
 		f1.add(refObject, 'accelerationFactor', 0.05, 0.5);
 		f1.add(refObject, 'lockAngleDeg', 20, 50);
+		f1.add(refObject, 'Drift_trigger', 0.001, 0.01);
+		f1.open();
 	}
 
 

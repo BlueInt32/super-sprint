@@ -164,6 +164,10 @@ function loadFixtureFromRUBE(body, fixtureJso) {
     else {
         console.log("Could not find shape type for fixture");
     }
+    if (fixtureJso.hasOwnProperty('customProperties') )
+    {
+        fixture.customProperties = fixtureJso.customProperties;
+    }
 }
 
 function getVectorValue(val) {

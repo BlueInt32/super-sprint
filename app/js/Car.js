@@ -7,11 +7,11 @@ function Car(consts, carIndex, configuration)
     this.b2Body = null;
     this.CAR_WIDTH_B2 = this.configuration.width / 2 / this.METER;
     this.CAR_HEIGHT_B2 = this.configuration.height / 2 / this.METER;
-    this.Current_Drift_trigger = this.configuration.driftTrigger;
+    this.Drift_trigger = this.configuration.driftTrigger;
     this.DEGTORAD = 2 * Math.PI / 360;
 
     this.accelerationFactor = this.configuration.accelerationFactor;
-    this.LocalAccelerationVector = new Box2D.Common.Math.b2Vec2(0, -this.accelerationFactor);
+    this.LocalAccelerationVector = new b2.cMath.b2Vec2(0, -this.accelerationFactor);
     this.LocalBrakeVector = b2.math.MulFV(-0.5 , this.LocalAccelerationVector);
     this.LocalHandBrakeVector = b2.math.MulFV(-0.5, this.LocalAccelerationVector);
     this.LocalNormalVector = new b2.cMath.b2Vec2(1, 0);
@@ -135,12 +135,12 @@ Car.prototype.HandBrake = function ()
     for (var i = 0; i < 4; i++)
     {
         this.tires[i].ApplyForce(this.tires[i].GetWorldVector(this.LocalHandBrakeVector), this.tires[i].GetWorldCenter());
-        this.Current_Drift_trigger = this.configuration.driftTriggerWithHandbrake;
+        this.drifting = true;
     }
 };
 Car.prototype.HandBrakeRelease = function ()
 {
-    this.Current_Drift_trigger = this.configuration.driftTrigger;
+    this.drifting = false;
 };
 
 // Car.prototype.TurnLeft = function ()
@@ -183,6 +183,13 @@ Car.prototype.GetForwardVelocity = function (tireIndex)
     return vCurrentRightForward;
 };
 
+Car.prototype.ApplyImpulse = function(vec2)
+{
+    for (var i = 0; i < 4; i++)
+    {
+        this.tires[i].ApplyImpulse(vec2, this.tires[i].GetWorldCenter());
+    }
+};
 
 Car.prototype.UpdateFriction = function ()
 {
@@ -190,20 +197,22 @@ Car.prototype.UpdateFriction = function ()
     {
         if(this.adherence)
         {
+            if(this.tires[i].customProperties[1].bool && this.drifting)
+                this.adherenceFactor = 0.2;
+            else
+                this.adherenceFactor = 1;
             // Prevent car from sliding. Let it slide where lateral velocity is high (drift);
             var impulse = b2.math.MulFV(- this.adherenceFactor * this.tires[i].GetMass(), this.vCurrentRightNormals[i]);
 
-            if (impulse.Length() > this.Current_Drift_trigger)
+            if (impulse.Length() > this.Drift_trigger)
             {
-                impulse  = b2.math.MulFV(this.Current_Drift_trigger / impulse.Length(), impulse);
+                impulse  = b2.math.MulFV(this.Drift_trigger / impulse.Length(), impulse);
             }
             this.tires[i].ApplyImpulse(impulse, this.tires[i].GetWorldCenter());
         }
 
         // what does this do ???
         var inertia = this.tires[i].GetInertia();
-        if(i === 4)
-            console.log(inertia);
         var vel = this.tires[i].GetAngularVelocity();
         this.tires[i].ApplyAngularImpulse(10 * inertia * -vel);
 

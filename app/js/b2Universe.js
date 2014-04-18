@@ -16,14 +16,11 @@
 			return;
 		if(began)
 		{
-			if(contactInfo.type === "cp")
+			switch(contactInfo.type)
 			{
-				me.cars[0].checkPointManager.Step(parseInt(contactInfo.id));
-			}
-			else if(contactInfo.type === "puddle")
-			{
-				me.cars[0].adherence = false;
-				me.cars[0].paddleEffect = puddleRandomDirectionArray[Math.floor(Math.random()*2)];
+				case "cp": me.cars[0].checkPointManager.Step(parseInt(contactInfo.id)); break;
+				case "puddle":me.cars[0].adherence = false;	me.cars[0].paddleEffect = puddleRandomDirectionArray[Math.floor(Math.random()*2)];break;
+				case "boost": var boostVector = new b2.cMath.b2Vec2(contactInfo.boostVector.x, contactInfo.boostVector.y);  me.cars[0].ApplyImpulse(boostVector); break;
 			}
 		}
 		else
@@ -35,22 +32,26 @@
 
 	this.ExtractContactType = function(contact)
 	{
-		aData = contact.GetFixtureA().name;
-		//aData.indexOf("carFixture");
-		bData = contact.GetFixtureB().name;
-		if(aData.indexOf("carFixture") === 0 && bData.indexOf("carFixture") === 0)
-		{
-			return {"type":""}; // carContact with itself, do nothing
-		}
-		if(aData === "wallFixture" || bData === "wallFixture")
+		aData = contact.GetFixtureA();
+		bData = contact.GetFixtureB();
+
+		if(aData.name === "wallFixture" || bData.name === "wallFixture")
 		{
 			return {"type":"wall"};
 		}
 
-		if(aData.indexOf("cp") === 0)
-			return {"type":"cp", "id":aData.substr(2, 3)};
-		if(bData.indexOf("cp") === 0)
-			return {"type":"cp", "id":bData.substr(2, 3)};
+		if(aData.name.indexOf("cp") === 0)
+			return {"type":"cp", "id":aData.name.substr(2, 3)};
+		if(bData.name.indexOf("cp") === 0)
+			return {"type":"cp", "id":bData.name.substr(2, 3)};
+		if(aData.name.indexOf("boost") === 0)
+		{
+			return { "type":"boost", "boostVector":aData.customProperties[0].vec2 };
+		}
+		if(bData.name.indexOf("boost") === 0)
+		{
+			return { "type":"boost", "boostVector":bData.customProperties[0].vec2 };
+		}
 	};
 
 	contactListener.BeginContact = function(contact)
