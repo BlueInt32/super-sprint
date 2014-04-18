@@ -82,7 +82,7 @@
 	function box2dLoaded(loaderTrackWalls, loaderCars)
 	{
 		var rcar = new Car(Consts, 0, carConfigPointer);
-setUpDatGui(rcar);
+		setUpDatGui(rcar);
 
 
 

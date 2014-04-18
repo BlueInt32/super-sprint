@@ -80,7 +80,29 @@
 
 					// includes files within path and its sub-directories
 					//{expand: true, src: ['path/**'], dest: 'dest/'},
-					{expand: true, src: ['assets/**'], dest: 'publish/'},
+					{
+						expand: true, 
+						src: ['assets/**',"!**/*.lnk", "!**/*.rube", "!**/*rube-backups/**", "!**/*.log"], 
+						dest: 'publish/',
+						options: 
+						{
+							process: function (content, srcpath) 
+							{
+								console.log(srcpath);
+								if(srcpath === "min.js")
+									return content.replace(".json",".js");
+							}
+						},
+						rename: function(dest, src) // rename .json files to .js because OVH...
+						{
+							if(src.indexOf('.json') === -1)
+							{
+								
+								return dest+'/'+src;
+							}
+							return dest +  src.replace(".json", ".js");
+						}
+        			},
 					// {expand: true, src: ['assets/**'], dest: 'publish/'},
 
 					// makes all src relative to cwd
@@ -101,14 +123,39 @@
 		        	message: 'Hello world!'
 				}
 		    },
-		    dist: {
-				files: {
+		    dist: 
+		    {
+				files: 
+				{
 					'publish/index.html': ['index.html']
 				}
 		    }
+		},
+		replace: {
+			example: 
+			{
+				src: ['publish/js/min.js'],             // source files array (supports minimatch)
+				overwrite: true,
+				replacements: 
+				[
+					{
+						from: /([a-zA-Z0-9]+)\.json"/g,                   // string replacement
+						//to: '$1.js"',
+						to: function (matchedWord, index, fullText, regexMatches) 
+						{
+							console.log(matchedWord);
+							// matchedWord:  "world"
+							// index:  6
+							// fullText:  "Hello world"
+							// regexMatches:  ["ld"]
+							return regexMatches[0] + '.js"';   //
+						}
+					}
+				]
+			}
 		}
 	});
 
 
-	grunt.registerTask('default', ['jshint', 'uglify:dist', 'copy', 'processhtml']);
+	grunt.registerTask('default', ['jshint', 'uglify:dist', 'copy', 'processhtml', 'replace']);
 };
