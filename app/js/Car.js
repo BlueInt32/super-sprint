@@ -57,6 +57,9 @@ Car.prototype.SetBox2dData = function(box2dData)
     this.tires = box2dData.tires;
     this.directionJoints = box2dData.directionJoints;
 
+    this.directionJoints[0].SetLimits(0, 0);
+    this.directionJoints[1].SetLimits(0, 0);
+
     //console.log(this.directionJoints);
 };
 
