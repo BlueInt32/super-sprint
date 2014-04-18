@@ -150,7 +150,7 @@
 		// TODO : add the car to the carsArray
 		carInstance.checkPointManager = new CheckPointManager(3);
 		this.cars.push(carInstance);
-		carInstance.b2Body.SetPosition(new b2.cMath.b2Vec2(3, 3));
+		carInstance.b2Body.SetPosition(new b2.cMath.b2Vec2(5, 3));
 		//this.world.
 		pixiStage.addChild(carInstance.pixiSprite);
 	};

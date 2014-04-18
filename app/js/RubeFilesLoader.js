@@ -36,8 +36,10 @@ RubeFilesLoader.prototype.LoadResource = function(resourceNode)
     var me = this;
     loadJSON(resourceNode.data, function(rawJson)
     {
-        console.log(resourceNode.dataType);
-        me.refWorld = loadWorldFromRUBE(JSON.parse(rawJson), me.refWorld);
+        var parsedJson = JSON.parse(rawJson);
+        //if(resourceNode.dataType === "track") // if this is a track, we have to invert it (y = -y)
+            parsedJson = me.PreprocessRube(parsedJson);
+        me.refWorld = loadWorldFromRUBE(parsedJson, me.refWorld);
 
         if(resourceNode.dataType == "car")
         {
@@ -57,6 +59,50 @@ RubeFilesLoader.prototype.LoadResource = function(resourceNode)
             me.mainLoaderCallback(me.trackWalls, me.cars);
     });
 }
+
+
+RubeFilesLoader.prototype.PreprocessRube = function(parsedJson)
+{
+    // invert y on vertices and bodies position 
+    for (var i = parsedJson.body.length - 1; i >= 0; i--) 
+    {
+        var body = parsedJson.body[i];
+        //body["massData-center"].y = body["massData-center"].y * -1;
+        body.position.y = body.position.y * -1;
+
+        for (var j = body.fixture.length - 1; j >= 0; j--) {
+            var fixture = body.fixture[j];
+            if(fixture.hasOwnProperty("polygon"))
+            {
+                for (var k = fixture.polygon.vertices.y.length - 1; k >= 0; k--) 
+                {
+                    var val = fixture.polygon.vertices.y[k];
+                    fixture.polygon.vertices.y[k] = -val;
+                }
+            }
+        };
+    };
+
+    // invert y on joint anchors
+    if(parsedJson.hasOwnProperty("joint"))
+    {
+        for (var i = parsedJson.joint.length - 1; i >= 0; i--) {
+            var joint = parsedJson.joint[i];
+            if(joint.anchorA !== 0)
+                joint.anchorA.y = joint.anchorA.y * -1;
+            if(joint.anchorB !== 0)
+                joint.anchorB.y = joint.anchorB.y * -1;
+
+            joint.upperLimit = - joint.upperLimit;
+            joint.lowerLimit = - joint.lowerLimit;
+            
+        };
+    }
+
+    return parsedJson;
+
+}
+
 
 
 function loadJSON (filePath, callback)

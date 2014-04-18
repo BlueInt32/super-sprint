@@ -88,7 +88,7 @@ function loadBodyFromRUBE(bodyJso, world) {
         bd.linearVelocity.SetV( bodyJso.linearVelocity );
     if ( bodyJso.hasOwnProperty('position') && bodyJso.position instanceof Object )
     {
-        bd.position.y = bd.position.y * -1;
+        bd.position.y = bd.position.y;
         bd.position.SetV( bodyJso.position );
     }
     if ( bodyJso.hasOwnProperty('awake') )
@@ -140,7 +140,7 @@ function loadFixtureFromRUBE(body, fixtureJso) {
         fd.shape = new b2PolygonShape();
         var verts = [];
         for (v = 0; v < fixtureJso.polygon.vertices.x.length; v++)
-           verts.push( new b2Vec2( fixtureJso.polygon.vertices.x[v], -1 * fixtureJso.polygon.vertices.y[v]) );
+           verts.push( new b2Vec2( fixtureJso.polygon.vertices.x[v], fixtureJso.polygon.vertices.y[v]) );
         fd.shape.SetAsArray(verts, verts.length);
         var fixture = body.CreateFixture(fd);
         if ( fixture && fixtureJso.name )
@@ -150,7 +150,7 @@ function loadFixtureFromRUBE(body, fixtureJso) {
         fd.shape = new b2PolygonShape();
         var lastVertex = new b2Vec2();
         for (v = 0; v < fixtureJso.chain.vertices.x.length; v++) {
-            var thisVertex = new b2Vec2( fixtureJso.chain.vertices.x[v], -1 * fixtureJso.chain.vertices.y[v] );
+            var thisVertex = new b2Vec2( fixtureJso.chain.vertices.x[v], fixtureJso.chain.vertices.y[v] );
             if ( v > 0 ) {
                 fd.shape.SetAsEdge( lastVertex, thisVertex );
                 var fixture = body.CreateFixture(fd);
@@ -168,7 +168,6 @@ function loadFixtureFromRUBE(body, fixtureJso) {
 function getVectorValue(val) {
     if ( val instanceof Object )
     {
-        val.y = -1 * val.y;
         return val;
     }
     else
