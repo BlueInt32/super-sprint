@@ -133,13 +133,14 @@
 		// groundAreaFixture.SetUserData( {friction:0.2} );
 	};
 
-
 	this.PositionTrack = function(trackWalls)
 	{
 		for (var i = trackWalls.length - 1; i >= 0; i--)
 		{
-			console.log(this.consts.STAGE_WIDTH_B2 / 2, this.consts.STAGE_HEIGHT_B2 / 2);
-			trackWalls[i].SetPosition(new b2.cMath.b2Vec2(this.consts.STAGE_WIDTH_B2 / 2, this.consts.STAGE_HEIGHT_B2 / 2));
+			var position = trackWalls[i].GetPosition();
+			//console.log(position);
+			//console.log(this.consts.STAGE_WIDTH_B2 / 2, this.consts.STAGE_HEIGHT_B2 / 2);
+			trackWalls[i].SetPosition(new b2.cMath.b2Vec2(position.x + this.consts.STAGE_WIDTH_B2 / 2, position.y +this.consts.STAGE_HEIGHT_B2 / 2));
 
 		};
 
@@ -150,7 +151,7 @@
 		// TODO : add the car to the carsArray
 		carInstance.checkPointManager = new CheckPointManager(3);
 		this.cars.push(carInstance);
-		carInstance.b2Body.SetPosition(new b2.cMath.b2Vec2(5, 3));
+		carInstance.b2Body.SetPosition(new b2.cMath.b2Vec2(3, 3));
 		//this.world.
 		pixiStage.addChild(carInstance.pixiSprite);
 	};

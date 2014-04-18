@@ -10,6 +10,11 @@ function RealCar(consts, carIndex)
     this.Current_Drift_trigger = this.CarConfig.driftTrigger;
     this.DEGTORAD = 2 * Math.PI / 360;
 
+    this.LocalAccelerationVector = new Box2D.Common.Math.b2Vec2(0, - this.CarConfig.accelerationFactor);
+    this.LocalBrakeVector = b2.math.MulFV(-1 / 3, this.LocalAccelerationVector);
+    this.LocalHandBrakeVector = b2.math.MulFV(-1 / 4, this.LocalAccelerationVector);
+    this.LocalNormalVector = new b2.cMath.b2Vec2(1, 0);
+
 
     this.lockAngle = 30 * this.DEGTORAD;
     this.turnSpeedPerSec = 160 * this.DEGTORAD;//from lock to lock in 0.5 sec
@@ -101,14 +106,14 @@ RealCar.prototype.Accelerate = function ()
 {
     for (var i = 0; i < 4; i++)
     {
-        this.tires[i].ApplyForce(this.tires[i].GetWorldVector(new Box2D.Common.Math.b2Vec2(0, this.CarConfig.accelerationFactor)), this.tires[i].GetWorldCenter());
+        this.tires[i].ApplyForce(this.tires[i].GetWorldVector(this.LocalAccelerationVector), this.tires[i].GetWorldCenter());
     }
 };
 RealCar.prototype.Brake = function ()
 {
     for (var i = 0; i < 4; i++)
     {
-        this.tires[i].ApplyForce(this.tires[i].GetWorldVector(new Box2D.Common.Math.b2Vec2(0,this.CarConfig.accelerationFactor / -3)), this.tires[i].GetWorldCenter());
+        this.tires[i].ApplyForce(this.tires[i].GetWorldVector(this.LocalBrakeVector), this.tires[i].GetWorldCenter());
     }
 };
 
@@ -116,7 +121,7 @@ RealCar.prototype.HandBrake = function ()
 {
     for (var i = 0; i < 4; i++)
     {
-        this.tires[i].ApplyForce(this.tires[i].GetWorldVector(new Box2D.Common.Math.b2Vec2(0, this.CarConfig.accelerationFactor / -4)), this.tires[i].GetWorldCenter());
+        this.tires[i].ApplyForce(this.tires[i].GetWorldVector(LocalHandBrakeVector), this.tires[i].GetWorldCenter());
         this.Current_Drift_trigger = this.CarConfig.driftTriggerWithHandbrake;
     }
 };
@@ -147,7 +152,7 @@ RealCar.prototype.NegateTorque = function(tireIndex)
 
 RealCar.prototype.GetLateralVelocity = function (tireIndex)
 {
-    var currentRightNormal = this.tires[tireIndex].GetWorldVector(new b2.cMath.b2Vec2(1, 0));
+    var currentRightNormal = this.tires[tireIndex].GetWorldVector(this.LocalNormalVector);
     var vCurrentRightNormal = b2.math.MulFV(b2.math.Dot(currentRightNormal, this.linearVelocities[tireIndex]), currentRightNormal);
     //if(tireIndex===0) console.log(vCurrentRightNormal);
     return vCurrentRightNormal;

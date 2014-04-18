@@ -65,7 +65,7 @@
 		// create a rube json universe loader
 		var rubeFilesLoader = new RubeFilesLoader(
 			{
-				track:Tracks[0].json,
+				track:Tracks[0].json/**/,
 				cars:[Cars[0].json]
 			});
 		rubeFilesLoader.setWorld(b2Universe.world);
@@ -75,7 +75,7 @@
 	function box2dLoaded(loaderTrackWalls, loaderCars)
 	{
 		var rcar = new RealCar(Consts, 0);
-		console.log(loaderTrackWalls);
+		//console.log(loaderTrackWalls);
 		b2Universe.PositionTrack(loaderTrackWalls);
 
 		rcar.SetBox2dData(loaderCars[0]);
@@ -108,6 +108,8 @@
 
 	function update()
 	{
+
+
 		requestAnimationFrame(update);
 		b2Universe.world.Step(1 / 60, 3, 3);
 		b2Universe.world.ClearForces();

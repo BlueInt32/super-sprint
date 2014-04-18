@@ -175,16 +175,6 @@ function getVectorValue(val) {
 }
 
 function loadJointCommonProperties(jd, jointJso, loadedBodies) {
-    console.log(jointJso);
-    // Quick & dirty way to negate y on joints anchors
-    // if(jointJso.anchorA.hasOwnProperty("y"))
-    // {
-    //     jointJso.anchorA.y = jointJso.anchorA.y * -1;
-    // }
-    // if(jointJso.anchorB.hasOwnProperty("y"))
-    // {
-    //     jointJso.anchorB.y = jointJso.anchorB.y * -1;
-    // }
 
     //jointJso
     jd.bodyA = loadedBodies[jointJso.bodyA];
@@ -410,6 +400,15 @@ function getNamedBodies(world, name) {
     for (b = world.m_bodyList; b; b = b.m_next) {
         if ( b.name == name )
             bodies.push(b);
+    }
+    return bodies;
+}
+
+
+function getBodies(world) {
+    var bodies = [];
+    for (b = world.m_bodyList; b; b = b.m_next) {
+        bodies.push(b);
     }
     return bodies;
 }

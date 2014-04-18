@@ -4,7 +4,7 @@ var Cars =
         width : 40, // px unit
         height: 25, // px unit
         sprite: "assets/cars/images/Voiture_03.png",
-        json: "assets/cars/rube1.json",
+        json: "assets/cars/car0.json",
 
         // physics properties
         rotateFactor: 0.05,
