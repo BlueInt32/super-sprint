@@ -411,6 +411,16 @@ function getNamedBodies(world, name) {
 }
 
 
+function getBodiesWithNamesStartingWith(world, startName) {
+    var bodies = [];
+    for (b = world.m_bodyList; b; b = b.m_next) {
+        if (typeof b.name !== "undefined" && b.name.indexOf(startName) === 0)
+            bodies.push(b);
+    }
+    return bodies;
+}
+
+
 function getBodies(world) {
     var bodies = [];
     for (b = world.m_bodyList; b; b = b.m_next) {

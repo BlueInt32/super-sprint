@@ -82,17 +82,17 @@
 	function box2dLoaded(loaderTrackWalls, loaderCars)
 	{
 		var rcar = new Car(Consts, 0, carConfigPointer);
+		var sCar = new Car(Consts, 0, carConfigPointer);
+
+
 		setUpDatGui(rcar);
 		//console.log(loaderTrackWalls);
 		b2Universe.PositionTrack(loaderTrackWalls);
-
 		rcar.SetBox2dData(loaderCars[0]);
-
-		console.log(rcar);
+		sCar.SetBox2dData(loaderCars[0]);
 
 		b2Universe.AddCar(rcar, pixiStage);
-
-		//b2Universe.CreateWalls();
+		b2Universe.AddCar(sCar, pixiStage);
 
 		document.onkeydown = keyboardHandler.HandleKeyDown.bind(keyboardHandler);
 		document.onkeyup = keyboardHandler.HandleKeyUp.bind(keyboardHandler);

@@ -76,30 +76,33 @@ RubeFilesLoader.prototype.PreprocessRube = function(parsedJson)
             jsonBody.position.y = jsonBody.position.y * -1;
         }
 
-        for (var j = jsonBody.fixture.length - 1; j >= 0; j--) {
-            var fixture = jsonBody.fixture[j];
-            // Process polygons vertices in fixtures
-            if(fixture.hasOwnProperty("polygon"))
-            {
-                for (var k = fixture.polygon.vertices.y.length - 1; k >= 0; k--)
+        if(typeof jsonBody.fixture != "undefined")
+        {
+            for (var j = jsonBody.fixture.length - 1; j >= 0; j--) {
+                var fixture = jsonBody.fixture[j];
+                // Process polygons vertices in fixtures
+                if(fixture.hasOwnProperty("polygon"))
                 {
-                    fixture.polygon.vertices.y[k] = -fixture.polygon.vertices.y[k];
+                    for (var k = fixture.polygon.vertices.y.length - 1; k >= 0; k--)
+                    {
+                        fixture.polygon.vertices.y[k] = -fixture.polygon.vertices.y[k];
+                    }
+                    // very important : if we invert y, the array becomes clockwise, which is bad, we have to reverse it
+                    fixture.polygon.vertices.x.reverse();
+                    fixture.polygon.vertices.y.reverse();
                 }
-                // very important : if we invert y, the array becomes clockwise, which is bad, we have to reverse it
-                fixture.polygon.vertices.x.reverse();
-                fixture.polygon.vertices.y.reverse();
-            }
-            // Process chains vertices in fixtures
-            if(fixture.hasOwnProperty("chain"))
-            {
+                // Process chains vertices in fixtures
+                if(fixture.hasOwnProperty("chain"))
+                {
 
-                for (var l = fixture.chain.vertices.y.length - 1; l >= 0; l--)
-                {
-                    fixture.chain.vertices.y[l] = -fixture.chain.vertices.y[l];
+                    for (var l = fixture.chain.vertices.y.length - 1; l >= 0; l--)
+                    {
+                        fixture.chain.vertices.y[l] = -fixture.chain.vertices.y[l];
+                    }
+                    // very important : if we invert y, the array becomes cloclwise, which is bad, we have to reverse it
+                    fixture.chain.vertices.x.reverse();
+                    fixture.chain.vertices.y.reverse();
                 }
-                // very important : if we invert y, the array becomes cloclwise, which is bad, we have to reverse it
-                fixture.chain.vertices.x.reverse();
-                fixture.chain.vertices.y.reverse();
             }
         }
     }

@@ -74,6 +74,22 @@
         "angle" : 0,
         "angularVelocity" : 0,
         "awake" : true,
+        "id" : 1,
+        "linearVelocity" : 0,
+        "massData-mass" : 1,
+        "name" : "start_1",
+        "position" : 
+        {
+          "x" : 0.7325001358985901,
+          "y" : 3.345739841461182
+        },
+        "type" : "dynamic"
+      },
+      
+      {
+        "angle" : 0,
+        "angularVelocity" : 0,
+        "awake" : true,
         "fixture" : 
         [
           
@@ -349,6 +365,22 @@
         "massData-mass" : 1,
         "name" : "cp2",
         "position" : 0,
+        "type" : "dynamic"
+      },
+      
+      {
+        "angle" : 0,
+        "angularVelocity" : 0,
+        "awake" : true,
+        "id" : 8,
+        "linearVelocity" : 0,
+        "massData-mass" : 1,
+        "name" : "start_0",
+        "position" : 
+        {
+          "x" : 0.4734653234481812,
+          "y" : 2.679650306701660
+        },
         "type" : "dynamic"
       },
       

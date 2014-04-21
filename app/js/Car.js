@@ -59,8 +59,6 @@ Car.prototype.SetBox2dData = function(box2dData)
 
     this.directionJoints[0].SetLimits(0, 0);
     this.directionJoints[1].SetLimits(0, 0);
-
-    //console.log(this.directionJoints);
 };
 
 Car.prototype.updateData = function (keyboardData)
@@ -110,6 +108,7 @@ Car.prototype.UpdateSteering = function(keyboardData)
     this.UpdateFriction();
 
     var position = this.b2Body.GetPosition();
+    //console.log(position);
     this.pixiSprite.position.x = position.x * this.METER;
     this.pixiSprite.position.y = position.y * this.METER;
     this.pixiSprite.rotation = this.b2Body.GetAngle();
@@ -145,22 +144,6 @@ Car.prototype.HandBrakeRelease = function ()
 {
     this.drifting = false;
 };
-
-// Car.prototype.TurnLeft = function ()
-// {
-//     for (var i = 0; i < 4; i++)
-//     {
-//         console.log("coucou");
-//         //this.tires[i].ApplyTorque(-this.configuration.rotateFactor * this.NegateTorque(i));
-//     }
-// };
-// Car.prototype.TurnRight = function ()
-// {
-//     for (var i = 0; i < 4; i++)
-//     {
-//         //this.tires[i].ApplyTorque(this.NegateTorque(i) * this.configuration.rotateFactor);
-//     }
-// };
 
 Car.prototype.NegateTorque = function(tireIndex)
 {

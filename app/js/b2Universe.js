@@ -8,6 +8,8 @@
 	this.consts = consts;
 	var DEGTORAD  = 2 * Math.PI / 360;
 
+	var carPlaced = 0;
+
 	var puddleRandomDirectionArray = new Array(1, -1);
 	this.HandleContact = function(contact, began)
 	{
@@ -63,57 +65,6 @@
 	};
 	this.world.SetContactListener(contactListener);
 
-
-	/* Deprecated since Track Loader */
-	this.CreateWalls = function ()
-	{
-		this.wallBodyDef = new b2.dyn.b2BodyDef();
-		this.wallBodyDef.type = b2.dyn.b2Body.b2_staticBody;
-
-		this.wallFixtureDef = new b2.dyn.b2FixtureDef();
-		this.wallFixtureDef.shape = new b2.shapes.b2PolygonShape();
-		this.wallFixtureDef.density = 1;
-		this.wallFixtureDef.restitution = 0.4;
-
-		this.wallThickness = 0.2;
-
-		//down
-		// note : bodydef positions are computed from their mass center (width/2, height/2) (and not top left as we would naturally expect)
-
-		this.wallFixtureDef.shape.SetAsBox(this.consts.STAGE_WIDTH_B2 / 2, this.wallThickness);
-		this.wallBodyDef.position.Set(this.consts.STAGE_WIDTH_B2 / 2, this.consts.STAGE_HEIGHT_B2 - this.wallThickness / 2);
-		var body = this.world.CreateBody(this.wallBodyDef);
-		body.CreateFixture(this.wallFixtureDef, 0);
-		body.SetUserData("Down Wall");
-
-		// top
-		this.wallBodyDef.position.Set(this.consts.STAGE_WIDTH_B2 / 2, this.wallThickness / 2);
-		body = this.world.CreateBody(this.wallBodyDef);
-		body.CreateFixture(this.wallFixtureDef, 0);
-		body.SetUserData("top Wall");
-
-		//left
-		this.wallFixtureDef.shape.SetAsBox(this.wallThickness, this.consts.STAGE_HEIGHT_B2 - 2 * this.wallThickness);
-		this.wallBodyDef.position.Set(this.wallThickness, this.wallThickness);
-		body = this.world.CreateBody(this.wallBodyDef);
-		body.CreateFixture(this.wallFixtureDef, 0);
-		body.SetUserData("left Wall");
-
-
-		//Box
-		this.wallFixtureDef.shape.SetAsBox(1, 1);
-		this.wallBodyDef.position.Set(this.consts.STAGE_WIDTH_B2 - this.wallThickness, this.wallThickness);
-		body = this.world.CreateBody(this.wallBodyDef);
-		body.CreateFixture(this.wallFixtureDef, 0);
-		body.SetUserData("right Wall");
-
-		//right
-		this.wallBodyDef.position.Set(this.consts.STAGE_WIDTH_B2 - this.wallThickness, this.wallThickness);
-		body = this.world.CreateBody(this.wallBodyDef);
-		body.CreateFixture(this.wallFixtureDef, 0);
-		body.SetUserData("right Wall");
-	};
-
 	this.CreatePuddles = function()
 	{
 		var bodyDef = new b2.dyn.b2BodyDef();
@@ -140,8 +91,6 @@
 		for (var i = trackWalls.length - 1; i >= 0; i--)
 		{
 			var position = trackWalls[i].GetPosition();
-			//console.log(position);
-			//console.log(this.consts.STAGE_WIDTH_B2 / 2, this.consts.STAGE_HEIGHT_B2 / 2);
 			trackWalls[i].SetPosition(new b2.cMath.b2Vec2(position.x + this.consts.STAGE_WIDTH_B2 / 2, position.y +this.consts.STAGE_HEIGHT_B2 / 2));
 
 		}
@@ -150,12 +99,16 @@
 
 	this.AddCar = function(carInstance, pixiStage)
 	{
-		// TODO : add the car to the carsArray
 		carInstance.checkPointManager = new CheckPointManager(3);
 		this.cars.push(carInstance);
 		carInstance.b2Body.SetPosition(new b2.cMath.b2Vec2(3, 3));
-		//this.world.
 		pixiStage.addChild(carInstance.pixiSprite);
+
+		var body = getBodiesWithNamesStartingWith(this.world, "start");
+		var pos = body[carPlaced++].GetPosition();
+		console.log(pos);
+		carInstance.b2Body.SetPosition(pos);
+		//console.log(this.cars);
 	};
 
 };

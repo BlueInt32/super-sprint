@@ -42,17 +42,17 @@
   [
     
     {
-      "class" : "body",
-      "displayName" : "category",
-      "name" : "category",
-      "type" : "string"
-    },
-    
-    {
       "class" : "joint",
       "displayName" : "direction",
       "name" : "direction",
       "type" : "bool"
+    },
+    
+    {
+      "class" : "body",
+      "displayName" : "category",
+      "name" : "category",
+      "type" : "string"
     },
     
     {

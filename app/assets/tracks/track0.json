@@ -9,6 +9,36 @@
 			"angle" : 0,
 			"angularVelocity" : 0,
 			"awake" : true,
+			"linearVelocity" : 0,
+			"massData-mass" : 1,
+			"name" : "start_0",
+			"position" : 
+			{
+				"x" : 0.4734653234481812,
+				"y" : 2.679650306701660
+			},
+			"type" : 2
+		},
+		
+		{
+			"angle" : 0,
+			"angularVelocity" : 0,
+			"awake" : true,
+			"linearVelocity" : 0,
+			"massData-mass" : 1,
+			"name" : "start_1",
+			"position" : 
+			{
+				"x" : 0.7325001358985901,
+				"y" : 3.345739841461182
+			},
+			"type" : 2
+		},
+		
+		{
+			"angle" : 0,
+			"angularVelocity" : 0,
+			"awake" : true,
 			"fixture" : 
 			[
 				
