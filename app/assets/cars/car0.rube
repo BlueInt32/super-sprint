@@ -42,17 +42,17 @@
   [
     
     {
-      "class" : "joint",
-      "displayName" : "direction",
-      "name" : "direction",
-      "type" : "bool"
-    },
-    
-    {
       "class" : "body",
       "displayName" : "category",
       "name" : "category",
       "type" : "string"
+    },
+    
+    {
+      "class" : "joint",
+      "displayName" : "direction",
+      "name" : "direction",
+      "type" : "bool"
     },
     
     {
@@ -460,13 +460,13 @@
         "enableLimit" : true,
         "enableMotor" : false,
         "id" : 2,
-        "lowerLimit" : -0.5235987901687622,
+        "lowerLimit" : 0,
         "maxMotorTorque" : 0,
         "motorSpeed" : 0,
         "name" : "direction",
         "referenceAngle" : 0,
         "type" : "revolute",
-        "upperLimit" : 0.5235987901687622
+        "upperLimit" : 0
       },
       
       {
@@ -494,13 +494,13 @@
         "enableLimit" : true,
         "enableMotor" : false,
         "id" : 4,
-        "lowerLimit" : -0.5235987901687622,
+        "lowerLimit" : 0,
         "maxMotorTorque" : 0,
         "motorSpeed" : 0,
         "name" : "direction",
         "referenceAngle" : 0,
         "type" : "revolute",
-        "upperLimit" : 0.5235987901687622
+        "upperLimit" : 0
       },
       
       {

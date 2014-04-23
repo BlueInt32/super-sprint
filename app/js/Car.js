@@ -123,6 +123,7 @@ Car.prototype.Accelerate = function ()
     {
         this.tires[i].ApplyForce(this.tires[i].GetWorldVector(this.LocalAccelerationVector), this.tires[i].GetWorldCenter());
     }
+   
 };
 Car.prototype.Brake = function ()
 {

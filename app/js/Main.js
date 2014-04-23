@@ -69,11 +69,10 @@
 	{
 		carConfigPointer = new Car0Config();
 
-
 		var rubeFilesLoader = new RubeFilesLoader(
 			{
 				track:Tracks[0].json/**/,
-				cars:[carConfigPointer.json]
+				cars:[carConfigPointer.json, carConfigPointer.json]
 			});
 		rubeFilesLoader.setWorld(b2Universe.world);
 		rubeFilesLoader.load(box2dLoaded);
@@ -119,21 +118,17 @@
 
 	function update()
 	{
-
-
 		requestAnimationFrame(update);
 		b2Universe.world.Step(1 / 60, 3, 3);
 		b2Universe.world.ClearForces();
 
 		b2Universe.world.DrawDebugData();
 
-		//var ctx = document.getElementById("canvas").getContext("2d");
-		//ctx.drawImage(document.getElementById("canvas"), 0, 0, 200, 200);
-
-		for(var carIndex in b2Universe.cars)
-		{
-			b2Universe.cars[carIndex].updateData(keyboardHandler.Keys);
-		}
+		// TODO : update only keyboard data for player's car, the other cars must not be updated the same way.
+		//for(var carIndex in b2Universe.cars)
+		//{
+			b2Universe.cars[0].updateData(keyboardHandler.Keys);
+		//}
 		//pixiRenderer.render(pixiStage);
 		stats.update();
 	}

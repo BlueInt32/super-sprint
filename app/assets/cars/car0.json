@@ -395,6 +395,72 @@
 		{
 			"anchorA" : 
 			{
+				"x" : 0.1329396963119507,
+				"y" : 0.1621161401271820
+			},
+			"anchorB" : 
+			{
+				"x" : 0,
+				"y" : 1.490116119384766e-008
+			},
+			"bodyA" : 3,
+			"bodyB" : 2,
+			"customProperties" : 
+			[
+				
+				{
+					"bool" : true,
+					"name" : "direction"
+				}
+			],
+			"enableLimit" : true,
+			"enableMotor" : false,
+			"jointSpeed" : 0,
+			"lowerLimit" : 0,
+			"maxMotorTorque" : 0,
+			"motorSpeed" : 0,
+			"name" : "direction",
+			"refAngle" : 0,
+			"type" : "revolute",
+			"upperLimit" : 0
+		},
+		
+		{
+			"anchorA" : 
+			{
+				"x" : -0.1359125077724457,
+				"y" : 0.1647480428218842
+			},
+			"anchorB" : 
+			{
+				"x" : 0,
+				"y" : 1.490116119384766e-008
+			},
+			"bodyA" : 3,
+			"bodyB" : 4,
+			"customProperties" : 
+			[
+				
+				{
+					"bool" : true,
+					"name" : "direction"
+				}
+			],
+			"enableLimit" : true,
+			"enableMotor" : false,
+			"jointSpeed" : 0,
+			"lowerLimit" : 0,
+			"maxMotorTorque" : 0,
+			"motorSpeed" : 0,
+			"name" : "direction",
+			"refAngle" : 0,
+			"type" : "revolute",
+			"upperLimit" : 0
+		},
+		
+		{
+			"anchorA" : 
+			{
 				"x" : 0.1315983533859253,
 				"y" : -0.1478888094425201
 			},
@@ -440,72 +506,6 @@
 			"refAngle" : 0,
 			"type" : "revolute",
 			"upperLimit" : 0
-		},
-		
-		{
-			"anchorA" : 
-			{
-				"x" : 0.1329396963119507,
-				"y" : 0.1621161401271820
-			},
-			"anchorB" : 
-			{
-				"x" : 0,
-				"y" : 1.490116119384766e-008
-			},
-			"bodyA" : 3,
-			"bodyB" : 2,
-			"customProperties" : 
-			[
-				
-				{
-					"bool" : true,
-					"name" : "direction"
-				}
-			],
-			"enableLimit" : true,
-			"enableMotor" : false,
-			"jointSpeed" : 0,
-			"lowerLimit" : -0.5235987901687622,
-			"maxMotorTorque" : 0,
-			"motorSpeed" : 0,
-			"name" : "direction",
-			"refAngle" : 0,
-			"type" : "revolute",
-			"upperLimit" : 0.5235987901687622
-		},
-		
-		{
-			"anchorA" : 
-			{
-				"x" : -0.1359125077724457,
-				"y" : 0.1647480428218842
-			},
-			"anchorB" : 
-			{
-				"x" : 0,
-				"y" : 1.490116119384766e-008
-			},
-			"bodyA" : 3,
-			"bodyB" : 4,
-			"customProperties" : 
-			[
-				
-				{
-					"bool" : true,
-					"name" : "direction"
-				}
-			],
-			"enableLimit" : true,
-			"enableMotor" : false,
-			"jointSpeed" : 0,
-			"lowerLimit" : -0.5235987901687622,
-			"maxMotorTorque" : 0,
-			"motorSpeed" : 0,
-			"name" : "direction",
-			"refAngle" : 0,
-			"type" : "revolute",
-			"upperLimit" : 0.5235987901687622
 		}
 	],
 	"positionIterations" : 3,

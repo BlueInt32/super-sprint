@@ -106,7 +106,6 @@
 
 		var body = getBodiesWithNamesStartingWith(this.world, "start");
 		var pos = body[carPlaced++].GetPosition();
-		console.log(pos);
 		carInstance.b2Body.SetPosition(pos);
 		//console.log(this.cars);
 	};

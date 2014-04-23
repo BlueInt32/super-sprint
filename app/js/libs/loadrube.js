@@ -182,6 +182,7 @@ function getVectorValue(val) {
 function loadJointCommonProperties(jd, jointJso, loadedBodies) {
 
     //jointJso
+    //console.log(loadedBodies);
     jd.bodyA = loadedBodies[jointJso.bodyA];
     jd.bodyB = loadedBodies[jointJso.bodyB];
     jd.localAnchorA.SetV( getVectorValue(jointJso.anchorA) );
