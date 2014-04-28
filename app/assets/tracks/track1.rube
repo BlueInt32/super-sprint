@@ -45,8 +45,8 @@
     "continuousPhysics" : true,
     "exportOptions" : 
     {
-      "compactCommonFloats" : true,
-      "compactZeroVecs" : true,
+      "compactCommonFloats" : false,
+      "compactZeroVecs" : false,
       "saveFullPathForImages" : false,
       "saveImagePathsRelativeToRUBEFile" : false,
       "useHumanReadableFloats" : true,
@@ -66,7 +66,7 @@
           {
             "density" : 1,
             "friction" : 0.2,
-            "id" : 2,
+            "id" : 1,
             "name" : "fixture1",
             "shapes" : 
             [
@@ -77,12 +77,12 @@
             ],
             "vertices" : 
             {
-              "x" : [ 1, 0.0, 1 ],
-              "y" : [ 0.0, -1, -1 ]
+              "x" : [ 1, 1, 0.0 ],
+              "y" : [ -1, 0.0, -1 ]
             }
           }
         ],
-        "id" : 2,
+        "id" : 1,
         "linearVelocity" : 0,
         "name" : "body1",
         "position" : 
@@ -91,6 +91,73 @@
           "y" : -1
         },
         "type" : "static"
+      },
+      
+      {
+        "angle" : 0,
+        "angularVelocity" : 0,
+        "awake" : true,
+        "fixture" : 
+        [
+          
+          {
+            "density" : 1,
+            "friction" : 0.2,
+            "id" : 2,
+            "name" : "fixture0",
+            "sensor" : true,
+            "shapes" : 
+            [
+              
+              {
+                "type" : "loop"
+              }
+            ],
+            "vertices" : 
+            {
+              "x" : [ -0.1646099388599396, 0.9609344005584717, 4.103293418884277 ],
+              "y" : [ 0.2923913300037384, -3.233504056930542, -1.221163868904114 ]
+            }
+          }
+        ],
+        "id" : 2,
+        "linearVelocity" : 0,
+        "massData-mass" : 1,
+        "name" : "body0",
+        "position" : 0,
+        "type" : "dynamic"
+      },
+      
+      {
+        "angle" : 0,
+        "angularVelocity" : 0,
+        "awake" : true,
+        "id" : 3,
+        "linearVelocity" : 0,
+        "massData-mass" : 1,
+        "name" : "start0",
+        "position" : 
+        {
+          "x" : 3.749488830566406,
+          "y" : -3.216304779052734
+        },
+        "type" : "dynamic"
+      },
+      
+      {
+        "angle" : 0,
+        "angularVelocity" : 0,
+        "awake" : true,
+        "id" : 4,
+        "linearVelocity" : 0,
+        "massData-mass" : 1,
+        "name" : "start1",
+        "position" : 
+        {
+          "x" : 3.818286895751953,
+          "y" : 0.1547954082489014
+        },
+        "type" : "dynamic"
       }
     ],
     "positionIterations" : 3,

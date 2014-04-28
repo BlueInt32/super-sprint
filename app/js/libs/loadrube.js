@@ -225,6 +225,12 @@ function loadJointFromRUBE(jointJso, world, loadedBodies)
             jd.enableLimit = jointJso.enableLimit;
         if ( jointJso.hasOwnProperty('enableMotor'))
             jd.enableMotor = jointJso.enableMotor;
+
+        jd.lowerAngle = 0;
+        jd.upperAngle = 0;
+        jd.referenceAngle = 0;
+
+
         joint = world.CreateJoint(jd);
     }
     else if ( jointJso.type == "distance" || jointJso.type == "rope" ) {
@@ -304,6 +310,7 @@ function loadJointFromRUBE(jointJso, world, loadedBodies)
     }
     if ( joint && jointJso.name )
         joint.name = jointJso.name;
+    console.log(joint);
     return joint;
 }
 

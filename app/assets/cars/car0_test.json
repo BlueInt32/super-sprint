@@ -1,0 +1,397 @@
+
+{
+	"allowSleep" : true,
+	"autoClearForces" : true,
+	"body" : 
+	[
+		
+		{
+			"angle" : 0,
+			"angularVelocity" : 0,
+			"awake" : true,
+			"customProperties" : 
+			[
+				
+				{
+					"name" : "category",
+					"string" : "wheel"
+				},
+				
+				{
+					"bool" : true,
+					"name" : "isBackWheel"
+				}
+			],
+			"fixture" : 
+			[
+				
+				{
+					"density" : 0.4,
+					"friction" : 0.2,
+					"name" : "carFixture",
+					"polygon" : 
+					{
+						"vertices" : 
+						{
+							"x" : 
+							[
+								0.02359939925372601,
+								0.02359939925372601,
+								-0.02367890067398548,
+								-0.02367890067398548
+							],
+							"y" : 
+							[
+								-0.05900830030441284,
+								0.05918730050325394,
+								0.05918730050325394,
+								-0.05900830030441284
+							]
+						}
+					}
+				}
+			],
+			"linearVelocity" : 0,
+			"massData-I" : 3.018601546500577e-006,
+			"massData-center" : 
+			{
+				"x" : -3.975056097260676e-005,
+				"y" : 8.950019400799647e-005
+			},
+			"massData-mass" : 0.002235234715044498,
+			"name" : "wheel_rear_left",
+			"position" : 
+			{
+				"x" : -0.1351213008165360,
+				"y" : -0.1489881575107575
+			},
+			"type" : 2
+		},
+		
+		{
+			"angle" : 0,
+			"angularVelocity" : 0,
+			"awake" : true,
+			"customProperties" : 
+			[
+				
+				{
+					"name" : "category",
+					"string" : "wheel"
+				},
+				
+				{
+					"bool" : true,
+					"name" : "isBackWheel"
+				}
+			],
+			"fixture" : 
+			[
+				
+				{
+					"density" : 0.4,
+					"friction" : 0.2,
+					"name" : "carFixture",
+					"polygon" : 
+					{
+						"vertices" : 
+						{
+							"x" : 
+							[
+								0.02368590049445629,
+								0.02368590049445629,
+								-0.02359230071306229,
+								-0.02359230071306229
+							],
+							"y" : 
+							[
+								-0.05914270132780075,
+								0.05905289947986603,
+								0.05905289947986603,
+								-0.05914270132780075
+							]
+						}
+					}
+				}
+			],
+			"linearVelocity" : 0,
+			"massData-I" : 3.018581537617138e-006,
+			"massData-center" : 
+			{
+				"x" : 4.679989433498122e-005,
+				"y" : -4.490109131438658e-005
+			},
+			"massData-mass" : 0.002235230291262269,
+			"name" : "wheel_rear_right",
+			"position" : 
+			{
+				"x" : 0.1331824362277985,
+				"y" : -0.1454782932996750
+			},
+			"type" : 2
+		},
+		
+		{
+			"angle" : 0,
+			"angularVelocity" : 0,
+			"awake" : true,
+			"customProperties" : 
+			[
+				
+				{
+					"name" : "category",
+					"string" : "wheel"
+				},
+				
+				{
+					"bool" : false,
+					"name" : "isBackWheel"
+				}
+			],
+			"fixture" : 
+			[
+				
+				{
+					"density" : 0.4,
+					"friction" : 0.2,
+					"name" : "carFixture",
+					"polygon" : 
+					{
+						"vertices" : 
+						{
+							"x" : 
+							[
+								0.02363920025527477,
+								0.02363920025527477,
+								-0.02363909967243671,
+								-0.02363909967243671
+							],
+							"y" : 
+							[
+								-0.05913339927792549,
+								0.05906220152974129,
+								0.05906220152974129,
+								-0.05913339927792549
+							]
+						}
+					}
+				}
+			],
+			"linearVelocity" : 0,
+			"massData-I" : 3.018582901859190e-006,
+			"massData-center" : 
+			{
+				"x" : 5.044131867748547e-008,
+				"y" : -3.559877586667426e-005
+			},
+			"massData-mass" : 0.002235234715044498,
+			"name" : "wheel_front_right",
+			"position" : 
+			{
+				"x" : 0.1345237791538239,
+				"y" : 0.1645266711711884
+			},
+			"type" : 2
+		},
+		
+		{
+			"angle" : 0,
+			"angularVelocity" : 0,
+			"awake" : true,
+			"customProperties" : 
+			[
+				
+				{
+					"name" : "category",
+					"string" : "car_body"
+				}
+			],
+			"fixture" : 
+			[
+				
+				{
+					"density" : 0.4,
+					"friction" : 0.2,
+					"name" : "carFixture",
+					"polygon" : 
+					{
+						"vertices" : 
+						{
+							"x" : 
+							[
+								0.1315088868141174,
+								0.09585019946098328,
+								-0.09466549754142761,
+								-0.1350100934505463,
+								-0.08044251054525375,
+								0.07450269162654877
+							],
+							"y" : 
+							[
+								-0.2041404843330383,
+								0.0009528250084258616,
+								0.001858960022218525,
+								-0.2052814960479736,
+								-0.2473394870758057,
+								-0.2464614808559418
+							]
+						}
+					}
+				},
+				
+				{
+					"density" : 0.4,
+					"friction" : 0.2,
+					"name" : "carFixture",
+					"polygon" : 
+					{
+						"vertices" : 
+						{
+							"x" : 
+							[
+								0.1301400065422058,
+								0.07375581562519074,
+								-0.08468848466873169,
+								-0.1405369937419891,
+								-0.09466549754142761,
+								0.09585019946098328
+							],
+							"y" : 
+							[
+								0.2222889959812164,
+								0.2567003369331360,
+								0.2586153447628021,
+								0.2221910059452057,
+								0.001858960022218525,
+								0.0009528250084258616
+							]
+						}
+					}
+				}
+			],
+			"linearVelocity" : 0,
+			"massData-I" : 0.001205926993861795,
+			"massData-center" : 
+			{
+				"x" : -0.002019969979301095,
+				"y" : 0.006846812553703785
+			},
+			"massData-mass" : 0.04580427333712578,
+			"name" : "car_body",
+			"position" : 
+			{
+				"x" : 0.001584090292453766,
+				"y" : 0.002410523593425751
+			},
+			"type" : 2
+		},
+		
+		{
+			"angle" : 0,
+			"angularVelocity" : 0,
+			"awake" : true,
+			"customProperties" : 
+			[
+				
+				{
+					"name" : "category",
+					"string" : "wheel"
+				},
+				
+				{
+					"bool" : false,
+					"name" : "isBackWheel"
+				}
+			],
+			"fixture" : 
+			[
+				
+				{
+					"density" : 0.4,
+					"friction" : 0.2,
+					"name" : "carFixture",
+					"polygon" : 
+					{
+						"vertices" : 
+						{
+							"x" : 
+							[
+								0.02365179918706417,
+								0.02365179918706417,
+								-0.02362650074064732,
+								-0.02362650074064732
+							],
+							"y" : 
+							[
+								-0.05906359851360321,
+								0.05913199856877327,
+								0.05913199856877327,
+								-0.05906359851360321
+							]
+						}
+					}
+				}
+			],
+			"linearVelocity" : 0,
+			"massData-I" : 3.018582674485515e-006,
+			"massData-center" : 
+			{
+				"x" : 1.264917136722943e-005,
+				"y" : 3.420009306864813e-005
+			},
+			"massData-mass" : 0.002235234715044498,
+			"name" : "wheel_front_left",
+			"position" : 
+			{
+				"x" : -0.1343284249305725,
+				"y" : 0.1671585738658905
+			},
+			"type" : 2
+		}
+	],
+	"collisionbitplanes" : 
+	{
+		"names" : 
+		[
+			"bitplane1",
+			"bitplane2",
+			"bitplane3",
+			"bitplane4",
+			"bitplane5",
+			"bitplane6",
+			"bitplane7",
+			"bitplane8",
+			"bitplane9",
+			"bitplane10",
+			"bitplane11",
+			"bitplane12",
+			"bitplane13",
+			"bitplane14",
+			"bitplane15",
+			"bitplane16",
+			"bitplane17",
+			"bitplane18",
+			"bitplane19",
+			"bitplane20",
+			"bitplane21",
+			"bitplane22",
+			"bitplane23",
+			"bitplane24",
+			"bitplane25",
+			"bitplane26",
+			"bitplane27",
+			"bitplane28",
+			"bitplane29",
+			"bitplane30",
+			"bitplane31",
+			"bitplane32"
+		]
+	},
+	"continuousPhysics" : true,
+	"gravity" : 0,
+	"positionIterations" : 3,
+	"stepsPerSecond" : 60.0,
+	"subStepping" : false,
+	"velocityIterations" : 3,
+	"warmStarting" : true
+}

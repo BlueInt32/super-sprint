@@ -2,43 +2,146 @@
 {
 	"allowSleep" : true,
 	"autoClearForces" : true,
-	"body" :
+	"body" : 
 	[
-
+		
 		{
 			"angle" : 0,
 			"angularVelocity" : 0,
 			"awake" : true,
-			"fixture" :
+			"linearVelocity" : 
+			{
+				"x" : 0,
+				"y" : 0
+			},
+			"massData-mass" : 1,
+			"name" : "start1",
+			"position" : 
+			{
+				"x" : 3.818286895751953,
+				"y" : 0.1547954082489014
+			},
+			"type" : 2
+		},
+		
+		{
+			"angle" : 0,
+			"angularVelocity" : 0,
+			"awake" : true,
+			"linearVelocity" : 
+			{
+				"x" : 0,
+				"y" : 0
+			},
+			"massData-mass" : 1,
+			"name" : "start0",
+			"position" : 
+			{
+				"x" : 3.749488830566406,
+				"y" : -3.216304779052734
+			},
+			"type" : 2
+		},
+		
+		{
+			"angle" : 0,
+			"angularVelocity" : 0,
+			"awake" : true,
+			"fixture" : 
 			[
-
+				
+				{
+					"chain" : 
+					{
+						"hasNextVertex" : true,
+						"hasPrevVertex" : true,
+						"nextVertex" : 
+						{
+							"x" : 0.9609344005584717,
+							"y" : -3.233504056930542
+						},
+						"prevVertex" : 
+						{
+							"x" : 4.103293418884277,
+							"y" : -1.221163868904114
+						},
+						"vertices" : 
+						{
+							"x" : 
+							[
+								-0.1646099388599396,
+								0.9609344005584717,
+								4.103293418884277,
+								-0.1646099388599396
+							],
+							"y" : 
+							[
+								0.2923913300037384,
+								-3.233504056930542,
+								-1.221163868904114,
+								0.2923913300037384
+							]
+						}
+					},
+					"density" : 1,
+					"friction" : 0.2000000029802322,
+					"name" : "fixture0",
+					"sensor" : true
+				}
+			],
+			"linearVelocity" : 
+			{
+				"x" : 0,
+				"y" : 0
+			},
+			"massData-mass" : 1,
+			"name" : "body0",
+			"position" : 
+			{
+				"x" : 0,
+				"y" : 0
+			},
+			"type" : 2
+		},
+		
+		{
+			"angle" : 0,
+			"angularVelocity" : 0,
+			"awake" : true,
+			"fixture" : 
+			[
+				
 				{
 					"density" : 1,
-					"friction" : 0.2,
+					"friction" : 0.2000000029802322,
 					"name" : "fixture1",
-					"polygon" :
+					"polygon" : 
 					{
-						"vertices" :
+						"vertices" : 
 						{
-							"x" : [ 1, 1, 0.0 ],
-							"y" : [ -1, 0.0, -1 ]
+							"x" : [ 1.0, 1.0, 0.0 ],
+							"y" : [ -1.0, 0.0, -1.0 ]
 						}
 					}
 				}
 			],
-			"linearVelocity" : 0,
+			"linearVelocity" : 
+			{
+				"x" : 0,
+				"y" : 0
+			},
 			"name" : "body1",
-			"position" :
+			"position" : 
 			{
 				"x" : 1,
-				"y" : -1
+				"y" : -1.0
 			},
 			"type" : 0
 		}
 	],
-	"collisionbitplanes" :
+	"collisionbitplanes" : 
 	{
-		"names" :
+		"names" : 
 		[
 			"bitplane1",
 			"bitplane2",
@@ -75,7 +178,11 @@
 		]
 	},
 	"continuousPhysics" : true,
-	"gravity" : 0,
+	"gravity" : 
+	{
+		"x" : 0,
+		"y" : 0
+	},
 	"positionIterations" : 3,
 	"stepsPerSecond" : 60.0,
 	"subStepping" : false,

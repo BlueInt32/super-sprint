@@ -54,6 +54,7 @@
 		{
 			return { "type":"boost", "boostVector":bData.customProperties[0].vec2 };
 		}
+		return { 'type': '' }
 	};
 
 	contactListener.BeginContact = function(contact)

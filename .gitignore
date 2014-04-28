@@ -71,3 +71,5 @@ app/js/min.js
 #rube data
 *.rs
 assets/**/*rube-backups/**
+
+backups/

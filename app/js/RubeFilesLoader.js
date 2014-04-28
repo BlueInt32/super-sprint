@@ -117,8 +117,8 @@ RubeFilesLoader.prototype.PreprocessRube = function(parsedJson)
             if(joint.anchorB !== 0)
                 joint.anchorB.y = joint.anchorB.y * -1;
 
-            //joint.upperLimit = - joint.upperLimit;
-            //joint.lowerLimit = - joint.lowerLimit;
+            joint.upperLimit = 0;
+            joint.lowerLimit = 0;
 
         }
     }

@@ -71,8 +71,8 @@
 
 		var rubeFilesLoader = new RubeFilesLoader(
 			{
-				track:Tracks[0].json/**/,
-				cars:[carConfigPointer.json, carConfigPointer.json]
+				track:Tracks[1].json,
+				cars:[carConfigPointer.json/*, carConfigPointer.json*/]
 			});
 		rubeFilesLoader.setWorld(b2Universe.world);
 		rubeFilesLoader.load(box2dLoaded);

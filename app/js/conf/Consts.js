@@ -5,5 +5,6 @@
 	this.STAGE_WIDTH_B2 = this.STAGE_WIDTH_PIXEL / this.METER;
 	this.STAGE_HEIGHT_PIXEL= 750;
 	this.STAGE_HEIGHT_B2 = this.STAGE_HEIGHT_PIXEL / this.METER;
+    this.DEGTORAD = 2 * Math.PI / 360;
 
 };
