@@ -106,7 +106,6 @@ Car.prototype.UpdateSteering = function(keyboardData)
     this.directionJoints[1].SetLimits( newAngle, newAngle );
 
     this.UpdateFriction();
-
     var position = this.b2Body.GetPosition();
     //console.log(position);
     this.pixiSprite.position.x = position.x * this.METER;
