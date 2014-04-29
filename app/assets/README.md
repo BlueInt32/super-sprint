@@ -13,7 +13,7 @@ Cars have to be about 0.3 units wide (0.1 units are blue dotted in Rube) and 0.5
 ###### MetaData
 A car contains at least one main body and wheels, each of which having a custom property 'category'(string)
 - the main body has its category set to 'car_body'
-- the wheels have their category set to 'wheel'
+- the wheels have their category set to 'wheel_rear' for rear wheels and 'wheel_front' for front wheels
 
 There has to be 4 joints with bodyA set to the car_body and bodyB set to each wheel (bodyA of joints always has to be the car body, it's simpler). Joints have their anchors positionned to wheels centers.
 The two joints for front wheels are revolute joints, and have to be provided a custom property 'direction'(bool) set to true.
