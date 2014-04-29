@@ -1,12 +1,27 @@
+#### Creating resources for SuperSprint
+The easiest way to create objects for the game is to use the excellent box2d editor : [R.U.B.E](https://www.iforce2d.net/rube/)
+This app lets you export json files containing everything we need to recreate the objects inside the game world (except some details such as y axis inversion and center coords).
+
+One important thing to note though is that jsons export an entire world, whereas we want to use one json file per game object: 1 track and several cars.
+This means we have to inject the content of each json file to our unique world, and *in the right place*.
+
+
 #### Create a car
-Cars have to be about 0.3 units wide (0.1 units are blue dotted in Rube) and 0.5 units tall.
-A car has to contain 1 main body with a custom property 'category'(string) named 'car_body' and 4 wheels with category set to 'wheel'
+###### Size and position
+Cars have to be about 0.3 units wide (0.1 units are blue dotted in Rube) and 0.5 units tall. The car has to be as centered as possible, because this center will be translated to one of the track start positions.
+
+###### MetaData
+A car contains at least one main body and wheels, each of which having a custom property 'category'(string)
+    - the main body has its category set to 'car_body'
+    - the wheels have their category set to 'wheel'
 Rear wheels have to be set a custom property 'isBackWheel'(bool) set to true.
 There has to be 4 joints with bodyA set to the car_body and bodyB set to each wheel (bodyA of joints always has to be the car body, it's simpler). Joints have their anchors to wheels centers.
 The two joints for front wheels are revolute joints, and have to be provided a custom property 'direction'(bool) set to true.
 
 #### Create a track
-Tracks have to be about 10 rube units wide and 8 rube units tall. 
+
+###### Size
+Tracks have to be about 10 rube units wide and 8 rube units tall.
 
 - Walls have to be static bodies (that's all).
 - Checkpoints fixtures have to be set as sensors and named "cp#" (to handle contact correctly) with # starting from 0. There has to be at least 3 checkpoints for the timer to work properly.
