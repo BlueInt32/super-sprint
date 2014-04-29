@@ -7,7 +7,8 @@ function Car(consts, carIndex, configuration, isIA)
 	// B2
 	this.carBodyDef = new b2.dyn.b2BodyDef();
 	this.b2Body = null;
-	this.tires = [];
+	this.tiresFront = [];
+	this.rearTires = [];
 	this.tiresCount = 0;
 	this.directionJoints = [];
 
@@ -19,15 +20,22 @@ function Car(consts, carIndex, configuration, isIA)
 	this.LocalHandBrakeVector = b2.math.MulFV(-0.5, this.LocalAccelerationVector);
 	this.LocalNormalVector = new b2.cMath.b2Vec2(1, 0);
 	this.vCurrentRightNormals = [];
-	this.linearVelocities = []; // updated each turn (see updateData) this is the (vx, vy) vector in world ref for each tire
-								// 0 : front left, 1: front right, 2 :
-	this.currentRightForwards = []; // updated each turn (see updateData) this is the 1-length vector in world ref, corresponding to the pilot look straight ahead.
+
+	// updated each turn (see updateData) this is the (vx, vy) vector in world ref for each tire
+	// 0 : front left, 1: front right, 2 :
+	this.linearVelocities = [];
+
+	// updated each turn (see updateData) this is the 1-length
+	// vector in world ref, corresponding to the pilot look straight ahead.
+	this.currentRightForwards = [];
 
 	this.isIA = isIA;
 
 	// Steering mgmt
 	this.lockAngleDeg = this.configuration.wheelMaxAngle;
-	this.turnSpeedPerSec = this.configuration.steeringWheelSpeed * this.consts.DEGTORAD;//from lock to lock in 0.5 sec
+
+	//from lock to lock in 0.5 sec
+	this.turnSpeedPerSec = this.configuration.steeringWheelSpeed * this.consts.DEGTORAD;
 	this.turnPerTimeStep = this.turnSpeedPerSec / 60;
 	this.desiredAngle = 0;
 	this.adherenceFactor = 1;
@@ -56,10 +64,13 @@ function Car(consts, carIndex, configuration, isIA)
 	this.pixiSprite.scale.y = 1;
 }
 
+// param:  box2dData = {carBody : carBody, rearTires : carRearTires,
+//	frontTires : carFrontTires, directionJoints : dirJoints}
 Car.prototype.SetBox2dData = function(box2dData)
 {
 	this.b2Body = box2dData.carBody;
-	this.tires = box2dData.tires;
+	this.rearTires = box2dData.rearTires;
+	this.frontTires = box2dData.frontTires;
 	this.tiresCount = this.tires.length;
 	this.directionJoints = box2dData.directionJoints;
 	if(typeof this.directionJoints[0] !== 'undefined')
@@ -67,7 +78,6 @@ Car.prototype.SetBox2dData = function(box2dData)
 		this.directionJoints[0].SetLimits(0, 0);
 		this.directionJoints[1].SetLimits(0, 0);
 	}
-
 };
 
 

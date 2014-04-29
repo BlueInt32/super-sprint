@@ -52,9 +52,12 @@ WorldSetup.prototype.LoadResource = function(resourceNode)
         if(resourceNode.dataType === "car")
         {
             var carBody = getBodiesByCustomProperty(me.refWorld, "string", "category", "car_body")[0];
-            var carTires = getBodiesByCustomProperty(me.refWorld, "string", "category", "wheel");
+            var carRearTires = getBodiesByCustomProperty(me.refWorld, "string", "category", "wheel_rear");
+            var carFrontTires = getBodiesByCustomProperty(me.refWorld, "string", "category", "wheel_front");
+            console.log("rearTires", carRearTires);
+            console.log("frontTires", carFrontTires);
             var dirJoints = getNamedJoints(me.refWorld, "direction");
-            me.cars.push({carBody : carBody, tires : carTires, directionJoints : dirJoints});
+            me.cars.push({carBody : carBody, rearTires : carRearTires, frontTires : carFrontTires, directionJoints : dirJoints});
         }
         else if (resourceNode.dataType === "track")
         {

@@ -83,8 +83,8 @@
 		var rCar = new Car(Consts, 0, carConfigPointer);
 		var sCar = new Car(Consts, 0, carConfigPointer);
 
-		console.log(rCar);
-		console.log(sCar);
+		//console.log(rCar);
+		//console.log(sCar);
 
 		setUpDatGui(rCar);
 		//console.log(loaderTrackWalls);

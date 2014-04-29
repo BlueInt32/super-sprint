@@ -82,7 +82,7 @@
           
           {
             "name" : "category",
-            "string" : "wheel"
+            "string" : "wheel_front"
           }
         ],
         "fixture" : 
@@ -222,7 +222,7 @@
           
           {
             "name" : "category",
-            "string" : "wheel"
+            "string" : "wheel_front"
           }
         ],
         "fixture" : 
@@ -286,7 +286,7 @@
           
           {
             "name" : "category",
-            "string" : "wheel"
+            "string" : "wheel_rear"
           }
         ],
         "fixture" : 
@@ -350,7 +350,7 @@
           
           {
             "name" : "category",
-            "string" : "wheel"
+            "string" : "wheel_rear"
           }
         ],
         "fixture" : 

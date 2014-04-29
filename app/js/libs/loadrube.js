@@ -310,7 +310,7 @@ function loadJointFromRUBE(jointJso, world, loadedBodies)
     }
     if ( joint && jointJso.name )
         joint.name = jointJso.name;
-    console.log(joint);
+    //console.log(joint);
     return joint;
 }
 
