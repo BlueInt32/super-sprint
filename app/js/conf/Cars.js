@@ -1,10 +1,9 @@
-
 var Car0Config = function()
 {
     this.width = 40; // px unit
     this.height= 25; // px unit
     this.sprite= "assets/cars/images/Voiture_03.png";
-    this.json= "assets/cars/car0_test.json";
+    this.json= "assets/cars/car0.json";
 
     // physics properties
     this.accelerationFactor= 0.1;
