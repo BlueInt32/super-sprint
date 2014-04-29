@@ -18,7 +18,7 @@
 				'js/utils/b2.js',
 				'js/utils/LinkedList.js',
 				'js/b2Universe.js',
-				'js/RubeFilesLoader.js',
+				'js/WorldSetup.js',
 				'js/CheckpointManager.js',
 				'js/conf/Consts.js',
 				'js/conf/Cars.js',
@@ -45,7 +45,7 @@
 						'js/utils/b2.js',
 						'js/utils/LinkedList.js',
 						'js/b2Universe.js',
-						'js/RubeFilesLoader.js',
+						'js/WorldSetup.js',
 						'js/conf/Consts.js',
 						'js/conf/Cars.js',
 						'js/conf/Tracks.js',
@@ -81,12 +81,12 @@
 					// includes files within path and its sub-directories
 					//{expand: true, src: ['path/**'], dest: 'dest/'},
 					{
-						expand: true, 
-						src: ['assets/**',"!**/*.lnk", "!**/*.rube", "!**/*rube-backups/**", "!**/*.log"], 
+						expand: true,
+						src: ['assets/**',"!**/*.lnk", "!**/*.rube", "!**/*rube-backups/**", "!**/*.log"],
 						dest: 'publish/',
-						options: 
+						options:
 						{
-							process: function (content, srcpath) 
+							process: function (content, srcpath)
 							{
 								console.log(srcpath);
 								if(srcpath === "min.js")
@@ -97,7 +97,7 @@
 						{
 							if(src.indexOf('.json') === -1)
 							{
-								
+
 								return dest+'/'+src;
 							}
 							return dest +  src.replace(".json", ".js");
@@ -123,25 +123,25 @@
 		        	message: 'Hello world!'
 				}
 		    },
-		    dist: 
+		    dist:
 		    {
-				files: 
+				files:
 				{
 					'publish/index.html': ['index.html']
 				}
 		    }
 		},
 		replace: {
-			example: 
+			example:
 			{
 				src: ['publish/js/min.js'],             // source files array (supports minimatch)
 				overwrite: true,
-				replacements: 
+				replacements:
 				[
 					{
 						from: /([a-zA-Z0-9]+)\.json"/g,                   // string replacement
 						//to: '$1.js"',
-						to: function (matchedWord, index, fullText, regexMatches) 
+						to: function (matchedWord, index, fullText, regexMatches)
 						{
 							console.log(matchedWord);
 							// matchedWord:  "world"

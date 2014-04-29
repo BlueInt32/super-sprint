@@ -69,29 +69,31 @@
 	{
 		carConfigPointer = new Car0Config();
 
-		var rubeFilesLoader = new RubeFilesLoader(
-			{
-				track:Tracks[1].json,
-				cars:[carConfigPointer.json/*, carConfigPointer.json*/]
-			});
-		rubeFilesLoader.setWorld(b2Universe.world);
-		rubeFilesLoader.load(box2dLoaded);
+		var worldSetup = new WorldSetup(
+		{
+			track:Tracks[1].json,
+			cars:[carConfigPointer.json/*, carConfigPointer.json*/]
+		});
+		worldSetup.setWorld(b2Universe.world);
+		worldSetup.launchMultiLoad(box2dLoaded);
 	}
 
 	function box2dLoaded(loaderTrackWalls, loaderCars)
 	{
-		var rcar = new Car(Consts, 0, carConfigPointer);
+		var rCar = new Car(Consts, 0, carConfigPointer);
 		var sCar = new Car(Consts, 0, carConfigPointer);
 
+		console.log(rCar);
+		console.log(sCar);
 
-		setUpDatGui(rcar);
+		setUpDatGui(rCar);
 		//console.log(loaderTrackWalls);
 		b2Universe.PositionTrack(loaderTrackWalls);
-		rcar.SetBox2dData(loaderCars[0]);
-		sCar.SetBox2dData(loaderCars[0]);
+		rCar.SetBox2dData(loaderCars[0]);
+		//sCar.SetBox2dData(loaderCars[0]);
 
-		b2Universe.AddCar(rcar, pixiStage);
-		b2Universe.AddCar(sCar, pixiStage);
+		b2Universe.AddCar(rCar, pixiStage);
+		//b2Universe.AddCar(sCar, pixiStage);
 
 		document.onkeydown = keyboardHandler.HandleKeyDown.bind(keyboardHandler);
 		document.onkeyup = keyboardHandler.HandleKeyUp.bind(keyboardHandler);

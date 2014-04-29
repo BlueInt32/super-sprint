@@ -15,11 +15,6 @@
 				{
 					"name" : "category",
 					"string" : "wheel"
-				},
-				
-				{
-					"bool" : true,
-					"name" : "isBackWheel"
 				}
 			],
 			"fixture" : 
@@ -78,11 +73,6 @@
 				{
 					"name" : "category",
 					"string" : "wheel"
-				},
-				
-				{
-					"bool" : true,
-					"name" : "isBackWheel"
 				}
 			],
 			"fixture" : 
@@ -141,11 +131,6 @@
 				{
 					"name" : "category",
 					"string" : "wheel"
-				},
-				
-				{
-					"bool" : false,
-					"name" : "isBackWheel"
 				}
 			],
 			"fixture" : 
@@ -296,11 +281,6 @@
 				{
 					"name" : "category",
 					"string" : "wheel"
-				},
-				
-				{
-					"bool" : false,
-					"name" : "isBackWheel"
 				}
 			],
 			"fixture" : 
@@ -395,6 +375,56 @@
 		{
 			"anchorA" : 
 			{
+				"x" : 0.1315983533859253,
+				"y" : -0.1478888094425201
+			},
+			"anchorB" : 
+			{
+				"x" : 0,
+				"y" : 1.490116119384766e-008
+			},
+			"bodyA" : 3,
+			"bodyB" : 1,
+			"enableLimit" : true,
+			"enableMotor" : false,
+			"jointSpeed" : 0,
+			"lowerLimit" : 0,
+			"maxMotorTorque" : 0,
+			"motorSpeed" : 0,
+			"name" : "joint3",
+			"refAngle" : 0,
+			"type" : "revolute",
+			"upperLimit" : 0
+		},
+		
+		{
+			"anchorA" : 
+			{
+				"x" : -0.1367053985595703,
+				"y" : -0.1513986885547638
+			},
+			"anchorB" : 
+			{
+				"x" : -1.490116119384766e-008,
+				"y" : 1.490116119384766e-008
+			},
+			"bodyA" : 3,
+			"bodyB" : 0,
+			"enableLimit" : true,
+			"enableMotor" : false,
+			"jointSpeed" : 0,
+			"lowerLimit" : 0,
+			"maxMotorTorque" : 0,
+			"motorSpeed" : 0,
+			"name" : "joint2",
+			"refAngle" : 0,
+			"type" : "revolute",
+			"upperLimit" : 0
+		},
+		
+		{
+			"anchorA" : 
+			{
 				"x" : 0.1329396963119507,
 				"y" : 0.1621161401271820
 			},
@@ -453,56 +483,6 @@
 			"maxMotorTorque" : 0,
 			"motorSpeed" : 0,
 			"name" : "direction",
-			"refAngle" : 0,
-			"type" : "revolute",
-			"upperLimit" : 0
-		},
-		
-		{
-			"anchorA" : 
-			{
-				"x" : 0.1315983533859253,
-				"y" : -0.1478888094425201
-			},
-			"anchorB" : 
-			{
-				"x" : 0,
-				"y" : 1.490116119384766e-008
-			},
-			"bodyA" : 3,
-			"bodyB" : 1,
-			"enableLimit" : true,
-			"enableMotor" : false,
-			"jointSpeed" : 0,
-			"lowerLimit" : 0,
-			"maxMotorTorque" : 0,
-			"motorSpeed" : 0,
-			"name" : "joint3",
-			"refAngle" : 0,
-			"type" : "revolute",
-			"upperLimit" : 0
-		},
-		
-		{
-			"anchorA" : 
-			{
-				"x" : -0.1367053985595703,
-				"y" : -0.1513986885547638
-			},
-			"anchorB" : 
-			{
-				"x" : -1.490116119384766e-008,
-				"y" : 1.490116119384766e-008
-			},
-			"bodyA" : 3,
-			"bodyB" : 0,
-			"enableLimit" : true,
-			"enableMotor" : false,
-			"jointSpeed" : 0,
-			"lowerLimit" : 0,
-			"maxMotorTorque" : 0,
-			"motorSpeed" : 0,
-			"name" : "joint2",
 			"refAngle" : 0,
 			"type" : "revolute",
 			"upperLimit" : 0

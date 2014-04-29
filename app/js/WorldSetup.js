@@ -1,4 +1,4 @@
-function RubeFilesLoader(jsonsToLoad)
+function WorldSetup(jsonsToLoad)
 {
     this.jsonsToLoad = jsonsToLoad; // object containing track and cars[]
     this.jsonLinkedList = new LinkedList();
@@ -10,11 +10,12 @@ function RubeFilesLoader(jsonsToLoad)
     this.cars = [];
     this.tires = [];
     this.trackWalls = [];
+    this.trackStartPositions = [];
     this.mainLoaderCallback = null;
     this.refWorld = null;
 }
 
-RubeFilesLoader.prototype.load = function(callback)
+WorldSetup.prototype.launchMultiLoad = function(callback)
 {
     this.mainLoaderCallback = callback;
 
@@ -25,13 +26,13 @@ RubeFilesLoader.prototype.load = function(callback)
     }
 };
 
-RubeFilesLoader.prototype.setWorld = function(world)
+WorldSetup.prototype.setWorld = function(world)
 {
     this.refWorld = world;
 };
 
 
-RubeFilesLoader.prototype.LoadResource = function(resourceNode)
+WorldSetup.prototype.LoadResource = function(resourceNode)
 {
     var me = this;
     if(resourceNode.data === "")
@@ -39,10 +40,15 @@ RubeFilesLoader.prototype.LoadResource = function(resourceNode)
     loadJSON(resourceNode.data, function(rawJson)
     {
         var parsedJson = JSON.parse(rawJson);
-        //if(resourceNode.dataType === "track") // if this is a track, we have to invert it (y = -y)
-            parsedJson = me.PreprocessRube(parsedJson);
+
+
+    // Data from rube have to be preprocessed: invert y, among others things
+        parsedJson = me.PreprocessRube(parsedJson);
+
+    // we call the lib rube provided to our refWorld.
         me.refWorld = loadWorldFromRUBE(parsedJson, me.refWorld);
 
+    // After data has been loaded, we set meta data to keep track of each one
         if(resourceNode.dataType === "car")
         {
             var carBody = getBodiesByCustomProperty(me.refWorld, "string", "category", "car_body")[0];
@@ -54,8 +60,12 @@ RubeFilesLoader.prototype.LoadResource = function(resourceNode)
         {
             // if it's a track, we take all the bodies as is.
             me.trackWalls = getBodies(me.refWorld);
+            me.trackStartPositions = getBodiesWithNamesStartingWith(me.refWorld);
         }
-        if(resourceNode.next !== null) //if there are still node to load, we load them. else, we launch the main callback
+
+
+    //if there still are nodes to load, we load them. else, we launch the main callback
+        if(resourceNode.next !== null)
             me.LoadResource(resourceNode.next);
         else
             me.mainLoaderCallback(me.trackWalls, me.cars);
@@ -63,7 +73,7 @@ RubeFilesLoader.prototype.LoadResource = function(resourceNode)
 };
 
 
-RubeFilesLoader.prototype.PreprocessRube = function(parsedJson)
+WorldSetup.prototype.PreprocessRube = function(parsedJson)
 {
     // invert y on vertices and bodies position
 

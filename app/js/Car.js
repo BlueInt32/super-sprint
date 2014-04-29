@@ -8,6 +8,7 @@ function Car(consts, carIndex, configuration, isIA)
 	this.carBodyDef = new b2.dyn.b2BodyDef();
 	this.b2Body = null;
 	this.tires = [];
+	this.tiresCount = 0;
 	this.directionJoints = [];
 
 	// Car Behaviours
@@ -59,13 +60,31 @@ Car.prototype.SetBox2dData = function(box2dData)
 {
 	this.b2Body = box2dData.carBody;
 	this.tires = box2dData.tires;
+	this.tiresCount = this.tires.length;
 	this.directionJoints = box2dData.directionJoints;
-if(typeof this.directionJoints[0] !== 'undefined')
-{
-	this.directionJoints[0].SetLimits(0, 0);
-	this.directionJoints[1].SetLimits(0, 0);
-}
+	if(typeof this.directionJoints[0] !== 'undefined')
+	{
+		this.directionJoints[0].SetLimits(0, 0);
+		this.directionJoints[1].SetLimits(0, 0);
+	}
+
 };
+
+
+Car.prototype.SetPosition = function(chosenPosition)
+{
+
+	var temp = chosenPosition.Copy();
+	temp.Add(this.b2Body.GetPosition());
+	this.b2Body.SetPosition(temp);
+
+	for (var i = 0; i < this.tiresCount; i++)
+	{
+		temp = chosenPosition.Copy();
+		temp.Add(this.tires[i].GetPosition());
+		this.tires[i].SetPosition(temp);
+	}
+}
 
 Car.prototype.updateData = function (keyboardData)
 {
@@ -75,7 +94,7 @@ Car.prototype.updateData = function (keyboardData)
 	this.LocalAccelerationVector = new Box2D.Common.Math.b2Vec2(0, -this.accelerationFactor);
 
 
-	for (var i = 0; i < 4; i++) {
+	for (var i = 0; i < this.tiresCount; i++) {
 		this.linearVelocities[i] = this.GetLinearVelocity(i);
 		this.currentRightForwards[i] = this.tires[i].GetWorldVector(new b2.cMath.b2Vec2(0, 1));
 		this.vCurrentRightNormals[i] = this.GetLateralVelocity(i);
@@ -124,7 +143,7 @@ Car.prototype.UpdateSteering = function(keyboardData)
 
 Car.prototype.Accelerate = function ()
 {
-	for (var i = 0; i < 4; i++)
+	for (var i = 0; i < this.tiresCount; i++)
 	{
 		this.tires[i].ApplyForce(this.tires[i].GetWorldVector(this.LocalAccelerationVector), this.tires[i].GetWorldCenter());
 	}
@@ -132,7 +151,7 @@ Car.prototype.Accelerate = function ()
 };
 Car.prototype.Brake = function ()
 {
-	for (var i = 0; i < 4; i++)
+	for (var i = 0; i < this.tiresCount; i++)
 	{
 		this.tires[i].ApplyForce(this.tires[i].GetWorldVector(this.LocalBrakeVector), this.tires[i].GetWorldCenter());
 	}
@@ -140,7 +159,7 @@ Car.prototype.Brake = function ()
 
 Car.prototype.HandBrake = function ()
 {
-	for (var i = 0; i < 4; i++)
+	for (var i = 0; i < this.tiresCount; i++)
 	{
 		this.tires[i].ApplyForce(this.tires[i].GetWorldVector(this.LocalHandBrakeVector), this.tires[i].GetWorldCenter());
 		this.drifting = true;
@@ -177,7 +196,7 @@ Car.prototype.GetForwardVelocity = function (tireIndex)
 
 Car.prototype.ApplyImpulse = function(vec2)
 {
-	for (var i = 0; i < 4; i++)
+	for (var i = 0; i < this.tiresCount; i++)
 	{
 		this.tires[i].ApplyImpulse(vec2, this.tires[i].GetWorldCenter());
 	}
@@ -185,7 +204,7 @@ Car.prototype.ApplyImpulse = function(vec2)
 
 Car.prototype.UpdateFriction = function ()
 {
-	for (var i = 0; i < 4; i++)
+	for (var i = 0; i < this.tiresCount; i++)
 	{
 		if(this.adherence)
 		{

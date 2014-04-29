@@ -92,8 +92,7 @@
 		for (var i = trackWalls.length - 1; i >= 0; i--)
 		{
 			var position = trackWalls[i].GetPosition();
-			trackWalls[i].SetPosition(new b2.cMath.b2Vec2(position.x + this.consts.STAGE_WIDTH_B2 / 2, position.y +this.consts.STAGE_HEIGHT_B2 / 2));
-
+			trackWalls[i].SetPosition(b2.math.AddVV(this.consts.ScreenCenterVector, position));
 		}
 
 	};
@@ -102,12 +101,12 @@
 	{
 		carInstance.checkPointManager = new CheckPointManager(3);
 		this.cars.push(carInstance);
-		carInstance.b2Body.SetPosition(new b2.cMath.b2Vec2(3, 3));
 		pixiStage.addChild(carInstance.pixiSprite);
 
-		var body = getBodiesWithNamesStartingWith(this.world, "start");
-		var pos = body[carPlaced++].GetPosition();
-		carInstance.b2Body.SetPosition(pos);
+		var startPositions = getBodiesWithNamesStartingWith(this.world, "start");
+		//var pos = startPositions[carPlaced++].GetPosition();
+		var pos = new b2.cMath.b2Vec2(0, 0);
+		carInstance.SetPosition(b2.math.AddVV(this.consts.ScreenCenterVector, pos));
 		//console.log(this.cars);
 	};
 
