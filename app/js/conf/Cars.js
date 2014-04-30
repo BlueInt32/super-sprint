@@ -1,4 +1,3 @@
-
 var Car0Config = function()
 {
     this.width = 40; // px unit
