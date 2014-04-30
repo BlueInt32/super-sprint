@@ -7,7 +7,7 @@ function Car(consts, carIndex, configuration, isIA)
 	// B2
 	this.carBodyDef = new b2.dyn.b2BodyDef();
 	this.b2Body = null;
-	this.tiresFront = [];
+	this.frontTires = [];
 	this.rearTires = [];
 	this.tiresCount = 0;
 	this.directionJoints = [];
