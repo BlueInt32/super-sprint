@@ -9,6 +9,8 @@ function Car(consts, carIndex, configuration, isIA)
 	this.b2Body = null;
 	this.frontTires = [];
 	this.rearTires = [];
+	this.tires = [];
+
 	this.tiresCount = 0;
 	this.directionJoints = [];
 
@@ -71,7 +73,13 @@ Car.prototype.SetBox2dData = function(box2dData)
 	this.b2Body = box2dData.carBody;
 	this.rearTires = box2dData.rearTires;
 	this.frontTires = box2dData.frontTires;
+
+	this.tires = this.rearTires.concat(this.frontTires);
+
 	this.tiresCount = this.tires.length;
+
+
+
 	this.directionJoints = box2dData.directionJoints;
 	if(typeof this.directionJoints[0] !== 'undefined')
 	{
@@ -218,7 +226,8 @@ Car.prototype.UpdateFriction = function ()
 	{
 		if(this.adherence)
 		{
-			if(this.tires[i].customProperties[1].bool && this.drifting)
+			var tireType = b2.findCustomPropertyValue(this.tires[i], 'category', 'string');
+			if(tireType === 'wheel_rear' && this.drifting)
 				this.adherenceFactor = 0.2;
 			else
 				this.adherenceFactor = 1;

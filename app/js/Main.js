@@ -58,7 +58,15 @@
 
 		pixiStage = new PIXI.Stage(0xDDDDDD, true);
 		pixiRenderer = PIXI.autoDetectRenderer(Consts.STAGE_WIDTH_PIXEL, Consts.STAGE_HEIGHT_PIXEL, undefined, false);
-		document.body.appendChild(pixiRenderer.view);
+		document.getElementById('gameContainer').appendChild(pixiRenderer.view);
+
+
+
+		// create a background..
+		var background = PIXI.Sprite.fromImage('assets/tracks/images/track0.png');
+
+		// add background to stage..
+		pixiStage.addChild(background);
 
 		var loader = new PIXI.AssetLoader([Cars[0].sprite]);
 		loader.onComplete = onLoadAssets;
@@ -71,7 +79,7 @@
 
 		var worldSetup = new WorldSetup(
 		{
-			track:Tracks[1].json,
+			track:Tracks[0].json,
 			cars:[carConfigPointer.json/*, carConfigPointer.json*/]
 		});
 		worldSetup.setWorld(b2Universe.world);
@@ -115,7 +123,7 @@
 			| b2.dyn.b2DebugDraw.e_controllerBit
 			| b2.dyn.b2DebugDraw.e_pairBit
 			);
-		b2Universe.world.SetDebugDraw(debugDrawer);
+		//b2Universe.world.SetDebugDraw(debugDrawer);
 	}
 
 	function update()
@@ -131,7 +139,7 @@
 		//{
 			b2Universe.cars[0].updateData(keyboardHandler.Keys);
 		//}
-		//pixiRenderer.render(pixiStage);
+		pixiRenderer.render(pixiStage);
 		stats.update();
 	}
 

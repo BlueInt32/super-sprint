@@ -4,10 +4,10 @@ body {
   background-color: #000000;
 }
 body div#gameContainer {
+  top: 30px;
   text-align: center;
 }
 body div#gameContainer canvas {
-  top: 30px;
   left: 0;
   right: 0;
   margin-left: auto;
