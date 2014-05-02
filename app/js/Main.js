@@ -10,22 +10,10 @@
 
 	var carConfigPointer = null;
 
-
-
-
 	var canvas = document.getElementById('canvas');
 	canvas.width = Consts.STAGE_WIDTH_PIXEL;
 	canvas.height = Consts.STAGE_HEIGHT_PIXEL;
 	debugDraw();
-
-	var scaleX = canvas.width / window.innerWidth;
-	var scaleY = canvas.height / window.innerHeight;
-	var scaleToFit = Math.min(scaleX, scaleY);
-
-		// stage.style.transformOrigin = "0 0";
-		// stage.style.transform = "scale("+scaleToFit+")";
-
-
 
 	(function init()
 	{
