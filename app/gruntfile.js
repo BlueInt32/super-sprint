@@ -1,6 +1,5 @@
 ﻿module.exports = function (grunt)
 {
-
 	require('load-grunt-tasks')(grunt);
 	// Project configuration.
 	grunt.initConfig(
@@ -68,7 +67,6 @@
 				}
 			}
 		},
-
 		copy:
 		{
 			main:
@@ -113,7 +111,6 @@
 				]
 			}
 		},
-
 		processhtml:
 		{
 			options:
@@ -131,7 +128,8 @@
 				}
 		    }
 		},
-		replace: {
+		replace:
+		{
 			example:
 			{
 				src: ['publish/js/min.js'],             // source files array (supports minimatch)
@@ -153,9 +151,28 @@
 					}
 				]
 			}
+		},
+		coffee:
+		{
+			compile:
+			{
+				files:
+				{
+					'js/coffee/compiled/car.js': ['js/coffee/*.coffee'] // compile and concat into single file
+				}
+			}
+		},
+		watch:
+		{
+			coffee:
+			{
+				files: ['js/coffee/*.coffee'],
+				tasks: 'coffee'
+			}
 		}
 	});
 
 
-	grunt.registerTask('default', ['jshint', 'uglify:dist', 'copy', 'processhtml', 'replace']);
+	grunt.registerTask('default', ['jshint', 'uglify:dist', 'copy', 'processhtml', 'replace', 'coffee']);
+	grunt.registerTask('wCoffee', ['watch:coffee']);
 };

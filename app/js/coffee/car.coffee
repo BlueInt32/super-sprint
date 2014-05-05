@@ -14,3 +14,5 @@ class Car
         temp = chosenPosition.Copy()
         temp.Add(@b2Body.GetPosition())
         @b2Body.SetPosition(temp)
+
+    coucou: ->
