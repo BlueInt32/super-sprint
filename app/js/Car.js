@@ -71,6 +71,7 @@ Car.prototype.SetBox2dData = function(box2dData)
 	this.b2Body = box2dData.carBody;
 	this.rearTires = box2dData.rearTires;
 	this.frontTires = box2dData.frontTires;
+	this.tires = this.rearTires.concat(this.frontTires);
 	this.tiresCount = this.tires.length;
 	this.directionJoints = box2dData.directionJoints;
 	if(typeof this.directionJoints[0] !== 'undefined')
