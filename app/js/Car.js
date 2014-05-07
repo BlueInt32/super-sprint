@@ -95,7 +95,7 @@ Car.prototype.SetPosition = function(chosenPosition)
 		temp.Add(this.tires[i].GetPosition());
 		this.tires[i].SetPosition(temp);
 	}
-}
+};
 
 Car.prototype.updateData = function (keyboardData)
 {
@@ -196,7 +196,7 @@ Car.prototype.GetLateralVelocity = function (tireIndex)
 
 Car.prototype.GetLinearVelocity = function(tireIndex)
 {
-	 return this.tires[tireIndex].GetLinearVelocity();
+	return this.tires[tireIndex].GetLinearVelocity();
 };
 
 Car.prototype.GetForwardVelocity = function (tireIndex)
