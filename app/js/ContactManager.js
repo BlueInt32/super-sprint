@@ -43,7 +43,7 @@ ContactManager.prototype.ExtractContactType = function(contact)
         return { 'type':'boost', 'boostVector':aData.customProperties[0].vec2 };
     if(bData.name.indexOf('boost') === 0)
         return { 'type':'boost', 'boostVector':bData.customProperties[0].vec2 };
-    return { 'type': '' }
+    return { 'type': '' };
 };
 
 /**
