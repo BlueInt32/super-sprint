@@ -219,7 +219,8 @@ Car.prototype.UpdateFriction = function ()
 	{
 		if(this.adherence)
 		{
-			if(this.tires[i].customProperties[1].bool && this.drifting)
+
+			if(this.tires[i].customProperties.length >= 2 && this.tires[i].customProperties[1].bool && this.drifting)
 				this.adherenceFactor = 0.2;
 			else
 				this.adherenceFactor = 1;
