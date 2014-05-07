@@ -1,6 +1,5 @@
 function Car(consts, carIndex, configuration, isIA)
 {
-
 	this.configuration = configuration;
 	this.consts = consts;
 

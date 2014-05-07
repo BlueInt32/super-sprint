@@ -85,7 +85,7 @@
 		setUpDatGui(rCar);
 		//console.log(loaderTrackWalls);
 		b2Universe.PositionTrack(loaderTrackWalls);
-		rCar.SetBox2dData(loaderCars[0]);
+		rCar.setBox2dData(loaderCars[0]);
 		//sCar.SetBox2dData(loaderCars[0]);
 
 		b2Universe.AddCar(rCar, pixiStage);
@@ -111,7 +111,7 @@
 			| b2.dyn.b2DebugDraw.e_controllerBit
 			| b2.dyn.b2DebugDraw.e_pairBit
 			);
-		//b2Universe.world.SetDebugDraw(debugDrawer);
+		b2Universe.world.SetDebugDraw(debugDrawer);
 	}
 
 	function update()
@@ -127,7 +127,7 @@
 		//{
 			b2Universe.cars[0].updateData(keyboardHandler.Keys);
 		//}
-		pixiRenderer.render(pixiStage);
+		//pixiRenderer.render(pixiStage);
 		stats.update();
 	}
 
@@ -138,7 +138,7 @@
 		var f1 = gui.addFolder('Car Behaviour');
 		f1.add(refObject, 'accelerationFactor', 0.05, 0.5);
 		f1.add(refObject, 'lockAngleDeg', 20, 50);
-		f1.add(refObject, 'Drift_trigger', 0.001, 0.01);
+		f1.add(refObject, 'driftTrigger', 0.001, 0.01);
 		f1.open();
 	}
 

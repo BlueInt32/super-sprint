@@ -14,5 +14,10 @@
                     return b2Body.customProperties[i][typeName];
             };
         }
+    },
+    applyForceToCenter: function(b2Body, vector2)
+    {
+        console.log('b2Body', b2Body);
+        b2Body.ApplyForce(b2Body.GetWorldVector(vector2), b2Body.GetWorldCenter())
     }
 };

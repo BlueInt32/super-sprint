@@ -56,7 +56,8 @@
 		var startPositions = getBodiesWithNamesStartingWith(this.world, "start");
 		//var pos = startPositions[carPlaced++].GetPosition();
 		var pos = new b2.cMath.b2Vec2(0, 0);
-		carInstance.SetPosition(b2.math.AddVV(this.consts.ScreenCenterVector, pos));
+		//console.log(carInstance);
+		carInstance.setPosition(b2.math.AddVV(this.consts.ScreenCenterVector, pos));
 		//console.log(this.cars);
 	};
 

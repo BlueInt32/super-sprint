@@ -54,8 +54,8 @@ WorldSetup.prototype.LoadResource = function(resourceNode)
             var carBody = getBodiesByCustomProperty(me.refWorld, "string", "category", "car_body")[0];
             var carRearTires = getBodiesByCustomProperty(me.refWorld, "string", "category", "wheel_rear");
             var carFrontTires = getBodiesByCustomProperty(me.refWorld, "string", "category", "wheel_front");
-            console.log("rearTires", carRearTires);
-            console.log("frontTires", carFrontTires);
+            //console.log("rearTires", carRearTires);
+            //console.log("frontTires", carFrontTires);
             var dirJoints = getNamedJoints(me.refWorld, "direction");
             me.cars.push({carBody : carBody, rearTires : carRearTires, frontTires : carFrontTires, directionJoints : dirJoints});
         }

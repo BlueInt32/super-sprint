@@ -156,6 +156,10 @@
 		{
 			compile:
 			{
+				options:
+				{
+					bare: true
+				},
 				files:
 				{
 					'js/coffee/compiled/car.js': ['js/coffee/*.coffee'] // compile and concat into single file
