@@ -73,9 +73,7 @@ Car.prototype.SetBox2dData = function(box2dData)
 	this.b2Body = box2dData.carBody;
 	this.rearTires = box2dData.rearTires;
 	this.frontTires = box2dData.frontTires;
-
 	this.tires = this.rearTires.concat(this.frontTires);
-
 	this.tiresCount = this.tires.length;
 
 
@@ -102,7 +100,7 @@ Car.prototype.SetPosition = function(chosenPosition)
 		temp.Add(this.tires[i].GetPosition());
 		this.tires[i].SetPosition(temp);
 	}
-}
+};
 
 Car.prototype.updateData = function (keyboardData)
 {
@@ -203,7 +201,7 @@ Car.prototype.GetLateralVelocity = function (tireIndex)
 
 Car.prototype.GetLinearVelocity = function(tireIndex)
 {
-	 return this.tires[tireIndex].GetLinearVelocity();
+	return this.tires[tireIndex].GetLinearVelocity();
 };
 
 Car.prototype.GetForwardVelocity = function (tireIndex)
