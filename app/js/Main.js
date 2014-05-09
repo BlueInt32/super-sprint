@@ -111,7 +111,7 @@
 			| b2.dyn.b2DebugDraw.e_controllerBit
 			| b2.dyn.b2DebugDraw.e_pairBit
 			);
-		//b2Universe.world.SetDebugDraw(debugDrawer);
+		b2Universe.world.SetDebugDraw(debugDrawer);
 	}
 
 	function update()
@@ -127,7 +127,7 @@
 		//{
 			b2Universe.cars[0].updateData(keyboardHandler.Keys);
 		//}
-		pixiRenderer.render(pixiStage);
+		//pixiRenderer.render(pixiStage);
 		stats.update();
 	}
 
