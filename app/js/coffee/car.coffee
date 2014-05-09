@@ -54,6 +54,10 @@ class Car
 		@tires = @rearTires.concat(@frontTires)
 		@tiresCount = @tires.length
 		@directionJoints = box2dData.directionJoints
+		if @directionJoints[0]?
+			@directionJoints[0].SetLimits(0, 0);
+			@directionJoints[1].SetLimits(0, 0);
+
 		@b2Body = box2dData.carBody
 		return
 
@@ -66,7 +70,6 @@ class Car
 			temp.Add(@tires[i].GetPosition())
 			@tires[i].SetPosition(temp)
 		return
-
 
 	updateData:(keyboardData) ->
 		@localAccelerationVector = new b2.cMath.b2Vec2(0, -@accelerationFactor)
@@ -85,12 +88,15 @@ class Car
 		return
 
 	updateSteering:(keyboardData) ->
-		if (keyboardData.right && @puddleEffect == 0)
+		#console.log(@puddleEffect);
+		if (keyboardData.right && !@puddleEffect)
 			@desiredAngle =  @lockAngleDeg * @consts.DEGTORAD
-		else if (keyboardData.left && @puddleEffect == 0)
+			#console.log('@consts.DEGTORAD : ', @consts.DEGTORAD);
+			#console.log('@lockAngleDeg : ', @lockAngleDeg);
+			#console.log('desired', @desiredAngle);
+		else if (keyboardData.left && !@puddleEffect)
 			@desiredAngle = -@lockAngleDeg * @consts.DEGTORAD
 		else @desiredAngle = 0;
-
 		angleNow = @directionJoints[0].GetJointAngle()
 
 		angleToTurn = @desiredAngle - angleNow
@@ -123,7 +129,7 @@ class Car
 
 	handBrake: ->
 		tires = @tires
-		for i of @tires
+		for i of tires
 			b2.applyForceToCenter(tires[i], @localHandBrakeVector)
 			@drifting = true
 		return
@@ -152,36 +158,42 @@ class Car
 		);
 		return vCurrentRightForward;
 
+	applyImpulse:(vec2) ->
+		tires = @tires
+		for i of tires
+			b2.applyForceToCenter(tires[i], vec2)
+
 	updateFriction: (vec2) ->
-		for i in [0...@tiresCount]
+		tires = @tires
+		for i of tires
 			if @adherence
-				tireType = b2.findCustomPropertyValue(@tires[i], 'category', 'string')
+				tireType = b2.findCustomPropertyValue(tires[i], 'category', 'string')
 				if tireType == 'wheel_rear' and @drifting
 					@adherenceFactor = 0.2
 				else
 					@adherenceFactor = 1
 
 				impulse = b2.math.MulFV(
-					- @adherenceFactor * @tires[i].GetMass(),
+					- @adherenceFactor * tires[i].GetMass(),
 					@vCurrentRightNormals[i]
 				);
 				if impulse.Length() > @driftTrigger
 					impulse  = b2.math.MulFV(@driftTrigger / impulse.Length(), impulse);
 
-				@tires[i].ApplyImpulse(impulse, @tires[i].GetWorldCenter());
+				tires[i].ApplyImpulse(impulse, tires[i].GetWorldCenter());
 
 			# this has some effect on how the car turns
-			inertia = @tires[i].GetInertia()
-			vel = @tires[i].GetAngularVelocity();
-			@tires[i].ApplyAngularImpulse(10 * inertia * -vel);
+			inertia = tires[i].GetInertia()
+			vel = tires[i].GetAngularVelocity();
+			tires[i].ApplyAngularImpulse(10 * inertia * -vel);
 
 			# natural friction against movement. This is a F = -kv type force.
 			currentForwardNormal = @getForwardVelocity(i);
 			currentForwardSpeed = currentForwardNormal.Normalize();
 			dragForceMagnitude = -@configuration.natural_deceleration * currentForwardSpeed;
-			@tires[i].ApplyForce( b2.math.MulFV(dragForceMagnitude, currentForwardNormal), @tires[i].GetWorldCenter() );
+			tires[i].ApplyForce( b2.math.MulFV(dragForceMagnitude, currentForwardNormal), tires[i].GetWorldCenter() );
 
 			# here we update how the car behave when its puddleEffect is on (sliding on a paddle).
-			if @puddleEffect != 0
-				@tires[i].ApplyTorque(@puddleEffect * @configuration.puddleFactor);
+			if @puddleEffect
+				tires[i].ApplyTorque((@puddleEffect ? 1:0) * @configuration.puddleFactor);
 		return

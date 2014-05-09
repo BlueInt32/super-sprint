@@ -69,7 +69,7 @@ ContactManager.prototype.HandleContact = function(contact, began)
                 break;
             case "boost":
                 var boostVector = new b2.cMath.b2Vec2(cInfo.boostVector.x, cInfo.boostVector.y);
-                this.cars[0].ApplyImpulse(boostVector);
+                this.cars[0].applyImpulse(boostVector);
                 break;
         }
     }

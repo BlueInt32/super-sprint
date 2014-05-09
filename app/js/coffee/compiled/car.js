@@ -44,6 +44,10 @@ Car = (function() {
     this.tires = this.rearTires.concat(this.frontTires);
     this.tiresCount = this.tires.length;
     this.directionJoints = box2dData.directionJoints;
+    if (this.directionJoints[0] != null) {
+      this.directionJoints[0].SetLimits(0, 0);
+      this.directionJoints[1].SetLimits(0, 0);
+    }
     this.b2Body = box2dData.carBody;
   };
 
@@ -85,9 +89,9 @@ Car = (function() {
 
   Car.prototype.updateSteering = function(keyboardData) {
     var angleNow, angleToTurn, newAngle, position;
-    if (keyboardData.right && this.puddleEffect === 0) {
+    if (keyboardData.right && !this.puddleEffect) {
       this.desiredAngle = this.lockAngleDeg * this.consts.DEGTORAD;
-    } else if (keyboardData.left && this.puddleEffect === 0) {
+    } else if (keyboardData.left && !this.puddleEffect) {
       this.desiredAngle = -this.lockAngleDeg * this.consts.DEGTORAD;
     } else {
       this.desiredAngle = 0;
@@ -128,7 +132,7 @@ Car = (function() {
   Car.prototype.handBrake = function() {
     var i, tires;
     tires = this.tires;
-    for (i in this.tires) {
+    for (i in tires) {
       b2.applyForceToCenter(tires[i], this.localHandBrakeVector);
       this.drifting = true;
     }
@@ -162,31 +166,44 @@ Car = (function() {
     return vCurrentRightForward;
   };
 
+  Car.prototype.applyImpulse = function(vec2) {
+    var i, tires, _results;
+    tires = this.tires;
+    _results = [];
+    for (i in tires) {
+      _results.push(b2.applyForceToCenter(tires[i], vec2));
+    }
+    return _results;
+  };
+
   Car.prototype.updateFriction = function(vec2) {
-    var currentForwardNormal, currentForwardSpeed, dragForceMagnitude, i, impulse, inertia, tireType, vel, _i, _ref;
-    for (i = _i = 0, _ref = this.tiresCount; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+    var currentForwardNormal, currentForwardSpeed, dragForceMagnitude, i, impulse, inertia, tireType, tires, vel, _ref;
+    tires = this.tires;
+    for (i in tires) {
       if (this.adherence) {
-        tireType = b2.findCustomPropertyValue(this.tires[i], 'category', 'string');
+        tireType = b2.findCustomPropertyValue(tires[i], 'category', 'string');
         if (tireType === 'wheel_rear' && this.drifting) {
           this.adherenceFactor = 0.2;
         } else {
           this.adherenceFactor = 1;
         }
-        impulse = b2.math.MulFV(-this.adherenceFactor * this.tires[i].GetMass(), this.vCurrentRightNormals[i]);
+        impulse = b2.math.MulFV(-this.adherenceFactor * tires[i].GetMass(), this.vCurrentRightNormals[i]);
         if (impulse.Length() > this.driftTrigger) {
           impulse = b2.math.MulFV(this.driftTrigger / impulse.Length(), impulse);
         }
-        this.tires[i].ApplyImpulse(impulse, this.tires[i].GetWorldCenter());
+        tires[i].ApplyImpulse(impulse, tires[i].GetWorldCenter());
       }
-      inertia = this.tires[i].GetInertia();
-      vel = this.tires[i].GetAngularVelocity();
-      this.tires[i].ApplyAngularImpulse(10 * inertia * -vel);
+      inertia = tires[i].GetInertia();
+      vel = tires[i].GetAngularVelocity();
+      tires[i].ApplyAngularImpulse(10 * inertia * -vel);
       currentForwardNormal = this.getForwardVelocity(i);
       currentForwardSpeed = currentForwardNormal.Normalize();
       dragForceMagnitude = -this.configuration.natural_deceleration * currentForwardSpeed;
-      this.tires[i].ApplyForce(b2.math.MulFV(dragForceMagnitude, currentForwardNormal), this.tires[i].GetWorldCenter());
-      if (this.puddleEffect !== 0) {
-        this.tires[i].ApplyTorque(this.puddleEffect * this.configuration.puddleFactor);
+      tires[i].ApplyForce(b2.math.MulFV(dragForceMagnitude, currentForwardNormal), tires[i].GetWorldCenter());
+      if (this.puddleEffect) {
+        tires[i].ApplyTorque(((_ref = this.puddleEffect) != null ? _ref : {
+          1: 0
+        }) * this.configuration.puddleFactor);
       }
     }
   };
