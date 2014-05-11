@@ -167,7 +167,7 @@
 					'js/compiled/universe.js': ['js/universe.coffee'],
 					'js/compiled/checkpointManager.js': ['js/checkpointManager.coffee'],
 					'js/compiled/contactManager.js': ['js/contactManager.coffee'],
-					'js/compiled/KeyboardHandler.js': ['js/keyboardHandler.coffee'],
+					'js/compiled/keyboardHandler.js': ['js/keyboardHandler.coffee'],
 					'js/compiled/worldSetup.js': ['js/worldSetup.coffee'],
 					'js/compiled/game.js': ['js/game.coffee'],
 					'js/compiled/b2Helpers.js': ['js/utils/b2Helpers.coffee'],

@@ -1,11 +1,10 @@
 var Car;
 
 Car = (function() {
-  function Car(_consts, _carIndex, _configuration, _isIA) {
+  function Car(_consts, _carIndex, _configuration) {
     this._consts = _consts;
     this._carIndex = _carIndex;
     this._configuration = _configuration;
-    this._isIA = _isIA;
     this.configuration = this._configuration;
     this.consts = this._consts;
     this.frontTires = [];
@@ -65,86 +64,24 @@ Car = (function() {
   };
 
   Car.prototype.updateData = function(keyboardData) {
-    var i, _i, _ref;
+    var i, tires;
     this.localAccelerationVector = new b2.cMath.b2Vec2(0, -this.accelerationFactor);
-    for (i = _i = 0, _ref = this.tiresCount; 0 <= _ref ? _i < _ref : _i > _ref; i = 0 <= _ref ? ++_i : --_i) {
+    tires = this.tires;
+    for (i in tires) {
       this.linearVelocities[i] = this.getLinearVelocity(i);
       this.currentRightForwards[i] = this.tires[i].GetWorldVector(new b2.cMath.b2Vec2(0, 1));
       this.vCurrentRightNormals[i] = this.getLateralVelocity(i);
     }
-    if (keyboardData.accelerate) {
-      this.accelerate();
-    }
-    if (keyboardData.handbrake) {
-      this.handBrake();
-    } else {
-      this.handBrakeRelease();
-    }
-    if (keyboardData.brake) {
-      this.brake();
-    }
-    this.updateSteering(keyboardData);
-  };
-
-  Car.prototype.updateSteering = function(keyboardData) {
-    var angleNow, angleToTurn, newAngle, position;
-    if (keyboardData.right && !this.puddleEffect) {
-      this.desiredAngle = this.lockAngleDeg * this.consts.DEGTORAD;
-    } else if (keyboardData.left && !this.puddleEffect) {
-      this.desiredAngle = -this.lockAngleDeg * this.consts.DEGTORAD;
-    } else {
-      this.desiredAngle = 0;
-    }
-    angleNow = this.directionJoints[0].GetJointAngle();
-    angleToTurn = this.desiredAngle - angleNow;
-    if (Math.abs(angleNow) > this.lockAngleDeg) {
-      angleToTurn = -angleNow;
-    } else {
-      angleToTurn = b2Math.Clamp(angleToTurn, -this.turnPerTimeStep, this.turnPerTimeStep);
-    }
-    newAngle = angleNow + angleToTurn;
-    this.directionJoints[0].SetLimits(newAngle, newAngle);
-    this.directionJoints[1].SetLimits(newAngle, newAngle);
-    this.updateFriction();
-    position = this.b2Body.GetPosition();
-    this.pixiSprite.position.x = position.x * this.consts.METER;
-    this.pixiSprite.position.y = position.y * this.consts.METER;
-    this.pixiSprite.rotation = this.b2Body.GetAngle();
-  };
-
-  Car.prototype.accelerate = function() {
-    var i, tires;
-    tires = this.tires;
-    for (i in tires) {
-      b2.applyForceToCenter(tires[i], this.localAccelerationVector);
-    }
-  };
-
-  Car.prototype.brake = function() {
-    var i, tires;
-    tires = this.tires;
-    for (i in tires) {
-      b2.applyForceToCenter(tires[i], this.localBrakeVector);
-    }
-  };
-
-  Car.prototype.handBrake = function() {
-    var i, tires;
-    tires = this.tires;
-    for (i in tires) {
-      b2.applyForceToCenter(tires[i], this.localHandBrakeVector);
-      this.drifting = true;
-    }
-  };
-
-  Car.prototype.handBrakeRelease = function() {
-    this.drifting = false;
   };
 
   Car.prototype.negateTorque = function(tireIndex) {
     var _ref;
-    return (_ref = b2.math.Dot(this.currentRightForwards[tireIndex], this.linearVelocities[tireIndex]) < -0.01) != null ? _ref : -{
-      1: 1
+        if ((_ref = b2.math.Dot(this.currentRightForwards[tireIndex], this.linearVelocities[tireIndex]) < -0.01) != null) {
+      _ref;
+    } else {
+      -({
+        1: 1
+      });
     };
   };
 
@@ -166,13 +103,11 @@ Car = (function() {
   };
 
   Car.prototype.applyImpulse = function(vec2) {
-    var i, tires, _results;
+    var i, tires;
     tires = this.tires;
-    _results = [];
     for (i in tires) {
-      _results.push(b2.applyForceToCenter(tires[i], vec2));
+      b2.applyForceToCenter(tires[i], vec2);
     }
-    return _results;
   };
 
   Car.prototype.updateFriction = function(vec2) {

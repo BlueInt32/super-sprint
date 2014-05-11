@@ -1,6 +1,6 @@
 #Car class
 class Car
-	constructor: (@_consts, @_carIndex, @_configuration, @_isIA) ->
+	constructor: (@_consts, @_carIndex, @_configuration) ->
 		@configuration = @_configuration;
 		@consts = @_consts;
 
@@ -21,8 +21,6 @@ class Car
 		@vCurrentRightNormals = [];
 		@linearVelocities = [];
 		@currentRightForwards = [];
-
-		#@isIA = isIA;
 
 		# Steering mgmt
 		@lockAngleDeg = @configuration.wheelMaxAngle;
@@ -74,69 +72,16 @@ class Car
 
 	updateData:(keyboardData) ->
 		@localAccelerationVector = new b2.cMath.b2Vec2(0, -@accelerationFactor)
-
-		for i in [0...@tiresCount]
+		tires = @tires
+		for i of tires
 			@linearVelocities[i] = @getLinearVelocity(i)
 			@currentRightForwards[i] = @tires[i].GetWorldVector(new b2.cMath.b2Vec2(0, 1))
 			@vCurrentRightNormals[i] = @getLateralVelocity(i)
-
-		if keyboardData.accelerate then	@accelerate()
-		if keyboardData.handbrake then @handBrake()
-		else @handBrakeRelease()
-		if keyboardData.brake then @brake()
-
-		@updateSteering(keyboardData)
-		return
-
-	updateSteering:(keyboardData) ->
-		if (keyboardData.right && !@puddleEffect)
-			@desiredAngle =  @lockAngleDeg * @consts.DEGTORAD
-		else if (keyboardData.left && !@puddleEffect)
-			@desiredAngle = -@lockAngleDeg * @consts.DEGTORAD
-		else @desiredAngle = 0;
-		angleNow = @directionJoints[0].GetJointAngle()
-
-		angleToTurn = @desiredAngle - angleNow
-		if(Math.abs(angleNow) > @lockAngleDeg)
-			angleToTurn = -angleNow
-		else
-			angleToTurn = b2Math.Clamp( angleToTurn, -@turnPerTimeStep, @turnPerTimeStep )
-		newAngle = angleNow + angleToTurn
-		@directionJoints[0].SetLimits(newAngle, newAngle)
-		@directionJoints[1].SetLimits(newAngle, newAngle)
-
-		@updateFriction()
-		position = @b2Body.GetPosition()
-		@pixiSprite.position.x = position.x * @consts.METER
-		@pixiSprite.position.y = position.y * @consts.METER
-		@pixiSprite.rotation = @b2Body.GetAngle()
-		return
-
-	accelerate: ->
-		tires = @tires
-		for i of tires
-			b2.applyForceToCenter(tires[i], @localAccelerationVector)
-		return
-
-	brake: ->
-		tires = @tires
-		for i of tires
-			b2.applyForceToCenter(tires[i], @localBrakeVector)
-		return
-
-	handBrake: ->
-		tires = @tires
-		for i of tires
-			b2.applyForceToCenter(tires[i], @localHandBrakeVector)
-			@drifting = true
-		return
-
-	handBrakeRelease: ->
-		@drifting = false
 		return
 
 	negateTorque: (tireIndex) ->
 		b2.math.Dot(@currentRightForwards[tireIndex], @linearVelocities[tireIndex]) < -0.01 ? -1 : 1
+		return
 
 	getLateralVelocity:(tireIndex) ->
 		currentRightNormal = @tires[tireIndex].GetWorldVector(@localNormalVector);
@@ -160,6 +105,7 @@ class Car
 		tires = @tires
 		for i of tires
 			b2.applyForceToCenter(tires[i], vec2)
+		return
 
 	updateFriction: (vec2) ->
 		tires = @tires

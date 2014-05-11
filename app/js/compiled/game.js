@@ -49,7 +49,7 @@ Game = (function() {
   Game.prototype.onLoadAssets = function() {
     var jsonPathsLList, worldSetup;
     jsonPathsLList = new LinkedList();
-    jsonPathsLList.add(TracksConfig[0].jsonPath, 'track');
+    jsonPathsLList.add(TracksConfig[1].jsonPath, 'track');
     jsonPathsLList.add(this.carConfigPointer.jsonPath, 'car');
     worldSetup = new WorldSetup(jsonPathsLList);
     worldSetup.setWorld(this.universe.world);

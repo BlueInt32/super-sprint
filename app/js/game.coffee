@@ -47,9 +47,8 @@ class Game
         loader.load();
 
     onLoadAssets:()=>
-
         jsonPathsLList = new LinkedList()
-        jsonPathsLList.add(TracksConfig[0].jsonPath, 'track')
+        jsonPathsLList.add(TracksConfig[1].jsonPath, 'track')
         jsonPathsLList.add(@carConfigPointer.jsonPath, 'car')
 
         worldSetup = new WorldSetup(jsonPathsLList);
@@ -60,17 +59,11 @@ class Game
         rCar = new Car(@consts, 0, @carConfigPointer)
         sCar = new Car(@consts, 0, @carConfigPointer)
 
-        # console.log(rCar);
-        # console.log(sCar);
-
         @setUpDatGui(rCar)
-        # console.log(loaderTrackWalls);
         @universe.positionTrack(loaderTrackWalls)
         rCar.setBox2dData(loaderCars[0])
-        # sCar.SetBox2dData(loaderCars[0]);
 
         @universe.addCar(rCar, @pixiStage)
-        # @universe.AddCar(sCar, @pixiStage);
 
         document.onkeydown = @keyboardHandler.handleKeyDown.bind(@keyboardHandler)
         document.onkeyup = @keyboardHandler.handleKeyUp.bind(@keyboardHandler)

@@ -16,7 +16,7 @@ TrackModel_2 = (function() {
   function TrackModel_2() {
     this.id = 1;
     this.nbCheckpoints = 3;
-    this.json = 'assets/tracks/track1.json';
+    this.jsonPath = 'assets/tracks/track1.json';
     this.imagePath = 'assets/tracks/images/track1.png';
   }
 
