@@ -42,7 +42,7 @@ class Car
 		@checkPointManager = null;
 
 		#PIXI
-		@pixiSprite = new PIXI.Sprite(PIXI.Texture.fromFrame(Cars[@_carIndex].sprite));
+		@pixiSprite = new PIXI.Sprite(PIXI.Texture.fromFrame(CarsConfig[@_carIndex].spritePath));
 		@pixiSprite.anchor.x  = 0.5
 		@pixiSprite.anchor.y = 0.5
 		@pixiSprite.scale.x = 1
@@ -65,10 +65,11 @@ class Car
 		temp = chosenPosition.Copy()
 		temp.Add(@b2Body.GetPosition())
 		@b2Body.SetPosition(temp)
-		for i in @tiresCount
+		tires = @tires
+		for i of tires
 			temp = chosenPosition.Copy()
-			temp.Add(@tires[i].GetPosition())
-			@tires[i].SetPosition(temp)
+			temp.Add(tires[i].GetPosition())
+			tires[i].SetPosition(temp)
 		return
 
 	updateData:(keyboardData) ->
@@ -88,12 +89,8 @@ class Car
 		return
 
 	updateSteering:(keyboardData) ->
-		#console.log(@puddleEffect);
 		if (keyboardData.right && !@puddleEffect)
 			@desiredAngle =  @lockAngleDeg * @consts.DEGTORAD
-			#console.log('@consts.DEGTORAD : ', @consts.DEGTORAD);
-			#console.log('@lockAngleDeg : ', @lockAngleDeg);
-			#console.log('desired', @desiredAngle);
 		else if (keyboardData.left && !@puddleEffect)
 			@desiredAngle = -@lockAngleDeg * @consts.DEGTORAD
 		else @desiredAngle = 0;
@@ -136,6 +133,7 @@ class Car
 
 	handBrakeRelease: ->
 		@drifting = false
+		return
 
 	negateTorque: (tireIndex) ->
 		b2.math.Dot(@currentRightForwards[tireIndex], @linearVelocities[tireIndex]) < -0.01 ? -1 : 1

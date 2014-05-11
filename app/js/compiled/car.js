@@ -31,7 +31,7 @@ Car = (function() {
     this.drifting = false;
     this.puddleEffect = false;
     this.checkPointManager = null;
-    this.pixiSprite = new PIXI.Sprite(PIXI.Texture.fromFrame(Cars[this._carIndex].sprite));
+    this.pixiSprite = new PIXI.Sprite(PIXI.Texture.fromFrame(CarsConfig[this._carIndex].spritePath));
     this.pixiSprite.anchor.x = 0.5;
     this.pixiSprite.anchor.y = 0.5;
     this.pixiSprite.scale.x = 1;
@@ -52,16 +52,15 @@ Car = (function() {
   };
 
   Car.prototype.setPosition = function(chosenPosition) {
-    var i, temp, _i, _len, _ref;
+    var i, temp, tires;
     temp = chosenPosition.Copy();
     temp.Add(this.b2Body.GetPosition());
     this.b2Body.SetPosition(temp);
-    _ref = this.tiresCount;
-    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-      i = _ref[_i];
+    tires = this.tires;
+    for (i in tires) {
       temp = chosenPosition.Copy();
-      temp.Add(this.tires[i].GetPosition());
-      this.tires[i].SetPosition(temp);
+      temp.Add(tires[i].GetPosition());
+      tires[i].SetPosition(temp);
     }
   };
 
@@ -139,7 +138,7 @@ Car = (function() {
   };
 
   Car.prototype.handBrakeRelease = function() {
-    return this.drifting = false;
+    this.drifting = false;
   };
 
   Car.prototype.negateTorque = function(tireIndex) {
