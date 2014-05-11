@@ -1,34 +1,35 @@
 ﻿module.exports = function (grunt)
 {
-
 	require('load-grunt-tasks')(grunt);
 	// Project configuration.
 	grunt.initConfig(
 	{
 		jshint:
 		{
-			all:
-			[
-				'!js/libs/box2dweb/Box2dWeb-2.1.a.3.js',
+			ignore_warning:
+			{
+				options:
+				{
+					'-W041': true
+				},
+				src: ['!js/libs/box2dweb/Box2dWeb-2.1.a.3.js',
 				'!js/libs/pixi.js/pixi.dev.js',
 				'!js/libs/Stats.js',
 				'!js/libs/dat.gui.min.js',
 				'js/libs/loadrube.js',
-				'js/ContactManager.js',
-				'js/KeyboardHandler.js',
-				'js/utils/b2.js',
-				'js/utils/LinkedList.js',
-				'js/b2Universe.js',
-				'js/WorldSetup.js',
-				'js/CheckpointManager.js',
-				'js/conf/Consts.js',
-				'js/conf/Cars.js',
-				'js/conf/Tracks.js',
-				'js/Main.js',
-				'js/Car.js',
-				'js/utils/MathUtil.js',
-				'!publish/min.js'
-			]
+				'js/compiled/keyboardHandler.js',
+				'js/compiled/b2Helpers.js',
+				'js/compiled/linkedList.js',
+				'js/compiled/universe.js',
+				'js/compiled/worldSetup.js',
+				'js/compiled/checkpointManager.js',
+				'js/compiled/consts.js',
+				'js/compiled/carsConfig.js',
+				'js/compiled/tracksConfig.js',
+				'js/compiled/game.js',
+				'js/compiled/car.js',
+				'!publish/min.js']
+			},
 		},
 		uglify:
 		{
@@ -42,20 +43,17 @@
 						'js/libs/pixi.js/pixi.dev.js',
 						'js/libs/loadrube.js',
 						'js/libs/dat.gui.min.js',
-						'js/ContactManager.js',
-						'js/KeyboardHandler.js',
-						'js/utils/b2.js',
-						'js/utils/LinkedList.js',
-						'js/b2Universe.js',
-						'js/WorldSetup.js',
-						'js/conf/Consts.js',
-						'js/conf/Cars.js',
-						'js/conf/Tracks.js',
-						'js/CheckpointManager.js',
-						'js/Main.js',
-						'js/Car.js',
-						'js/libs/Stats.js',
-						'js/utils/MathUtil.js',
+						'js/compiled/keyboardHandler.js',
+						'js/compiled/b2Helpers.js',
+						'js/compiled/linkedList.js',
+						'js/compiled/universe.js',
+						'js/compiled/worldSetup.js',
+						'js/compiled/checkpointManager.js',
+						'js/compiled/consts.js',
+						'js/compiled/carsConfig.js',
+						'js/compiled/tracksConfig.js',
+						'js/compiled/game.js',
+						'js/compiled/car.js'
 					]
 				}
 			}
@@ -70,7 +68,6 @@
 				}
 			}
 		},
-
 		copy:
 		{
 			main:
@@ -115,7 +112,6 @@
 				]
 			}
 		},
-
 		processhtml:
 		{
 			options:
@@ -133,7 +129,8 @@
 				}
 		    }
 		},
-		replace: {
+		replace:
+		{
 			example:
 			{
 				src: ['publish/js/min.js'],             // source files array (supports minimatch)
@@ -155,9 +152,43 @@
 					}
 				]
 			}
+		},
+		coffee:
+		{
+			compile:
+			{
+				options:
+				{
+					bare: true
+				},
+				files:
+				{
+					'js/compiled/car.js': ['js/car.coffee'],
+					'js/compiled/universe.js': ['js/universe.coffee'],
+					'js/compiled/checkpointManager.js': ['js/checkpointManager.coffee'],
+					'js/compiled/contactManager.js': ['js/contactManager.coffee'],
+					'js/compiled/keyboardHandler.js': ['js/keyboardHandler.coffee'],
+					'js/compiled/worldSetup.js': ['js/worldSetup.coffee'],
+					'js/compiled/game.js': ['js/game.coffee'],
+					'js/compiled/b2Helpers.js': ['js/utils/b2Helpers.coffee'],
+					'js/compiled/linkedList.js': ['js/utils/linkedList.coffee'],
+					'js/compiled/carsConfig.js': ['js/conf/carsConfig.coffee'],
+					'js/compiled/tracksConfig.js': ['js/conf/tracksConfig.coffee'],
+					'js/compiled/consts.js': ['js/conf/consts.coffee']
+				}
+			}
+		},
+		watch:
+		{
+			coffee:
+			{
+				files: ['js/**/*.coffee'],
+				tasks: 'coffee'
+			}
 		}
 	});
 
 
-	grunt.registerTask('default', ['jshint', 'uglify:dist', 'copy', 'processhtml', 'replace']);
+	grunt.registerTask('default', ['coffee', 'jshint', 'uglify:dist', 'copy', 'processhtml', 'replace']);
+	grunt.registerTask('wCoffee', ['watch:coffee']);
 };
