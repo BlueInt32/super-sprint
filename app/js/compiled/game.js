@@ -57,9 +57,8 @@ Game = (function() {
   };
 
   Game.prototype.box2dLoaded = function(loaderTrackWalls, loaderCars) {
-    var rCar, sCar;
-    rCar = new Car(this.consts, 0, this.carConfigPointer);
-    sCar = new Car(this.consts, 0, this.carConfigPointer);
+    var rCar;
+    rCar = new PlayerCar(this.consts, 0, this.carConfigPointer);
     this.setUpDatGui(rCar);
     this.universe.positionTrack(loaderTrackWalls);
     rCar.setBox2dData(loaderCars[0]);

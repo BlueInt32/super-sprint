@@ -174,7 +174,8 @@
 					'js/compiled/linkedList.js': ['js/utils/linkedList.coffee'],
 					'js/compiled/carsConfig.js': ['js/conf/carsConfig.coffee'],
 					'js/compiled/tracksConfig.js': ['js/conf/tracksConfig.coffee'],
-					'js/compiled/consts.js': ['js/conf/consts.coffee']
+                    'js/compiled/consts.js': ['js/conf/consts.coffee'],
+					'js/compiled/playerCar.js': ['js/playerCar.coffee'],
 				}
 			}
 		},

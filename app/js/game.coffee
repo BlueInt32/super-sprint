@@ -56,8 +56,8 @@ class Game
         worldSetup.launchMultiLoad(@box2dLoaded)
 
     box2dLoaded:(loaderTrackWalls, loaderCars)=>
-        rCar = new Car(@consts, 0, @carConfigPointer)
-        sCar = new Car(@consts, 0, @carConfigPointer)
+        rCar = new PlayerCar(@consts, 0, @carConfigPointer)
+        #sCar = new Car(@consts, 0, @carConfigPointer)
 
         @setUpDatGui(rCar)
         @universe.positionTrack(loaderTrackWalls)
