@@ -1,12 +1,14 @@
 class WorldSetup
 	constructor: (resourcesList) ->
-		@jsonLinkedList =resourcesList;
-		@cars = [];
-		@tires = [];
-		@trackWalls = [];
-		@trackStartPositions = [];
-		@mainLoaderCallback = null;
-		@refWorld = null;
+		@jsonLinkedList = resourcesList
+		@playerCar = null
+		@otherCars = []
+		@trackWalls = []
+		@trackStartPositions = []
+		@mainLoaderCallback = null
+		@refWorld = null
+
+		@firstCarLoaded = false # first car is playercar. This flag helps informing this
 
 	launchMultiLoad: (callback) ->
 		@mainLoaderCallback = callback
@@ -33,7 +35,15 @@ class WorldSetup
 				carRearTires = getBodiesByCustomProperty(@refWorld, "string", "category", "wheel_rear")
 				carFrontTires = getBodiesByCustomProperty(@refWorld, "string", "category", "wheel_front")
 				dirJoints = getNamedJoints(@refWorld, "direction")
-				@cars.push({carBody : carBody, rearTires : carRearTires, frontTires : carFrontTires, directionJoints : dirJoints})
+
+				carSet = {carBody : carBody, rearTires : carRearTires, frontTires : carFrontTires, directionJoints : dirJoints}
+
+
+				if !@firstCarLoaded # first car is playercar. This flag helps informing this and sorting carsSets out
+					@playerCar = carSet
+					@firstCarLoaded = true
+				else @otherCars.push(carSet)
+
 			else if (resourceNode.dataType == "track")
 				# if it's a track, we take all the bodies as is.
 				@trackWalls = getBodies(@refWorld)
@@ -44,7 +54,7 @@ class WorldSetup
 				@loadResource(resourceNode.next)
 				return
 			else
-				@mainLoaderCallback(@trackWalls, @cars)
+				@mainLoaderCallback(@trackWalls, @playerCar, @otherCars)
 				return
 	preprocessRube: (parsedJson)->
 		# invert y on vertices and bodies position

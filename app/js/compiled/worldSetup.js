@@ -3,12 +3,13 @@ var WorldSetup;
 WorldSetup = (function() {
   function WorldSetup(resourcesList) {
     this.jsonLinkedList = resourcesList;
-    this.cars = [];
-    this.tires = [];
+    this.playerCar = null;
+    this.otherCars = [];
     this.trackWalls = [];
     this.trackStartPositions = [];
     this.mainLoaderCallback = null;
     this.refWorld = null;
+    this.firstCarLoaded = false;
   }
 
   WorldSetup.prototype.launchMultiLoad = function(callback) {
@@ -26,7 +27,7 @@ WorldSetup = (function() {
     }
     return this.loadJSON(resourceNode.data, (function(_this) {
       return function(rawJson) {
-        var carBody, carFrontTires, carRearTires, dirJoints, parsedJson;
+        var carBody, carFrontTires, carRearTires, carSet, dirJoints, parsedJson;
         parsedJson = JSON.parse(rawJson);
         parsedJson = _this.preprocessRube(parsedJson);
         _this.refWorld = loadWorldFromRUBE(parsedJson, _this.refWorld);
@@ -35,12 +36,18 @@ WorldSetup = (function() {
           carRearTires = getBodiesByCustomProperty(_this.refWorld, "string", "category", "wheel_rear");
           carFrontTires = getBodiesByCustomProperty(_this.refWorld, "string", "category", "wheel_front");
           dirJoints = getNamedJoints(_this.refWorld, "direction");
-          _this.cars.push({
+          carSet = {
             carBody: carBody,
             rearTires: carRearTires,
             frontTires: carFrontTires,
             directionJoints: dirJoints
-          });
+          };
+          if (!_this.firstCarLoaded) {
+            _this.playerCar = carSet;
+            _this.firstCarLoaded = true;
+          } else {
+            _this.otherCars.push(carSet);
+          }
         } else if (resourceNode.dataType === "track") {
           _this.trackWalls = getBodies(_this.refWorld);
           _this.trackStartPositions = getBodiesWithNamesStartingWith(_this.refWorld);
@@ -48,7 +55,7 @@ WorldSetup = (function() {
         if (resourceNode.next != null) {
           _this.loadResource(resourceNode.next);
         } else {
-          _this.mainLoaderCallback(_this.trackWalls, _this.cars);
+          _this.mainLoaderCallback(_this.trackWalls, _this.playerCar, _this.otherCars);
         }
       };
     })(this));

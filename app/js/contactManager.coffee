@@ -1,7 +1,7 @@
 class ContactManager
-    constructor:(world, cars) ->
-        @cars = cars
-        @world = world
+    constructor:(@_world, @_playerCar) ->
+        @playerCar = @_playerCar
+        @world = @_world
         contactListener = new Box2D.Dynamics.b2ContactListener();
 
         contactListener.BeginContact = (contact) =>
@@ -34,13 +34,13 @@ class ContactManager
             return
         if(began)
             switch cInfo.type
-                when "cp" then @cars[0].checkPointManager.step(parseInt(cInfo.id))
+                when "cp" then @playerCar.checkPointManager.step(parseInt(cInfo.id))
                 when "puddle"
-                    @cars[0].adherence = false;
-                    @cars[0].paddleEffect = puddleRandomDirectionArray[Math.floor(Math.random()*2)]
+                    @playerCar.adherence = false;
+                    @playerCar.paddleEffect = puddleRandomDirectionArray[Math.floor(Math.random()*2)]
                 when "boost"
                     boostVector = new b2.cMath.b2Vec2(cInfo.boostVector.x, cInfo.boostVector.y)
-                    @cars[0].applyImpulse(boostVector)
+                    @playerCar.applyImpulse(boostVector)
         else
-            @cars[0].adherence = true;
-            @cars[0].paddleEffect = 0;
+            @playerCar.adherence = true;
+            @playerCar.paddleEffect = 0;

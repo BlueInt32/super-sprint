@@ -1,10 +1,12 @@
 var ContactManager;
 
 ContactManager = (function() {
-  function ContactManager(world, cars) {
+  function ContactManager(_world, _playerCar) {
     var contactListener;
-    this.cars = cars;
-    this.world = world;
+    this._world = _world;
+    this._playerCar = _playerCar;
+    this.playerCar = this._playerCar;
+    this.world = this._world;
     contactListener = new Box2D.Dynamics.b2ContactListener();
     contactListener.BeginContact = (function(_this) {
       return function(contact) {
@@ -66,17 +68,17 @@ ContactManager = (function() {
     if (began) {
       switch (cInfo.type) {
         case "cp":
-          return this.cars[0].checkPointManager.step(parseInt(cInfo.id));
+          return this.playerCar.checkPointManager.step(parseInt(cInfo.id));
         case "puddle":
-          this.cars[0].adherence = false;
-          return this.cars[0].paddleEffect = puddleRandomDirectionArray[Math.floor(Math.random() * 2)];
+          this.playerCar.adherence = false;
+          return this.playerCar.paddleEffect = puddleRandomDirectionArray[Math.floor(Math.random() * 2)];
         case "boost":
           boostVector = new b2.cMath.b2Vec2(cInfo.boostVector.x, cInfo.boostVector.y);
-          return this.cars[0].applyImpulse(boostVector);
+          return this.playerCar.applyImpulse(boostVector);
       }
     } else {
-      this.cars[0].adherence = true;
-      return this.cars[0].paddleEffect = 0;
+      this.playerCar.adherence = true;
+      return this.playerCar.paddleEffect = 0;
     }
   };
 
