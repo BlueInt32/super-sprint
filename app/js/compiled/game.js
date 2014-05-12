@@ -49,7 +49,7 @@ Game = (function() {
   Game.prototype.onLoadAssets = function() {
     var jsonPathsLList, worldSetup;
     jsonPathsLList = new LinkedList();
-    jsonPathsLList.add(TracksConfig[1].jsonPath, 'track');
+    jsonPathsLList.add(TracksConfig[0].jsonPath, 'track');
     jsonPathsLList.add(this.carConfigPointer.jsonPath, 'car');
     worldSetup = new WorldSetup(jsonPathsLList);
     worldSetup.setWorld(this.universe.world);
@@ -59,6 +59,7 @@ Game = (function() {
   Game.prototype.box2dLoaded = function(loaderTrackWalls, loaderCars) {
     var rCar;
     rCar = new PlayerCar(this.consts, 0, this.carConfigPointer);
+    console.log(rCar);
     this.setUpDatGui(rCar);
     this.universe.positionTrack(loaderTrackWalls);
     rCar.setBox2dData(loaderCars[0]);
@@ -84,7 +85,8 @@ Game = (function() {
     this.universe.world.Step(1 / 60, 3, 3);
     this.universe.world.ClearForces();
     this.universe.world.DrawDebugData();
-    this.universe.cars[0].updateData(this.keyboardHandler.keys);
+    this.universe.cars[0].updateData();
+    this.universe.cars[0].handleKeyboard(this.keyboardHandler.keys);
     return this.stats.update();
   };
 

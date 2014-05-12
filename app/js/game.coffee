@@ -48,7 +48,7 @@ class Game
 
     onLoadAssets:()=>
         jsonPathsLList = new LinkedList()
-        jsonPathsLList.add(TracksConfig[1].jsonPath, 'track')
+        jsonPathsLList.add(TracksConfig[0].jsonPath, 'track')
         jsonPathsLList.add(@carConfigPointer.jsonPath, 'car')
 
         worldSetup = new WorldSetup(jsonPathsLList);
@@ -57,7 +57,7 @@ class Game
 
     box2dLoaded:(loaderTrackWalls, loaderCars)=>
         rCar = new PlayerCar(@consts, 0, @carConfigPointer)
-        #sCar = new Car(@consts, 0, @carConfigPointer)
+        console.log(rCar);
 
         @setUpDatGui(rCar)
         @universe.positionTrack(loaderTrackWalls)
@@ -92,7 +92,10 @@ class Game
         # TODO : update only keyboard data for player's car, the other cars must not be updated the same way.
         # for(carIndex in @universe.cars)
         # {
-        @universe.cars[0].updateData(@keyboardHandler.keys);
+
+        @universe.cars[0].updateData();
+        @universe.cars[0].handleKeyboard(@keyboardHandler.keys);
+
         #}
         #@pixiRenderer.render(@pixiStage);
         @stats.update();
