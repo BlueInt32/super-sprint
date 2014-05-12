@@ -28,6 +28,8 @@
 				'js/compiled/tracksConfig.js',
 				'js/compiled/game.js',
 				'js/compiled/car.js',
+				'js/compiled/playerCar.js',
+				'js/compiled/iaCar.js',
 				'!publish/min.js']
 			},
 		},
@@ -53,6 +55,8 @@
 						'js/compiled/carsConfig.js',
 						'js/compiled/tracksConfig.js',
 						'js/compiled/game.js',
+						'js/compiled/playerCar.js',
+						'js/compiled/iaCar.js',
 						'js/compiled/car.js'
 					]
 				}
@@ -176,6 +180,7 @@
 					'js/compiled/tracksConfig.js': ['js/conf/tracksConfig.coffee'],
                     'js/compiled/consts.js': ['js/conf/consts.coffee'],
 					'js/compiled/playerCar.js': ['js/playerCar.coffee'],
+					'js/compiled/iaCar.js': ['js/iaCar.coffee'],
 				}
 			}
 		},

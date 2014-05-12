@@ -4,7 +4,7 @@ var Game, game,
 Game = (function() {
   function Game() {
     this.loadUniverse = __bind(this.loadUniverse, this);
-    this.onLoad = __bind(this.onLoad, this);
+    this.initPixi = __bind(this.initPixi, this);
     this.consts = new ConstsDef();
     this.stats = new Stats();
     this.pixiStage = new PIXI.Stage(0xDDDDDD, true);
@@ -28,10 +28,10 @@ Game = (function() {
         };
       };
     }
-    window.onload = this.onLoad;
+    window.onload = this.initPixi;
   };
 
-  Game.prototype.onLoad = function() {
+  Game.prototype.initPixi = function() {
     var background, container, pixiLoader;
     container = document.createElement("div");
     document.body.appendChild(container);

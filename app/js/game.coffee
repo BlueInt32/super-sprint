@@ -20,10 +20,10 @@ class Game
                 window.oRequestAnimationFrame ||
                 window.msRequestAnimationFrame ||
                 (callback, element) -> window.setTimeout(callback, 1000 / 60)
-        window.onload = @onLoad;
+        window.onload = @initPixi;
         return
 
-    onLoad:()=>
+    initPixi:()=>
         container = document.createElement("div");
         document.body.appendChild(container);
 
@@ -50,7 +50,10 @@ class Game
         debugDrawer.SetFillAlpha(0.5)
         debugDrawer.SetLineThickness(10.0)
         debugDrawer.SetFlags(
-            b2.dyn.b2DebugDraw.e_shapeBit | b2.dyn.b2DebugDraw.e_jointBit | b2.dyn.b2DebugDraw.e_controllerBit | b2.dyn.b2DebugDraw.e_pairBit
+            b2.dyn.b2DebugDraw.e_shapeBit |
+            b2.dyn.b2DebugDraw.e_jointBit |
+            b2.dyn.b2DebugDraw.e_controllerBit |
+            b2.dyn.b2DebugDraw.e_pairBit
             #  | b2.dyn.b2DebugDraw.e_centerOfMassBit
             );
         @universe.world.SetDebugDraw(debugDrawer);
