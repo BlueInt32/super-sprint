@@ -74,7 +74,7 @@ class Car
 		@localAccelerationVector = new b2.cMath.b2Vec2(0, -@accelerationFactor)
 		tires = @tires
 		for i of tires
-			console.log(i);
+			#console.log(i);
 			@linearVelocities[i] = @getLinearVelocity(i)
 			@currentRightForwards[i] = @tires[i].GetWorldVector(new b2.cMath.b2Vec2(0, 1))
 			@vCurrentRightNormals[i] = @getLateralVelocity(i)

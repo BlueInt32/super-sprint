@@ -74,19 +74,19 @@ Universe = (function() {
   };
 
   Universe.prototype.update = function() {
+    var car, _i, _len, _ref;
     requestAnimationFrame(this.update);
     this.world.Step(1 / 60, 3, 3);
     this.world.ClearForces();
     this.world.DrawDebugData();
     this.playerCar.updateData();
     this.playerCar.handleKeyboard(this.keyboardHandler.keys);
-
-    /*
-    THIS code raises an issue : cars share tires :D
-    for car in @iaCars
-        car.updateData()
-        car.updateFriction()
-     */
+    _ref = this.iaCars;
+    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+      car = _ref[_i];
+      car.updateData();
+      car.updateFriction();
+    }
     this.gameStepCallback();
   };
 

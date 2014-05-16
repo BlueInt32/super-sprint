@@ -68,7 +68,6 @@ Car = (function() {
     this.localAccelerationVector = new b2.cMath.b2Vec2(0, -this.accelerationFactor);
     tires = this.tires;
     for (i in tires) {
-      console.log(i);
       this.linearVelocities[i] = this.getLinearVelocity(i);
       this.currentRightForwards[i] = this.tires[i].GetWorldVector(new b2.cMath.b2Vec2(0, 1));
       this.vCurrentRightNormals[i] = this.getLateralVelocity(i);
