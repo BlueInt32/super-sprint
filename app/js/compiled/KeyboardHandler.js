@@ -16,7 +16,8 @@ KeyboardHandler = (function() {
     var key, knowKey;
     key = event.which;
     if (this.keyArray.indexOf(key) > -1) {
-      return;
+      event.preventDefault();
+      return false;
     }
     knowKey = true;
     switch (key) {
@@ -41,6 +42,8 @@ KeyboardHandler = (function() {
     if (knowKey) {
       this.keyArray.push(key);
     }
+    event.preventDefault();
+    return false;
   };
 
   KeyboardHandler.prototype.handleKeyUp = function(event) {
@@ -67,6 +70,8 @@ KeyboardHandler = (function() {
         this.keys.handbrake = false;
         break;
     }
+    event.preventDefault();
+    return false;
   };
 
   return KeyboardHandler;

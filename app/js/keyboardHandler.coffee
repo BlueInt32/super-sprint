@@ -6,7 +6,10 @@ class KeyboardHandler
     handleKeyDown:(event) ->
         key = event.which
 
-        if @keyArray.indexOf(key) > -1 then return
+        if @keyArray.indexOf(key) > -1
+            event.preventDefault()
+            return false
+
         knowKey = true
         switch (key)
             when 37
@@ -26,7 +29,9 @@ class KeyboardHandler
                 break
             else knowKey = false
         if (knowKey) then @keyArray.push(key)
-        return
+
+        event.preventDefault()
+        return false
 
     handleKeyUp:(event) ->
         key = event.which
@@ -50,4 +55,5 @@ class KeyboardHandler
                 @keys.handbrake = false
                 break
 
-        return
+        event.preventDefault()
+        return false
