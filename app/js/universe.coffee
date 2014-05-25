@@ -80,10 +80,10 @@ class Universe
 
 
         #THIS code raises an issue : cars share tires :D
-        ###for car in @iaCars
+        for car in @iaCars
             car.updateData()
             car.updateFriction()
-        ###
+
         #@pixiRenderer.render(@pixiStage);
         @gameStepCallback()
         return

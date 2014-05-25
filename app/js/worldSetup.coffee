@@ -10,6 +10,8 @@ class WorldSetup
 
 		@firstCarLoaded = false # first car is playercar. This flag helps informing this
 
+		@resourceLoadingIndex = 0
+
 	launchMultiLoad: (callback) ->
 		@mainLoaderCallback = callback
 		@loadResource(@jsonLinkedList.firstNode)
@@ -18,6 +20,7 @@ class WorldSetup
 	setWorld:(world) ->
 		@refWorld = world
 		return
+
 	loadResource: (resourceNode) ->
 		if(resourceNode.data == "")
 			@loadResource(resourceNode.next)
@@ -27,17 +30,24 @@ class WorldSetup
 			parsedJson = @preprocessRube(parsedJson)
 
 			# we call the lib rube provided to our refWorld.
-			@refWorld = loadWorldFromRUBE(parsedJson, @refWorld)
+			console.log('loading world with index ', @resourceLoadingIndex);
+			@refWorld = loadWorldFromRUBE(parsedJson, @refWorld, @resourceLoadingIndex)
 
 			# After data has been loaded, we set meta data to keep track of each one
 			if(resourceNode.dataType == "car")
-				carBody = getBodiesByCustomProperty(@refWorld, "string", "category", "car_body")[0]
-				carRearTires = getBodiesByCustomProperty(@refWorld, "string", "category", "wheel_rear")
-				carFrontTires = getBodiesByCustomProperty(@refWorld, "string", "category", "wheel_front")
-				dirJoints = getNamedJoints(@refWorld, "direction")
+				carsInWorld = getBodiesByCustomProperty(@refWorld, "string", "category", "car_body")
+				rearTiresInWorld = getBodiesByCustomProperty(@refWorld, "string", "category", "wheel_rear")
+				frontTiresInWorld = getBodiesByCustomProperty(@refWorld, "string", "category", "wheel_front")
+				dirJointsInWorld = getNamedJoints(@refWorld, "direction")
+				console.log(dirJointsInWorld);
 
+				# get the body that has the correct loadingIndex in the world (set by loadWorldFromRUBE function)
+				carBody = filterElementsByCustomProperty(carsInWorld, 'int', 'loadingIndex', @resourceLoadingIndex)[0]
+				carRearTires = filterElementsByCustomProperty(rearTiresInWorld, 'int', 'loadingIndex', @resourceLoadingIndex)
+				carFrontTires = filterElementsByCustomProperty(frontTiresInWorld, 'int', 'loadingIndex', @resourceLoadingIndex)
+				dirJoints = filterElementsByCustomProperty(dirJointsInWorld, 'int', 'loadingIndex', @resourceLoadingIndex)
+				console.log(dirJoints);
 				carSet = {carBody : carBody, rearTires : carRearTires, frontTires : carFrontTires, directionJoints : dirJoints}
-
 
 				if !@firstCarLoaded # first car is playercar. This flag helps informing this and sorting carsSets out
 					@playerCar = carSet
@@ -49,6 +59,7 @@ class WorldSetup
 				@trackWalls = getBodies(@refWorld)
 				@trackStartPositions = getBodiesWithNamesStartingWith(@refWorld)
 
+			@resourceLoadingIndex++
 			#if there still are nodes to load, we load them. else, we launch the main callback
 			if resourceNode.next?
 				@loadResource(resourceNode.next)

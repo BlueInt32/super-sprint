@@ -46,6 +46,20 @@
       "displayName" : "category",
       "name" : "category",
       "type" : "string"
+    },
+    
+    {
+      "class" : "joint",
+      "displayName" : "loadingIndex",
+      "name" : "loadingIndex",
+      "type" : "int"
+    },
+    
+    {
+      "class" : "body",
+      "displayName" : "loadingIndex",
+      "name" : "loadingIndex",
+      "type" : "int"
     }
   ],
   "metaworld" : 
@@ -72,6 +86,11 @@
         "awake" : true,
         "customProperties" : 
         [
+          
+          {
+            "int" : 0,
+            "name" : "loadingIndex"
+          },
           
           {
             "name" : "category",
@@ -136,6 +155,11 @@
         "awake" : true,
         "customProperties" : 
         [
+          
+          {
+            "int" : 0,
+            "name" : "loadingIndex"
+          },
           
           {
             "name" : "category",
@@ -241,6 +265,11 @@
         [
           
           {
+            "int" : 0,
+            "name" : "loadingIndex"
+          },
+          
+          {
             "name" : "category",
             "string" : "wheel_front"
           }
@@ -305,6 +334,11 @@
         [
           
           {
+            "int" : 0,
+            "name" : "loadingIndex"
+          },
+          
+          {
             "name" : "category",
             "string" : "wheel_rear"
           }
@@ -367,6 +401,11 @@
         "awake" : true,
         "customProperties" : 
         [
+          
+          {
+            "int" : 0,
+            "name" : "loadingIndex"
+          },
           
           {
             "name" : "category",
@@ -446,6 +485,11 @@
         [
           
           {
+            "int" : 0,
+            "name" : "loadingIndex"
+          },
+          
+          {
             "bool" : true,
             "name" : "direction"
           }
@@ -480,6 +524,11 @@
         [
           
           {
+            "int" : 0,
+            "name" : "loadingIndex"
+          },
+          
+          {
             "bool" : true,
             "name" : "direction"
           }
@@ -510,6 +559,14 @@
         "bodyA" : 2,
         "bodyB" : 5,
         "collideConnected" : false,
+        "customProperties" : 
+        [
+          
+          {
+            "int" : 0,
+            "name" : "loadingIndex"
+          }
+        ],
         "enableLimit" : true,
         "enableMotor" : false,
         "id" : 3,
@@ -536,6 +593,14 @@
         "bodyA" : 2,
         "bodyB" : 4,
         "collideConnected" : false,
+        "customProperties" : 
+        [
+          
+          {
+            "int" : 0,
+            "name" : "loadingIndex"
+          }
+        ],
         "enableLimit" : true,
         "enableMotor" : false,
         "id" : 4,

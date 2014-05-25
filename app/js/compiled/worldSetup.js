@@ -10,6 +10,7 @@ WorldSetup = (function() {
     this.mainLoaderCallback = null;
     this.refWorld = null;
     this.firstCarLoaded = false;
+    this.resourceLoadingIndex = 0;
   }
 
   WorldSetup.prototype.launchMultiLoad = function(callback) {
@@ -27,15 +28,22 @@ WorldSetup = (function() {
     }
     return this.loadJSON(resourceNode.data, (function(_this) {
       return function(rawJson) {
-        var carBody, carFrontTires, carRearTires, carSet, dirJoints, parsedJson;
+        var carBody, carFrontTires, carRearTires, carSet, carsInWorld, dirJoints, dirJointsInWorld, frontTiresInWorld, parsedJson, rearTiresInWorld;
         parsedJson = JSON.parse(rawJson);
         parsedJson = _this.preprocessRube(parsedJson);
-        _this.refWorld = loadWorldFromRUBE(parsedJson, _this.refWorld);
+        console.log('loading world with index ', _this.resourceLoadingIndex);
+        _this.refWorld = loadWorldFromRUBE(parsedJson, _this.refWorld, _this.resourceLoadingIndex);
         if (resourceNode.dataType === "car") {
-          carBody = getBodiesByCustomProperty(_this.refWorld, "string", "category", "car_body")[0];
-          carRearTires = getBodiesByCustomProperty(_this.refWorld, "string", "category", "wheel_rear");
-          carFrontTires = getBodiesByCustomProperty(_this.refWorld, "string", "category", "wheel_front");
-          dirJoints = getNamedJoints(_this.refWorld, "direction");
+          carsInWorld = getBodiesByCustomProperty(_this.refWorld, "string", "category", "car_body");
+          rearTiresInWorld = getBodiesByCustomProperty(_this.refWorld, "string", "category", "wheel_rear");
+          frontTiresInWorld = getBodiesByCustomProperty(_this.refWorld, "string", "category", "wheel_front");
+          dirJointsInWorld = getNamedJoints(_this.refWorld, "direction");
+          console.log(dirJointsInWorld);
+          carBody = filterElementsByCustomProperty(carsInWorld, 'int', 'loadingIndex', _this.resourceLoadingIndex)[0];
+          carRearTires = filterElementsByCustomProperty(rearTiresInWorld, 'int', 'loadingIndex', _this.resourceLoadingIndex);
+          carFrontTires = filterElementsByCustomProperty(frontTiresInWorld, 'int', 'loadingIndex', _this.resourceLoadingIndex);
+          dirJoints = filterElementsByCustomProperty(dirJointsInWorld, 'int', 'loadingIndex', _this.resourceLoadingIndex);
+          console.log(dirJoints);
           carSet = {
             carBody: carBody,
             rearTires: carRearTires,
@@ -52,6 +60,7 @@ WorldSetup = (function() {
           _this.trackWalls = getBodies(_this.refWorld);
           _this.trackStartPositions = getBodiesWithNamesStartingWith(_this.refWorld);
         }
+        _this.resourceLoadingIndex++;
         if (resourceNode.next != null) {
           _this.loadResource(resourceNode.next);
         } else {
