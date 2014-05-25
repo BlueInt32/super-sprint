@@ -215,7 +215,7 @@ function loadJointFromRUBE(jointJso, world, loadedBodies, loadingIndex)
     if ( jointJso.type == "revolute" ) {
         jd = new b2.joints.b2RevoluteJointDef();
         loadJointCommonProperties(jd, jointJso, loadedBodies, loadingIndex);
-        console.log('jd : ', jd);
+        //console.log('jd : ', jd);
         if ( jointJso.hasOwnProperty('refAngle'))
             jd.referenceAngle = jointJso.refAngle;
         if ( jointJso.hasOwnProperty('lowerLimit'))
@@ -409,7 +409,7 @@ function loadSceneIntoWorld(worldJso, world, loadingIndex) {
 // loadingIndex should be filled in in bodies and joints elements loaded in order to track them in the
 // case of multiple worlds imports
 function loadWorldFromRUBE(worldJso, inputWorld, loadingIndex) {
-    console.log("LoadingIndex: ", loadingIndex);
+    //console.log("LoadingIndex: ", loadingIndex);
     var gravity = new b2Vec2(0,0);
     if ( worldJso.hasOwnProperty('gravity') && worldJso.gravity instanceof Object )
         gravity.SetV( worldJso.gravity );

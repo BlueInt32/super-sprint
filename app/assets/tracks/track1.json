@@ -44,9 +44,18 @@
 		},
 		
 		{
+			"active" : false,
 			"angle" : 0,
 			"angularVelocity" : 0,
 			"awake" : true,
+			"customProperties" : 
+			[
+				
+				{
+					"name" : "category",
+					"string" : "iaLine"
+				}
+			],
 			"fixture" : 
 			[
 				
@@ -94,14 +103,13 @@
 				"x" : 0,
 				"y" : 0
 			},
-			"massData-mass" : 1,
 			"name" : "body0",
 			"position" : 
 			{
-				"x" : 0,
+				"x" : -0.06592667102813721,
 				"y" : 0
 			},
-			"type" : 2
+			"type" : 0
 		},
 		
 		{

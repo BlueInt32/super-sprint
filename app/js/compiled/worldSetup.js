@@ -7,6 +7,7 @@ WorldSetup = (function() {
     this.otherCars = [];
     this.trackWalls = [];
     this.trackStartPositions = [];
+    this.trackIaLine = null;
     this.mainLoaderCallback = null;
     this.refWorld = null;
     this.firstCarLoaded = false;
@@ -28,22 +29,19 @@ WorldSetup = (function() {
     }
     return this.loadJSON(resourceNode.data, (function(_this) {
       return function(rawJson) {
-        var carBody, carFrontTires, carRearTires, carSet, carsInWorld, dirJoints, dirJointsInWorld, frontTiresInWorld, parsedJson, rearTiresInWorld;
+        var carBody, carFrontTires, carRearTires, carSet, carsInWorld, dirJoints, dirJointsInWorld, frontTiresInWorld, iaBoundDef, joint, parsedJson, rearTiresInWorld;
         parsedJson = JSON.parse(rawJson);
         parsedJson = _this.preprocessRube(parsedJson);
-        console.log('loading world with index ', _this.resourceLoadingIndex);
         _this.refWorld = loadWorldFromRUBE(parsedJson, _this.refWorld, _this.resourceLoadingIndex);
         if (resourceNode.dataType === "car") {
           carsInWorld = getBodiesByCustomProperty(_this.refWorld, "string", "category", "car_body");
           rearTiresInWorld = getBodiesByCustomProperty(_this.refWorld, "string", "category", "wheel_rear");
           frontTiresInWorld = getBodiesByCustomProperty(_this.refWorld, "string", "category", "wheel_front");
           dirJointsInWorld = getNamedJoints(_this.refWorld, "direction");
-          console.log(dirJointsInWorld);
           carBody = filterElementsByCustomProperty(carsInWorld, 'int', 'loadingIndex', _this.resourceLoadingIndex)[0];
           carRearTires = filterElementsByCustomProperty(rearTiresInWorld, 'int', 'loadingIndex', _this.resourceLoadingIndex);
           carFrontTires = filterElementsByCustomProperty(frontTiresInWorld, 'int', 'loadingIndex', _this.resourceLoadingIndex);
           dirJoints = filterElementsByCustomProperty(dirJointsInWorld, 'int', 'loadingIndex', _this.resourceLoadingIndex);
-          console.log(dirJoints);
           carSet = {
             carBody: carBody,
             rearTires: carRearTires,
@@ -55,16 +53,25 @@ WorldSetup = (function() {
             _this.firstCarLoaded = true;
           } else {
             _this.otherCars.push(carSet);
+            iaBoundDef = new b2.joints.b2DistanceJointDef();
+            iaBoundDef.bodyA = _this.trackIaLine;
+            iaBoundDef.bodyB = carBody;
+            iaBoundDef.collideConnected = false;
+            iaBoundDef.length = 1;
+            iaBoundDef.localAnchorB.SetV(new b2.cMath.b2Vec2(0, 0.25));
+            console.log('iaBoundDef : ', iaBoundDef);
+            joint = _this.refWorld.CreateJoint(iaBoundDef);
           }
         } else if (resourceNode.dataType === "track") {
           _this.trackWalls = getBodies(_this.refWorld);
           _this.trackStartPositions = getBodiesWithNamesStartingWith(_this.refWorld);
+          _this.trackIaLine = getBodiesByCustomProperty(_this.refWorld, "string", "category", "iaLine")[0];
         }
         _this.resourceLoadingIndex++;
         if (resourceNode.next != null) {
           _this.loadResource(resourceNode.next);
         } else {
-          _this.mainLoaderCallback(_this.trackWalls, _this.playerCar, _this.otherCars);
+          _this.mainLoaderCallback.apply(null, [_this.trackWalls, _this.playerCar, _this.otherCars]);
         }
       };
     })(this));

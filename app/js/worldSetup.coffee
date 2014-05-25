@@ -5,6 +5,7 @@ class WorldSetup
 		@otherCars = []
 		@trackWalls = []
 		@trackStartPositions = []
+		@trackIaLine = null # this references the line iaCars are linked to
 		@mainLoaderCallback = null
 		@refWorld = null
 
@@ -30,7 +31,7 @@ class WorldSetup
 			parsedJson = @preprocessRube(parsedJson)
 
 			# we call the lib rube provided to our refWorld.
-			console.log('loading world with index ', @resourceLoadingIndex);
+
 			@refWorld = loadWorldFromRUBE(parsedJson, @refWorld, @resourceLoadingIndex)
 
 			# After data has been loaded, we set meta data to keep track of each one
@@ -39,33 +40,46 @@ class WorldSetup
 				rearTiresInWorld = getBodiesByCustomProperty(@refWorld, "string", "category", "wheel_rear")
 				frontTiresInWorld = getBodiesByCustomProperty(@refWorld, "string", "category", "wheel_front")
 				dirJointsInWorld = getNamedJoints(@refWorld, "direction")
-				console.log(dirJointsInWorld);
 
-				# get the body that has the correct loadingIndex in the world (set by loadWorldFromRUBE function)
+				# get from these elements those that have the correct loadingIndex in the world (set by loadWorldFromRUBE function)
 				carBody = filterElementsByCustomProperty(carsInWorld, 'int', 'loadingIndex', @resourceLoadingIndex)[0]
 				carRearTires = filterElementsByCustomProperty(rearTiresInWorld, 'int', 'loadingIndex', @resourceLoadingIndex)
 				carFrontTires = filterElementsByCustomProperty(frontTiresInWorld, 'int', 'loadingIndex', @resourceLoadingIndex)
 				dirJoints = filterElementsByCustomProperty(dirJointsInWorld, 'int', 'loadingIndex', @resourceLoadingIndex)
-				console.log(dirJoints);
+
+
 				carSet = {carBody : carBody, rearTires : carRearTires, frontTires : carFrontTires, directionJoints : dirJoints}
 
 				if !@firstCarLoaded # first car is playercar. This flag helps informing this and sorting carsSets out
 					@playerCar = carSet
 					@firstCarLoaded = true
-				else @otherCars.push(carSet)
+				else
+					@otherCars.push(carSet)
+					# add a distance joint from
+					iaBoundDef = new b2.joints.b2DistanceJointDef()
+					iaBoundDef.bodyA = @trackIaLine
+					iaBoundDef.bodyB = carBody
+					iaBoundDef.collideConnected = false
+					iaBoundDef.length = 1
+					#iaBoundDef.localAnchorA.SetV(getVectorValue(jointJso.anchorA));
+					iaBoundDef.localAnchorB.SetV( new b2.cMath.b2Vec2(0, 0.25) );
+					console.log('iaBoundDef : ', iaBoundDef);
+					joint = @refWorld.CreateJoint(iaBoundDef);
+
 
 			else if (resourceNode.dataType == "track")
 				# if it's a track, we take all the bodies as is.
 				@trackWalls = getBodies(@refWorld)
 				@trackStartPositions = getBodiesWithNamesStartingWith(@refWorld)
+				@trackIaLine = getBodiesByCustomProperty(@refWorld, "string", "category", "iaLine")[0] # there is only one iaLine in the track... for now !
 
 			@resourceLoadingIndex++
-			#if there still are nodes to load, we load them. else, we launch the main callback
+			#if there still are nodes to load, we load them. else, we call the main callback
 			if resourceNode.next?
 				@loadResource(resourceNode.next)
 				return
 			else
-				@mainLoaderCallback(@trackWalls, @playerCar, @otherCars)
+				@mainLoaderCallback.apply(null, [@trackWalls, @playerCar, @otherCars])
 				return
 	preprocessRube: (parsedJson)->
 		# invert y on vertices and bodies position

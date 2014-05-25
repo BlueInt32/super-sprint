@@ -38,6 +38,16 @@
       "bitplane32"
     ]
   },
+  "customPropertyDefs" : 
+  [
+    
+    {
+      "class" : "body",
+      "displayName" : "category",
+      "name" : "category",
+      "type" : "string"
+    }
+  ],
   "metaworld" : 
   {
     "allowSleep" : true,
@@ -94,9 +104,18 @@
       },
       
       {
+        "active" : false,
         "angle" : 0,
         "angularVelocity" : 0,
         "awake" : true,
+        "customProperties" : 
+        [
+          
+          {
+            "name" : "category",
+            "string" : "iaLine"
+          }
+        ],
         "fixture" : 
         [
           
@@ -122,10 +141,13 @@
         ],
         "id" : 2,
         "linearVelocity" : 0,
-        "massData-mass" : 1,
         "name" : "body0",
-        "position" : 0,
-        "type" : "dynamic"
+        "position" : 
+        {
+          "x" : -0.06592667102813721,
+          "y" : 0
+        },
+        "type" : "static"
       },
       
       {
