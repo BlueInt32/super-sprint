@@ -10,14 +10,17 @@ KeyboardHandler = (function() {
       right: false,
       handbrake: false
     };
+    this.handledKeys = [37, 38, 39, 40, 32];
   }
 
   KeyboardHandler.prototype.handleKeyDown = function(event) {
     var key, knowKey;
     key = event.which;
-    if (this.keyArray.indexOf(key) > -1) {
+    if (this.handledKeys.indexOf(key) > -1) {
       event.preventDefault();
-      return false;
+    }
+    if (this.keyArray.indexOf(key) > -1) {
+      return;
     }
     knowKey = true;
     switch (key) {
@@ -42,8 +45,6 @@ KeyboardHandler = (function() {
     if (knowKey) {
       this.keyArray.push(key);
     }
-    event.preventDefault();
-    return false;
   };
 
   KeyboardHandler.prototype.handleKeyUp = function(event) {
@@ -70,8 +71,6 @@ KeyboardHandler = (function() {
         this.keys.handbrake = false;
         break;
     }
-    event.preventDefault();
-    return false;
   };
 
   return KeyboardHandler;

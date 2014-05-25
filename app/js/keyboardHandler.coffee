@@ -2,13 +2,14 @@ class KeyboardHandler
     constructor:()->
         @keyArray = []
         @keys = { accelerate: false, brake: false, left: false, right: false, handbrake:false }
-
+        @handledKeys = [37, 38, 39, 40, 32]
     handleKeyDown:(event) ->
         key = event.which
 
-        if @keyArray.indexOf(key) > -1
+        if(@handledKeys.indexOf(key) > -1)
             event.preventDefault()
-            return false
+        if @keyArray.indexOf(key) > -1
+            return
 
         knowKey = true
         switch (key)
@@ -30,8 +31,7 @@ class KeyboardHandler
             else knowKey = false
         if (knowKey) then @keyArray.push(key)
 
-        event.preventDefault()
-        return false
+        return
 
     handleKeyUp:(event) ->
         key = event.which
@@ -54,6 +54,6 @@ class KeyboardHandler
             when 32
                 @keys.handbrake = false
                 break
-
-        event.preventDefault()
-        return false
+        #if(@handledKeys.indexOf(key) > -1)
+        #    event.preventDefault()
+        return
