@@ -25,8 +25,11 @@ Files compile to app/js/compiled/.
 ######url params
 You can call different tracks using url params: 
 `http://localhost:8000/index.html?track=1&cars=0,0`
-This loads track 1 of those contained in TracksConfig array see [tracksConfig.coffee](https://github.com/BlueInt32/super-sprint/blob/master/app/js/conf/tracksConfig.coffee)
+
+This loads track 1 of those contained in TracksConfig array (see [tracksConfig.coffee](https://github.com/BlueInt32/super-sprint/blob/master/app/js/conf/tracksConfig.coffee))
+
 This loads 2 instances of the 0th car config (find it [here] (https://github.com/BlueInt32/super-sprint/blob/master/app/js/conf/carsConfig.coffee))
+
 Note : the first car index provided corresponds to the player's car. 
 
 ######game process starting point
