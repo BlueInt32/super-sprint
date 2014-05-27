@@ -15,6 +15,25 @@
 				"y" : 0
 			},
 			"massData-mass" : 1,
+			"name" : "start2",
+			"position" : 
+			{
+				"x" : 2.866005897521973,
+				"y" : -0.4793512821197510
+			},
+			"type" : 2
+		},
+		
+		{
+			"angle" : 0,
+			"angularVelocity" : 0,
+			"awake" : true,
+			"linearVelocity" : 
+			{
+				"x" : 0,
+				"y" : 0
+			},
+			"massData-mass" : 1,
 			"name" : "start1",
 			"position" : 
 			{
@@ -37,8 +56,8 @@
 			"name" : "start0",
 			"position" : 
 			{
-				"x" : -0.4846630096435547,
-				"y" : -0.9575509428977966
+				"x" : 0.03420448303222656,
+				"y" : -1.504465341567993
 			},
 			"type" : 2
 		},
@@ -103,10 +122,10 @@
 				"x" : 0,
 				"y" : 0
 			},
-			"name" : "body0",
+			"name" : "iaLine",
 			"position" : 
 			{
-				"x" : -0.06592667102813721,
+				"x" : 0.2231612205505371,
 				"y" : 0
 			},
 			"type" : 0

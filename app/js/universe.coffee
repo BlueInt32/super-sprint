@@ -1,5 +1,10 @@
 class Universe
-    constructor: (@consts, @_pixiStage, @gameStepCallback)->
+    constructor: (@consts, @_pixiStage,  @_trackId, @_carIds, @gameStepCallback)->
+
+        # tracks and cars asked for
+        @trackId = @_trackId; # just an int
+        @carIds = @_carIds; # array of ints, the first is the player cars index in CarsConfig
+
         @keyboardHandler = new KeyboardHandler()
         @world = new b2.dyn.b2World(new b2.cMath.b2Vec2(0, 0), true)
         contactListener = new Box2D.Dynamics.b2ContactListener();
@@ -9,16 +14,23 @@ class Universe
         puddleRandomDirectionArray = new Array(1, -1)
         @jsonsAssetsList = null
         @pixiStage = @_pixiStage
+        console.log(@pixiStage);
         @contactManager = null
         @positioning = 0
+        @pixiRenderer = null
         return
+
+    setPixiRenderer:(@_pixiRenderer)->
+        @pixiRenderer = @_pixiRenderer
+
 
     loadBox2d: () ->
         # Load tracks and cars configs
         @jsonsAssetsList = new LinkedList()
-        @jsonsAssetsList.add(TracksConfig[1].jsonPath, 'track')
-        @jsonsAssetsList.add(CarsConfig[0].jsonPath, 'car')
-        @jsonsAssetsList.add(CarsConfig[0].jsonPath, 'car')
+        @jsonsAssetsList.add(TracksConfig[@trackId].jsonPath, 'track')
+        for carId in @carIds
+            @jsonsAssetsList.add(CarsConfig[carId].jsonPath, 'car')
+
 
         worldSetup = new WorldSetup(@jsonsAssetsList);
         worldSetup.setWorld(@world)
@@ -39,14 +51,15 @@ class Universe
     box2dLoaded:(@loaderTrackWallsSet, @playerCarSet, @otherCarsSets)=>
 
         #do all the playerCar logic
-        @playerCar = new PlayerCar(@consts, 0, CarsConfig[0])
+        @playerCar = new PlayerCar(@consts, 0, CarsConfig[@carIds[0]])
         @playerCar.checkPointManager = new CheckPointManager(3)
         @playerCar.setBox2dData(@playerCarSet)
         @setUpDatGui(@playerCar)
         @contactManager = new ContactManager(@world, @playerCar)
 
         for carSet, i in @otherCarsSets
-            ia = new iaCar(@consts, 0, CarsConfig[0])
+            console.log(@carIds[i]);
+            ia = new iaCar(@consts, 0, CarsConfig[@carIds[i]])
             ia.setBox2dData(carSet)
             @positionCar(ia, @pixiStage)
             @iaCars.push(ia)
@@ -84,7 +97,7 @@ class Universe
             car.updateData()
             car.updateFriction()
 
-        #@pixiRenderer.render(@pixiStage);
+        @pixiRenderer.render(@pixiStage);
         @gameStepCallback()
         return
 

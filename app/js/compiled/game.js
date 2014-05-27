@@ -8,7 +8,8 @@ Game = (function() {
     this.consts = new ConstsDef();
     this.stats = new Stats();
     this.pixiStage = new PIXI.Stage(0xDDDDDD, true);
-    this.universe = new Universe(this.consts, this.pixiStage, (function(_this) {
+    this.queryParams = this.loadQueryConfig();
+    this.universe = new Universe(this.consts, this.pixiStage, this.queryParams.track, this.queryParams.cars, (function(_this) {
       return function() {
         return _this.stats.update();
       };
@@ -18,6 +19,7 @@ Game = (function() {
     this.canvas.height = this.consts.STAGE_HEIGHT_PIXEL;
     this.debugDraw();
     this.initWindowAnimationFrame();
+    console.log(this.queryParams);
   }
 
   Game.prototype.initWindowAnimationFrame = function() {
@@ -38,10 +40,11 @@ Game = (function() {
     container.appendChild(this.stats.domElement);
     this.stats.domElement.style.position = "absolute";
     this.pixiRenderer = PIXI.autoDetectRenderer(this.consts.STAGE_WIDTH_PIXEL, this.consts.STAGE_HEIGHT_PIXEL, void 0, false);
+    this.universe.setPixiRenderer(this.pixiRenderer);
     document.getElementById('gameContainer').appendChild(this.pixiRenderer.view);
     background = PIXI.Sprite.fromImage('assets/tracks/images/track0.png');
     this.pixiStage.addChild(background);
-    pixiLoader = new PIXI.AssetLoader([CarsConfig[0].spritePath]);
+    pixiLoader = new PIXI.AssetLoader([CarsConfig[this.queryParams.cars[0]].spritePath]);
     pixiLoader.onComplete = this.loadUniverse;
     return pixiLoader.load();
   };
@@ -57,8 +60,42 @@ Game = (function() {
     debugDrawer.SetDrawScale(100.0);
     debugDrawer.SetFillAlpha(0.5);
     debugDrawer.SetLineThickness(10.0);
-    debugDrawer.SetFlags(b2.dyn.b2DebugDraw.e_shapeBit | b2.dyn.b2DebugDraw.e_jointBit | b2.dyn.b2DebugDraw.e_controllerBit | b2.dyn.b2DebugDraw.e_pairBit);
-    return this.universe.world.SetDebugDraw(debugDrawer);
+    return debugDrawer.SetFlags(b2.dyn.b2DebugDraw.e_shapeBit | b2.dyn.b2DebugDraw.e_jointBit | b2.dyn.b2DebugDraw.e_controllerBit | b2.dyn.b2DebugDraw.e_pairBit);
+  };
+
+  Game.prototype.loadQueryConfig = function() {
+    var queryParams, urlParams;
+    urlParams = this.parseQueryString();
+    console.log(urlParams);
+    queryParams = {};
+    if (urlParams.hasOwnProperty('track')) {
+      queryParams.track = urlParams.track;
+    } else {
+      queryParams.track = 0;
+    }
+    if (urlParams.hasOwnProperty('cars')) {
+      queryParams.cars = urlParams.cars.split(',');
+    } else {
+      queryParams.cars = [0, 0, 0];
+    }
+    return queryParams;
+  };
+
+  Game.prototype.parseQueryString = function() {
+    var assoc, decode, key, keyValues, val, _i, _len;
+    assoc = {};
+    keyValues = location.search.slice(1).split('&');
+    decode = function(s) {
+      return decodeURIComponent(s.replace(/\+/g, ' '));
+    };
+    for (_i = 0, _len = keyValues.length; _i < _len; _i++) {
+      val = keyValues[_i];
+      key = val.split('=');
+      if (1 < key.length) {
+        assoc[decode(key[0])] = decode(key[1]);
+      }
+    }
+    return assoc;
   };
 
   return Game;
