@@ -15,7 +15,7 @@ HOW TO START THE GAME
 ---------------------
 In the app/ folder, you'll find a node server ([node_server.js](https://github.com/BlueInt32/super-sprint/blob/master/app/node_server.js)) you can start using the command `node node_server.js`. After that just `start chrome localhost:8000` and point to app/index.html.
 
-DEV
+HOW TO CODE
 ---
 ######coffee script compilation
 In the app/ folder, you'll find a [gruntfile](https://github.com/BlueInt32/super-sprint/blob/master/app/gruntfile.js) containing a wCoffee task.
