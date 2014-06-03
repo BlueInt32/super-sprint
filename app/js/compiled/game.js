@@ -19,7 +19,6 @@ Game = (function() {
     this.canvas.height = this.consts.STAGE_HEIGHT_PIXEL;
     this.debugDraw();
     this.initWindowAnimationFrame();
-    console.log(this.queryParams);
   }
 
   Game.prototype.initWindowAnimationFrame = function() {
@@ -60,7 +59,8 @@ Game = (function() {
     debugDrawer.SetDrawScale(100.0);
     debugDrawer.SetFillAlpha(0.5);
     debugDrawer.SetLineThickness(10.0);
-    return debugDrawer.SetFlags(b2.dyn.b2DebugDraw.e_shapeBit | b2.dyn.b2DebugDraw.e_jointBit | b2.dyn.b2DebugDraw.e_controllerBit | b2.dyn.b2DebugDraw.e_pairBit);
+    debugDrawer.SetFlags(b2.dyn.b2DebugDraw.e_shapeBit | b2.dyn.b2DebugDraw.e_jointBit | b2.dyn.b2DebugDraw.e_controllerBit | b2.dyn.b2DebugDraw.e_pairBit);
+    return this.universe.world.SetDebugDraw(debugDrawer);
   };
 
   Game.prototype.loadQueryConfig = function() {
@@ -76,7 +76,7 @@ Game = (function() {
     if (urlParams.hasOwnProperty('cars')) {
       queryParams.cars = urlParams.cars.split(',');
     } else {
-      queryParams.cars = [0, 0, 0];
+      queryParams.cars = [0, 0];
     }
     return queryParams;
   };

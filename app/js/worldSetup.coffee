@@ -3,9 +3,10 @@ class WorldSetup
 		@jsonLinkedList = resourcesList
 		@playerCar = null
 		@otherCars = []
+		@iaProbeSystems = []
 		@trackWalls = []
 		@trackStartPositions = []
-		@trackIaLine = null # this references the line iaCars are linked to
+		#@trackIaLine = null # this references the line iaCars are linked to
 		@mainLoaderCallback = null
 		@refWorld = null
 
@@ -63,8 +64,12 @@ class WorldSetup
 					iaBoundDef.length = 1
 					#iaBoundDef.localAnchorA.SetV(getVectorValue(jointJso.anchorA));
 					iaBoundDef.localAnchorB.SetV( new b2.cMath.b2Vec2(0, 0.25) );
-					console.log('iaBoundDef : ', iaBoundDef);
+					#console.log('iaBoundDef : ', iaBoundDef);
 					joint = @refWorld.CreateJoint(iaBoundDef);
+
+			else if (resourceNode.dataType == 'probeSystem')
+				probeSystemsInWorld = getBodiesByCustomProperty(@refWorld, "string", "category", "probeSystem")
+				probeSystem = filterElementsByCustomProperty(probeSystemsInWorld, 'int', 'loadingIndex', @resourceLoadingIndex)[0]
 
 
 			else if (resourceNode.dataType == "track")

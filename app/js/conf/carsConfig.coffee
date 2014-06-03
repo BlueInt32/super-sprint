@@ -4,6 +4,7 @@ class CarModel_1
         @height= 25; # px unit
         @spritePath= 'assets/cars/images/Voiture_03.png';
         @jsonPath= 'assets/cars/car0.json';
+        @probesSystemPath = 'assets/cars/probeSystem0.json';
 
         # physics properties
         @accelerationFactor= 0.1;

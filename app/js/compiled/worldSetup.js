@@ -5,9 +5,9 @@ WorldSetup = (function() {
     this.jsonLinkedList = resourcesList;
     this.playerCar = null;
     this.otherCars = [];
+    this.iaProbeSystems = [];
     this.trackWalls = [];
     this.trackStartPositions = [];
-    this.trackIaLine = null;
     this.mainLoaderCallback = null;
     this.refWorld = null;
     this.firstCarLoaded = false;
@@ -29,7 +29,7 @@ WorldSetup = (function() {
     }
     return this.loadJSON(resourceNode.data, (function(_this) {
       return function(rawJson) {
-        var carBody, carFrontTires, carRearTires, carSet, carsInWorld, dirJoints, dirJointsInWorld, frontTiresInWorld, iaBoundDef, joint, parsedJson, rearTiresInWorld;
+        var carBody, carFrontTires, carRearTires, carSet, carsInWorld, dirJoints, dirJointsInWorld, frontTiresInWorld, iaBoundDef, joint, parsedJson, probeSystem, probeSystemsInWorld, rearTiresInWorld;
         parsedJson = JSON.parse(rawJson);
         parsedJson = _this.preprocessRube(parsedJson);
         _this.refWorld = loadWorldFromRUBE(parsedJson, _this.refWorld, _this.resourceLoadingIndex);
@@ -59,9 +59,11 @@ WorldSetup = (function() {
             iaBoundDef.collideConnected = false;
             iaBoundDef.length = 1;
             iaBoundDef.localAnchorB.SetV(new b2.cMath.b2Vec2(0, 0.25));
-            console.log('iaBoundDef : ', iaBoundDef);
             joint = _this.refWorld.CreateJoint(iaBoundDef);
           }
+        } else if (resourceNode.dataType === 'probeSystem') {
+          probeSystemsInWorld = getBodiesByCustomProperty(_this.refWorld, "string", "category", "probeSystem");
+          probeSystem = filterElementsByCustomProperty(probeSystemsInWorld, 'int', 'loadingIndex', _this.resourceLoadingIndex)[0];
         } else if (resourceNode.dataType === "track") {
           _this.trackWalls = getBodies(_this.refWorld);
           _this.trackStartPositions = getBodiesWithNamesStartingWith(_this.refWorld);

@@ -6,6 +6,7 @@ CarModel_1 = (function() {
     this.height = 25;
     this.spritePath = 'assets/cars/images/Voiture_03.png';
     this.jsonPath = 'assets/cars/car0.json';
+    this.probesSystemPath = 'assets/cars/probeSystem0.json';
     this.accelerationFactor = 0.1;
     this.driftTrigger = 0.003;
     this.driftTriggerWithHandbrake = 0.001;

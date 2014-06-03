@@ -30,6 +30,7 @@
 				'js/compiled/car.js',
 				'js/compiled/playerCar.js',
 				'js/compiled/iaCar.js',
+				//'js/compiled/iaSensor.js',
 				'!publish/min.js']
 			},
 		},
@@ -57,7 +58,8 @@
 						'js/compiled/game.js',
 						'js/compiled/playerCar.js',
 						'js/compiled/iaCar.js',
-						'js/compiled/car.js'
+						'js/compiled/car.js',
+						//'js/compiled/iaSensor.js'
 					]
 				}
 			}
@@ -181,6 +183,7 @@
                     'js/compiled/consts.js': ['js/conf/consts.coffee'],
 					'js/compiled/playerCar.js': ['js/playerCar.coffee'],
 					'js/compiled/iaCar.js': ['js/iaCar.coffee'],
+					//'js/compiled/iaSensor.js': ['js/iaSensor.coffee'],
 				}
 			}
 		},

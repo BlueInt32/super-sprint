@@ -13,7 +13,7 @@ class Game
         @initWindowAnimationFrame()
 
 
-        console.log(@queryParams);
+        #console.log(@queryParams);
 
 
     initWindowAnimationFrame: ()->
@@ -63,7 +63,7 @@ class Game
             b2.dyn.b2DebugDraw.e_pairBit
             #  | b2.dyn.b2DebugDraw.e_centerOfMassBit
             );
-        #@universe.world.SetDebugDraw(debugDrawer)
+        @universe.world.SetDebugDraw(debugDrawer)
 
     loadQueryConfig:()->
         urlParams = @parseQueryString()
@@ -76,7 +76,7 @@ class Game
         if urlParams.hasOwnProperty('cars')
             queryParams.cars = urlParams.cars.split(',')
         else
-            queryParams.cars = [0,0,0]
+            queryParams.cars = [0,0]
         return queryParams
 
     parseQueryString:()->

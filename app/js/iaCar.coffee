@@ -1,5 +1,10 @@
 class iaCar extends Car
-    @foo = 'bar'
+    constructor: () ->
+        #todo attach a sensor to the front of the car
+
+        bd = new b2BodyDef()
+
+
     doNothing:()->
         @foo = 'foo'
     #attach:()->

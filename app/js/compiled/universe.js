@@ -35,13 +35,16 @@ Universe = (function() {
   };
 
   Universe.prototype.loadBox2d = function() {
-    var carId, worldSetup, _i, _len, _ref;
+    var carId, loadingIndex, worldSetup, _i, _len, _ref;
     this.jsonsAssetsList = new LinkedList();
     this.jsonsAssetsList.add(TracksConfig[this.trackId].jsonPath, 'track');
     _ref = this.carIds;
-    for (_i = 0, _len = _ref.length; _i < _len; _i++) {
-      carId = _ref[_i];
+    for (loadingIndex = _i = 0, _len = _ref.length; _i < _len; loadingIndex = ++_i) {
+      carId = _ref[loadingIndex];
       this.jsonsAssetsList.add(CarsConfig[carId].jsonPath, 'car');
+      if (loadingIndex !== 0) {
+        this.jsonsAssetsList.add(CarsConfig[carId].probesSystemPath, 'probeSystem');
+      }
     }
     worldSetup = new WorldSetup(this.jsonsAssetsList);
     worldSetup.setWorld(this.world);
@@ -102,7 +105,6 @@ Universe = (function() {
       car.updateData();
       car.updateFriction();
     }
-    this.pixiRenderer.render(this.pixiStage);
     this.gameStepCallback();
   };
 

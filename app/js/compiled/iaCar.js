@@ -6,10 +6,9 @@ iaCar = (function(_super) {
   __extends(iaCar, _super);
 
   function iaCar() {
-    return iaCar.__super__.constructor.apply(this, arguments);
+    var bd;
+    bd = new b2BodyDef();
   }
-
-  iaCar.foo = 'bar';
 
   iaCar.prototype.doNothing = function() {
     return this.foo = 'foo';

@@ -28,8 +28,10 @@ class Universe
         # Load tracks and cars configs
         @jsonsAssetsList = new LinkedList()
         @jsonsAssetsList.add(TracksConfig[@trackId].jsonPath, 'track')
-        for carId in @carIds
+        for carId, loadingIndex in @carIds
             @jsonsAssetsList.add(CarsConfig[carId].jsonPath, 'car')
+            if(loadingIndex != 0) # if car is not the player car, we load a probe system for IA
+                @jsonsAssetsList.add(CarsConfig[carId].probesSystemPath, 'probeSystem')
 
 
         worldSetup = new WorldSetup(@jsonsAssetsList);
@@ -97,7 +99,7 @@ class Universe
             car.updateData()
             car.updateFriction()
 
-        @pixiRenderer.render(@pixiStage);
+        #@pixiRenderer.render(@pixiStage);
         @gameStepCallback()
         return
 
