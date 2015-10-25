@@ -8,13 +8,12 @@ class Universe
         @keyboardHandler = new KeyboardHandler()
         @world = new b2.dyn.b2World(new b2.cMath.b2Vec2(0, 0), true)
         contactListener = new Box2D.Dynamics.b2ContactListener();
-        @iaCars = []
         @playerCar = null
+        @iaCars = []
         @consts = consts
         puddleRandomDirectionArray = new Array(1, -1)
         @jsonsAssetsList = null
         @pixiStage = @_pixiStage
-        console.log(@pixiStage);
         @contactManager = null
         @positioning = 0
         @pixiRenderer = null
@@ -36,7 +35,7 @@ class Universe
 
         worldSetup = new WorldSetup(@jsonsAssetsList);
         worldSetup.setWorld(@world)
-        worldSetup.launchMultiLoad(@box2dLoaded) # /!\ this callBack must supplies 3 sets: walls bodies [], player cars bodies (not an array)
+        worldSetup.launchMultiLoad(@box2dLoaded) # /!\ this callBack must supply 3 sets: walls bodies [], player cars bodies (not an array)
         return
 
     ###
@@ -60,7 +59,7 @@ class Universe
         @contactManager = new ContactManager(@world, @playerCar)
 
         for carSet, i in @otherCarsSets
-            console.log(@carIds[i]);
+            #console.log(@carIds[i]);
             ia = new iaCar(@consts, 0, CarsConfig[@carIds[i]])
             ia.setBox2dData(carSet)
             @positionCar(ia, @pixiStage)
@@ -96,6 +95,7 @@ class Universe
 
         #THIS code raises an issue : cars share tires :D
         for car in @iaCars
+            console.log(car);
             car.updateData()
             car.updateFriction()
 

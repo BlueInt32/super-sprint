@@ -56,21 +56,26 @@ class WorldSetup
 					@firstCarLoaded = true
 				else
 					@otherCars.push(carSet)
-					# add a distance joint from
-					iaBoundDef = new b2.joints.b2DistanceJointDef()
-					iaBoundDef.bodyA = @trackIaLine
-					iaBoundDef.bodyB = carBody
-					iaBoundDef.collideConnected = false
-					iaBoundDef.length = 1
-					#iaBoundDef.localAnchorA.SetV(getVectorValue(jointJso.anchorA));
-					iaBoundDef.localAnchorB.SetV( new b2.cMath.b2Vec2(0, 0.25) );
-					#console.log('iaBoundDef : ', iaBoundDef);
-					joint = @refWorld.CreateJoint(iaBoundDef);
 
 			else if (resourceNode.dataType == 'probeSystem')
 				probeSystemsInWorld = getBodiesByCustomProperty(@refWorld, "string", "category", "probeSystem")
 				probeSystem = filterElementsByCustomProperty(probeSystemsInWorld, 'int', 'loadingIndex', @resourceLoadingIndex)[0]
 
+
+				# retrieve last car added (theorically the last one)
+				iaCarBody = @otherCars[@otherCars.length - 1].carBody;
+
+				iaBoundDef = new b2.joints.b2DistanceJointDef()
+				iaBoundDef.bodyA = probeSystem
+				iaBoundDef.bodyB = iaCarBody
+				iaBoundDef.collideConnected = false
+				iaBoundDef.length = 0
+				#iaBoundDef.localAnchorA.SetV(getVectorValue(jointJso.anchorA));
+				iaBoundDef.localAnchorB.SetV( new b2.cMath.b2Vec2(0, 0.25) );
+				#console.log('iaBoundDef : ', iaBoundDef);
+				joint = @refWorld.CreateJoint(iaBoundDef);
+
+				@otherCars[@otherCars.length - 1].probeSystem = probeSystem
 
 			else if (resourceNode.dataType == "track")
 				# if it's a track, we take all the bodies as is.

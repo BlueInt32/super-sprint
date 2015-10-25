@@ -29,7 +29,7 @@ WorldSetup = (function() {
     }
     return this.loadJSON(resourceNode.data, (function(_this) {
       return function(rawJson) {
-        var carBody, carFrontTires, carRearTires, carSet, carsInWorld, dirJoints, dirJointsInWorld, frontTiresInWorld, iaBoundDef, joint, parsedJson, probeSystem, probeSystemsInWorld, rearTiresInWorld;
+        var carBody, carFrontTires, carRearTires, carSet, carsInWorld, dirJoints, dirJointsInWorld, frontTiresInWorld, iaBoundDef, iaCarBody, joint, parsedJson, probeSystem, probeSystemsInWorld, rearTiresInWorld;
         parsedJson = JSON.parse(rawJson);
         parsedJson = _this.preprocessRube(parsedJson);
         _this.refWorld = loadWorldFromRUBE(parsedJson, _this.refWorld, _this.resourceLoadingIndex);
@@ -53,17 +53,19 @@ WorldSetup = (function() {
             _this.firstCarLoaded = true;
           } else {
             _this.otherCars.push(carSet);
-            iaBoundDef = new b2.joints.b2DistanceJointDef();
-            iaBoundDef.bodyA = _this.trackIaLine;
-            iaBoundDef.bodyB = carBody;
-            iaBoundDef.collideConnected = false;
-            iaBoundDef.length = 1;
-            iaBoundDef.localAnchorB.SetV(new b2.cMath.b2Vec2(0, 0.25));
-            joint = _this.refWorld.CreateJoint(iaBoundDef);
           }
         } else if (resourceNode.dataType === 'probeSystem') {
           probeSystemsInWorld = getBodiesByCustomProperty(_this.refWorld, "string", "category", "probeSystem");
           probeSystem = filterElementsByCustomProperty(probeSystemsInWorld, 'int', 'loadingIndex', _this.resourceLoadingIndex)[0];
+          iaCarBody = _this.otherCars[_this.otherCars.length - 1].carBody;
+          iaBoundDef = new b2.joints.b2DistanceJointDef();
+          iaBoundDef.bodyA = probeSystem;
+          iaBoundDef.bodyB = iaCarBody;
+          iaBoundDef.collideConnected = false;
+          iaBoundDef.length = 0;
+          iaBoundDef.localAnchorB.SetV(new b2.cMath.b2Vec2(0, 0.25));
+          joint = _this.refWorld.CreateJoint(iaBoundDef);
+          _this.otherCars[_this.otherCars.length - 1].probeSystem = probeSystem;
         } else if (resourceNode.dataType === "track") {
           _this.trackWalls = getBodies(_this.refWorld);
           _this.trackStartPositions = getBodiesWithNamesStartingWith(_this.refWorld);

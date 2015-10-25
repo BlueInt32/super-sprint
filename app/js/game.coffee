@@ -67,7 +67,6 @@ class Game
 
     loadQueryConfig:()->
         urlParams = @parseQueryString()
-        console.log(urlParams);
         queryParams = {}
         if urlParams.hasOwnProperty('track')
             queryParams.track = urlParams.track

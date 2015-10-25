@@ -66,7 +66,6 @@ Game = (function() {
   Game.prototype.loadQueryConfig = function() {
     var queryParams, urlParams;
     urlParams = this.parseQueryString();
-    console.log(urlParams);
     queryParams = {};
     if (urlParams.hasOwnProperty('track')) {
       queryParams.track = urlParams.track;

@@ -12,6 +12,7 @@ Car = (function() {
     this.tires = [];
     this.tiresCount = 0;
     this.directionJoints = [];
+    this.probeSystem = null;
     this.driftTrigger = this.configuration.driftTrigger;
     this.accelerationFactor = this.configuration.accelerationFactor;
     this.localAccelerationVector = new b2.cMath.b2Vec2(0, -this.accelerationFactor);
@@ -20,6 +21,7 @@ Car = (function() {
     this.localNormalVector = new b2.cMath.b2Vec2(1, 0);
     this.vCurrentRightNormals = [];
     this.linearVelocities = [];
+    console.log(this.linearVelocities);
     this.currentRightForwards = [];
     this.lockAngleDeg = this.configuration.wheelMaxAngle;
     this.turnSpeedPerSec = this.configuration.steeringWheelSpeed * this.consts.DEGTORAD;
@@ -38,11 +40,15 @@ Car = (function() {
   }
 
   Car.prototype.setBox2dData = function(box2dData) {
+    console.log(box2dData);
     this.rearTires = box2dData.rearTires;
     this.frontTires = box2dData.frontTires;
     this.tires = this.rearTires.concat(this.frontTires);
     this.tiresCount = this.tires.length;
     this.directionJoints = box2dData.directionJoints;
+    if (box2dData.hasOwnProperty("probeSystem")) {
+      this.probeSystem = box2dData.probeSystem;
+    }
     if (this.directionJoints[0] != null) {
       this.directionJoints[0].SetLimits(0, 0);
       this.directionJoints[1].SetLimits(0, 0);
@@ -61,6 +67,11 @@ Car = (function() {
       temp.Add(tires[i].GetPosition());
       tires[i].SetPosition(temp);
     }
+    if ((this.probeSystem != null)) {
+      temp = chosenPosition.Copy();
+      temp.Add(this.probeSystem.GetPosition());
+      this.probeSystem.SetPosition(temp);
+    }
   };
 
   Car.prototype.updateData = function(keyboardData) {
@@ -68,6 +79,7 @@ Car = (function() {
     this.localAccelerationVector = new b2.cMath.b2Vec2(0, -this.accelerationFactor);
     tires = this.tires;
     for (i in tires) {
+      console.log(this.linearVelocities);
       this.linearVelocities[i] = this.getLinearVelocity(i);
       this.currentRightForwards[i] = this.tires[i].GetWorldVector(new b2.cMath.b2Vec2(0, 1));
       this.vCurrentRightNormals[i] = this.getLateralVelocity(i);

@@ -10,6 +10,7 @@ class Car
 		@tires = [];
 		@tiresCount = 0;
 		@directionJoints = [];
+		@probeSystem = null;
 
 		# Car Behaviours
 		@driftTrigger = @configuration.driftTrigger;
@@ -20,6 +21,7 @@ class Car
 		@localNormalVector = new b2.cMath.b2Vec2(1, 0);
 		@vCurrentRightNormals = [];
 		@linearVelocities = [];
+		console.log(@linearVelocities);
 		@currentRightForwards = [];
 
 		# Steering mgmt
@@ -47,11 +49,14 @@ class Car
 		@pixiSprite.scale.y = 1
 
 	setBox2dData: (box2dData) ->
+		console.log(box2dData);
 		@rearTires = box2dData.rearTires
 		@frontTires = box2dData.frontTires
 		@tires = @rearTires.concat(@frontTires)
 		@tiresCount = @tires.length
 		@directionJoints = box2dData.directionJoints
+		if(box2dData.hasOwnProperty("probeSystem"))
+			@probeSystem = box2dData.probeSystem
 		if @directionJoints[0]?
 			@directionJoints[0].SetLimits(0, 0);
 			@directionJoints[1].SetLimits(0, 0);
@@ -68,13 +73,17 @@ class Car
 			temp = chosenPosition.Copy()
 			temp.Add(tires[i].GetPosition())
 			tires[i].SetPosition(temp)
+		if(@probeSystem?)
+			temp = chosenPosition.Copy()
+			temp.Add(@probeSystem.GetPosition())
+			@probeSystem.SetPosition(temp)
 		return
 
 	updateData:(keyboardData) ->
 		@localAccelerationVector = new b2.cMath.b2Vec2(0, -@accelerationFactor)
 		tires = @tires
 		for i of tires
-			#console.log(i);
+			console.log(@linearVelocities);
 			@linearVelocities[i] = @getLinearVelocity(i)
 			@currentRightForwards[i] = @tires[i].GetWorldVector(new b2.cMath.b2Vec2(0, 1))
 			@vCurrentRightNormals[i] = @getLateralVelocity(i)

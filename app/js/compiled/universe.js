@@ -16,13 +16,12 @@ Universe = (function() {
     this.keyboardHandler = new KeyboardHandler();
     this.world = new b2.dyn.b2World(new b2.cMath.b2Vec2(0, 0), true);
     contactListener = new Box2D.Dynamics.b2ContactListener();
-    this.iaCars = [];
     this.playerCar = null;
+    this.iaCars = [];
     this.consts = consts;
     puddleRandomDirectionArray = new Array(1, -1);
     this.jsonsAssetsList = null;
     this.pixiStage = this._pixiStage;
-    console.log(this.pixiStage);
     this.contactManager = null;
     this.positioning = 0;
     this.pixiRenderer = null;
@@ -77,7 +76,6 @@ Universe = (function() {
     _ref = this.otherCarsSets;
     for (i = _i = 0, _len = _ref.length; _i < _len; i = ++_i) {
       carSet = _ref[i];
-      console.log(this.carIds[i]);
       ia = new iaCar(this.consts, 0, CarsConfig[this.carIds[i]]);
       ia.setBox2dData(carSet);
       this.positionCar(ia, this.pixiStage);
@@ -102,6 +100,7 @@ Universe = (function() {
     _ref = this.iaCars;
     for (_i = 0, _len = _ref.length; _i < _len; _i++) {
       car = _ref[_i];
+      console.log(car);
       car.updateData();
       car.updateFriction();
     }

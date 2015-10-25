@@ -13,11 +13,11 @@ I Hope you like it !
  
 HOW TO START THE GAME
 ---------------------
-In the app/ folder, you'll find a node server ([node_server.js](https://github.com/BlueInt32/super-sprint/blob/master/app/node_server.js)) you can start using the command `node node_server.js`. After that just `start chrome localhost:8000` and point to app/index.html.
+In the app/ folder, you'll find a node server ([node_server.js](https://github.com/BlueInt32/super-sprint/blob/master/app/node_server.js)) you can start using the command `node node_server.js` (you have to install nodeJS first !). After that just `start chrome localhost:8000` and point to app/index.html.
 
 HOW TO CODE
 ---
-######coffee script compilation
+##coffee script compilation
 In the app/ folder, you'll find a [gruntfile](https://github.com/BlueInt32/super-sprint/blob/master/app/gruntfile.js) containing a wCoffee task.
 Calling `grunt wCoffee` launches a watcher for any coffee file added in the corresponding task in the gruntfile
 Files compile to app/js/compiled/.
@@ -25,10 +25,10 @@ Files compile to app/js/compiled/.
 ######url params
 You can call different tracks using url params: 
 `http://localhost:8000/index.html?track=1&cars=0,0`
+This url loads : 
+- track 1 of those contained in TracksConfig array (see [tracksConfig.coffee](https://github.com/BlueInt32/super-sprint/blob/master/app/js/conf/tracksConfig.coffee))
 
-This loads track 1 of those contained in TracksConfig array (see [tracksConfig.coffee](https://github.com/BlueInt32/super-sprint/blob/master/app/js/conf/tracksConfig.coffee))
-
-This loads 2 instances of the 0th car config (find it [here] (https://github.com/BlueInt32/super-sprint/blob/master/app/js/conf/carsConfig.coffee))
+- 2 instances of the 0th car config (find it [here] (https://github.com/BlueInt32/super-sprint/blob/master/app/js/conf/carsConfig.coffee))
 
 Note : the first car index provided corresponds to the player's car. 
 
