@@ -9,7 +9,6 @@ class WorldSetup
 		#@trackIaLine = null # this references the line iaCars are linked to
 		@mainLoaderCallback = null
 		@refWorld = null
-
 		@firstCarLoaded = false # first car is playercar. This flag helps informing this
 
 		@resourceLoadingIndex = 0
