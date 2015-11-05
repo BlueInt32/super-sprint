@@ -1,41 +1,54 @@
-var checkpoint_manager = function(nbCheckPoints) {
+"use strict";
 
-  var NbCheckPoints = nbCheckPoints;
-  var CurrentCheckPointIndex = -1;
-  var startLap = null;
-  var LastLapTime = null;
-  var BestLapTime = 0;
-  var NbLaps = 0;
-  document.getElementById("lapTime").innerHTML = "Lap : --- ";
-  document.getElementById("bestLapTime").innerHTML = "Best : --- ";
+var checkpoint_manager = function (nbCheckPoints) {
+  var that,
+    nbCheckPoints = nbCheckPoints,
+    currentCheckPointIndex = -1,
+    startLap = null,
+    lastLapTime = null,
+    bestLapTime = 0,
+    nbLaps = 0;
 
-  var step = function (checkpointIndex) {
+  that.step = function (checkpointIndex) {
     var lapTime, now;
-    if (this.CurrentCheckPointIndex % this.NbCheckPoints === checkpointIndex) {
+    if (currentCheckPointIndex % nbCheckPoints === checkpointIndex) {
       return;
     }
     if (checkpointIndex === 0) {
-      if (this.CurrentCheckPointIndex === -1) {
-        this.TotalTime = new Date();
-        this.startLap = Date.now();
-        this.CurrentCheckPointIndex = 0;
-        document.getElementById("lapTime").innerHTML = "Lap : 0.0s";
+      if (currentCheckPointIndex === -1) {
+        startLap = Date.now();
+        currentCheckPointIndex = 0;
+        that.updateLapTime(0);
       } else {
         now = Date.now();
-        lapTime = now - this.startLap;
-        this.LastLapTime = lapTime;
-        this.startLap = now;
-        if (this.BestLapTime === 0) {
-          this.BestLapTime = this.LastLapTime;
-        } else if (this.LastLapTime < this.BestLapTime) {
-          this.BestLapTime = this.LastLapTime;
+        lapTime = now - startLap;
+        lastLapTime = lapTime;
+        startLap = now;
+        if (bestLapTime === 0) {
+          bestLapTime = lastLapTime;
+        } else if (lastLapTime < bestLapTime) {
+          bestLapTime = lastLapTime;
         }
-        document.getElementById("lapTime").innerHTML = "Lap : " + this.LastLapTime / 1000 + "s";
-        document.getElementById("bestLapTime").innerHTML = "Best : " + this.BestLapTime / 1000 + "s";
+        that.updateLapTime(lastLapTime);
+        that.updateBestLapTime(bestLapTime);
       }
     }
-    if (checkpointIndex === (this.CurrentCheckPointIndex + 1) % this.NbCheckPoints) {
-      return this.CurrentCheckPointIndex++;
+    if (checkpointIndex === (currentCheckPointIndex + 1) % nbCheckPoints) {
+      return currentCheckPointIndex++;
     }
   };
+
+  that.updateLapTime = function (valueInMs) {
+    var strValue = typeof valueInMs !== 'undefined' ? valueInMs / 1000 + "s" : "---";
+    document.getElementById("lapTime").innerHTML = "Lap : " + strValue;
+  };
+  that.updateBestLapTime = function (valueInMs) {
+    var strValue = typeof valueInMs !== 'undefined' ? valueInMs / 1000 + "s" : "---";
+    document.getElementById("bestLapTime").innerHTML = "Best : " + strValue;
+  };
+
+  that.updateLapTime();
+  that.updateBestLapTime();
+
+  return that;
 };
