@@ -7,3 +7,5 @@ var iaCar_maker = function(car){
 
     return that;
 };
+
+module.exports = iaCar_maker;

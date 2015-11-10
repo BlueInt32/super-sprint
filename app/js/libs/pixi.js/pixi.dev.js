@@ -14544,4 +14544,6 @@ Object.defineProperty(PIXI.RGBSplitFilter.prototype, 'angle', {
     } else {
         root.PIXI = PIXI;
     }
+    module.exports = PIXI;
 }).call(this);
+

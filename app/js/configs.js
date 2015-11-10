@@ -1,4 +1,6 @@
-var config_maker = function () {
+var b2 = require('./utils/b2Helpers.js');
+
+var configs = function () {
   var that = {};
 
   that.consts = {
@@ -46,3 +48,5 @@ var config_maker = function () {
 
   return that;
 };
+
+module.exports = configs();

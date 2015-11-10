@@ -1,15 +1,15 @@
 "use strict";
 
-var player_car = function (car, car_type_id, config) {
+var b2 = require('./utils/b2Helpers.js');
+var configs = require('./configs.js');
+
+var playerCarMaker = function (car) {
 
   var that = car;
 
-  that.localBrakeVector = b2.math.MulFV(-0.5, localAccelerationVector);
-  that.localHandBrakeVector = b2.math.MulFV(-0.5, localAccelerationVector);
-  that.localAccelerationVector = new b2.cMath.b2Vec2(0, -accelerationFactor);
+  that.localBrakeVector = b2.math.MulFV(-0.5, that.localAccelerationVector);
+  that.localHandBrakeVector = b2.math.MulFV(-0.5, that.localAccelerationVector);
 
-  that.turnSpeedPerSec = config.cars[car_type_id].steeringWheelSpeed * config.consts.DEGTORAD;
-  that.turnPerTimeStep = turnSpeedPerSec / 60;
 
   that.desiredAngle = 0;
 
@@ -42,15 +42,15 @@ var player_car = function (car, car_type_id, config) {
     if (Math.abs(angleNow) > that.lockAngleDeg) {
       angleToTurn = -angleNow;
     } else {
-      angleToTurn = b2Math.Clamp(angleToTurn, -that.turnPerTimeStep, that.turnPerTimeStep);
+      angleToTurn = b2.math.Clamp(angleToTurn, -that.turnPerTimeStep, that.turnPerTimeStep);
     }
     newAngle = angleNow + angleToTurn;
     that.directionJoints[0].SetLimits(newAngle, newAngle);
     that.directionJoints[1].SetLimits(newAngle, newAngle);
     that.updateFriction();
     position = that.b2Body.GetPosition();
-    that.pixiSprite.position.x = position.x * that.consts.METER;
-    that.pixiSprite.position.y = position.y * that.consts.METER;
+    that.pixiSprite.position.x = position.x * configs.consts.METER;
+    that.pixiSprite.position.y = position.y * configs.consts.METER;
     that.pixiSprite.rotation = that.b2Body.GetAngle();
   };
 
@@ -85,3 +85,5 @@ var player_car = function (car, car_type_id, config) {
 
   return that;
 };
+
+module.exports = playerCarMaker;

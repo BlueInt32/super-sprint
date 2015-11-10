@@ -1,6 +1,6 @@
-var LinkedList = function () {
+var linkedList_maker = function () {
 
-  var that;
+  var that = {};
 
   that.firstNode = null;
   that.lastNode = null;
@@ -27,3 +27,5 @@ var LinkedList = function () {
   return that;
 
 };
+
+module.exports = linkedList_maker;

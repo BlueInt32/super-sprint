@@ -1,7 +1,7 @@
 "use strict";
 
-var checkpoint_manager = function (nbCheckPoints) {
-  var that,
+var checkpointManagerMaker = function (nbCheckPoints) {
+  var that = {},
     nbCheckPoints = nbCheckPoints,
     currentCheckPointIndex = -1,
     startLap = null,
@@ -52,3 +52,5 @@ var checkpoint_manager = function (nbCheckPoints) {
 
   return that;
 };
+
+module.exports = checkpointManagerMaker;

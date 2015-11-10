@@ -1,16 +1,17 @@
 'use strict';
 
-var keyboard_handler = function () {
-  var that,
-    keyarray = [],
-    keys = {
-      accelerate: false,
-      brake: false,
-      left: false,
-      right: false,
-      handbrake: false
-    },
-    handledkeys = [37, 38, 39, 40, 32];
+var keyboardHandler = function () {
+  var that = {};
+
+  that.keyarray = [];
+  that.keys = {
+    accelerate: false,
+    brake: false,
+    left: false,
+    right: false,
+    handbrake: false
+  };
+  that.handledkeys = [37, 38, 39, 40, 32];
 
   that.handlekeydown = function (event) {
     var key, knowkey;
@@ -74,3 +75,5 @@ var keyboard_handler = function () {
 
   return that;
 };
+
+module.exports = keyboardHandler();

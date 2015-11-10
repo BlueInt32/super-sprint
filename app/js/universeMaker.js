@@ -1,24 +1,32 @@
 "use strict";
 
-var universe_maker = function (consts1, _pixiStage, _trackId, _carIds, gameStepCallback) {
+var linkedListMaker = require('./utils/linkedList.js');
+var keyboardHandler = require('./keyboardHandler.js');
+var b2 = require('./utils/b2Helpers.js');
+var worldSetup = require('./worldSetup.js');
+var configs =  require('./configs.js');
+var carMaker = require('./carMaker.js');
+var playerCarMaker = require('./playerCarMaker.js');
+var checkpointManagerMaker = require('./checkpointManagerMaker.js');
+var contactManagerMaker = require('./contactManagerMaker.js');
+var dat = require('dat-gui');
+var rubeFileLoader = require('./libs/rubeFileLoader.js');
 
-  var that;
+var universe_maker = function (_pixiStage, _trackId, _carIds, gameStepCallback) {
+
+  var that = {};
   var contactListener, puddleRandomDirectionArray;
-  that.consts = consts1;
   that._pixiStage = _pixiStage;
   that._trackId = _trackId;
   that._carIds = _carIds;
   that.gameStepCallback = gameStepCallback;
-  that.update = bind(that.update, this);
-  that.box2dLoaded = bind(that.box2dLoaded, this);
+
   that.trackId = that._trackId;
   that.carIds = that._carIds;
-  that.keyboardHandler = new KeyboardHandler();
   that.world = new b2.dyn.b2World(new b2.cMath.b2Vec2(0, 0), true);
-  contactListener = new Box2D.Dynamics.b2ContactListener();
+  contactListener = new b2.dyn.b2ContactListener();
   that.playerCar = null;
   that.iaCars = [];
-  that.consts = consts;
   puddleRandomDirectionArray = new Array(1, -1);
   that.jsonsAssetsList = null;
   that.pixiStage = that._pixiStage;
@@ -32,22 +40,22 @@ var universe_maker = function (consts1, _pixiStage, _trackId, _carIds, gameStepC
   };
 
   that.loadBox2d = function () {
-    var carId, j, len, loadingIndex, ref, worldSetup;
-    that.jsonsAssetsList = new LinkedList();
-    that.jsonsAssetsList.add(TracksConfig[that.trackId].jsonPath, 'track');
+    var carId, j, len, loadingIndex, ref, worldSettingUp;
+
+    that.jsonsAssetsList = linkedListMaker();
+    that.jsonsAssetsList.add(configs.tracks[that.trackId].jsonPath, 'track');
     ref = that.carIds;
     for (loadingIndex = j = 0, len = ref.length; j < len; loadingIndex = ++j) {
       carId = ref[loadingIndex];
-      that.jsonsAssetsList.add(CarsConfig[carId].jsonPath, 'car');
+      that.jsonsAssetsList.add(configs.cars[carId].jsonPath, 'car');
       if (loadingIndex !== 0) {
-        that.jsonsAssetsList.add(CarsConfig[carId].probesSystemPath, 'probeSystem');
+        that.jsonsAssetsList.add(configs.cars[carId].probesSystemPath, 'probeSystem');
       }
     }
-    worldSetup = new WorldSetup(that.jsonsAssetsList);
-    worldSetup.setWorld(that.world);
-    worldSetup.launchMultiLoad(that.box2dLoaded);
+    worldSettingUp = worldSetup(that.jsonsAssetsList);
+    worldSettingUp.setWorld(that.world);
+    worldSettingUp.launchMultiLoad(that.box2dLoaded);
   };
-
 
   /*
    * loaderTrackWallsSet is an array of box2d bodies representing the walls
@@ -60,30 +68,33 @@ var universe_maker = function (consts1, _pixiStage, _trackId, _carIds, gameStepC
    }
    * otherCarsSets is an array of such objects
    */
-
   that.box2dLoaded = function (loaderTrackWallsSet, playerCarSet, otherCarsSets) {
-    var carSet, i, ia, j, len, ref;
+    var carSet, i, ia, j, len, ref, baseCar;
     that.loaderTrackWallsSet = loaderTrackWallsSet;
     that.playerCarSet = playerCarSet;
     that.otherCarsSets = otherCarsSets;
-    that.playerCar = new PlayerCar(that.consts, 0, CarsConfig[that.carIds[0]]);
-    that.playerCar.checkPointManager = new CheckPointManager(3);
+
+    baseCar = carMaker(0);
+    that.playerCar = playerCarMaker(baseCar);
+    that.playerCar.checkPointManager = checkpointManagerMaker(3);
     that.playerCar.setBox2dData(that.playerCarSet);
+
     that.setUpDatGui(that.playerCar);
-    that.contactManager = new ContactManager(that.world, that.playerCar);
+    that.contactManager = contactManagerMaker(that.world, [that.playerCar]);
     ref = that.otherCarsSets;
-    for (i = j = 0, len = ref.length; j < len; i = ++j) {
-      carSet = ref[i];
-      ia = new iaCar(that.consts, 0, CarsConfig[that.carIds[i]]);
-      ia.setBox2dData(carSet);
-      that.positionCar(ia, that.pixiStage);
-      that.iaCars.push(ia);
-    }
+    //for (i = j = 0, len = ref.length; j < len; i = ++j) {
+    //  carSet = ref[i];
+    //  ia = new iaCar(that.consts, 0, CarsConfig[that.carIds[i]]);
+    //  ia.setBox2dData(carSet);
+    //  that.positionCar(ia, that.pixiStage);
+    //  that.iaCars.push(ia);
+    //}
+
     that.pixiStage.addChild(that.playerCar.pixiSprite);
     that.positionCar(that.playerCar, that.pixiStage);
     that.positionTrack(that.loaderTrackWallsSet);
-    document.onkeydown = that.keyboardHandler.handleKeyDown.bind(that.keyboardHandler);
-    document.onkeyup = that.keyboardHandler.handleKeyUp.bind(that.keyboardHandler);
+    document.onkeydown = keyboardHandler.handleKeyDown;
+    document.onkeyup = keyboardHandler.handleKeyUp;
     that.update();
   };
 
@@ -94,7 +105,7 @@ var universe_maker = function (consts1, _pixiStage, _trackId, _carIds, gameStepC
     that.world.ClearForces();
     that.world.DrawDebugData();
     that.playerCar.updateData();
-    that.playerCar.handleKeyboard(that.keyboardHandler.keys);
+    that.playerCar.handleKeyboard(keyboardHandler.keys);
     ref = that.iaCars;
     for (j = 0, len = ref.length; j < len; j++) {
       car = ref[j];
@@ -110,15 +121,15 @@ var universe_maker = function (consts1, _pixiStage, _trackId, _carIds, gameStepC
     for (j = 0, len = trackWalls.length; j < len; j++) {
       trackWall = trackWalls[j];
       position = trackWall.GetPosition();
-      trackWall.SetPosition(b2.math.AddVV(that.consts.ScreenCenterVector, position));
+      trackWall.SetPosition(b2.math.AddVV(configs.consts.ScreenCenterVector, position));
     }
   };
 
   that.positionCar = function (carInstance) {
     var pos, startPositions;
-    startPositions = getBodiesWithNamesStartingWith(that.world, "start");
+    startPositions = rubeFileLoader.getBodiesWithNamesStartingWith(that.world, "start");
     pos = startPositions[that.positioning++].GetPosition();
-    carInstance.setPosition(b2.math.AddVV(that.consts.ScreenCenterVector, pos));
+    carInstance.setPosition(b2.math.AddVV(configs.consts.ScreenCenterVector, pos));
   };
 
   that.setUpDatGui = function (refObject) {
@@ -131,6 +142,7 @@ var universe_maker = function (consts1, _pixiStage, _trackId, _carIds, gameStepC
     f1.open();
   };
 
-  return Universe;
-
+  return that;
 };
+
+module.exports = universe_maker;

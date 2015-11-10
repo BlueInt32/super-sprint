@@ -1,26 +1,25 @@
 "use strict";
 
-/**
- * this class encapsulates the management of box2d contacts
- * @param {b2World} world in which the bodies evolve
- * @param {Cars[]} cars
- */
-var ContactManager = function (world, cars) {
-  var that;
+var b2 = require('./utils/b2Helpers.js');
 
-  var contactListener = new Box2D.Dynamics.b2ContactListener();
+var contactManagerMaker = function (world, cars) {
+  var that = {};
+
+  var contactListener = new b2.dyn.b2ContactListener();
 
   contactListener.BeginContact = function (contact) {
     that.HandleContact(contact, true);
   };
+
   contactListener.EndContact = function (contact) {
     that.HandleContact(contact, false);
   };
+
   world.SetContactListener(contactListener);
 
 
   that.HandleContact = function (contact, began) {
-    var cInfo = ExtractContactType(contact);
+    var cInfo = that.ExtractContactType(contact);
     if (cInfo.type === "wall")
       return;
     if (began) {
@@ -43,6 +42,7 @@ var ContactManager = function (world, cars) {
       cars[0].paddleEffect = 0;
     }
   };
+
   that.ExtractContactType = function (contact) {
     var aData = contact.GetFixtureA();
     var bData = contact.GetFixtureB();
@@ -75,3 +75,5 @@ var ContactManager = function (world, cars) {
 
   return that;
 };
+
+module.exports = contactManagerMaker;
