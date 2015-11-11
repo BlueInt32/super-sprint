@@ -2,7 +2,7 @@
 
 var configs = require('./configs.js');
 var b2 = require('./utils/b2Helpers.js');
-var PIXI = require('./libs/pixi.js/pixi.dev.js');
+var PIXI = require('pixi');
 
 var carMaker = function (carIndex) {
   var that = {},

@@ -3,7 +3,7 @@
 var universeMaker = require('./universeMaker.js');
 var b2 = require('./utils/b2Helpers.js');
 var urlHelper = require('./utils/urlHelper.js');
-var PIXI = require('./libs/pixi.js/pixi.dev.js');
+var PIXI = require('pixi');
 var Stats = require('./libs/Stats.js');
 var configs =  require('./configs.js');
 
