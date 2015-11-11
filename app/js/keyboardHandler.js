@@ -1,9 +1,10 @@
 'use strict';
 
 var keyboardHandler = function () {
+
   var that = {};
 
-  that.keyarray = [];
+  that.keyArray = [];
   that.keys = {
     accelerate: false,
     brake: false,
@@ -11,64 +12,64 @@ var keyboardHandler = function () {
     right: false,
     handbrake: false
   };
-  that.handledkeys = [37, 38, 39, 40, 32];
+  that.handledKeys = [37, 38, 39, 40, 32];
 
-  that.handlekeydown = function (event) {
+  that.handleKeyDown = function (event) {
     var key, knowkey;
     key = event.which;
-    if (handledkeys.indexof(key) > -1) {
-      event.preventdefault();
+    if (that.handledKeys.indexOf(key) > -1) {
+      event.preventDefault();
     }
-    if (keyarray.indexof(key) > -1) {
+    if (that.keyArray.indexOf(key) > -1) {
       return;
     }
     knowkey = true;
     switch (key) {
       case 37:
-        keys.left = true;
+        that.keys.left = true;
         break;
       case 38:
-        keys.accelerate = true;
+        that.keys.accelerate = true;
         break;
       case 39:
-        keys.right = true;
+        that.keys.right = true;
         break;
       case 40:
-        keys.brake = true;
+        that.keys.brake = true;
         break;
       case 32:
-        keys.handbrake = true;
+        that.keys.handbrake = true;
         break;
       default:
         knowkey = false;
     }
     if (knowkey) {
-      keyarray.push(key);
+      that.keyArray.push(key);
     }
   };
 
-  that.handlekeyup = function (event) {
+  that.handleKeyUp = function (event) {
     var i, key;
     key = event.which;
-    i = keyarray.indexof(key);
+    i = that.keyArray.indexOf(key);
     if (i > -1) {
-      keyarray.splice(i, 1);
+      that.keyArray.splice(i, 1);
     }
     switch (key) {
       case 37:
-        keys.left = false;
+        that.keys.left = false;
         break;
       case 38:
-        keys.accelerate = false;
+        that.keys.accelerate = false;
         break;
       case 39:
-        keys.right = false;
+        that.keys.right = false;
         break;
       case 40:
-        keys.brake = false;
+        that.keys.brake = false;
         break;
       case 32:
-        keys.handbrake = false;
+        that.keys.handbrake = false;
         break;
     }
   };

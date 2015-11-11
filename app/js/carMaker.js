@@ -6,24 +6,24 @@ var PIXI = require('./libs/pixi.js/pixi.dev.js');
 
 var carMaker = function (carIndex) {
   var that = {},
-    carConfig = configs.cars[carIndex],
+    carConfig = configs.cars[carIndex];
   // B2
-    frontTires = [],
-    rearTires = [],
-    tires = [],
-    tiresCount = 0,
+  that.frontTires = [];
+  that.rearTires = [];
+  that.tires = [];
+  that.tiresCount = 0;
 
-    probeSystem = null,
+  var probeSystem = null,
 
   // Car Behaviours
 
     localNormalVector = new b2.cMath.b2Vec2(1, 0),
     vCurrentRightNormals = [],
     linearVelocities = [],
-    currentRightForwards = [],
+    currentRightForwards = [];
 
   //var  from lock to lock in 0.5 sec
-    adherenceFactor = 1;
+    that.adherenceFactor = 1;
 
 
   //states
@@ -53,10 +53,10 @@ var carMaker = function (carIndex) {
   that.pixiSprite.scale.y = 1;
 
   that.setBox2dData = function (box2dData) {
-    rearTires = box2dData.rearTires;
-    frontTires = box2dData.frontTires;
-    tires = rearTires.concat(frontTires);
-    tiresCount = tires.length;
+    that.rearTires = box2dData.rearTires;
+    that.frontTires = box2dData.frontTires;
+    that.tires = that.rearTires.concat(that.frontTires);
+    that.tiresCount = that.tires.length;
     that.directionJoints = box2dData.directionJoints;
     if (box2dData.hasOwnProperty("probeSystem")) {
       var probeSystem = box2dData.probeSystem;
@@ -75,10 +75,10 @@ var carMaker = function (carIndex) {
     var temp = chosenPosition.Copy();
     temp.Add(that.b2Body.GetPosition());
     that.b2Body.SetPosition(temp);
-    for (var i = 0; i < tires.length; i++) {
+    for (var i = 0; i < that.tires.length; i++) {
       temp = chosenPosition.Copy();
-      temp.Add(tires[i].GetPosition());
-      tires[i].SetPosition(temp);
+      temp.Add(that.tires[i].GetPosition());
+      that.tires[i].SetPosition(temp);
     }
     if (typeof probeSystem !== "undefined" && probeSystem !== null) {
       temp = chosenPosition.Copy();
@@ -90,9 +90,9 @@ var carMaker = function (carIndex) {
   that.updateData = function (keyboardData) {
     that.localAccelerationVector = new b2.cMath.b2Vec2(0, -that.accelerationFactor);
     //tires = @tires
-    for (var i = 0; i < tires.length; i++) {
+    for (var i = 0; i < that.tires.length; i++) {
       linearVelocities[i] = that.getLinearVelocity(i)
-      currentRightForwards[i] = tires[i].GetWorldVector(new b2.cMath.b2Vec2(0, 1));
+      currentRightForwards[i] = that.tires[i].GetWorldVector(new b2.cMath.b2Vec2(0, 1));
       vCurrentRightNormals[i] = that.getLateralVelocity(i)
     }
   };
@@ -102,7 +102,7 @@ var carMaker = function (carIndex) {
   };
 
   that.getLateralVelocity = function (tireIndex) {
-    var currentRightNormal = tires[tireIndex].GetWorldVector(localNormalVector);
+    var currentRightNormal = that.tires[tireIndex].GetWorldVector(localNormalVector);
     var vCurrentRightNormal = b2.math.MulFV(
       b2.math.Dot(currentRightNormal, linearVelocities[tireIndex]),
       currentRightNormal
@@ -111,7 +111,7 @@ var carMaker = function (carIndex) {
   };
 
   that.getLinearVelocity = function (tireIndex) {
-    return tires[tireIndex].GetLinearVelocity();
+    return that.tires[tireIndex].GetLinearVelocity();
   };
 
   that.getForwardVelocity = function (tireIndex) {
@@ -124,43 +124,42 @@ var carMaker = function (carIndex) {
 
   that.applyImpulse = function (vec2) {
     //tires = @tires
-    for (var i = 0; i < tires.length; i++) {
-      b2.applyForceToCenter(tires[i], vec2);
+    for (var i = 0; i < that.tires.length; i++) {
+      b2.applyForceToCenter(that.tires[i], vec2);
     }
   };
 
   that.updateFriction = function (vec2) {
-    //tires = @tires
-    for (var i = 0; i < tires.length; i++) {
+    for (var i = 0; i < that.tires.length; i++) {
 
       if (that.adherence) {
-        var tireType = b2.findCustomPropertyValue(tires[i], 'category', 'string')
+        var tireType = b2.findCustomPropertyValue(that.tires[i], 'category', 'string')
         if (tireType == 'wheel_rear' && that.drifting) {
-          adherenceFactor = 0.2
+          that.adherenceFactor = 0.2
         }
         else {
-          adherenceFactor = 1
+          that.adherenceFactor = 1
         }
-        var impulse = b2.math.MulFV(-adherenceFactor * tires[i].GetMass(), vCurrentRightNormals[i]);
+        var impulse = b2.math.MulFV(-that.adherenceFactor * that.tires[i].GetMass(), vCurrentRightNormals[i]);
         if (impulse.Length() > that.driftTrigger) {
           impulse = b2.math.MulFV(that.driftTrigger / impulse.Length(), impulse);
         }
-        tires[i].ApplyImpulse(impulse, tires[i].GetWorldCenter());
+        that.tires[i].ApplyImpulse(impulse, that.tires[i].GetWorldCenter());
       }
       // this has some effect on how the car turns
-      var inertia = tires[i].GetInertia()
-      var vel = tires[i].GetAngularVelocity();
-      tires[i].ApplyAngularImpulse(10 * inertia * -vel);
+      var inertia = that.tires[i].GetInertia()
+      var vel = that.tires[i].GetAngularVelocity();
+      that.tires[i].ApplyAngularImpulse(10 * inertia * -vel);
 
       // natural friction against movement. This is a F = -kv type force.
       var currentForwardNormal = that.getForwardVelocity(i);
       var currentForwardSpeed = currentForwardNormal.Normalize();
       var dragForceMagnitude = -carConfig.natural_deceleration * currentForwardSpeed;
-      tires[i].ApplyForce(b2.math.MulFV(dragForceMagnitude, currentForwardNormal), tires[i].GetWorldCenter());
+      that.tires[i].ApplyForce(b2.math.MulFV(dragForceMagnitude, currentForwardNormal), that.tires[i].GetWorldCenter());
 
       // here we update how the car behave when its puddleEffect is on (sliding on a paddle).
       if (that.puddleEffect) {
-        tires[i].ApplyTorque((that.puddleEffect ? 1 : 0) * carConfig.puddleFactor);
+        that.tires[i].ApplyTorque((that.puddleEffect ? 1 : 0) * carConfig.puddleFactor);
       }
     }
   };

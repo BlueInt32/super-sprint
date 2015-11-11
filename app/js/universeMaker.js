@@ -17,12 +17,10 @@ var universe_maker = function (_pixiStage, _trackId, _carIds, gameStepCallback) 
   var that = {};
   var contactListener, puddleRandomDirectionArray;
   that._pixiStage = _pixiStage;
-  that._trackId = _trackId;
-  that._carIds = _carIds;
+  that.carIds = _carIds;
   that.gameStepCallback = gameStepCallback;
 
-  that.trackId = that._trackId;
-  that.carIds = that._carIds;
+  that.trackId = _trackId;
   that.world = new b2.dyn.b2World(new b2.cMath.b2Vec2(0, 0), true);
   contactListener = new b2.dyn.b2ContactListener();
   that.playerCar = null;
@@ -40,20 +38,17 @@ var universe_maker = function (_pixiStage, _trackId, _carIds, gameStepCallback) 
   };
 
   that.loadBox2d = function () {
-    var carId, j, len, loadingIndex, ref, worldSettingUp;
-
+    var carId, j, len, loadingIndex, worldSettingUp;
     that.jsonsAssetsList = linkedListMaker();
     that.jsonsAssetsList.add(configs.tracks[that.trackId].jsonPath, 'track');
-    ref = that.carIds;
-    for (loadingIndex = j = 0, len = ref.length; j < len; loadingIndex = ++j) {
-      carId = ref[loadingIndex];
+    for (loadingIndex = j = 0, len = that.carIds.length; j < len; loadingIndex = ++j) {
+      carId = that.carIds[loadingIndex];
       that.jsonsAssetsList.add(configs.cars[carId].jsonPath, 'car');
       if (loadingIndex !== 0) {
         that.jsonsAssetsList.add(configs.cars[carId].probesSystemPath, 'probeSystem');
       }
     }
-    worldSettingUp = worldSetup(that.jsonsAssetsList);
-    worldSettingUp.setWorld(that.world);
+    worldSettingUp = worldSetup(that.jsonsAssetsList, that.world);
     worldSettingUp.launchMultiLoad(that.box2dLoaded);
   };
 
@@ -109,7 +104,6 @@ var universe_maker = function (_pixiStage, _trackId, _carIds, gameStepCallback) 
     ref = that.iaCars;
     for (j = 0, len = ref.length; j < len; j++) {
       car = ref[j];
-      console.log(car);
       car.updateData();
       car.updateFriction();
     }

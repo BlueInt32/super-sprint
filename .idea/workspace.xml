@@ -2,29 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97ecd40a-f983-455b-bbee-fe36cd2cfe97" name="Default" comment="">
-      <change type="DELETED" beforePath="D:\_Prog\Git\SuperSprint\app\build\text\min.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\_Prog\Git\SuperSprint\app\js\ContactManager.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\_Prog\Git\SuperSprint\app\js\car.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\_Prog\Git\SuperSprint\app\js\checkpointManager.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\_Prog\Git\SuperSprint\app\js\libs\box2dweb\Box2dWeb-2.1.a.3.min.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\_Prog\Git\SuperSprint\app\js\libs\loadrube.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\_Prog\Git\SuperSprint\app\js\libs\loadrube2.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\_Prog\Git\SuperSprint\app\js\playerCar.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\_Prog\Git\SuperSprint\app\js\universe.js" afterPath="" />
-      <change type="DELETED" beforePath="D:\_Prog\Git\SuperSprint\app\supersprint.sublime-project" afterPath="" />
-      <change type="DELETED" beforePath="D:\_Prog\Git\SuperSprint\supersprint.geany" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/libs/box2dweb/Box2dWeb-2.1.a.3.js" afterPath="$PROJECT_DIR$/app/js/libs/box2dweb/Box2dWeb-2.1.a.3.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/libs/Stats.js" afterPath="$PROJECT_DIR$/app/js/libs/Stats.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/SuperSprint.iml" afterPath="$PROJECT_DIR$/.idea/SuperSprint.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/utils/b2Helpers.js" afterPath="$PROJECT_DIR$/app/js/utils/b2Helpers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/configs.js" afterPath="$PROJECT_DIR$/app/js/configs.js" />
+      <change type="DELETED" beforePath="D:\_Prog\Git\SuperSprint\app\gruntfile.js" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/carMaker.js" afterPath="$PROJECT_DIR$/app/js/carMaker.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/contactManagerMaker.js" afterPath="$PROJECT_DIR$/app/js/contactManagerMaker.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/build/js/game.js" afterPath="$PROJECT_DIR$/app/build/js/game.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/game.js" afterPath="$PROJECT_DIR$/app/js/game.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/iaCar.js" afterPath="$PROJECT_DIR$/app/js/iaCar.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/index.html" afterPath="$PROJECT_DIR$/app/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/keyboardHandler.js" afterPath="$PROJECT_DIR$/app/js/keyboardHandler.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/utils/linkedList.js" afterPath="$PROJECT_DIR$/app/js/utils/linkedList.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/package.json" afterPath="$PROJECT_DIR$/app/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/libs/pixi.js/pixi.dev.js" afterPath="$PROJECT_DIR$/app/js/libs/pixi.js/pixi.dev.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/playerCarMaker.js" afterPath="$PROJECT_DIR$/app/js/playerCarMaker.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/universeMaker.js" afterPath="$PROJECT_DIR$/app/js/universeMaker.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/utils/urlHelper.js" afterPath="$PROJECT_DIR$/app/js/utils/urlHelper.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/js/worldSetup.js" afterPath="$PROJECT_DIR$/app/js/worldSetup.js" />
     </list>
@@ -50,18 +37,28 @@
       <file leaf-file-name="game.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/js/game.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-3.5172415">
-              <caret line="27" column="47" selection-start-line="27" selection-start-column="47" selection-end-line="27" selection-end-column="47" />
+            <state vertical-scroll-proportion="-5.62069">
+              <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HTML5.js" pinned="false" current-in-tab="false">
-        <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/HTML5.js">
+      <file leaf-file-name="configs.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/js/configs.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="1353" column="0" selection-start-line="1353" selection-start-column="0" selection-end-line="1353" selection-end-column="0" />
+              <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="carMaker.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/js/carMaker.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.3614865">
+              <caret line="138" column="9" selection-start-line="138" selection-start-column="9" selection-end-line="138" selection-end-column="9" />
               <folding />
             </state>
           </provider>
@@ -70,34 +67,10 @@
       <file leaf-file-name="universeMaker.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/js/universeMaker.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-24.0">
-              <caret line="82" column="74" selection-start-line="82" selection-start-column="74" selection-end-line="82" selection-end-column="74" />
+            <state vertical-scroll-proportion="-6.793103">
+              <caret line="73" column="61" selection-start-line="73" selection-start-column="39" selection-end-line="73" selection-end-column="61" />
               <folding />
             </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="carMaker.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/js/carMaker.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-73.86207">
-              <caret line="135" column="27" selection-start-line="135" selection-start-column="27" selection-end-line="135" selection-end-column="27" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="universeMaker.js" pinned="false" current-in-tab="false">
-        <entry file="http://localhost:63342/SuperSprint/app/build/js/D:/_Prog/Git/SuperSprint/app/js/universeMaker.js">
-          <provider selected="true" editor-type-id="httpFileEditor">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="contactManagerMaker.js" pinned="false" current-in-tab="false">
-        <entry file="http://localhost:63342/SuperSprint/app/build/js/D:/_Prog/Git/SuperSprint/app/js/contactManagerMaker.js">
-          <provider selected="true" editor-type-id="httpFileEditor">
-            <state />
           </provider>
         </entry>
       </file>
@@ -105,7 +78,17 @@
         <entry file="file://$PROJECT_DIR$/app/js/contactManagerMaker.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="20" column="50" selection-start-line="20" selection-start-column="50" selection-end-line="20" selection-end-column="50" />
+              <caret line="32" column="16" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="checkpointManagerMaker.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/js/checkpointManagerMaker.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -114,28 +97,38 @@
       <file leaf-file-name="worldSetup.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/js/worldSetup.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="57" />
+            <state vertical-scroll-proportion="8.793103">
+              <caret line="36" column="49" selection-start-line="36" selection-start-column="49" selection-end-line="36" selection-end-column="49" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="track0.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/assets/tracks/track0.json">
+      <file leaf-file-name="keyboardHandler.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/js/keyboardHandler.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="12" column="20" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/assets/README.md">
+      <file leaf-file-name="playerCarMaker.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/js/playerCarMaker.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="-7.5172415">
+              <caret line="73" column="32" selection-start-line="73" selection-start-column="32" selection-end-line="73" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="rubeFileLoader.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/js/libs/rubeFileLoader.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.793103">
+              <caret line="371" column="32" selection-start-line="371" selection-start-column="14" selection-end-line="371" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -166,7 +159,6 @@
         <option value="$PROJECT_DIR$/app/js/libs/loadrube.js" />
         <option value="$PROJECT_DIR$/app/js/libs/Stats.js" />
         <option value="$PROJECT_DIR$/app/js/utils/b2Helpers.js" />
-        <option value="$PROJECT_DIR$/app/js/utils/urlHelper.js" />
         <option value="$PROJECT_DIR$/app/js/utils/linkedList.js" />
         <option value="$PROJECT_DIR$/app/js/libs/pixi.js/pixi.dev.js" />
         <option value="$PROJECT_DIR$/app/index.html" />
@@ -174,18 +166,20 @@
         <option value="$PROJECT_DIR$/app/js/libs/rubeFileLoader.js" />
         <option value="$PROJECT_DIR$/app/js/universe_maker.js" />
         <option value="$PROJECT_DIR$/app/js/playerCar.js" />
-        <option value="$PROJECT_DIR$/app/js/worldSetup.js" />
         <option value="$PROJECT_DIR$/app/gulpfile.js" />
         <option value="$PROJECT_DIR$/app/js/car.js" />
         <option value="$PROJECT_DIR$/app/js/checkpointManager.js" />
         <option value="$PROJECT_DIR$/app/js/ContactManager.js" />
         <option value="$PROJECT_DIR$/app/js/contactManager.js" />
+        <option value="$PROJECT_DIR$/app/package.json" />
+        <option value="$PROJECT_DIR$/app/js/utils/urlHelper.js" />
+        <option value="$PROJECT_DIR$/app/js/game.js" />
+        <option value="$PROJECT_DIR$/app/js/worldSetup.js" />
         <option value="$PROJECT_DIR$/app/js/keyboardHandler.js" />
-        <option value="$PROJECT_DIR$/app/js/playerCarMaker.js" />
-        <option value="$PROJECT_DIR$/app/js/carMaker.js" />
         <option value="$PROJECT_DIR$/app/js/universeMaker.js" />
         <option value="$PROJECT_DIR$/app/js/contactManagerMaker.js" />
-        <option value="$PROJECT_DIR$/app/js/game.js" />
+        <option value="$PROJECT_DIR$/app/js/playerCarMaker.js" />
+        <option value="$PROJECT_DIR$/app/js/carMaker.js" />
       </list>
     </option>
   </component>
@@ -254,6 +248,9 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scratches">
+        <subPane />
+      </pane>
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -437,9 +434,6 @@
             </PATH_ELEMENT>
           </PATH>
         </subPane>
-      </pane>
-      <pane id="Scratches">
-        <subPane />
       </pane>
       <pane id="Scope">
         <subPane subId="Problems" />
@@ -627,17 +621,17 @@
     <frame x="-8" y="32" width="1936" height="1056" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14765458" sideWeight="0.4935484" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.14925373" sideWeight="0.4935484" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32900432" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33441558" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.29761904" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.19588745" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24946696" sideWeight="0.4935484" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32900432" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.18443497" sideWeight="0.5064516" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22186147" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.22186147" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -659,18 +653,69 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/app/js/game.js</url>
-          <line>24</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-      <option name="time" value="5" />
+      <option name="time" value="6" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/app/js/universeMaker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="82" column="74" selection-start-line="82" selection-start-column="74" selection-end-line="82" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/carMaker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="135" column="27" selection-start-line="135" selection-start-column="27" selection-end-line="135" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="http://localhost:63342/SuperSprint/app/build/js/D:/_Prog/Git/SuperSprint/app/js/universeMaker.js">
+      <provider selected="true" editor-type-id="httpFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="http://localhost:63342/SuperSprint/app/build/js/D:/_Prog/Git/SuperSprint/app/js/contactManagerMaker.js">
+      <provider selected="true" editor-type-id="httpFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/contactManagerMaker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="50" selection-start-line="20" selection-start-column="50" selection-end-line="20" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/worldSetup.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/tracks/track0.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/assets/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/js/game.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -776,14 +821,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/utils/urlHelper.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="3" column="10" selection-start-line="3" selection-start-column="10" selection-end-line="3" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/js/utils/linkedList.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -805,7 +842,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="2" column="32" selection-start-line="2" selection-start-column="32" selection-end-line="2" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -814,49 +850,15 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/libs/rubeFileLoader.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="138" column="0" selection-start-line="138" selection-start-column="0" selection-end-line="138" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="http://localhost:63342/SuperSprint/app/build/js/D:/_Prog/Git/SuperSprint/app/js/fake_9eecfd8f.js">
       <provider selected="true" editor-type-id="httpFileEditor">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.230769">
-          <caret line="8" column="50" selection-start-line="8" selection-start-column="50" selection-end-line="8" selection-end-column="50" />
-          <folding>
-            <element signature="n#style#0;n#canvas#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/gulpfile.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/checkpointManagerMaker.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/configs.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="38" column="4" selection-start-line="38" selection-start-column="4" selection-end-line="38" selection-end-column="4" />
           <folding />
         </state>
       </provider>
@@ -869,30 +871,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/keyboardHandler.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="7" selection-start-line="13" selection-start-column="7" selection-end-line="13" selection-end-column="7" />
-          <folding>
-            <element signature="e#293#907#0" expanded="false" />
-            <element signature="e#948#1399#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/js/utils/b2Helpers.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="12" column="11" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/playerCarMaker.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.7586207">
-          <caret line="3" column="38" selection-start-line="3" selection-start-column="38" selection-end-line="3" selection-end-column="38" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -901,35 +883,10 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/carMaker.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-73.86207">
-          <caret line="135" column="27" selection-start-line="135" selection-start-column="27" selection-end-line="135" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/universeMaker.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-24.0">
-          <caret line="82" column="74" selection-start-line="82" selection-start-column="74" selection-end-line="82" selection-end-column="74" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/contactManagerMaker.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="20" column="50" selection-start-line="20" selection-start-column="50" selection-end-line="20" selection-end-column="50" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/build/js/game.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.36036035">
           <caret line="26672" column="0" selection-start-line="26672" selection-start-column="0" selection-end-line="26672" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -938,26 +895,10 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/game.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.5172415">
-          <caret line="27" column="47" selection-start-line="27" selection-start-column="47" selection-end-line="27" selection-end-column="47" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/HTML5.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="1353" column="0" selection-start-line="1353" selection-start-column="0" selection-end-line="1353" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/js/worldSetup.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="57" />
           <folding />
         </state>
       </provider>
@@ -974,6 +915,125 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="http://localhost:63342/SuperSprint/app/build/js/D:/_Prog/Git/SuperSprint/app/js/worldSetup.js">
+      <provider selected="true" editor-type-id="httpFileEditor">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.230769">
+          <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/utils/urlHelper.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="18" column="27" selection-start-line="18" selection-start-column="27" selection-end-line="18" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.1923075">
+          <caret line="11" column="40" selection-start-line="11" selection-start-column="40" selection-end-line="11" selection-end-column="40" />
+          <folding>
+            <element signature="n#style#0;n#canvas#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/testLoadJson.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.115384616">
+          <caret line="6" column="26" selection-start-line="6" selection-start-column="26" selection-end-line="6" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/configs.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="9" column="31" selection-start-line="9" selection-start-column="31" selection-end-line="9" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/game.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.62069">
+          <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/libs/rubeFileLoader.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.793103">
+          <caret line="371" column="32" selection-start-line="371" selection-start-column="14" selection-end-line="371" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/worldSetup.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="8.793103">
+          <caret line="36" column="49" selection-start-line="36" selection-start-column="49" selection-end-line="36" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/universeMaker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.793103">
+          <caret line="73" column="61" selection-start-line="73" selection-start-column="39" selection-end-line="73" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/checkpointManagerMaker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/contactManagerMaker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="32" column="16" selection-start-line="32" selection-start-column="16" selection-end-line="32" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/keyboardHandler.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="20" selection-start-line="12" selection-start-column="20" selection-end-line="12" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/playerCarMaker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.5172415">
+          <caret line="73" column="32" selection-start-line="73" selection-start-column="32" selection-end-line="73" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/js/carMaker.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.3614865">
+          <caret line="138" column="9" selection-start-line="138" selection-start-column="9" selection-end-line="138" selection-end-column="9" />
           <folding />
         </state>
       </provider>

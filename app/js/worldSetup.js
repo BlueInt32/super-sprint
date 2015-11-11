@@ -1,9 +1,9 @@
 var rubeFileLoader = require('./libs/rubeFileLoader.js');
 var b2 = require('./utils/b2Helpers.js');
+var request = require('then-request');
 
-var worldSetup = function (resourcesList) {
+var worldSetup = function (resourcesList, mainWorld) {
 
-  console.log(resourcesList);
   var that = {};
   that.jsonLinkedList = resourcesList;
   that.playerCar = null;
@@ -12,7 +12,7 @@ var worldSetup = function (resourcesList) {
   that.trackWalls = [];
   that.trackStartPositions = [];
   that.mainLoaderCallback = null;
-  that.refWorld = null;
+  that.refWorld = mainWorld;
   that.firstCarLoaded = false;
   that.resourceLoadingIndex = 0;
 
@@ -21,66 +21,66 @@ var worldSetup = function (resourcesList) {
     that.loadResource(that.jsonLinkedList.firstNode);
   };
 
-  that.setWorld = function (world) {
-    that.refWorld = world;
-  };
-
   that.loadResource = function (resourceNode) {
     if (resourceNode.data === "") {
       that.loadResource(resourceNode.next);
     }
-    return that.loadJSON(resourceNode.data, (function (_that) {
-      return function (rawJson) {
-        var carBody, carFrontTires, carRearTires, carSet, carsInWorld, dirJoints, dirJointsInWorld, frontTiresInWorld, iaBoundDef, iaCarBody, joint, parsedJson, probeSystem, probeSystemsInWorld, rearTiresInWorld;
-        parsedJson = JSON.parse(rawJson);
-        parsedJson = _that.preprocessRube(parsedJson);
-        _that.refWorld = rubeFileLoader.loadWorldFromRUBE(parsedJson, _that.refWorld, _that.resourceLoadingIndex);
-        if (resourceNode.dataType === "car") {
-          carsInWorld = rubeFileLoader.getBodiesByCustomProperty(_that.refWorld, "string", "category", "car_body");
-          rearTiresInWorld = rubeFileLoader.getBodiesByCustomProperty(_that.refWorld, "string", "category", "wheel_rear");
-          frontTiresInWorld = rubeFileLoader.getBodiesByCustomProperty(_that.refWorld, "string", "category", "wheel_front");
-          dirJointsInWorld = rubeFileLoader.getNamedJoints(_that.refWorld, "direction");
-          carBody = rubeFileLoader.filterElementsByCustomProperty(carsInWorld, 'int', 'loadingIndex', _that.resourceLoadingIndex)[0];
-          carRearTires = rubeFileLoader.filterElementsByCustomProperty(rearTiresInWorld, 'int', 'loadingIndex', _that.resourceLoadingIndex);
-          carFrontTires = rubeFileLoader.filterElementsByCustomProperty(frontTiresInWorld, 'int', 'loadingIndex', _that.resourceLoadingIndex);
-          dirJoints = rubeFileLoader.filterElementsByCustomProperty(dirJointsInWorld, 'int', 'loadingIndex', _that.resourceLoadingIndex);
-          carSet = {
-            carBody: carBody,
-            rearTires: carRearTires,
-            frontTires: carFrontTires,
-            directionJoints: dirJoints
-          };
-          if (!_that.firstCarLoaded) {
-            _that.playerCar = carSet;
-            _that.firstCarLoaded = true;
-          } else {
-            _that.otherCars.push(carSet);
-          }
-        } else if (resourceNode.dataType === 'probeSystem') {
-          probeSystemsInWorld = rubeFileLoader.getBodiesByCustomProperty(_that.refWorld, "string", "category", "probeSystem");
-          probeSystem = rubeFileLoader.filterElementsByCustomProperty(probeSystemsInWorld, 'int', 'loadingIndex', _that.resourceLoadingIndex)[0];
-          iaCarBody = _that.otherCars[_that.otherCars.length - 1].carBody;
-          iaBoundDef = new b2.joints.b2DistanceJointDef();
-          iaBoundDef.bodyA = probeSystem;
-          iaBoundDef.bodyB = iaCarBody;
-          iaBoundDef.collideConnected = false;
-          iaBoundDef.length = 0;
-          iaBoundDef.localAnchorB.SetV(new b2.cMath.b2Vec2(0, 0.25));
-          joint = _that.refWorld.CreateJoint(iaBoundDef);
-          _that.otherCars[_that.otherCars.length - 1].probeSystem = probeSystem;
-        } else if (resourceNode.dataType === "track") {
-          _that.trackWalls = rubeFileLoader.getBodies(_that.refWorld);
-          _that.trackStartPositions = rubeFileLoader.getBodiesWithNamesStartingWith(_that.refWorld);
-          _that.trackIaLine = rubeFileLoader.getBodiesByCustomProperty(_that.refWorld, "string", "category", "iaLine")[0];
-        }
-        _that.resourceLoadingIndex++;
-        if (resourceNode.next != null) {
-          _that.loadResource(resourceNode.next);
-        } else {
-          _that.mainLoaderCallback.apply(null, [_that.trackWalls, _that.playerCar, _that.otherCars]);
-        }
+
+    request('GET', resourceNode.data).done(function (res) {
+      that.loadRawJson(res.getBody(), resourceNode);
+    });
+  };
+
+  that.loadRawJson = function (rawJson, resourceNode) {
+    var carBody, carFrontTires, carRearTires, carSet, carsInWorld, dirJoints, dirJointsInWorld, frontTiresInWorld, iaBoundDef, iaCarBody, joint, parsedJson, probeSystem, probeSystemsInWorld, rearTiresInWorld;
+    parsedJson = JSON.parse(rawJson);
+    parsedJson = that.preprocessRube(parsedJson);
+    that.refWorld = rubeFileLoader.loadWorldFromRUBE(parsedJson, that.refWorld, that.resourceLoadingIndex);
+
+    if (resourceNode.dataType === "car") {
+      carsInWorld = rubeFileLoader.getBodiesByCustomProperty(that.refWorld, "string", "category", "car_body");
+      rearTiresInWorld = rubeFileLoader.getBodiesByCustomProperty(that.refWorld, "string", "category", "wheel_rear");
+      frontTiresInWorld = rubeFileLoader.getBodiesByCustomProperty(that.refWorld, "string", "category", "wheel_front");
+      dirJointsInWorld = rubeFileLoader.getNamedJoints(that.refWorld, "direction");
+      carBody = rubeFileLoader.filterElementsByCustomProperty(carsInWorld, 'int', 'loadingIndex', that.resourceLoadingIndex)[0];
+      carRearTires = rubeFileLoader.filterElementsByCustomProperty(rearTiresInWorld, 'int', 'loadingIndex', that.resourceLoadingIndex);
+      carFrontTires = rubeFileLoader.filterElementsByCustomProperty(frontTiresInWorld, 'int', 'loadingIndex', that.resourceLoadingIndex);
+      dirJoints = rubeFileLoader.filterElementsByCustomProperty(dirJointsInWorld, 'int', 'loadingIndex', that.resourceLoadingIndex);
+      carSet = {
+        carBody: carBody,
+        rearTires: carRearTires,
+        frontTires: carFrontTires,
+        directionJoints: dirJoints
       };
-    })(this));
+      if (!that.firstCarLoaded) {
+        that.playerCar = carSet;
+        that.firstCarLoaded = true;
+      } else {
+        that.otherCars.push(carSet);
+      }
+    } else if (resourceNode.dataType === 'probeSystem') {
+      probeSystemsInWorld = rubeFileLoader.getBodiesByCustomProperty(that.refWorld, "string", "category", "probeSystem");
+      probeSystem = rubeFileLoader.filterElementsByCustomProperty(probeSystemsInWorld, 'int', 'loadingIndex', that.resourceLoadingIndex)[0];
+      iaCarBody = that.otherCars[that.otherCars.length - 1].carBody;
+      iaBoundDef = new b2.joints.b2DistanceJointDef();
+      iaBoundDef.bodyA = probeSystem;
+      iaBoundDef.bodyB = iaCarBody;
+      iaBoundDef.collideConnected = false;
+      iaBoundDef.length = 0;
+      iaBoundDef.localAnchorB.SetV(new b2.cMath.b2Vec2(0, 0.25));
+      joint = that.refWorld.CreateJoint(iaBoundDef);
+      that.otherCars[that.otherCars.length - 1].probeSystem = probeSystem;
+    } else if (resourceNode.dataType === "track") {
+      that.trackWalls = rubeFileLoader.getBodies(that.refWorld);
+      that.trackStartPositions = rubeFileLoader.getBodiesWithNamesStartingWith(that.refWorld);
+      that.trackIaLine = rubeFileLoader.getBodiesByCustomProperty(that.refWorld, "string", "category", "iaLine")[0];
+    }
+    that.resourceLoadingIndex++;
+    if (resourceNode.next != null) {
+      that.loadResource(resourceNode.next);
+    } else {
+      that.mainLoaderCallback.apply(null, [that.trackWalls, that.playerCar, that.otherCars]);
+    }
   };
 
   that.preprocessRube = function (parsedJson) {
@@ -129,21 +129,7 @@ var worldSetup = function (resourcesList) {
     return parsedJson;
   };
 
-  that.loadJSON = function (filePath, callback) {
-    var xobj;
-    xobj = new XMLHttpRequest();
-    xobj.overrideMimeType("application/json");
-    xobj.open('GET', filePath, true);
-    xobj.onreadystatechange = function () {
-      if (xobj.readyState === 4 && xobj.status === 200) {
-        callback(xobj.responseText);
-      }
-    };
-    xobj.send(null);
-  };
-
   return that;
-
 };
 
 module.exports = worldSetup;

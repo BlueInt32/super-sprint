@@ -14,6 +14,7 @@ var playerCarMaker = function (car) {
   that.desiredAngle = 0;
 
   that.handleKeyboard = function (keyboardData) {
+
     if (keyboardData.accelerate) {
       that.accelerate();
     }
@@ -31,9 +32,9 @@ var playerCarMaker = function (car) {
   that.updateSteering = function (keyboardData) {
     var angleNow, angleToTurn, newAngle, position;
     if (keyboardData.right && !that.puddleEffect) {
-      that.desiredAngle = that.lockAngleDeg * that.consts.DEGTORAD;
+      that.desiredAngle = that.lockAngleDeg * configs.consts.DEGTORAD;
     } else if (keyboardData.left && !that.puddleEffect) {
-      that.desiredAngle = -that.lockAngleDeg * that.consts.DEGTORAD;
+      that.desiredAngle = -that.lockAngleDeg * configs.consts.DEGTORAD;
     } else {
       that.desiredAngle = 0;
     }

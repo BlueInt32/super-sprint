@@ -16,7 +16,7 @@ var urlHelper = function(){
     if (urlParams.hasOwnProperty('cars')) {
       queryParams.cars = urlParams.cars.split(',');
     } else {
-      queryParams.cars = [0, 0];
+      queryParams.cars = [0];
     }
     return queryParams;
   };

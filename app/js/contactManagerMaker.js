@@ -25,7 +25,7 @@ var contactManagerMaker = function (world, cars) {
     if (began) {
       switch (cInfo.type) {
         case "cp":
-          cars[0].checkPointManager.Step(parseInt(cInfo.id));
+          cars[0].checkPointManager.step(parseInt(cInfo.id));
           break;
         case "puddle":
           cars[0].adherence = false;
@@ -33,7 +33,7 @@ var contactManagerMaker = function (world, cars) {
           break;
         case "boost":
           var boostVector = new b2.cMath.b2Vec2(cInfo.boostVector.x, cInfo.boostVector.y);
-          cars[0].ApplyImpulse(boostVector);
+          cars[0].applyImpulse(boostVector);
           break;
       }
     }
