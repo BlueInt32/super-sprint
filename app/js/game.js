@@ -5,37 +5,27 @@ var b2 = require('./utils/b2Helpers.js');
 var urlHelper = require('./utils/urlHelper.js');
 var PIXI = require('pixi');
 var Stats = require('./libs/Stats.js');
-var configs =  require('./configs.js');
+var configs = require('./configs.js');
+//var io = require('socket.io');
+
+window.jQuery = require('jquery');
+window.$ = window.jQuery;
+require('signalr');
+
 
 var superSprintGame = function () {
   var that = {};
-
   that.stats = new Stats();
   that.pixiStage = new PIXI.Stage(0xDDDDDD, true);
   that.queryParams = urlHelper.loadQueryConfig();
   that.universe = universeMaker(that.pixiStage, that.queryParams.track, that.queryParams.cars, function () {
     return that.stats.update();
   });
-
-  var canvas = document.getElementById('canvas');
-  canvas.width = configs.consts.STAGE_WIDTH_PIXEL;
-  canvas.height = configs.consts.STAGE_HEIGHT_PIXEL;
-
-  that.initWindowAnimationFrame = function () {
-    if (!window.requestAnimationFrame) {
-      window.requestAnimationFrame = function () {
-        return window.requestAnimationFrame
-          || window.webkitRequestAnimationFrame
-          || window.mozRequestAnimationFrame
-          || window.oRequestAnimationFrame
-          || window.msRequestAnimationFrame
-          || function (callback, element) {
-            return window.setTimeout(callback, 1000 / 60);
-          };
-      };
-    }
-    window.onload = that.initPixi;
+  that.settings = {
+    debugDraw: true,
+    pixi: false
   };
+
 
   that.initPixi = function () {
     var background, container, pixiLoader;
@@ -49,32 +39,37 @@ var superSprintGame = function () {
     background = PIXI.Sprite.fromImage('assets/tracks/images/track0.png');
     that.pixiStage.addChild(background);
     pixiLoader = new PIXI.AssetLoader([configs.cars[that.queryParams.cars[0]].spritePath]);
-    pixiLoader.onComplete = that.loadUniverse;
+    pixiLoader.onComplete = that.universe.loadBox2d;
+    b2.debugDraw(that.universe);
+    window.requestAnimationFrame(that.step);
+    that.connect();
     return pixiLoader.load();
   };
 
-  that.loadUniverse = function () {
-    return that.universe.loadBox2d();
+  that.connect = function () {
+    that.superSprintHub = $.connection.superSprintHub;
+    that.superSprintHub.client.updateCar = function (model) {
+      console.log(model);
+      //$shape.animate(shapeModel, { duration: updateRate, queue: false });
+    };
+    $.connection.hub.start().done(function () {
+      that.updateServer();
+    });
   };
 
-  that.debugDraw = function () {
-    var debugDrawer;
-    debugDrawer = new b2.dyn.b2DebugDraw();
-    debugDrawer.SetSprite(document.getElementById("canvas").getContext("2d"));
-    debugDrawer.SetDrawScale(100.0);
-    debugDrawer.SetFillAlpha(0.5);
-    debugDrawer.SetLineThickness(10.0);
-    debugDrawer.SetFlags(b2.dyn.b2DebugDraw.e_shapeBit | b2.dyn.b2DebugDraw.e_jointBit | b2.dyn.b2DebugDraw.e_controllerBit | b2.dyn.b2DebugDraw.e_pairBit);
-    return that.universe.world.SetDebugDraw(debugDrawer);
-  };
+  that.updateServer = function () {
+    that.superSprintHub.server.updateModel('hi ! ');
+  }
 
-  that.startGame = function () {
-    that.debugDraw();
-    that.initWindowAnimationFrame();
-  };
+  that.step = function (timestamp) {
+    if (that.settings.pixi) {
+      that.pixiRenderer.render(that.pixiStage);
+    }
+    window.requestAnimationFrame(that.step);
+  }
 
   return that;
 };
-
 var game = superSprintGame();
-game.startGame();
+window.onload = game.initPixi;
+

@@ -1,11 +1,19 @@
 {
-  "name": "Grunt",
-  "version": "0.0.0",
-  "description": "",
+  "name": "SuperSprint",
+  "version": "0.2.0",
+  "description": "A web version of the old Atari game !",
   "devDependencies": {
     "dat-gui": "^0.5.0",
     "gulp": "^3.9.0",
     "gulp-browserify": "^0.5.1",
     "gulp-watch": "^4.3.5"
+  },
+  "dependencies": {
+    "jquery": "^2.1.4",
+    "signalr-client": "0.0.16",
+    "websocket": "^1.0.22"
+  },
+  "browser": {
+    "signalr": "./js/libs/jquery.signalR-2.2.0.js"
   }
 }

@@ -21,8 +21,9 @@ var universe_maker = function (_pixiStage, _trackId, _carIds, gameStepCallback) 
   that.gameStepCallback = gameStepCallback;
 
   that.trackId = _trackId;
-  that.world = new b2.dyn.b2World(new b2.cMath.b2Vec2(0, 0), true);
   contactListener = new b2.dyn.b2ContactListener();
+  that.world = new b2.dyn.b2World(new b2.cMath.b2Vec2(0, 0), true);
+
   that.playerCar = null;
   that.iaCars = [];
   puddleRandomDirectionArray = new Array(1, -1);
@@ -115,7 +116,7 @@ var universe_maker = function (_pixiStage, _trackId, _carIds, gameStepCallback) 
     for (j = 0, len = trackWalls.length; j < len; j++) {
       trackWall = trackWalls[j];
       position = trackWall.GetPosition();
-      trackWall.SetPosition(b2.math.AddVV(configs.consts.ScreenCenterVector, position));
+      trackWall.SetPosition(b2.math.AddVV(b2.ScreenCenterVector, position));
     }
   };
 
@@ -123,7 +124,7 @@ var universe_maker = function (_pixiStage, _trackId, _carIds, gameStepCallback) 
     var pos, startPositions;
     startPositions = rubeFileLoader.getBodiesWithNamesStartingWith(that.world, "start");
     pos = startPositions[that.positioning++].GetPosition();
-    carInstance.setPosition(b2.math.AddVV(configs.consts.ScreenCenterVector, pos));
+    carInstance.setPosition(b2.math.AddVV(b2.ScreenCenterVector, pos));
   };
 
   that.setUpDatGui = function (refObject) {

@@ -9,9 +9,6 @@ var configs = function () {
     STAGE_HEIGHT_PIXEL: 750,
     DEGTORAD: 2 * Math.PI / 360
   };
-  that.consts.STAGE_WIDTH_B2 = that.consts.STAGE_WIDTH_PIXEL / that.consts.METER;
-  that.consts.STAGE_HEIGHT_B2 = that.consts.STAGE_HEIGHT_PIXEL / that.consts.METER;
-  that.consts.ScreenCenterVector = new b2.cMath.b2Vec2(that.consts.STAGE_WIDTH_B2 / 2, that.consts.STAGE_HEIGHT_B2 / 2);
 
   that.tracks = [];
   that.tracks[0] = {
