@@ -387,7 +387,6 @@ var rubeFileLoader = function () {
     for (var b = world.m_bodyList; b; b = b.m_next) {
       if (typeof b.name !== "undefined" && b.name.indexOf(startName) === 0) {
         bodies.push(b);
-        b.LogPosition();
       }
     }
 

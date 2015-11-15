@@ -46,9 +46,9 @@ var b2 = function () {
       | that.dyn.b2DebugDraw.e_jointBit
       | that.dyn.b2DebugDraw.e_controllerBit
       | that.dyn.b2DebugDraw.e_pairBit
-      | that.dyn.b2DebugDraw.e_centerOfMassBit
-      | that.dyn.b2DebugDraw.e_aabbBit
-      | that.dyn.e_controllerBit
+      // | that.dyn.b2DebugDraw.e_centerOfMassBit
+      //| that.dyn.b2DebugDraw.e_aabbBit
+      //| that.dyn.e_controllerBit
     );
     return universe.world.SetDebugDraw(debugDrawer);
   };

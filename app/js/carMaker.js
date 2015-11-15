@@ -70,9 +70,8 @@ var carMaker = function (carIndex) {
     that.b2Body = box2dData.carBody;
     return that.b2Body;
   };
-  
+
   that.setPosition = function (chosenPosition) {
-    //debugger;
     that.b2Body.SetPosition(chosenPosition);
     console.log(that.name, that.b2Body.GetPosition());
 
@@ -126,7 +125,8 @@ var carMaker = function (carIndex) {
     }
   };
 
-  that.updateFriction = function (vec2) {
+  that.updateFriction = function () {
+    
     for (var i = 0; i < that.tires.length; i++) {
 
       if (that.adherence) {

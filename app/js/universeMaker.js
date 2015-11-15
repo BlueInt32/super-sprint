@@ -26,6 +26,7 @@ var universe_maker = function (pixiStage, _trackId, _carIds, gameStepCallback) {
 
   that.playerCar = null;
   that.iaCars = [];
+  that.otherCars = [];
   puddleRandomDirectionArray = new Array(1, -1);
   that.jsonsAssetsList = null;
   that.contactManager = null;
@@ -44,9 +45,6 @@ var universe_maker = function (pixiStage, _trackId, _carIds, gameStepCallback) {
     for (loadingIndex = j = 0, len = that.carIds.length; j < len; loadingIndex = ++j) {
       carId = that.carIds[loadingIndex];
       that.jsonsAssetsList.add(configs.cars[carId].jsonPath, 'car');
-      //if (loadingIndex !== 0) {
-      //  that.jsonsAssetsList.add(configs.cars[carId].probesSystemPath, 'probeSystem');
-      //}
     }
     that.worldSetUp = worldSetup(that.jsonsAssetsList, that.world);
     that.worldSetUp.launchMultiLoad(that.box2dLoaded);
@@ -73,17 +71,22 @@ var universe_maker = function (pixiStage, _trackId, _carIds, gameStepCallback) {
     that.playerCar = playerCarMaker(baseCar);
     that.playerCar.checkPointManager = checkpointManagerMaker(3);
     that.playerCar.setBox2dData(that.playerCarSet);
+    that.playerCar.name = "player";
 
     that.setUpDatGui(that.playerCar);
     that.contactManager = contactManagerMaker(that.world, [that.playerCar]);
 
     pixiStage.addChild(that.playerCar.pixiSprite);
     that.positionTrack(that.loaderTrackWallsSet);
+    that.positionCar(that.playerCar);
 
 
     for (i = 0; i < that.otherCarsSets.length; i += 1) {
-      var otherPlayerCar = carMaker(0);
-      otherPlayerCar.setBox2dData(otherCarsSets[i]);
+      var newOtherCar =  carMaker(0);
+      newOtherCar.setBox2dData(otherCarsSets[i]);
+      newOtherCar.name = "other";
+      that.positionCar(newOtherCar);
+      that.otherCars.push(newOtherCar);
     }
 
     document.onkeydown = keyboardHandler.handleKeyDown;
@@ -99,8 +102,8 @@ var universe_maker = function (pixiStage, _trackId, _carIds, gameStepCallback) {
     that.world.DrawDebugData();
     that.playerCar.updateData();
     that.playerCar.handleKeyboard(keyboardHandler.keys);
-    for (j = 0, len = that.iaCars.length; j < len; j++) {
-      car = that.iaCars[j];
+    for (j = 0, len = that.otherCars.length; j < len; j++) {
+      car = that.otherCars[j];
       car.updateData();
       car.updateFriction();
     }
