@@ -43,13 +43,6 @@
     
     {
       "class" : "body",
-      "displayName" : "category",
-      "name" : "category",
-      "type" : "string"
-    },
-    
-    {
-      "class" : "joint",
       "displayName" : "loadingIndex",
       "name" : "loadingIndex",
       "type" : "int"
@@ -57,6 +50,13 @@
     
     {
       "class" : "body",
+      "displayName" : "category",
+      "name" : "category",
+      "type" : "string"
+    },
+    
+    {
+      "class" : "joint",
       "displayName" : "loadingIndex",
       "name" : "loadingIndex",
       "type" : "int"
@@ -245,15 +245,11 @@
         "massData-center" : 
         {
           "x" : -0.002019969979301095,
-          "y" : 0.006846811622381210
+          "y" : 0.006846812553703785
         },
         "massData-mass" : 0.04580427333712578,
         "name" : "car_body",
-        "position" : 
-        {
-          "x" : 0.001584090292453766,
-          "y" : 0.002410523593425751
-        },
+        "position" : 0,
         "type" : "dynamic"
       },
       

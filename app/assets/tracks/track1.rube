@@ -38,16 +38,6 @@
       "bitplane32"
     ]
   },
-  "customPropertyDefs" : 
-  [
-    
-    {
-      "class" : "body",
-      "displayName" : "category",
-      "name" : "category",
-      "type" : "string"
-    }
-  ],
   "metaworld" : 
   {
     "allowSleep" : true,
@@ -104,53 +94,6 @@
       },
       
       {
-        "active" : false,
-        "angle" : 0,
-        "angularVelocity" : 0,
-        "awake" : true,
-        "customProperties" : 
-        [
-          
-          {
-            "name" : "category",
-            "string" : "iaLine"
-          }
-        ],
-        "fixture" : 
-        [
-          
-          {
-            "density" : 1,
-            "friction" : 0.2,
-            "id" : 2,
-            "name" : "fixture0",
-            "sensor" : true,
-            "shapes" : 
-            [
-              
-              {
-                "type" : "loop"
-              }
-            ],
-            "vertices" : 
-            {
-              "x" : [ -0.1646099388599396, 0.9609344005584717, 4.103293418884277 ],
-              "y" : [ 0.2923913300037384, -3.233504056930542, -1.221163868904114 ]
-            }
-          }
-        ],
-        "id" : 2,
-        "linearVelocity" : 0,
-        "name" : "iaLine",
-        "position" : 
-        {
-          "x" : 0.2231612205505371,
-          "y" : 0
-        },
-        "type" : "static"
-      },
-      
-      {
         "angle" : 0,
         "angularVelocity" : 0,
         "awake" : true,
@@ -176,24 +119,8 @@
         "name" : "start1",
         "position" : 
         {
-          "x" : 1.527149200439453,
-          "y" : 0.1386036276817322
-        },
-        "type" : "dynamic"
-      },
-      
-      {
-        "angle" : 0,
-        "angularVelocity" : 0,
-        "awake" : true,
-        "id" : 5,
-        "linearVelocity" : 0,
-        "massData-mass" : 1,
-        "name" : "start2",
-        "position" : 
-        {
-          "x" : 2.866005897521973,
-          "y" : -0.4793512821197510
+          "x" : 3.457733154296875,
+          "y" : -1.402685403823853
         },
         "type" : "dynamic"
       }
