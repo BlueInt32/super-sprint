@@ -1,6 +1,11 @@
 "use strict";
 
-var urlHelper = function(){
+var defaultSetup = {
+  trackId: 1,
+  carIds: [0, 0]
+};
+
+var urlHelper = function () {
   var that = {};
 
   that.loadQueryConfig = function () {
@@ -11,12 +16,12 @@ var urlHelper = function(){
     if (urlParams.hasOwnProperty('track')) {
       queryParams.track = urlParams.track;
     } else {
-      queryParams.track = 0;
+      queryParams.track = defaultSetup.trackId;
     }
     if (urlParams.hasOwnProperty('cars')) {
       queryParams.cars = urlParams.cars.split(',');
     } else {
-      queryParams.cars = [0];
+      queryParams.cars = defaultSetup.carIds;
     }
     return queryParams;
   };
