@@ -12,7 +12,7 @@ var worldSetup = function (resourcesList, mainWorld) {
   that.trackWalls = [];
   that.trackStartPositions = [];
   that.mainLoaderCallback = null;
-  that.refWorld = mainWorld;
+  that.mainWorld = mainWorld;
   that.firstCarLoaded = false;
   that.resourceLoadingIndex = 0;
 
@@ -23,25 +23,34 @@ var worldSetup = function (resourcesList, mainWorld) {
 
   that.loadResource = function (resourceNode) {
     if (resourceNode.data === "") {
-      that.loadResource(resourceNode.next);
+      throw {
+        "ErrorCode": "WORLD_SETUP_ERROR",
+        "ErrorMessage": "Supersprint : Empty sub-worlds list !"
+      };
     }
 
-    request('GET', resourceNode.data).done(function (res) {
-      that.loadRawJson(res.getBody(), resourceNode);
-    });
+    request('GET', resourceNode.data)
+      .done(function (retrievedData) {
+        var subWorldJson = retrievedData.getBody();
+        that.loadRawJson(subWorldJson, resourceNode);
+      });
   };
 
   that.loadRawJson = function (rawJson, resourceNode) {
     var carBody, carFrontTires, carRearTires, carSet, carsInWorld, dirJoints, dirJointsInWorld, frontTiresInWorld, iaBoundDef, iaCarBody, joint, parsedJson, probeSystem, probeSystemsInWorld, rearTiresInWorld;
     parsedJson = JSON.parse(rawJson);
     parsedJson = that.preprocessRube(parsedJson);
-    that.refWorld = rubeFileLoader.loadWorldFromRUBE(parsedJson, that.refWorld, that.resourceLoadingIndex);
+
+    // when a subworld is added to the main world, the bodies inside it are affected a resourceLoadingIndex
+    that.mainWorld = rubeFileLoader.loadWorldFromRUBE(parsedJson, that.mainWorld, that.resourceLoadingIndex);
+
 
     if (resourceNode.dataType === "car") {
-      carsInWorld = rubeFileLoader.getBodiesByCustomProperty(that.refWorld, "string", "category", "car_body");
-      rearTiresInWorld = rubeFileLoader.getBodiesByCustomProperty(that.refWorld, "string", "category", "wheel_rear");
-      frontTiresInWorld = rubeFileLoader.getBodiesByCustomProperty(that.refWorld, "string", "category", "wheel_front");
-      dirJointsInWorld = rubeFileLoader.getNamedJoints(that.refWorld, "direction");
+      carsInWorld = rubeFileLoader.getBodiesWithNamesStartingWith(that.mainWorld, "car_body");
+      rearTiresInWorld = rubeFileLoader.getBodiesWithNamesStartingWith(that.mainWorld, "wheel_rear");
+      frontTiresInWorld = rubeFileLoader.getBodiesWithNamesStartingWith(that.mainWorld, "wheel_front");
+
+      dirJointsInWorld = rubeFileLoader.getNamedJoints(that.mainWorld, "direction");
       carBody = rubeFileLoader.filterElementsByCustomProperty(carsInWorld, 'int', 'loadingIndex', that.resourceLoadingIndex)[0];
       carRearTires = rubeFileLoader.filterElementsByCustomProperty(rearTiresInWorld, 'int', 'loadingIndex', that.resourceLoadingIndex);
       carFrontTires = rubeFileLoader.filterElementsByCustomProperty(frontTiresInWorld, 'int', 'loadingIndex', that.resourceLoadingIndex);
@@ -59,7 +68,7 @@ var worldSetup = function (resourcesList, mainWorld) {
         that.otherCars.push(carSet);
       }
     } else if (resourceNode.dataType === 'probeSystem') {
-      probeSystemsInWorld = rubeFileLoader.getBodiesByCustomProperty(that.refWorld, "string", "category", "probeSystem");
+      probeSystemsInWorld = rubeFileLoader.getBodiesByCustomProperty(that.mainWorld, "string", "category", "probeSystem");
       probeSystem = rubeFileLoader.filterElementsByCustomProperty(probeSystemsInWorld, 'int', 'loadingIndex', that.resourceLoadingIndex)[0];
       iaCarBody = that.otherCars[that.otherCars.length - 1].carBody;
       iaBoundDef = new b2.joints.b2DistanceJointDef();
@@ -68,14 +77,14 @@ var worldSetup = function (resourcesList, mainWorld) {
       iaBoundDef.collideConnected = false;
       iaBoundDef.length = 0;
       iaBoundDef.localAnchorB.SetV(new b2.cMath.b2Vec2(0, 0.25));
-      joint = that.refWorld.CreateJoint(iaBoundDef);
+      joint = that.mainWorld.CreateJoint(iaBoundDef);
       that.otherCars[that.otherCars.length - 1].probeSystem = probeSystem;
     } else if (resourceNode.dataType === "track") {
-      that.trackWalls = rubeFileLoader.getBodies(that.refWorld);
-      that.trackStartPositions = rubeFileLoader.getBodiesWithNamesStartingWith(that.refWorld);
-      that.trackIaLine = rubeFileLoader.getBodiesByCustomProperty(that.refWorld, "string", "category", "iaLine")[0];
+      that.trackWalls = rubeFileLoader.getBodies(that.mainWorld);
+      that.trackStartPositions = rubeFileLoader.getBodiesWithNamesStartingWith(that.mainWorld, 'start');
+      that.trackIaLine = rubeFileLoader.getBodiesByCustomProperty(that.mainWorld, "string", "category", "iaLine")[0];
     }
-    that.resourceLoadingIndex++;
+    that.resourceLoadingIndex += 1;
     if (resourceNode.next != null) {
       that.loadResource(resourceNode.next);
     } else {

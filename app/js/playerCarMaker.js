@@ -10,7 +10,6 @@ var playerCarMaker = function (car) {
   that.localBrakeVector = b2.math.MulFV(-0.5, that.localAccelerationVector);
   that.localHandBrakeVector = b2.math.MulFV(-0.5, that.localAccelerationVector);
 
-
   that.desiredAngle = 0;
 
   that.handleKeyboard = function (keyboardData) {
