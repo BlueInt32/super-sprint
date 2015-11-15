@@ -70,20 +70,17 @@ var carMaker = function (carIndex) {
     that.b2Body = box2dData.carBody;
     return that.b2Body;
   };
-
+  
   that.setPosition = function (chosenPosition) {
-    var temp = chosenPosition.Copy();
-    temp.Add(that.b2Body.GetPosition());
-    that.b2Body.SetPosition(temp);
+    //debugger;
+    that.b2Body.SetPosition(chosenPosition);
+    console.log(that.name, that.b2Body.GetPosition());
+
     for (var i = 0; i < that.tires.length; i++) {
-      temp = chosenPosition.Copy();
-      temp.Add(that.tires[i].GetPosition());
-      that.tires[i].SetPosition(temp);
+      that.tires[i].SetPosition(chosenPosition);
     }
     if (typeof probeSystem !== "undefined" && probeSystem !== null) {
-      temp = chosenPosition.Copy();
-      temp.Add(probeSystem.GetPosition());
-      probeSystem.SetPosition(temp);
+      probeSystem.SetPosition(chosenPosition);
     }
   };
 
