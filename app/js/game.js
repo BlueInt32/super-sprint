@@ -28,14 +28,14 @@ var superSprintGame = function () {
 
 
   that.initPixi = function () {
-    var background, container, pixiLoader;
+    var background, container, pixiLoader, pixiRenderer;
     container = document.createElement("div");
     document.body.appendChild(container);
     container.appendChild(that.stats.domElement);
     that.stats.domElement.style.position = "absolute";
-    that.pixiRenderer = PIXI.autoDetectRenderer(configs.consts.STAGE_WIDTH_PIXEL, configs.consts.STAGE_HEIGHT_PIXEL, void 0, false);
-    that.universe.setPixiRenderer(that.pixiRenderer);
-    document.getElementById('gameContainer').appendChild(that.pixiRenderer.view);
+    pixiRenderer = PIXI.autoDetectRenderer(configs.consts.STAGE_WIDTH_PIXEL, configs.consts.STAGE_HEIGHT_PIXEL, void 0, false);
+    that.universe.pixiRenderer = pixiRenderer;
+    document.getElementById('gameContainer').appendChild(pixiRenderer.view);
     background = PIXI.Sprite.fromImage('assets/tracks/images/track0.png');
     that.pixiStage.addChild(background);
     pixiLoader = new PIXI.AssetLoader([configs.cars[that.queryParams.cars[0]].spritePath]);
@@ -49,7 +49,7 @@ var superSprintGame = function () {
   that.connect = function () {
     that.superSprintHub = $.connection.superSprintHub;
     that.superSprintHub.client.updateCar = function (model) {
-      console.log(model);
+      //console.log(model);
       //$shape.animate(shapeModel, { duration: updateRate, queue: false });
     };
     $.connection.hub.start().done(function () {
