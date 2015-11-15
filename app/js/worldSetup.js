@@ -15,7 +15,7 @@ var worldSetup = function (resourcesList, mainWorld) {
   that.mainWorld = mainWorld;
   that.firstCarLoaded = false;
   that.resourceLoadingIndex = 0;
-  
+
   that.launchMultiLoad = function (callback) {
     that.mainLoaderCallback = callback;
     that.loadResource(that.jsonLinkedList.firstNode);

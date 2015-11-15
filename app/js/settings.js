@@ -1,6 +1,6 @@
 var b2 = require('./utils/b2Helpers.js');
 
-var configs = function () {
+var settings = function() {
   var that = {};
 
   that.consts = {
@@ -43,7 +43,18 @@ var configs = function () {
     puddleFactor: 0.005
   };
 
+  that.defaultSetup = {
+    trackId: 0,
+    carIds: [0, 0]
+  };
+
+  that.technical = {
+    debugDraw: true,
+    pixiActivated: false,
+    statsOverlay: true
+  };
+
   return that;
 };
 
-module.exports = configs();
+module.exports = settings();

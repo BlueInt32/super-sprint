@@ -1,5 +1,5 @@
 var Box2D = require('../libs/box2dweb/Box2dWeb-2.1.a.3.js');
-var configs = require('../configs.js');
+var settings = require('../settings.js');
 
 var b2 = function () {
   var that = {};
@@ -12,8 +12,8 @@ var b2 = function () {
   that.joints = Box2D.Dynamics.Joints;
 
 
-  that.STAGE_WIDTH_B2 = configs.consts.STAGE_WIDTH_PIXEL / configs.consts.METER;
-  that.STAGE_HEIGHT_B2 = configs.consts.STAGE_HEIGHT_PIXEL / configs.consts.METER;
+  that.STAGE_WIDTH_B2 = settings.consts.STAGE_WIDTH_PIXEL / settings.consts.METER;
+  that.STAGE_HEIGHT_B2 = settings.consts.STAGE_HEIGHT_PIXEL / settings.consts.METER;
   that.ScreenCenterVector = new that.cMath.b2Vec2(that.STAGE_WIDTH_B2 / 2, that.STAGE_HEIGHT_B2 / 2);
 
 
@@ -30,12 +30,12 @@ var b2 = function () {
     }
   };
 
-  that.debugDraw = function (universe) {
+  that.debugDraw = function (b2World) {
     var debugDrawer;
 
     var canvas = document.getElementById('canvas');
-    canvas.width = configs.consts.STAGE_WIDTH_PIXEL;
-    canvas.height = configs.consts.STAGE_HEIGHT_PIXEL;
+    canvas.width = settings.consts.STAGE_WIDTH_PIXEL;
+    canvas.height = settings.consts.STAGE_HEIGHT_PIXEL;
     debugDrawer = new that.dyn.b2DebugDraw();
     debugDrawer.SetSprite(document.getElementById("canvas").getContext("2d"));
     debugDrawer.SetDrawScale(100.0);
@@ -50,7 +50,7 @@ var b2 = function () {
       //| that.dyn.b2DebugDraw.e_aabbBit
       //| that.dyn.e_controllerBit
     );
-    return universe.world.SetDebugDraw(debugDrawer);
+    return b2World.SetDebugDraw(debugDrawer);
   };
 
   that.applyForceToCenter = function (b2Body, vector2) {

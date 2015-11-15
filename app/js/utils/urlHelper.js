@@ -1,9 +1,5 @@
 "use strict";
 
-var defaultSetup = {
-  trackId: 0,
-  carIds: [0, 0]
-};
 
 var urlHelper = function () {
   var that = {};

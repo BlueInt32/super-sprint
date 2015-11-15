@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="universeMaker.js" type="javaScript">
+    <properties>
+      <option name="frameworkName" value="Node.js Core Modules" />
+      <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/app/js/universeMaker.js" />
+      </sourceFilesUrls>
+    </properties>
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/app/js/universeMaker.js" />
+    </CLASSES>
+    <SOURCES />
+  </library>
+</component>

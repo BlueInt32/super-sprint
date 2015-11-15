@@ -3,7 +3,7 @@ var browserify = require('gulp-browserify');
 var watch = require('gulp-watch');
 
 var browserification = function () {
-  gulp.src('./js/game.js')
+  gulp.src('./js/superSprintGame.js')
     .pipe(browserify({
       debug: !gulp.env.production
     }))
