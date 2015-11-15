@@ -12,45 +12,44 @@ var contactManagerMaker = require('./contactManagerMaker.js');
 var dat = require('dat-gui');
 var rubeFileLoader = require('./libs/rubeFileLoader.js');
 
-var universe_maker = function (_pixiStage, _trackId, _carIds, gameStepCallback) {
+var universe_maker = function (pixiStage, _trackId, _carIds, gameStepCallback) {
 
   var that = {};
   var contactListener, puddleRandomDirectionArray;
-  that._pixiStage = _pixiStage;
   that.carIds = _carIds;
   that.gameStepCallback = gameStepCallback;
 
   that.trackId = _trackId;
   contactListener = new b2.dyn.b2ContactListener();
   that.world = new b2.dyn.b2World(new b2.cMath.b2Vec2(0, 0), true);
+  that.worldSetUp = null;
 
   that.playerCar = null;
   that.iaCars = [];
   puddleRandomDirectionArray = new Array(1, -1);
   that.jsonsAssetsList = null;
-  that.pixiStage = that._pixiStage;
   that.contactManager = null;
   that.positioning = 0;
   that.pixiRenderer = null;
 
-  that.setPixiRenderer = function (_pixiRenderer) {
-    that._pixiRenderer = _pixiRenderer;
-    return that.pixiRenderer = that._pixiRenderer;
+  that.setPixiRenderer = function (pixiRenderer) {
+    that.pixiRenderer = pixiRenderer;
+    return that.pixiRenderer;
   };
 
   that.loadBox2d = function () {
-    var carId, j, len, loadingIndex, worldSettingUp;
+    var carId, j, len, loadingIndex;
     that.jsonsAssetsList = linkedListMaker();
     that.jsonsAssetsList.add(configs.tracks[that.trackId].jsonPath, 'track');
     for (loadingIndex = j = 0, len = that.carIds.length; j < len; loadingIndex = ++j) {
       carId = that.carIds[loadingIndex];
       that.jsonsAssetsList.add(configs.cars[carId].jsonPath, 'car');
-      if (loadingIndex !== 0) {
-        that.jsonsAssetsList.add(configs.cars[carId].probesSystemPath, 'probeSystem');
-      }
+      //if (loadingIndex !== 0) {
+      //  that.jsonsAssetsList.add(configs.cars[carId].probesSystemPath, 'probeSystem');
+      //}
     }
-    worldSettingUp = worldSetup(that.jsonsAssetsList, that.world);
-    worldSettingUp.launchMultiLoad(that.box2dLoaded);
+    that.worldSetUp = worldSetup(that.jsonsAssetsList, that.world);
+    that.worldSetUp.launchMultiLoad(that.box2dLoaded);
   };
 
   /*
@@ -65,7 +64,7 @@ var universe_maker = function (_pixiStage, _trackId, _carIds, gameStepCallback) 
    * otherCarsSets is an array of such objects
    */
   that.box2dLoaded = function (loaderTrackWallsSet, playerCarSet, otherCarsSets) {
-    var carSet, i, ia, j, len, ref, baseCar;
+    var carSet, i, ia, len, baseCar;
     that.loaderTrackWallsSet = loaderTrackWallsSet;
     that.playerCarSet = playerCarSet;
     that.otherCarsSets = otherCarsSets;
@@ -77,34 +76,31 @@ var universe_maker = function (_pixiStage, _trackId, _carIds, gameStepCallback) 
 
     that.setUpDatGui(that.playerCar);
     that.contactManager = contactManagerMaker(that.world, [that.playerCar]);
-    ref = that.otherCarsSets;
-    //for (i = j = 0, len = ref.length; j < len; i = ++j) {
-    //  carSet = ref[i];
-    //  ia = new iaCar(that.consts, 0, CarsConfig[that.carIds[i]]);
-    //  ia.setBox2dData(carSet);
-    //  that.positionCar(ia, that.pixiStage);
-    //  that.iaCars.push(ia);
-    //}
 
-    that.pixiStage.addChild(that.playerCar.pixiSprite);
-    that.positionCar(that.playerCar, that.pixiStage);
+    pixiStage.addChild(that.playerCar.pixiSprite);
     that.positionTrack(that.loaderTrackWallsSet);
+
+
+    for (i = 0; i < that.otherCarsSets.length; i += 1) {
+      var otherPlayerCar = carMaker(0);
+      otherPlayerCar.setBox2dData(otherCarsSets[i]);
+    }
+
     document.onkeydown = keyboardHandler.handleKeyDown;
     document.onkeyup = keyboardHandler.handleKeyUp;
     that.update();
   };
 
   that.update = function () {
-    var car, j, len, ref;
+    var car, j, len;
     requestAnimationFrame(that.update);
     that.world.Step(1 / 60, 3, 3);
     that.world.ClearForces();
     that.world.DrawDebugData();
     that.playerCar.updateData();
     that.playerCar.handleKeyboard(keyboardHandler.keys);
-    ref = that.iaCars;
-    for (j = 0, len = ref.length; j < len; j++) {
-      car = ref[j];
+    for (j = 0, len = that.iaCars.length; j < len; j++) {
+      car = that.iaCars[j];
       car.updateData();
       car.updateFriction();
     }
@@ -121,10 +117,12 @@ var universe_maker = function (_pixiStage, _trackId, _carIds, gameStepCallback) 
   };
 
   that.positionCar = function (carInstance) {
-    var pos, startPositions;
-    startPositions = rubeFileLoader.getBodiesWithNamesStartingWith(that.world, "start");
-    pos = startPositions[that.positioning++].GetPosition();
-    carInstance.setPosition(b2.math.AddVV(b2.ScreenCenterVector, pos));
+    var startPosition, startPositions;
+    startPosition = that.worldSetUp.trackStartPositions[that.positioning].GetPosition();
+    that.positioning += 1;
+    var translatedPosition = b2.math.AddVV(b2.ScreenCenterVector, startPosition);
+    carInstance.setPosition(startPosition);
+    //console.log(carInstance.b2Body.GetPosition());
   };
 
   that.setUpDatGui = function (refObject) {
