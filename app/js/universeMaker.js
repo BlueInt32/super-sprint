@@ -50,17 +50,6 @@ var universe_maker = function (pixiStage, _trackId, _carIds, gameStepCallback) {
     that.worldSetUp.launchMultiLoad(that.box2dLoaded);
   };
 
-  /*
-   * loaderTrackWallsSet is an array of box2d bodies representing the walls
-   * playerCarSet is an object reprensenting the player car, it's built like so:
-   {
-   carBody : box2dbody,
-   rearTires : box2dbody[],
-   frontTires : box2dbody[],
-   directionJoints : box2dJoint
-   }
-   * otherCarsSets is an array of such objects
-   */
   that.box2dLoaded = function (loaderTrackWallsSet, playerCarSet, otherCarsSets) {
     var carSet, i, ia, len, baseCar;
     that.loaderTrackWallsSet = loaderTrackWallsSet;

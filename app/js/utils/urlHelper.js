@@ -1,7 +1,7 @@
 "use strict";
 
 var defaultSetup = {
-  trackId: 1,
+  trackId: 0,
   carIds: [0, 0]
 };
 

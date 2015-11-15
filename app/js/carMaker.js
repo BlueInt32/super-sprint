@@ -126,7 +126,7 @@ var carMaker = function (carIndex) {
   };
 
   that.updateFriction = function () {
-    
+
     for (var i = 0; i < that.tires.length; i++) {
 
       if (that.adherence) {
