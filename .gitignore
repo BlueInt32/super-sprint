@@ -4,7 +4,9 @@
 *.com
 *.class
 *.dll
+!Newtonsoft.Json.dll
 *.exe
+!PrettyfyJson.exe
 *.pdb
 *.dll.config
 *.cache
@@ -13,7 +15,7 @@
 *.mdf
 *.ldf
 GoKeyboard.Webapp/Content/Site.css
-# Include dlls if they�re in the NuGet packages directory
+# Include dlls if they're in the NuGet packages directory
 !/packages/*/lib/*.dll
 !/packages/*/lib/*/*.dll
 # Include dlls if they're in the CommonReferences directory
