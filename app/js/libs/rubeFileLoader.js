@@ -263,7 +263,6 @@ var rubeFileLoader = function () {
     }
     else {
       console.log("Unsupported joint type: " + jointJso.type);
-      console.log(jointJso);
     }
     if (joint && jointJso.name)
       joint.name = jointJso.name;
@@ -356,21 +355,21 @@ var rubeFileLoader = function () {
 //create a world variable and return it if loading succeeds
 // loadingIndex should be filled in in bodies and joints elements loaded in order to track them in the
 // case of multiple worlds imports
-  that.loadWorldFromRUBE = function (worldJso, inputWorld, loadingIndex) {
+  that.loadWorldFromRUBE = function (injectedWorld, mainWorld, loadingIndex) {
     //console.log("LoadingIndex: ", loadingIndex);
     var gravity = new b2Vec2(0, 0);
-    if (worldJso.hasOwnProperty('gravity') && worldJso.gravity instanceof Object)
-      gravity.SetV(worldJso.gravity);
+    if (injectedWorld.hasOwnProperty('gravity') && injectedWorld.gravity instanceof Object)
+      gravity.SetV(injectedWorld.gravity);
     var world;
-    //typeof inputWorld
-    if (typeof inputWorld !== "undefined" && inputWorld !== null) {
-      world = inputWorld;
+    //typeof mainWorld
+    if (typeof mainWorld !== "undefined" && mainWorld !== null) {
+      world = mainWorld;
     }
     else
       world = new b2World(gravity);
 
-    if (!that.loadSceneIntoWorld(worldJso, world, loadingIndex))
-      return false;
+    if (!that.loadSceneIntoWorld(injectedWorld, world, loadingIndex))
+      throw {"ErrorCode": "RUBE_LOADING_ERROR", "ErrorMessage": "Could not load subworld"};
     return world;
   }
 
@@ -386,9 +385,23 @@ var rubeFileLoader = function () {
   that.getBodiesWithNamesStartingWith = function (world, startName) {
     var bodies = [];
     for (var b = world.m_bodyList; b; b = b.m_next) {
-      if (typeof b.name !== "undefined" && b.name.indexOf(startName) === 0)
+      if (typeof b.name !== "undefined" && b.name.indexOf(startName) === 0) {
         bodies.push(b);
+        b.LogPosition();
+      }
     }
+
+    bodies.sort(function (a, b) {
+      if (a.name > b.name) {
+        return 1;
+      }
+      if (a.name < b.name) {
+        return -1;
+      }
+      // a must be equal to b
+      return 0;
+    });
+
     return bodies;
   }
 
