@@ -77,3 +77,4 @@ assets/**/*rube-backups/**
 backups/
 resources/
 app/build/
+.idea/workspace.xml

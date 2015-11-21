@@ -10,19 +10,20 @@ var settings = function() {
     DEGTORAD: 2 * Math.PI / 360
   };
 
-  that.tracks = [];
-  that.tracks[0] = {
+
+
+  that.tracks = [{
     id: 0,
     nbCheckpoints: 3,
     jsonPath: 'assets/tracks/track0.json',
-    imagePath: 'assets/tracks/images/track1.png'
-  };
-  that.tracks[1] = {
+    imagePath: 'assets/tracks/images/track0.png'
+  },
+  {
     id: 1,
     nbCheckpoints: 3,
     jsonPath: 'assets/tracks/track1.json',
     imagePath: 'assets/tracks/images/track1.png'
-  };
+  }];
 
   that.cars = [];
   that.cars[0] = {
@@ -43,6 +44,12 @@ var settings = function() {
     puddleFactor: 0.005
   };
 
+  that.sprites = {
+    buttons: {
+      createRace : 'assets/buttons/create-race.gif'
+    }
+  };
+
   that.defaultSetup = {
     trackId: 0,
     carIds: [0, 0]
@@ -50,7 +57,7 @@ var settings = function() {
 
   that.technical = {
     debugDraw: true,
-    pixiActivated: false,
+    pixiActivated: true,
     statsOverlay: true
   };
 

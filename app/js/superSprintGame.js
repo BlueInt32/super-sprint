@@ -13,33 +13,39 @@ var socketManager = require('./socketManager.js');
 var showStatsOverlay = require('./statsOverlay.js');
 
 
-var superSprintGame = function () {
+var superSprintGame = function() {
   var that = {};
 
   that.player = player();
   that.pixiFacade = pixiFacade();
   that.socketManager = socketManager();
 
-  that.step = function (timestamp) {
-    if (settings.technical.pixiActivated) {
-      that.pixiFacade.step();
-    }
-    window.requestAnimationFrame(that.step);
-  };
+  that.gameEvents = {
+    frameStep: function(timestamp){
+      if (settings.technical.pixiActivated) {
+        that.pixiFacade.step();
+      }
+      window.requestAnimationFrame(that.gameEvents.frameStep);
+    },
+    menuLoaded: function() {
+      console.log('Pixi page loaded');
+      window.requestAnimationFrame(that.gameEvents.frameStep);
+      //that.universe.loadBox2d();
+    },
+    startRace: function() {
+      console.log('Race creation !');
 
-  that.pixiFacade.initializePage(function(){
-    console.log('Pixi page loaded');
-    window.requestAnimationFrame(that.step);
-    //that.universe.loadBox2d();
-  });
-  if(settings.technical.statsOverlay){
-    showStatsOverlay();
+      var newRace = race();
+    }
   }
 
-
-  that.createRace = function(){
-    var newRace = race();
-  };
+  that.pixiFacade.menu({
+    onMenuLoaded: that.gameEvents.menuLoaded,
+    onStartRace: that.gameEvents.startRace
+  });
+  if (settings.technical.statsOverlay) {
+    showStatsOverlay();
+  }
 
   return that;
 };
