@@ -30,12 +30,12 @@ var superSprintGame = function() {
     menuLoaded: function() {
       console.log('Pixi page loaded');
       window.requestAnimationFrame(that.gameEvents.frameStep);
-      //that.universe.loadBox2d();
+
     },
     startRace: function() {
       console.log('Race creation !');
 
-      var newRace = race();
+      var newRace = race(0);
     }
   }
 

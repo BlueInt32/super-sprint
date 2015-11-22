@@ -4,7 +4,7 @@ var linkedListMaker = require('./utils/linkedList.js');
 var keyboardHandler = require('./keyboardHandler.js');
 var b2 = require('./utils/b2Helpers.js');
 var worldSetup = require('./worldSetup.js');
-var configs =  require('./configs.js');
+var configs = require('./configs.js');
 var carMaker = require('./carMaker.js');
 var playerCarMaker = require('./playerCarMaker.js');
 var checkpointManagerMaker = require('./checkpointManagerMaker.js');
@@ -12,7 +12,7 @@ var contactManagerMaker = require('./contactManagerMaker.js');
 var dat = require('dat-gui');
 var rubeFileLoader = require('./libs/rubeFileLoader.js');
 
-var universe_maker = function (pixiStage, _trackId, _carIds, gameStepCallback) {
+var universe_maker = function(pixiStage, _trackId, _carIds, gameStepCallback) {
 
   var that = {};
   var contactListener, puddleRandomDirectionArray;
@@ -33,12 +33,12 @@ var universe_maker = function (pixiStage, _trackId, _carIds, gameStepCallback) {
   that.positioning = 0;
   that.pixiRenderer = null;
 
-  that.setPixiRenderer = function (pixiRenderer) {
+  that.setPixiRenderer = function(pixiRenderer) {
     that.pixiRenderer = pixiRenderer;
     return that.pixiRenderer;
   };
 
-  that.loadBox2d = function () {
+  that.loadBox2d = function() {
     var carId, j, len, loadingIndex;
     that.jsonsAssetsList = linkedListMaker();
     that.jsonsAssetsList.add(configs.tracks[that.trackId].jsonPath, 'track');
@@ -50,7 +50,7 @@ var universe_maker = function (pixiStage, _trackId, _carIds, gameStepCallback) {
     that.worldSetUp.launchMultiLoad(that.box2dLoaded);
   };
 
-  that.box2dLoaded = function (loaderTrackWallsSet, playerCarSet, otherCarsSets) {
+  that.box2dLoaded = function(loaderTrackWallsSet, playerCarSet, otherCarsSets) {
     var carSet, i, ia, len, baseCar;
     that.loaderTrackWallsSet = loaderTrackWallsSet;
     that.playerCarSet = playerCarSet;
@@ -71,7 +71,7 @@ var universe_maker = function (pixiStage, _trackId, _carIds, gameStepCallback) {
 
 
     for (i = 0; i < that.otherCarsSets.length; i += 1) {
-      var newOtherCar =  carMaker(0);
+      var newOtherCar = carMaker(0);
       newOtherCar.setBox2dData(otherCarsSets[i]);
       newOtherCar.name = "other";
       that.positionCar(newOtherCar);
@@ -83,7 +83,7 @@ var universe_maker = function (pixiStage, _trackId, _carIds, gameStepCallback) {
     that.update();
   };
 
-  that.update = function () {
+  that.update = function() {
     var car, j, len;
     requestAnimationFrame(that.update);
     that.world.Step(1 / 60, 3, 3);
@@ -99,7 +99,7 @@ var universe_maker = function (pixiStage, _trackId, _carIds, gameStepCallback) {
     that.gameStepCallback();
   };
 
-  that.positionTrack = function (trackWalls) {
+  that.positionTrack = function(trackWalls) {
     var j, len, position, trackWall;
     for (j = 0, len = trackWalls.length; j < len; j++) {
       trackWall = trackWalls[j];
@@ -108,7 +108,7 @@ var universe_maker = function (pixiStage, _trackId, _carIds, gameStepCallback) {
     }
   };
 
-  that.positionCar = function (carInstance) {
+  that.positionCar = function(carInstance) {
     var startPosition, startPositions;
     startPosition = that.worldSetUp.trackStartPositions[that.positioning].GetPosition();
     that.positioning += 1;
@@ -117,7 +117,7 @@ var universe_maker = function (pixiStage, _trackId, _carIds, gameStepCallback) {
     //console.log(carInstance.b2Body.GetPosition());
   };
 
-  that.setUpDatGui = function (refObject) {
+  that.setUpDatGui = function(refObject) {
     var f1, gui;
     gui = new dat.GUI();
     f1 = gui.addFolder('Car Behaviour');

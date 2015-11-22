@@ -25,8 +25,7 @@ var settings = function() {
     imagePath: 'assets/tracks/images/track1.png'
   }];
 
-  that.cars = [];
-  that.cars[0] = {
+  that.cars = [{
     width: 40, // px unit
     height: 25, // px unit
     spritePath: 'assets/cars/images/Voiture_03.png',
@@ -42,7 +41,7 @@ var settings = function() {
     // car body
     restitution: 0.1,
     puddleFactor: 0.005
-  };
+  }];
 
   that.sprites = {
     buttons: {

@@ -1,4 +1,4 @@
-var linkedList_maker = function () {
+var linkedListMaker = function() {
 
   var that = {};
 
@@ -6,7 +6,7 @@ var linkedList_maker = function () {
   that.lastNode = null;
   that.size = 0;
 
-  that.add = function (data, dataType) {
+  that.add = function(data, dataType) {
     var newNode = {
       data: data,
       next: null,
@@ -24,8 +24,21 @@ var linkedList_maker = function () {
     return that.size;
   };
 
+  that.removeFirst = function() {
+
+    if (that.firstNode !== null) {
+      if (that.firstNode.next !== null) {
+        that.firstNode = that.firstNode.next;
+      } else {
+        that.firstNode = null;
+        that.lastNode = null;
+        that.size = 0;
+      }
+    }
+  };
+
   return that;
 
 };
 
-module.exports = linkedList_maker;
+module.exports = linkedListMaker;

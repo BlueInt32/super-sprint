@@ -3,10 +3,10 @@
 var Box2D = require('./box2dweb/Box2dWeb-2.1.a.3.js');
 var b2 = require('../utils/b2Helpers.js');
 
-var rubeFileLoader = function () {
+var rubeFileLoader = function() {
   var that = {};
 
-  Object.prototype.hasOwnProperty = function (property) {
+  Object.prototype.hasOwnProperty = function(property) {
     return typeof(this[property]) !== 'undefined';
   };
 
@@ -18,7 +18,7 @@ var rubeFileLoader = function () {
     b2World = Box2D.Dynamics.b2World,
     Features = Box2D.Collision.Features;
 
-  that.loadBodyFromRUBE = function (bodyJso, world, loadingIndex) {
+  that.loadBodyFromRUBE = function(bodyJso, world, loadingIndex) {
 
     if (!bodyJso.hasOwnProperty('type')) {
       console.log("Body does not have a 'type' property");
@@ -66,7 +66,7 @@ var rubeFileLoader = function () {
     return body;
   }
 
-  that.loadFixtureFromRUBE = function (body, fixtureJso) {
+  that.loadFixtureFromRUBE = function(body, fixtureJso) {
     var fd = new b2FixtureDef();
     if (fixtureJso.hasOwnProperty('friction'))
       fd.friction = fixtureJso.friction;
@@ -124,7 +124,7 @@ var rubeFileLoader = function () {
     }
   }
 
-  that.getVectorValue = function (val) {
+  that.getVectorValue = function(val) {
     if (val instanceof Object) {
       return val;
     }
@@ -135,7 +135,7 @@ var rubeFileLoader = function () {
       };
   }
 
-  that.loadJointCommonProperties = function (jd, jointJso, loadedBodies, loadingIndex) {
+  that.loadJointCommonProperties = function(jd, jointJso, loadedBodies, loadingIndex) {
 
     //jointJso
     //console.log(loadedBodies);
@@ -148,7 +148,7 @@ var rubeFileLoader = function () {
 
   }
 
-  that.loadJointFromRUBE = function (jointJso, world, loadedBodies, loadingIndex) {
+  that.loadJointFromRUBE = function(jointJso, world, loadedBodies, loadingIndex) {
     if (!jointJso.hasOwnProperty('type')) {
       console.log("Joint does not have a 'type' property");
       return null;
@@ -279,7 +279,7 @@ var rubeFileLoader = function () {
     return joint;
   }
 
-  that.makeClone = function (obj) {
+  that.makeClone = function(obj) {
     var newObj = (obj instanceof Array) ? [] : {};
     for (var i in obj) {
       if (obj[i] && typeof obj[i] == "object")
@@ -290,7 +290,7 @@ var rubeFileLoader = function () {
     return newObj;
   }
 
-  that.loadImageFromRUBE = function (imageJso, world, loadedBodies) {
+  that.loadImageFromRUBE = function(imageJso, world, loadedBodies) {
     var image = that.makeClone(imageJso);
 
     if (image.hasOwnProperty('body') && image.body >= 0)
@@ -305,12 +305,12 @@ var rubeFileLoader = function () {
   }
 
 //mainly just a convenience for the testbed - uses global 'world' variable
-  that.loadSceneFromRUBE = function (worldJso) {
+  that.loadSceneFromRUBE = function(worldJso) {
     return that.loadSceneIntoWorld(worldJso, world);
   }
 
 //load the scene into an already existing world variable
-  that.loadSceneIntoWorld = function (worldJso, world, loadingIndex) {
+  that.loadSceneIntoWorld = function(worldJso, world, loadingIndex) {
     var success = true;
     var loadedBodies = [];
     if (worldJso.hasOwnProperty('body')) {
@@ -355,7 +355,7 @@ var rubeFileLoader = function () {
 //create a world variable and return it if loading succeeds
 // loadingIndex should be filled in in bodies and joints elements loaded in order to track them in the
 // case of multiple worlds imports
-  that.loadWorldFromRUBE = function (injectedWorld, mainWorld, loadingIndex) {
+  that.loadWorldFromRUBE = function(injectedWorld, mainWorld, loadingIndex) {
     //console.log("LoadingIndex: ", loadingIndex);
     var gravity = new b2Vec2(0, 0);
     if (injectedWorld.hasOwnProperty('gravity') && injectedWorld.gravity instanceof Object)
@@ -369,11 +369,14 @@ var rubeFileLoader = function () {
       world = new b2World(gravity);
 
     if (!that.loadSceneIntoWorld(injectedWorld, world, loadingIndex))
-      throw {"ErrorCode": "RUBE_LOADING_ERROR", "ErrorMessage": "Could not load subworld"};
+      throw {
+        "ErrorCode": "RUBE_LOADING_ERROR",
+        "ErrorMessage": "Could not load subworld"
+      };
     return world;
   }
 
-  that.getNamedBodies = function (world, name) {
+  that.getNamedBodies = function(world, name) {
     var bodies = [];
     for (var b = world.m_bodyList; b; b = b.m_next) {
       if (b.name == name)
@@ -382,7 +385,7 @@ var rubeFileLoader = function () {
     return bodies;
   }
 
-  that.getBodiesWithNamesStartingWith = function (world, startName) {
+  that.getBodiesWithNamesStartingWith = function(world, startName) {
     var bodies = [];
     for (var b = world.m_bodyList; b; b = b.m_next) {
       if (typeof b.name !== "undefined" && b.name.indexOf(startName) === 0) {
@@ -390,7 +393,7 @@ var rubeFileLoader = function () {
       }
     }
 
-    bodies.sort(function (a, b) {
+    bodies.sort(function(a, b) {
       if (a.name > b.name) {
         return 1;
       }
@@ -404,7 +407,7 @@ var rubeFileLoader = function () {
     return bodies;
   }
 
-  that.getBodies = function (world) {
+  that.getBodies = function(world) {
     var bodies = [];
     for (var b = world.m_bodyList; b; b = b.m_next) {
       bodies.push(b);
@@ -412,7 +415,7 @@ var rubeFileLoader = function () {
     return bodies;
   }
 
-  that.getNamedFixtures = function (world, name) {
+  that.getNamedFixtures = function(world, name) {
     var fixtures = [];
     for (var b = world.m_bodyList; b; b = b.m_next) {
       for (var f = b.m_fixtureList; f; f = f.m_next) {
@@ -423,7 +426,7 @@ var rubeFileLoader = function () {
     return fixtures;
   }
 
-  that.getNamedJoints = function (world, name) {
+  that.getNamedJoints = function(world, name) {
     var joints = [];
     for (var j = world.m_jointList; j; j = j.m_next) {
       if (j.name == name)
@@ -432,7 +435,7 @@ var rubeFileLoader = function () {
     return joints;
   }
 
-  that.getNamedImages = function (world, name) {
+  that.getNamedImages = function(world, name) {
     var images = [];
     for (var i = 0; i < world.images.length; i++) {
       if (world.images[i].name == name)
@@ -442,7 +445,7 @@ var rubeFileLoader = function () {
   }
 
 //custom properties
-  that.getBodiesByCustomProperty = function (world, propertyType, propertyName, valueToMatch) {
+  that.getBodiesByCustomProperty = function(world, propertyType, propertyName, valueToMatch) {
     var bodies = [];
     for (var b = world.m_bodyList; b; b = b.m_next) {
       if (!b.hasOwnProperty('customProperties'))
@@ -461,7 +464,7 @@ var rubeFileLoader = function () {
   }
 
 //custom properties
-  that.filterElementsByCustomProperty = function (inputElements, propertyType, propertyName, valueToMatch) {
+  that.filterElementsByCustomProperty = function(inputElements, propertyType, propertyName, valueToMatch) {
     //console.log('inputElements : ', inputElements, 'searching for ', valueToMatch);
     var elements = [];
     for (var i in inputElements) {
@@ -482,7 +485,7 @@ var rubeFileLoader = function () {
     return elements;
   }
 
-  that.hasCustomProperty = function (item, propertyType, propertyName) {
+  that.hasCustomProperty = function(item, propertyType, propertyName) {
     if (!item.hasOwnProperty('customProperties'))
       return false;
     for (var i = 0; i < item.customProperties.length; i++) {
@@ -495,7 +498,7 @@ var rubeFileLoader = function () {
     return false;
   }
 
-  that.getCustomProperty = function (item, propertyType, propertyName, defaultValue) {
+  that.getCustomProperty = function(item, propertyType, propertyName, defaultValue) {
     if (!item.hasOwnProperty('customProperties'))
       return defaultValue;
     for (var i = 0; i < item.customProperties.length; i++) {
@@ -509,7 +512,7 @@ var rubeFileLoader = function () {
     return defaultValue;
   }
 
-  that.setCustomProperty = function (item, propertyType, propertyName, value) {
+  that.setCustomProperty = function(item, propertyType, propertyName, value) {
     if (!item.hasOwnProperty('customProperties'))
       return value;
     for (var i = 0; i < item.customProperties.length; i++) {
@@ -522,6 +525,52 @@ var rubeFileLoader = function () {
     }
     return value;
   }
+
+  that.preprocessRube = function(parsedJson) {
+    var fixture, i, index, j, joint, jsonBody, k, len, len1, len2, ref, ref1, ref2;
+    ref = parsedJson.body;
+    for (i = 0, len = ref.length; i < len; i++) {
+      jsonBody = ref[i];
+      if (jsonBody.position !== 0) {
+        jsonBody.position.y = jsonBody.position.y * -1;
+      }
+      if (typeof jsonBody.fixture !== "undefined") {
+        ref1 = jsonBody.fixture;
+        for (j = 0, len1 = ref1.length; j < len1; j++) {
+          fixture = ref1[j];
+          if (fixture.hasOwnProperty("polygon")) {
+            for (index in fixture.polygon.vertices.y) {
+              fixture.polygon.vertices.y[index] = -fixture.polygon.vertices.y[index];
+            }
+            fixture.polygon.vertices.x.reverse();
+            fixture.polygon.vertices.y.reverse();
+          }
+          if (fixture.hasOwnProperty("chain")) {
+            for (index in fixture.chain.vertices.y) {
+              fixture.chain.vertices.y[index] = -fixture.chain.vertices.y[index];
+            }
+            fixture.chain.vertices.x.reverse();
+            fixture.chain.vertices.y.reverse();
+          }
+        }
+      }
+    }
+    if (parsedJson.hasOwnProperty("joint")) {
+      ref2 = parsedJson.joint;
+      for (k = 0, len2 = ref2.length; k < len2; k++) {
+        joint = ref2[k];
+        if (joint.anchorA !== 0) {
+          joint.anchorA.y = joint.anchorA.y * -1;
+        }
+        if (joint.anchorB !== 0) {
+          joint.anchorB.y = joint.anchorB.y * -1;
+        }
+        joint.upperLimit = 0;
+        joint.lowerLimit = 0;
+      }
+    }
+    return parsedJson;
+  };
 
 
   return that;

@@ -30,7 +30,7 @@ var b2 = function () {
     }
   };
 
-  that.debugDraw = function (b2World) {
+  that.initDebugDraw = function (b2World) {
     var debugDrawer;
 
     var canvas = document.getElementById('canvas');
