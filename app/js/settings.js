@@ -1,31 +1,25 @@
-var b2 = require('./utils/b2Helpers.js');
-
-var settings = function() {
-  var that = {};
-
-  that.consts = {
+var settings = {
+  consts: {
     METER: 100,
     STAGE_WIDTH_PIXEL: 1000,
     STAGE_HEIGHT_PIXEL: 750,
     DEGTORAD: 2 * Math.PI / 360
-  };
+  },
 
-
-
-  that.tracks = [{
+  tracks: [{
     id: 0,
     nbCheckpoints: 3,
     jsonPath: 'assets/tracks/track0.json',
     imagePath: 'assets/tracks/images/track0.png'
   },
-  {
-    id: 1,
-    nbCheckpoints: 3,
-    jsonPath: 'assets/tracks/track1.json',
-    imagePath: 'assets/tracks/images/track1.png'
-  }];
+    {
+      id: 1,
+      nbCheckpoints: 3,
+      jsonPath: 'assets/tracks/track1.json',
+      imagePath: 'assets/tracks/images/track1.png'
+    }],
 
-  that.cars = [{
+  cars: [{
     width: 40, // px unit
     height: 25, // px unit
     spritePath: 'assets/cars/images/Voiture_03.png',
@@ -41,26 +35,24 @@ var settings = function() {
     // car body
     restitution: 0.1,
     puddleFactor: 0.005
-  }];
+  }],
 
-  that.sprites = {
+  sprites: {
     buttons: {
-      createRace : 'assets/buttons/create-race.gif'
+      createRace: 'assets/buttons/create-race.gif'
     }
-  };
+  },
 
-  that.defaultSetup = {
+  defaultSetup: {
     trackId: 0,
     carIds: [0, 0]
-  };
+  },
 
-  that.technical = {
+  technical: {
     debugDraw: true,
     pixiActivated: true,
     statsOverlay: true
-  };
+  }
+}
 
-  return that;
-};
-
-module.exports = settings();
+module.exports = settings;

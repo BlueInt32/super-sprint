@@ -1,7 +1,7 @@
+"use strict";
 
-
-var rival = function () {
+var Rival = function () {
 
 };
 
-module.exports = rival;
+module.exports = Rival;

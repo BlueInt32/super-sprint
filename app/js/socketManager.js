@@ -7,24 +7,21 @@ window.jQuery = require('jquery');
 window.$ = window.jQuery;
 require('signalr');
 
-var socketManager = function() {
-
-  var that = {};
-
-  that.firstConnection = function() {
-    that.superSprintHub = $.connection.superSprintHub;
-    that.superSprintHub.client.updateCar = function(model) {
+var SocketManager = function() {
+  this.firstConnection = function() {
+    this.superSprintHub = $.connection.superSprintHub;
+    this.superSprintHub.client.updateCar = function(model) {
       //console.log(model);
       //$shape.animate(shapeModel, { duration: updateRate, queue: false });
     };
     $.connection.hub.start().done(function() {
-      that.updateServer();
+      this.updateServer();
     });
   };
 
-  that.updateServer = function () {
-    that.superSprintHub.server.updateModel('hi ! ');
+  this.updateServer = function () {
+    this.superSprintHub.server.updateModel('hi ! ');
   }
 };
 
-module.exports = socketManager;
+module.exports = SocketManager;

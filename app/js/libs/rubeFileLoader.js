@@ -1,7 +1,7 @@
 "use strict";
 
 var Box2D = require('./box2dweb/Box2dWeb-2.1.a.3.js');
-var b2 = require('../utils/b2Helpers.js');
+var b2 = require('../utils/B2Helper.js');
 
 var rubeFileLoader = function() {
   var that = {};

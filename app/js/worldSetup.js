@@ -1,5 +1,5 @@
 var rubeFileLoader = require('./libs/rubeFileLoader.js');
-var b2 = require('./utils/b2Helpers.js');
+var b2 = require('./utils/B2Helper.js');
 var request = require('then-request');
 
 var worldSetup = function (resourcesList, mainWorld) {

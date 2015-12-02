@@ -1,10 +1,10 @@
 /**
  * Created by Simon on 15/11/2015.
  */
+"use strict";
 
-var playerCommand = function () {
-
+var PlayerCommand = function () {
 
 };
 
-module.exports = playerCommand;
+module.exports = new PlayerCommand();

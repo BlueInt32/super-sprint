@@ -45,12 +45,12 @@
     "continuousPhysics" : true,
     "exportOptions" : 
     {
-      "compactCommonFloats" : false,
-      "compactZeroVecs" : false,
+      "compactCommonFloats" : true,
+      "compactZeroVecs" : true,
       "saveFullPathForImages" : false,
       "saveImagePathsRelativeToRUBEFile" : false,
       "useHumanReadableFloats" : true,
-      "usePrettyPrint" : true
+      "usePrettyPrint" : false
     },
     "gravity" : 
     {
@@ -61,18 +61,17 @@
     [
       
       {
-        "active" : false,
         "angle" : 0,
         "angularVelocity" : 0,
         "awake" : true,
         "id" : 1,
         "linearVelocity" : 0,
         "massData-mass" : 1,
-        "name" : "start2",
+        "name" : "start1",
         "position" : 
         {
-          "x" : 1.052275776863098,
-          "y" : 2.535137176513672
+          "x" : 0.4360870122909546,
+          "y" : 3.209883928298950
         },
         "type" : "dynamic"
       },
@@ -85,250 +84,47 @@
         [
           
           {
-            "customProperties" : 
-            [
-              
-              {
-                "name" : "boostVector",
-                "vec2" : 
-                {
-                  "x" : -0.004000000189989805,
-                  "y" : 0
-                }
-              }
-            ],
             "density" : 1,
             "friction" : 0.2,
             "id" : 1,
-            "name" : "boost",
-            "sensor" : true,
-            "shapes" : 
-            [
-              
-              {
-                "type" : "line"
-              }
-            ],
-            "vertices" : 
-            {
-              "x" : [ -0.5, 0.5 ],
-              "y" : [ 0.0, 0.0 ]
-            }
-          }
-        ],
-        "id" : 2,
-        "linearVelocity" : 0,
-        "massData-mass" : 1,
-        "name" : "boost",
-        "position" : 
-        {
-          "x" : 3.536625385284424,
-          "y" : 3.224803686141968
-        },
-        "type" : "dynamic"
-      },
-      
-      {
-        "angle" : 0,
-        "angularVelocity" : 0,
-        "awake" : true,
-        "fixture" : 
-        [
-          
-          {
-            "customProperties" : 
-            [
-              
-              {
-                "name" : "boostVector",
-                "vec2" : 
-                {
-                  "x" : -0.007000000216066837,
-                  "y" : 0
-                }
-              }
-            ],
-            "density" : 1,
-            "friction" : 0.2,
-            "id" : 2,
-            "name" : "boost",
-            "sensor" : true,
-            "shapes" : 
-            [
-              
-              {
-                "type" : "line"
-              }
-            ],
-            "vertices" : 
-            {
-              "x" : [ -0.5, 0.5 ],
-              "y" : [ 0.0, 0.0 ]
-            }
-          }
-        ],
-        "id" : 3,
-        "linearVelocity" : 0,
-        "massData-mass" : 1,
-        "name" : "boost",
-        "position" : 
-        {
-          "x" : 3.512167453765869,
-          "y" : 3.481611490249634
-        },
-        "type" : "dynamic"
-      },
-      
-      {
-        "angle" : 0,
-        "angularVelocity" : 0,
-        "awake" : true,
-        "id" : 4,
-        "linearVelocity" : 0,
-        "massData-mass" : 1,
-        "name" : "start0",
-        "position" : 
-        {
-          "x" : -0.1317114830017090,
-          "y" : 2.556144952774048
-        },
-        "type" : "dynamic"
-      },
-      
-      {
-        "angle" : 0,
-        "angularVelocity" : 0,
-        "awake" : true,
-        "fixture" : 
-        [
-          
-          {
-            "density" : 1,
-            "friction" : 0.2,
-            "id" : 3,
-            "name" : "cp2",
-            "sensor" : true,
-            "shapes" : 
-            [
-              
-              {
-                "type" : "line"
-              }
-            ],
-            "vertices" : 
-            {
-              "x" : [ 3.232199907302856, 4.847040176391602 ],
-              "y" : [ -2.288939952850342, -2.288939952850342 ]
-            }
-          }
-        ],
-        "id" : 5,
-        "linearVelocity" : 0,
-        "massData-mass" : 1,
-        "name" : "cp2",
-        "position" : 0,
-        "type" : "dynamic"
-      },
-      
-      {
-        "angle" : 0,
-        "angularVelocity" : 0,
-        "awake" : true,
-        "fixture" : 
-        [
-          
-          {
-            "density" : 1,
-            "friction" : 0.2,
-            "id" : 4,
-            "name" : "cp1",
-            "sensor" : true,
-            "shapes" : 
-            [
-              
-              {
-                "type" : "line"
-              }
-            ],
-            "vertices" : 
-            {
-              "x" : [ -1, -1 ],
-              "y" : [ -1.650359988212585, -0.1941599994897842 ]
-            }
-          }
-        ],
-        "id" : 6,
-        "linearVelocity" : 0,
-        "massData-mass" : 1,
-        "name" : "cp1",
-        "position" : 0,
-        "type" : "dynamic"
-      },
-      
-      {
-        "angle" : 0,
-        "angularVelocity" : 0,
-        "awake" : true,
-        "fixture" : 
-        [
-          
-          {
-            "density" : 1,
-            "friction" : 0.2,
-            "id" : 5,
-            "name" : "cp0",
-            "sensor" : true,
-            "shapes" : 
-            [
-              
-              {
-                "type" : "line"
-              }
-            ],
-            "vertices" : 
-            {
-              "x" : [ -0.64, -0.64 ],
-              "y" : [ 2.163810014724731, 3.635119915008545 ]
-            }
-          }
-        ],
-        "id" : 7,
-        "linearVelocity" : 0,
-        "massData-mass" : 1,
-        "name" : "cp0",
-        "position" : 0,
-        "type" : "dynamic"
-      },
-      
-      {
-        "angle" : 0,
-        "angularVelocity" : 0,
-        "awake" : true,
-        "fixture" : 
-        [
-          
-          {
-            "density" : 1,
-            "friction" : 0.2,
-            "id" : 6,
             "name" : "wallFixture",
             "shapes" : 
             [
               
               {
-                "type" : "polygon"
+                "type" : "line"
               }
             ],
             "vertices" : 
             {
-              "x" : [ 3.183712005615234, 1.064709544181824, 3.168087005615234 ],
-              "y" : [ 2.118934631347656, 2.126803874969482, -0.0850694403052330 ]
+              "x" : 
+              [
+                -0.7474746704101563,
+                -2.561518669128418,
+                -3.393158197402954,
+                -3.402207374572754,
+                -2.735021591186523,
+                0.04046583175659180,
+                3.123962640762329,
+                3.144886255264282
+              ],
+              "y" : 
+              [
+                -1.70912241935730,
+                -1.729513764381409,
+                -0.8500475883483887,
+                1.427669286727905,
+                2.104933023452759,
+                2.088630676269531,
+                -1.144570708274841,
+                -2.2968750
+              ]
             }
           }
         ],
-        "id" : 8,
+        "id" : 2,
         "linearVelocity" : 0,
-        "name" : "wall2",
+        "name" : "middleWall1",
         "position" : 0,
         "type" : "static"
       },
@@ -343,7 +139,7 @@
           {
             "density" : 1,
             "friction" : 0.2,
-            "id" : 7,
+            "id" : 2,
             "name" : "wallFixture",
             "shapes" : 
             [
@@ -356,17 +152,17 @@
             {
               "x" : 
               [
-                -0.1655360907316208,
-                -0.5473656654357910,
-                -1.671458721160889,
-                -1.682998418807983
+                -4.498284816741943,
+                -5.084323406219482,
+                -6.058288574218750,
+                -4.979256629943848
               ],
               "y" : 
               [
-                -0.1682718098163605,
-                0.5289633870124817,
-                0.5520820021629334,
-                -0.1530195772647858
+                3.670304775238037,
+                4.223281383514404,
+                3.427289247512817,
+                3.118942260742188
               ]
             }
           },
@@ -374,7 +170,57 @@
           {
             "density" : 1,
             "friction" : 0.2,
-            "id" : 8,
+            "id" : 3,
+            "name" : "wallFixture",
+            "shapes" : 
+            [
+              
+              {
+                "type" : "polygon"
+              }
+            ],
+            "vertices" : 
+            {
+              "x" : 
+              [
+                5.225478172302246,
+                -5.084323406219482,
+                -4.498284816741943,
+                4.329280853271484
+              ],
+              "y" : 
+              [
+                4.096241950988770,
+                4.223281383514404,
+                3.670304775238037,
+                3.668720722198486
+              ]
+            }
+          },
+          
+          {
+            "density" : 1,
+            "friction" : 0.2,
+            "id" : 4,
+            "name" : "wallFixture",
+            "shapes" : 
+            [
+              
+              {
+                "type" : "polygon"
+              }
+            ],
+            "vertices" : 
+            {
+              "x" : [ 5.225478172302246, 4.329280853271484, 4.811393260955811 ],
+              "y" : [ 4.096241950988770, 3.668720722198486, 3.152283906936646 ]
+            }
+          },
+          
+          {
+            "density" : 1,
+            "friction" : 0.2,
+            "id" : 5,
             "name" : "wallFixture",
             "shapes" : 
             [
@@ -405,7 +251,7 @@
           {
             "density" : 1,
             "friction" : 0.2,
-            "id" : 9,
+            "id" : 6,
             "name" : "wallFixture",
             "shapes" : 
             [
@@ -424,7 +270,69 @@
           {
             "density" : 1,
             "friction" : 0.2,
-            "id" : 10,
+            "id" : 7,
+            "name" : "wallFixture",
+            "shapes" : 
+            [
+              
+              {
+                "type" : "polygon"
+              }
+            ],
+            "vertices" : 
+            {
+              "x" : 
+              [
+                5.634826660156250,
+                4.379098892211914,
+                2.060596942901611,
+                -5.520032405853272
+              ],
+              "y" : 
+              [
+                -5.084323406219482,
+                -3.611528873443604,
+                -3.628227472305298,
+                -5.025688648223877
+              ]
+            }
+          },
+          
+          {
+            "density" : 1,
+            "friction" : 0.2,
+            "id" : 8,
+            "name" : "wallFixture",
+            "shapes" : 
+            [
+              
+              {
+                "type" : "polygon"
+              }
+            ],
+            "vertices" : 
+            {
+              "x" : 
+              [
+                -0.1655360907316208,
+                -0.5473656654357910,
+                -1.671458721160889,
+                -1.682998418807983
+              ],
+              "y" : 
+              [
+                -0.1682718098163605,
+                0.5289633870124817,
+                0.5520820021629334,
+                -0.1530195772647858
+              ]
+            }
+          },
+          
+          {
+            "density" : 1,
+            "friction" : 0.2,
+            "id" : 9,
             "name" : "wallFixture",
             "shapes" : 
             [
@@ -448,6 +356,37 @@
                 0.5289633870124817,
                 -0.1682718098163605,
                 -1.047220110893250
+              ]
+            }
+          },
+          
+          {
+            "density" : 1,
+            "friction" : 0.2,
+            "id" : 10,
+            "name" : "wallFixture",
+            "shapes" : 
+            [
+              
+              {
+                "type" : "polygon"
+              }
+            ],
+            "vertices" : 
+            {
+              "x" : 
+              [
+                1.502854108810425,
+                0.6653131842613220,
+                0.6904042959213257,
+                1.482531309127808
+              ],
+              "y" : 
+              [
+                -1.581160187721252,
+                -1.047220110893250,
+                -2.590156555175781,
+                -3.131205081939697
               ]
             }
           },
@@ -530,20 +469,8 @@
             ],
             "vertices" : 
             {
-              "x" : 
-              [
-                -4.983137607574463,
-                -6.030579566955566,
-                -5.520032405853272,
-                -4.989484310150147
-              ],
-              "y" : 
-              [
-                3.118655443191528,
-                3.415489196777344,
-                -5.025688648223877,
-                -3.130514383316040
-              ]
+              "x" : [ -4.440477848052979, -4.989484310150147, -5.520032405853272 ],
+              "y" : [ -3.643827676773071, -3.130514383316040, -5.025688648223877 ]
             }
           },
           
@@ -561,157 +488,26 @@
             ],
             "vertices" : 
             {
-              "x" : [ -4.440477848052979, -4.989484310150147, -5.520032405853272 ],
-              "y" : [ -3.643827676773071, -3.130514383316040, -5.025688648223877 ]
-            }
-          },
-          
-          {
-            "density" : 1,
-            "friction" : 0.2,
-            "id" : 15,
-            "name" : "wallFixture",
-            "shapes" : 
-            [
-              
-              {
-                "type" : "polygon"
-              }
-            ],
-            "vertices" : 
-            {
               "x" : 
               [
-                5.225478172302246,
-                -5.084323406219482,
-                -4.498284816741943,
-                4.329280853271484
+                -4.983137607574463,
+                -6.030579566955566,
+                -5.520032405853272,
+                -4.989484310150147
               ],
               "y" : 
               [
-                4.096241950988770,
-                4.223281383514404,
-                3.670304775238037,
-                3.668720722198486
-              ]
-            }
-          },
-          
-          {
-            "density" : 1,
-            "friction" : 0.2,
-            "id" : 16,
-            "name" : "wallFixture",
-            "shapes" : 
-            [
-              
-              {
-                "type" : "polygon"
-              }
-            ],
-            "vertices" : 
-            {
-              "x" : 
-              [
-                1.502854108810425,
-                0.6653131842613220,
-                0.6904042959213257,
-                1.482531309127808
-              ],
-              "y" : 
-              [
-                -1.581160187721252,
-                -1.047220110893250,
-                -2.590156555175781,
-                -3.131205081939697
-              ]
-            }
-          },
-          
-          {
-            "density" : 1,
-            "friction" : 0.2,
-            "id" : 17,
-            "name" : "wallFixture",
-            "shapes" : 
-            [
-              
-              {
-                "type" : "polygon"
-              }
-            ],
-            "vertices" : 
-            {
-              "x" : [ 5.225478172302246, 4.329280853271484, 4.811393260955811 ],
-              "y" : [ 4.096241950988770, 3.668720722198486, 3.152283906936646 ]
-            }
-          },
-          
-          {
-            "density" : 1,
-            "friction" : 0.2,
-            "id" : 18,
-            "name" : "wallFixture",
-            "shapes" : 
-            [
-              
-              {
-                "type" : "polygon"
-              }
-            ],
-            "vertices" : 
-            {
-              "x" : 
-              [
-                5.634826660156250,
-                4.379098892211914,
-                2.060596942901611,
-                -5.520032405853272
-              ],
-              "y" : 
-              [
-                -5.084323406219482,
-                -3.611528873443604,
-                -3.628227472305298,
-                -5.025688648223877
-              ]
-            }
-          },
-          
-          {
-            "density" : 1,
-            "friction" : 0.2,
-            "id" : 19,
-            "name" : "wallFixture",
-            "shapes" : 
-            [
-              
-              {
-                "type" : "polygon"
-              }
-            ],
-            "vertices" : 
-            {
-              "x" : 
-              [
-                -4.498284816741943,
-                -5.084323406219482,
-                -6.058288574218750,
-                -4.979256629943848
-              ],
-              "y" : 
-              [
-                3.670304775238037,
-                4.223281383514404,
-                3.427289247512817,
-                3.118942260742188
+                3.118655443191528,
+                3.415489196777344,
+                -5.025688648223877,
+                -3.130514383316040
               ]
             }
           }
         ],
-        "id" : 9,
+        "id" : 3,
         "linearVelocity" : 0,
-        "name" : "wall1",
+        "name" : "wall",
         "position" : 
         {
           "x" : 0.04377609863877296,
@@ -730,8 +526,42 @@
           {
             "density" : 1,
             "friction" : 0.2,
-            "id" : 20,
+            "id" : 15,
             "name" : "wallFixture",
+            "shapes" : 
+            [
+              
+              {
+                "type" : "polygon"
+              }
+            ],
+            "vertices" : 
+            {
+              "x" : [ 3.183712005615234, 1.064709544181824, 3.168087005615234 ],
+              "y" : [ 2.118934631347656, 2.126803874969482, -0.0850694403052330 ]
+            }
+          }
+        ],
+        "id" : 4,
+        "linearVelocity" : 0,
+        "name" : "middleWall2",
+        "position" : 0,
+        "type" : "static"
+      },
+      
+      {
+        "angle" : 0,
+        "angularVelocity" : 0,
+        "awake" : true,
+        "fixture" : 
+        [
+          
+          {
+            "density" : 1,
+            "friction" : 0.2,
+            "id" : 16,
+            "name" : "cp0",
+            "sensor" : true,
             "shapes" : 
             [
               
@@ -741,50 +571,220 @@
             ],
             "vertices" : 
             {
-              "x" : 
-              [
-                -0.7474746704101563,
-                -2.561518669128418,
-                -3.393158197402954,
-                -3.402207374572754,
-                -2.735021591186523,
-                0.04046583175659180,
-                3.123962640762329,
-                3.144886255264282
-              ],
-              "y" : 
-              [
-                -1.70912241935730,
-                -1.729513764381409,
-                -0.8500475883483887,
-                1.427669286727905,
-                2.104933023452759,
-                2.088630676269531,
-                -1.144570708274841,
-                -2.2968750
-              ]
+              "x" : [ -0.64, -0.64 ],
+              "y" : [ 2.163810014724731, 3.635119915008545 ]
             }
           }
         ],
-        "id" : 10,
+        "id" : 5,
         "linearVelocity" : 0,
-        "name" : "wall3",
+        "massData-mass" : 1,
+        "name" : "cp0",
         "position" : 0,
-        "type" : "static"
+        "type" : "dynamic"
       },
       
       {
         "angle" : 0,
         "angularVelocity" : 0,
         "awake" : true,
+        "fixture" : 
+        [
+          
+          {
+            "density" : 1,
+            "friction" : 0.2,
+            "id" : 17,
+            "name" : "cp1",
+            "sensor" : true,
+            "shapes" : 
+            [
+              
+              {
+                "type" : "line"
+              }
+            ],
+            "vertices" : 
+            {
+              "x" : [ -1, -1 ],
+              "y" : [ -1.650359988212585, -0.1941599994897842 ]
+            }
+          }
+        ],
+        "id" : 6,
+        "linearVelocity" : 0,
+        "massData-mass" : 1,
+        "name" : "cp1",
+        "position" : 0,
+        "type" : "dynamic"
+      },
+      
+      {
+        "angle" : 0,
+        "angularVelocity" : 0,
+        "awake" : true,
+        "fixture" : 
+        [
+          
+          {
+            "density" : 1,
+            "friction" : 0.2,
+            "id" : 18,
+            "name" : "cp2",
+            "sensor" : true,
+            "shapes" : 
+            [
+              
+              {
+                "type" : "line"
+              }
+            ],
+            "vertices" : 
+            {
+              "x" : [ 3.232199907302856, 4.847040176391602 ],
+              "y" : [ -2.288939952850342, -2.288939952850342 ]
+            }
+          }
+        ],
+        "id" : 7,
+        "linearVelocity" : 0,
+        "massData-mass" : 1,
+        "name" : "cp2",
+        "position" : 0,
+        "type" : "dynamic"
+      },
+      
+      {
+        "angle" : 0,
+        "angularVelocity" : 0,
+        "awake" : true,
+        "id" : 8,
+        "linearVelocity" : 0,
+        "massData-mass" : 1,
+        "name" : "start0",
+        "position" : 
+        {
+          "x" : -0.1317114830017090,
+          "y" : 2.556144952774048
+        },
+        "type" : "dynamic"
+      },
+      
+      {
+        "angle" : 0,
+        "angularVelocity" : 0,
+        "awake" : true,
+        "fixture" : 
+        [
+          
+          {
+            "customProperties" : 
+            [
+              
+              {
+                "name" : "boostVector",
+                "vec2" : 
+                {
+                  "x" : -0.007000000216066837,
+                  "y" : 0
+                }
+              }
+            ],
+            "density" : 1,
+            "friction" : 0.2,
+            "id" : 19,
+            "name" : "boost",
+            "sensor" : true,
+            "shapes" : 
+            [
+              
+              {
+                "type" : "line"
+              }
+            ],
+            "vertices" : 
+            {
+              "x" : [ -0.5, 0.5 ],
+              "y" : [ 0.0, 0.0 ]
+            }
+          }
+        ],
+        "id" : 9,
+        "linearVelocity" : 0,
+        "massData-mass" : 1,
+        "name" : "boost",
+        "position" : 
+        {
+          "x" : 3.512167453765869,
+          "y" : 3.481611490249634
+        },
+        "type" : "dynamic"
+      },
+      
+      {
+        "angle" : 0,
+        "angularVelocity" : 0,
+        "awake" : true,
+        "fixture" : 
+        [
+          
+          {
+            "customProperties" : 
+            [
+              
+              {
+                "name" : "boostVector",
+                "vec2" : 
+                {
+                  "x" : -0.004000000189989805,
+                  "y" : 0
+                }
+              }
+            ],
+            "density" : 1,
+            "friction" : 0.2,
+            "id" : 20,
+            "name" : "boost",
+            "sensor" : true,
+            "shapes" : 
+            [
+              
+              {
+                "type" : "line"
+              }
+            ],
+            "vertices" : 
+            {
+              "x" : [ -0.5, 0.5 ],
+              "y" : [ 0.0, 0.0 ]
+            }
+          }
+        ],
+        "id" : 10,
+        "linearVelocity" : 0,
+        "massData-mass" : 1,
+        "name" : "boost",
+        "position" : 
+        {
+          "x" : 3.536625385284424,
+          "y" : 3.224803686141968
+        },
+        "type" : "dynamic"
+      },
+      
+      {
+        "active" : false,
+        "angle" : 0,
+        "angularVelocity" : 0,
+        "awake" : true,
         "id" : 11,
         "linearVelocity" : 0,
         "massData-mass" : 1,
-        "name" : "start1",
+        "name" : "start2",
         "position" : 
         {
-          "x" : 0.4360870122909546,
-          "y" : 3.209883928298950
+          "x" : 1.052275776863098,
+          "y" : 2.535137176513672
         },
         "type" : "dynamic"
       }

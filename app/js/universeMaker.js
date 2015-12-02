@@ -2,7 +2,7 @@
 
 var linkedListMaker = require('./utils/linkedList.js');
 var keyboardHandler = require('./keyboardHandler.js');
-var b2 = require('./utils/b2Helpers.js');
+var b2 = require('./utils/B2Helper.js');
 var worldSetup = require('./worldSetup.js');
 var configs = require('./configs.js');
 var carMaker = require('./carMaker.js');

@@ -1,10 +1,9 @@
 "use strict";
 
-
-var urlHelper = function () {
+var urlHelper = function() {
   var that = {};
 
-  that.loadQueryConfig = function () {
+  that.loadQueryConfig = function() {
     var queryParams, urlParams;
 
     urlParams = that.parseQueryString();
@@ -22,11 +21,11 @@ var urlHelper = function () {
     return queryParams;
   };
 
-  that.parseQueryString = function () {
+  that.parseQueryString = function() {
     var assoc, decode, i, key, keyValues, len, val;
     assoc = {};
     keyValues = location.search.slice(1).split('&');
-    decode = function (s) {
+    decode = function(s) {
       return decodeURIComponent(s.replace(/\+/g, ' '));
     };
     for (i = 0, len = keyValues.length; i < len; i++) {

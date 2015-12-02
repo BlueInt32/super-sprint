@@ -3,9 +3,12 @@
   "version": "0.2.0",
   "description": "A web version of the old Atari game !",
   "devDependencies": {
+    "babelify": "^7.2.0",
+    "chalk": "^1.1.1",
     "dat-gui": "^0.5.0",
     "gulp": "^3.9.0",
     "gulp-browserify": "^0.5.1",
+    "gulp-util": "^3.0.7",
     "gulp-watch": "^4.3.5"
   },
   "dependencies": {

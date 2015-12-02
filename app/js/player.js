@@ -1,10 +1,8 @@
-var keyboard = require('./keyboardHandler.js');
+"use strict";
 
+var keyboardHandler = require('./keyboardHandler.js');
 
-var playerMaker = function() {
-  var that = {};
-
-
+var Player = function() {
 };
 
-module.exports = playerMaker;
+module.exports = new Player();
