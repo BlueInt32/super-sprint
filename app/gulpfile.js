@@ -7,7 +7,11 @@ var watchify = require('watchify');
 var babel = require('babelify');
 
 function compile(watch) {
-  var bundler = watchify(browserify('./js/Game.js', { debug: true }).transform(babel));
+  var bundler = watchify(browserify('./js/Game.js', { debug: true }).transform(babel.configure({
+  // Optional ignore regex - if any filenames **do** match this regex then
+  // they aren't compiled
+  ignore: /(signalR.*\.js)|(Box2dWeb.*\.js)/,
+})));
 
   function rebundle() {
     bundler.bundle()

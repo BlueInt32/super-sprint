@@ -51,7 +51,6 @@ Car.prototype.setBox2dData = function(box2dData) {
 };
 Car.prototype.setPosition = function(chosenPosition) {
   this.b2Body.SetPosition(chosenPosition);
-  console.log(this.name, this.b2Body.GetPosition());
 
   for (var i = 0; i < this.tires.length; i++) {
     this.tires[i].SetPosition(chosenPosition);
@@ -62,7 +61,6 @@ Car.prototype.setPosition = function(chosenPosition) {
 };
 Car.prototype.updateData = function(keyboardData) {
 	
-  console.log(this.accelerationFactor);
   this.localAccelerationVector = new B2Helper.cMath.b2Vec2(0, -this.accelerationFactor);
   //tires = @tires
   for (var i = 0; i < this.tires.length; i++) {

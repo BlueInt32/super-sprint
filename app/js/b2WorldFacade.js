@@ -3,6 +3,7 @@
 var B2Helper = require('./utils/B2Helper.js');
 var B2Loader = require('./B2Loader.js');
 var playerCommand = require('./PlayerCommand.js');
+var dat = require('dat-gui');
 
 var B2WorldFacade = function(debugDrawActive) {
   console.log(playerCommand);

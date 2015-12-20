@@ -8,12 +8,10 @@ var PIXI = require('pixi');
 var PlayerCar = function (carIndex) {
   this.carConfig = settings.cars[carIndex];
  this.accelerationFactor = this.carConfig.accelerationFactor;
-  console.log(this.accelerationFactor);
   this.localAccelerationVector = new B2Helper.cMath.b2Vec2(0, -this.accelerationFactor);
  this.localBrakeVector = B2Helper.math.MulFV(-0.5, this.localAccelerationVector);
   this.localHandBrakeVector = B2Helper.math.MulFV(-0.5, this.localAccelerationVector);
   this.desiredAngle = 0;
-  console.log('this.accelerationFactor', this.accelerationFactor);
   this.lockAngleDeg = this.carConfig.wheelMaxAngle;
   this.driftTrigger = this.carConfig.driftTrigger;
   this.turnSpeedPerSec = settings.cars[carIndex].steeringWheelSpeed * settings.consts.DEGTORAD;
@@ -80,8 +78,6 @@ PlayerCar.prototype.accelerate = function () {
 
 PlayerCar.prototype.brake = function () {
   var i;
-  console.log("braking");
-  console.log(this.localBrakeVector);
   for (i in this.tires) {
     B2Helper.applyForceToCenter(this.tires[i], this.localBrakeVector);
   }
