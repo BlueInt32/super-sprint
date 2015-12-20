@@ -3,18 +3,34 @@
 var B2Helper = require('./utils/B2Helper.js');
 var settings = require('./settings.js');
 var Car = require('./Car.js');
+var PIXI = require('pixi');
 
-var PlayerCar = function(carIndex) {
-  this.localBrakeVector = B2Helper.math.MulFV(-0.5, this.localAccelerationVector);
+var PlayerCar = function (carIndex) {
+  this.carConfig = settings.cars[carIndex];
+ this.accelerationFactor = this.carConfig.accelerationFactor;
+  console.log(this.accelerationFactor);
+  this.localAccelerationVector = new B2Helper.cMath.b2Vec2(0, -this.accelerationFactor);
+ this.localBrakeVector = B2Helper.math.MulFV(-0.5, this.localAccelerationVector);
   this.localHandBrakeVector = B2Helper.math.MulFV(-0.5, this.localAccelerationVector);
   this.desiredAngle = 0;
-  this.carConfig = settings.cars[carIndex];
+  console.log('this.accelerationFactor', this.accelerationFactor);
+  this.lockAngleDeg = this.carConfig.wheelMaxAngle;
+  this.driftTrigger = this.carConfig.driftTrigger;
+  this.turnSpeedPerSec = settings.cars[carIndex].steeringWheelSpeed * settings.consts.DEGTORAD;
+  this.turnPerTimeStep = this.turnSpeedPerSec / 60;
+
+  //PIXI
+  this.pixiSprite = new PIXI.Sprite(PIXI.Texture.fromImage(settings.cars[carIndex].spritePath));
+  this.pixiSprite.anchor.x = 0.5;
+  this.pixiSprite.anchor.y = 0.5;
+  this.pixiSprite.scale.x = 1;
+  this.pixiSprite.scale.y = 1;
 };
 
 PlayerCar.prototype = new Car();
 PlayerCar.prototype.constructor = PlayerCar;
 
-PlayerCar.prototype.handleKeyboard = function(keyboardData) {
+PlayerCar.prototype.handleKeyboard = function (keyboardData) {
   if (keyboardData.accelerate) {
     this.accelerate();
   }
@@ -29,7 +45,7 @@ PlayerCar.prototype.handleKeyboard = function(keyboardData) {
   this.updateSteering(keyboardData);
 };
 
-PlayerCar.prototype.updateSteering = function(keyboardData) {
+PlayerCar.prototype.updateSteering = function (keyboardData) {
   var angleNow, angleToTurn, newAngle, position;
   if (keyboardData.right && !this.puddleEffect) {
     this.desiredAngle = this.lockAngleDeg * settings.consts.DEGTORAD;
@@ -55,33 +71,32 @@ PlayerCar.prototype.updateSteering = function(keyboardData) {
   this.pixiSprite.rotation = this.b2Body.GetAngle();
 };
 
-PlayerCar.prototype.accelerate = function() {
-  var i, tires;
-  tires = this.tires;
-  for (i in tires) {
-    B2Helper.applyForceToCenter(tires[i], this.localAccelerationVector);
+PlayerCar.prototype.accelerate = function () {
+  var i;
+  for (i in this.tires) {
+    B2Helper.applyForceToCenter(this.tires[i], this.localAccelerationVector);
   }
 };
 
-PlayerCar.prototype.brake = function() {
-  var i, tires;
-  tires = this.tires;
-  for (i in tires) {
-    B2Helper.applyForceToCenter(tires[i], this.localBrakeVector);
+PlayerCar.prototype.brake = function () {
+  var i;
+  console.log("braking");
+  console.log(this.localBrakeVector);
+  for (i in this.tires) {
+    B2Helper.applyForceToCenter(this.tires[i], this.localBrakeVector);
   }
 };
 
-PlayerCar.prototype.handBrake = function() {
-  var i, tires;
-  tires = this.tires;
-  for (i in tires) {
-    B2Helper.applyForceToCenter(tires[i], this.localHandBrakeVector);
+PlayerCar.prototype.handBrake = function () {
+  var i;
+  for (i in this.tires) {
+    B2Helper.applyForceToCenter(this.tires[i], this.localHandBrakeVector);
     this.drifting = true;
   }
 };
 
-PlayerCar.prototype.handBrakeRelease = function() {
+PlayerCar.prototype.handBrakeRelease = function () {
   this.drifting = false;
 };
 
-module.exports = playerCarMaker;
+module.exports = PlayerCar;

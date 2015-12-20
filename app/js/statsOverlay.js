@@ -13,4 +13,4 @@ var StatsOverlay = function() {
   stats.domElement.style.position = "absolute";
 };
 
-module.exports = new StatsOverlay();
+module.exports = StatsOverlay;

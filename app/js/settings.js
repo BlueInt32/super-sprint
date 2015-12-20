@@ -26,7 +26,7 @@ var settings = {
     jsonPath: 'assets/cars/car0.json',
     probesSystemPath: 'assets/cars/probeSystem0.json',
     // physics properties
-    accelerationFactor: 0.1,
+    accelerationFactor: 0.1, 
     driftTrigger: 0.003,
     driftTriggerWithHandbrake: 0.001,
     natural_deceleration: 0.01,
@@ -50,7 +50,7 @@ var settings = {
 
   technical: {
     debugDraw: true,
-    pixiActivated: true,
+    pixiActivated: false,
     statsOverlay: true
   }
 }

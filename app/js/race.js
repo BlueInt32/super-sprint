@@ -16,6 +16,9 @@ var Race = function (trackId) {
     type:'car',
     data: settings.cars[0]
   });
-};
 
+};
+Race.prototype.update = function(){
+  this.worldFacade.update();
+};
 module.exports = Race;

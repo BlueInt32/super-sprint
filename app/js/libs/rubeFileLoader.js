@@ -1,4 +1,5 @@
 "use strict";
+/*eslint no-undef: 2*/
 
 var Box2D = require('./box2dweb/Box2dWeb-2.1.a.3.js');
 var b2 = require('../utils/B2Helper.js');
@@ -15,8 +16,7 @@ var rubeFileLoader = function() {
     b2Vec2 = Box2D.Common.Math.b2Vec2,
     b2BodyDef = Box2D.Dynamics.b2BodyDef,
     b2FixtureDef = Box2D.Dynamics.b2FixtureDef,
-    b2World = Box2D.Dynamics.b2World,
-    Features = Box2D.Collision.Features;
+    b2World = Box2D.Dynamics.b2World;
 
   that.loadBodyFromRUBE = function(bodyJso, world, loadingIndex) {
 

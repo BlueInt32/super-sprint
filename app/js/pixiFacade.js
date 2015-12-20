@@ -16,7 +16,7 @@ PixiFacade.prototype.menu = function(specs) {
 
   pixiLoader = new PIXI.AssetLoader([settings.sprites.buttons.createRace]);
 
-  addButton({
+  this.addButton({
     spritePath: settings.sprites.buttons.createRace,
     anchor: {
       x: 0.5,
@@ -28,9 +28,10 @@ PixiFacade.prototype.menu = function(specs) {
     },
     clickCallback: specs.onStartRace
   })
-
-  pixiLoader.onComplete = specs.onMenuLoaded;
-
+  pixiLoader.onComplete = function() {
+    specs.onMenuLoaded();
+    specs.onStartRace();
+  }
   pixiLoader.load();
 };
 

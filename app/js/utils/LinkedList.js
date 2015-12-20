@@ -29,6 +29,7 @@ LinkedList.prototype.removeFirst = function() {
   if (this.firstNode !== null) {
     if (this.firstNode.next !== null) {
       this.firstNode = this.firstNode.next;
+      this.size -= 1;
     } else {
       this.firstNode = null;
       this.lastNode = null;
@@ -37,4 +38,7 @@ LinkedList.prototype.removeFirst = function() {
   }
 };
 
+LinkedList.prototype.getLength = function(){
+	return this.size;
+};
 module.exports = LinkedList;

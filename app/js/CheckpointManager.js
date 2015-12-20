@@ -9,7 +9,7 @@ var CheckpointManager = function(nbCheckPoints) {
   this.bestLapTime = 0;
   this.nbLaps = 0;
 
-
+   
   this.updateLapTime();
   this.updateBestLapTime();
 };

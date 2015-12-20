@@ -1,0 +1,48 @@
+{"frames": [
+
+{
+	"filename": "Voiture_03.png",
+	"frame": {"x":41,"y":28,"w":35,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":35,"h":60},
+	"sourceSize": {"w":35,"h":60},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "Voiture_04.png",
+	"frame": {"x":1,"y":1,"w":38,"h":67},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":38,"h":67},
+	"sourceSize": {"w":38,"h":67},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "Voiture_06.png",
+	"frame": {"x":78,"y":28,"w":41,"h":59},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":41,"h":59},
+	"sourceSize": {"w":41,"h":59},
+	"pivot": {"x":0.5,"y":0.5}
+},
+{
+	"filename": "Voiture_09.png",
+	"frame": {"x":41,"y":1,"w":25,"h":61},
+	"rotated": true,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":25,"h":61},
+	"sourceSize": {"w":25,"h":61},
+	"pivot": {"x":0.5,"y":0.5}
+}],
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "texturepack.png",
+	"format": "RGBA8888",
+	"size": {"w":120,"h":89},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:970ccbeb1471b563e0beb36bdd4dea5e:efc7a94c37efb4629e520d06b1ac85fd:805d3600f0b8bd9ecd992ed2c6e539d0$"
+}
+}

@@ -2,8 +2,10 @@
 
 var B2Helper = require('./utils/B2Helper.js');
 var B2Loader = require('./B2Loader.js');
+var playerCommand = require('./PlayerCommand.js');
 
 var B2WorldFacade = function(debugDrawActive) {
+  console.log(playerCommand);
   this.b2World = new B2Helper.dyn.b2World(new B2Helper.cMath.b2Vec2(0, 0), true);
   this.playerCar = null;
   this.otherCars = [];
@@ -21,18 +23,19 @@ B2WorldFacade.prototype.addB2Element = function(specs) {
 
 B2WorldFacade.prototype.update = function() {
   var car, j, len;
-  requestAnimationFrame(this.update);
-  this.world.Step(1 / 60, 3, 3);
-  this.world.ClearForces();
-  this.world.DrawDebugData();
+  if(!this.playerCar){
+    return;
+  }
+  this.b2World.Step(1 / 60, 3, 3);
+  this.b2World.ClearForces();
+  this.b2World.DrawDebugData();
   this.playerCar.updateData();
-  this.playerCar.handleKeyboard(keyboardHandler.keys);
+  this.playerCar.handleKeyboard(playerCommand.keys);
   for (j = 0, len = this.otherCars.length; j < len; j++) {
     car = this.otherCars[j];
     car.updateData();
     car.updateFriction();
   }
-  this.gameStepCallback();
 };
 
 B2WorldFacade.prototype.positionTrack = function(trackWalls) {
@@ -76,7 +79,7 @@ B2WorldFacade.prototype.box2dLoaded = function(loaderTrackWallsSet, playerCarSet
   this.playerCar.name = "player";
 
   this.setUpDatGui(this.playerCar);
-  this.contactManager = contactManagerMaker(this.world, [this.playerCar]);
+  this.contactManager = contactManagerMaker(this.b2World, [this.playerCar]);
 
   pixiStage.addChild(this.playerCar.pixiSprite);
   this.positionTrack(this.loaderTrackWallsSet);
