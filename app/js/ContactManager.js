@@ -3,7 +3,7 @@
 var B2Helper = require('./utils/B2Helper.js');
 
 var ContactManager = function (world, cars) {
-
+	this.cars = cars;
   var contactListener = new B2Helper.dyn.b2ContactListener();
   var that = this;
   contactListener.BeginContact = function (contact) {
@@ -24,21 +24,21 @@ ContactManager.prototype.HandleContact = function (contact, began) {
   if (began) {
     switch (cInfo.type) {
       case "cp":
-        cars[0].checkPointManager.step(parseInt(cInfo.id));
+        this.cars[0].checkPointManager.step(parseInt(cInfo.id));
         break;
       case "puddle":
-        cars[0].adherence = false;
-        cars[0].paddleEffect = puddleRandomDirectionArray[Math.floor(Math.random() * 2)];
+        this.cars[0].adherence = false;
+        this.cars[0].paddleEffect = puddleRandomDirectionArray[Math.floor(Math.random() * 2)];
         break;
       case "boost":
         var boostVector = new B2Helper.cMath.b2Vec2(cInfo.boostVector.x, cInfo.boostVector.y);
-        cars[0].applyImpulse(boostVector);
+        this.cars[0].applyImpulse(boostVector);
         break;
     }
   }
   else {
-    cars[0].adherence = true;
-    cars[0].paddleEffect = 0;
+    this.cars[0].adherence = true;
+    this.cars[0].paddleEffect = 0;
   }
 };
 

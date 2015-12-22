@@ -4,6 +4,8 @@ var B2Helper = require('./utils/B2Helper.js');
 var B2Loader = require('./B2Loader.js');
 var playerCommand = require('./PlayerCommand.js');
 var dat = require('dat-gui');
+var ContactManager = require('./ContactManager.js');
+
 
 var B2WorldFacade = function(debugDrawActive) {
   console.log(playerCommand);
@@ -32,6 +34,7 @@ B2WorldFacade.prototype.update = function() {
   this.b2World.DrawDebugData();
   this.playerCar.updateData();
   this.playerCar.handleKeyboard(playerCommand.keys);
+	this.contactManager = new ContactManager(this.b2World, [this.playerCar]);
   for (j = 0, len = this.otherCars.length; j < len; j++) {
     car = this.otherCars[j];
     car.updateData();
@@ -61,6 +64,7 @@ B2WorldFacade.prototype.setUpDatGui = function(refObject) {
   var f1, gui;
   gui = new dat.GUI();
   f1 = gui.addFolder('Car Behaviour');
+  console.log(gui);
   f1.add(refObject, 'accelerationFactor', 0.05, 0.2);
   f1.add(refObject, 'lockAngleDeg', 20, 50);
   f1.add(refObject, 'driftTrigger', 0.001, 0.01);
@@ -80,7 +84,6 @@ B2WorldFacade.prototype.box2dLoaded = function(loaderTrackWallsSet, playerCarSet
   this.playerCar.name = "player";
 
   this.setUpDatGui(this.playerCar);
-  this.contactManager = contactManagerMaker(this.b2World, [this.playerCar]);
 
   pixiStage.addChild(this.playerCar.pixiSprite);
   this.positionTrack(this.loaderTrackWallsSet);

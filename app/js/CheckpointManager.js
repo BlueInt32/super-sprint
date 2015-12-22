@@ -16,30 +16,30 @@ var CheckpointManager = function(nbCheckPoints) {
 
 CheckpointManager.prototype.step = function(checkpointIndex) {
   var lapTime, now;
-  if (currentCheckPointIndex % nbCheckPoints === checkpointIndex) {
+  if (this.currentCheckPointIndex % this.nbCheckPoints === checkpointIndex) {
     return;
   }
   if (checkpointIndex === 0) {
-    if (currentCheckPointIndex === -1) {
+    if (this.currentCheckPointIndex === -1) {
       this.startLap = Date.now();
       this.currentCheckPointIndex = 0;
-      that.updateLapTime(0);
+      this.updateLapTime(0);
     } else {
       now = Date.now();
-      lapTime = now - startLap;
+      lapTime = now - this.startLap;
       this.lastLapTime = lapTime;
       this.startLap = now;
-      if (bestLapTime === 0) {
-        this.bestLapTime = lastLapTime;
-      } else if (lastLapTime < bestLapTime) {
-        this.bestLapTime = lastLapTime;
+      if (this.bestLapTime === 0) {
+        this.bestLapTime = this.lastLapTime;
+      } else if (this.lastLapTime < this.bestLapTime) {
+        this.bestLapTime = this.lastLapTime;
       }
-      that.updateLapTime(lastLapTime);
-      that.updateBestLapTime(bestLapTime);
+      this.updateLapTime(this.lastLapTime);
+      this.updateBestLapTime(this.bestLapTime);
     }
   }
-  if (checkpointIndex === (currentCheckPointIndex + 1) % nbCheckPoints) {
-    return currentCheckPointIndex++;
+  if (checkpointIndex === (this.currentCheckPointIndex + 1) % this.nbCheckPoints) {
+    return this.currentCheckPointIndex++;
   }
 };
 

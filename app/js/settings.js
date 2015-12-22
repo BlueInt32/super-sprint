@@ -26,12 +26,14 @@ var settings = {
     jsonPath: 'assets/cars/car0.json',
     probesSystemPath: 'assets/cars/probeSystem0.json',
     // physics properties
-    accelerationFactor: 0.1, 
-    driftTrigger: 0.003,
+    accelerationFactor: 0.038, 
+    driftTrigger: 0.002,
     driftTriggerWithHandbrake: 0.001,
     natural_deceleration: 0.01,
     steeringWheelSpeed: 200,
-    wheelMaxAngle: 30,
+    wheelMaxAngle: 20,
+		normalAdherenceFactor: 1,
+		driftAdherenceFactor: 0.08,
     // car body
     restitution: 0.1,
     puddleFactor: 0.005
