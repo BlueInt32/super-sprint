@@ -2,23 +2,49 @@
 
 var B2WorldFacade = require('./B2WorldFacade.js');
 var settings = require('./settings.js');
+var PlayerCar = require('./PlayerCar.js');
+var CheckpointManager = require('./CheckpointManager.js');
 
-var Race = function (trackId) {
+var Race = function(raceSpecs) {
 
-  this.worldFacade = new B2WorldFacade(settings.technical.debugDraw);
+  this.pixiFacade = raceSpecs.pixiFacade;
+  this.b2WorldFacade = new B2WorldFacade(settings.technical.debugDraw);
 
-  this.worldFacade.addB2Element({
-      type:'track',
-      data: settings.tracks[trackId]
+  this.b2WorldFacade.addB2Element({
+      id: 'track',
+      type: 'track',
+      data: settings.tracks[raceSpecs.trackId],
+      onAddedAndPlaced: (trackBodySet) => {
+        this.pixiFacade.createThenAddSprite({
+          frameId: "track" + raceSpecs.trackId + ".png",
+          anchor: 0
+        });
+      }
     }
   );
-  this.worldFacade.addB2Element({
-    type:'car',
-    data: settings.cars[0]
-  });
 
+  var playerCarId = 0;
+  this.b2WorldFacade.addB2Element({
+    id: 'playercar',
+    type: 'car',
+    data: settings.cars[playerCarId],
+    onAddedAndPlaced: (carBodySet) => {
+      if (!this.b2WorldFacade.playerCar) { // meaning the playerCar has not been added yet
+        var playerCar = new PlayerCar(playerCarId, this.pixiFacade.container);
+        playerCar.checkPointManager = new CheckpointManager(3);
+        playerCar.setBox2dData(carBodySet);
+        playerCar.name = 'player';
+        this.b2WorldFacade.playerCar = playerCar;
+
+      } else {
+        this.b2WorldFacade.otherCars.push(carBodySet);
+      }
+    }
+  });
 };
-Race.prototype.update = function(){
-  this.worldFacade.update();
+
+Race.prototype.update = function() {
+  this.b2WorldFacade.update();
 };
+
 module.exports = Race;

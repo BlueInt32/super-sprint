@@ -14,7 +14,6 @@
 *.user
 *.mdf
 *.ldf
-GoKeyboard.Webapp/Content/Site.css
 # Include dlls if they're in the NuGet packages directory
 !/packages/*/lib/*.dll
 !/packages/*/lib/*/*.dll
@@ -33,28 +32,6 @@ obj/
 Publish/
 TestResults/
 node_modules/
-###################
-# Web publish log #
-###################
-*.Publish.xml
-#############
-# Resharper #
-#############
-/_ReSharper.*
-*.ReSharper.*
-############
-# Packages #
-############
-# it�s better to unpack these files and commit the raw source
-# git has its own built in compression methods
-*.7z
-*.dmg
-*.gz
-*.iso
-*.jar
-*.rar
-*.tar
-*.zip
 ######################
 # Logs and databases #
 ######################
@@ -71,13 +48,18 @@ app/js/min.js
 *.sublime-workspace
 
 #rube data
-*.rs
+
 assets/**/*rube-backups/**
 
-backups/
-resources/
-app/build/
-.idea/
-.idea/workspace.xml
+/backups/
+/resources/
+/app/build/
+/3D
+/docs/
+/.idea/
+/.idea/workspace.xml
+
+*.rs
 *.swp
 *.*~
+*.ma

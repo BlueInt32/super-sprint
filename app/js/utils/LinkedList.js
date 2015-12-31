@@ -6,8 +6,9 @@ var LinkedList = function() {
   this.size = 0;
 };
 
-LinkedList.prototype.add = function(data, dataType) {
+LinkedList.prototype.add = function(id, data, dataType) {
   var newNode = {
+    id: id,
     data: data,
     next: null,
     dataType: dataType

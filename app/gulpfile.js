@@ -4,18 +4,21 @@ var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
 var browserify = require('browserify');
 var watchify = require('watchify');
-var babel = require('babelify');
+//var babelify = require('babelify');
 
 function compile(watch) {
-  var bundler = watchify(browserify('./js/Game.js', { debug: true }).transform(babel.configure({
-  // Optional ignore regex - if any filenames **do** match this regex then
-  // they aren't compiled
-  ignore: /(signalR.*\.js)|(Box2dWeb.*\.js)/,
-})));
+  var bundler = watchify(browserify('./js/Game.js', { debug: true })
+  //  .transform(babelify.configure({
+  //  // Optional ignore regex - if any filenames **do** match this regex then
+  //  // they aren't compiled
+  //  ignore: /(jquery.signalR.*\.js)|(Box2dWeb.*\.js)|(pixi.*\.js)|(Stats\.js)/,
+  //}))
+  );
 
   function rebundle() {
     bundler.bundle()
       .on('error', function(err) { console.error(err); this.emit('end'); })
+      .on('end', function(){ console.log("Done");})
       .pipe(source('build.js'))
       .pipe(buffer())
       .pipe(sourcemaps.init({ loadMaps: true }))
@@ -25,6 +28,7 @@ function compile(watch) {
 
   if (watch) {
     bundler.on('update', function() {
+
       console.log('-> bundling...');
       rebundle();
     });

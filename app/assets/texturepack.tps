@@ -36,7 +36,7 @@
         <key>dpi</key>
         <uint>72</uint>
         <key>dataFormat</key>
-        <string>json-array</string>
+        <string>json</string>
         <key>textureFileName</key>
         <filename></filename>
         <key>flipPVR</key>
@@ -76,7 +76,7 @@
         <key>jpgQuality</key>
         <uint>80</uint>
         <key>pngOptimizationLevel</key>
-        <uint>1</uint>
+        <uint>7</uint>
         <key>webpQualityLevel</key>
         <uint>101</uint>
         <key>textureSubPath</key>
@@ -121,7 +121,7 @@
             <key>basic</key>
             <struct type="AlgorithmBasicSettings">
                 <key>sortBy</key>
-                <enum type="AlgorithmBasicSettings::SortBy">Best</enum>
+                <enum type="AlgorithmBasicSettings::SortBy">Name</enum>
                 <key>order</key>
                 <enum type="AlgorithmBasicSettings::Order">Ascending</enum>
             </struct>
@@ -147,7 +147,7 @@
             <key>data</key>
             <struct type="DataFile">
                 <key>name</key>
-                <filename>texturepack.json</filename>
+                <filename>atlas.json</filename>
             </struct>
         </map>
         <key>multiPack</key>
@@ -192,10 +192,48 @@
         </struct>
         <key>fileList</key>
         <array>
-            <filename>cars/images/Voiture_03.png</filename>
-            <filename>cars/images/Voiture_04.png</filename>
-            <filename>cars/images/Voiture_06.png</filename>
-            <filename>cars/images/Voiture_09.png</filename>
+            <filename>../../3D/Supersprint/images/80/right.004.png</filename>
+            <filename>../../3D/Supersprint/images/80/right.005.png</filename>
+            <filename>../../3D/Supersprint/images/80/right.006.png</filename>
+            <filename>../../3D/Supersprint/images/80/right.007.png</filename>
+            <filename>../../3D/Supersprint/images/80/right.008.png</filename>
+            <filename>../../3D/Supersprint/images/80/right.009.png</filename>
+            <filename>../../3D/Supersprint/images/80/right.010.png</filename>
+            <filename>../../3D/Supersprint/images/80/right.001.png</filename>
+            <filename>../../3D/Supersprint/images/80/right.002.png</filename>
+            <filename>../../3D/Supersprint/images/80/right.003.png</filename>
+            <filename>tracks/images/track0.png</filename>
+            <filename>buttons/createRace.png</filename>
+            <filename>../../3D/Supersprint/images/80/left.040.png</filename>
+            <filename>../../3D/Supersprint/images/80/left.041.png</filename>
+            <filename>../../3D/Supersprint/images/80/left.042.png</filename>
+            <filename>../../3D/Supersprint/images/80/left.043.png</filename>
+            <filename>../../3D/Supersprint/images/80/left.044.png</filename>
+            <filename>../../3D/Supersprint/images/80/left.045.png</filename>
+            <filename>../../3D/Supersprint/images/80/left.046.png</filename>
+            <filename>../../3D/Supersprint/images/80/left.047.png</filename>
+            <filename>../../3D/Supersprint/images/80/left.048.png</filename>
+            <filename>../../3D/Supersprint/images/80/left.049.png</filename>
+            <filename>../../3D/Supersprint/images/80/left.054.png</filename>
+            <filename>../../3D/Supersprint/images/80/left.055.png</filename>
+            <filename>../../3D/Supersprint/images/80/left.056.png</filename>
+            <filename>../../3D/Supersprint/images/80/left.057.png</filename>
+            <filename>../../3D/Supersprint/images/80/left.058.png</filename>
+            <filename>../../3D/Supersprint/images/80/left.059.png</filename>
+            <filename>../../3D/Supersprint/images/80/right.011.png</filename>
+            <filename>../../3D/Supersprint/images/80/right.012.png</filename>
+            <filename>../../3D/Supersprint/images/80/right.013.png</filename>
+            <filename>../../3D/Supersprint/images/80/right.014.png</filename>
+            <filename>../../3D/Supersprint/images/80/right.015.png</filename>
+            <filename>../../3D/Supersprint/images/80/right.016.png</filename>
+            <filename>../../3D/Supersprint/images/80/right.017.png</filename>
+            <filename>../../3D/Supersprint/images/80/right.018.png</filename>
+            <filename>../../3D/Supersprint/images/80/right.019.png</filename>
+            <filename>../../3D/Supersprint/images/80/right.020.png</filename>
+            <filename>../../3D/Supersprint/images/80/left.050.png</filename>
+            <filename>../../3D/Supersprint/images/80/left.051.png</filename>
+            <filename>../../3D/Supersprint/images/80/left.052.png</filename>
+            <filename>../../3D/Supersprint/images/80/left.053.png</filename>
         </array>
         <key>ignoreFileList</key>
         <array/>

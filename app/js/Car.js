@@ -101,7 +101,6 @@ Car.prototype.updateFriction = function() {
       var impulse = B2Helper.math.MulFV(-this.adherenceFactor * tire.GetMass(), this.vCurrentRightNormals[tireIndex]);
 			//console.log(impulse.Length() - this.driftTrigger);
       if (impulse.Length() > this.driftTrigger) {
-				console.log('drift');
         impulse = B2Helper.math.MulFV(this.driftTrigger / impulse.Length(), impulse);
       }
       tire.ApplyImpulse(impulse, tire.GetWorldCenter());

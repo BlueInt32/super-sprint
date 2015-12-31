@@ -37,7 +37,7 @@ B2Helper.prototype.initDebugDraw = function (b2World) {
   debugDrawer = new this.dyn.b2DebugDraw();
   debugDrawer.SetSprite(document.getElementById("canvas").getContext("2d"));
   debugDrawer.SetDrawScale(100.0);
-  debugDrawer.SetFillAlpha(1);
+  debugDrawer.SetFillAlpha(0.3);
   debugDrawer.SetLineThickness(2.0);
   debugDrawer.SetFlags(
     this.dyn.b2DebugDraw.e_shapeBit
@@ -57,7 +57,6 @@ B2Helper.prototype.applyForceToCenter = function (b2Body, vector2) {
 
 Box2D.Dynamics.b2Body.prototype.LogPosition = function () {
   var pos = this.GetPosition();
-  console.log(this.name, "x:", pos.x, "y:", pos.y);
 };
 
 module.exports = new B2Helper();
