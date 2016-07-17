@@ -51,8 +51,8 @@ var settings = {
   },
 
   technical: {
-    debugDraw: false,
-    pixiActivated: true,
+    debugDraw: true,
+    pixiActivated: false,
     statsOverlay: true
   },
 
