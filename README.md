@@ -21,7 +21,7 @@ Finally, `npm start`.
 HOW TO CODE
 ---------------------
 
-######url params
+## Url params
 You can call different tracks using url params:
 `http://localhost:8000/index.html?track=1&cars=0,0`
 This url loads :
@@ -41,6 +41,5 @@ You can  show/hide box2d debugging info by un/commenting this line in game.coffe
 You can show/hide pixi sprites by un/commenting the following line in universe.coffee (I agree this is weird)
 `@pixiRenderer.render(@pixiStage);`
 
-CREATING TRACKS AND CARS
-------------------------
+## CREATING TRACKS AND CARS
 All the infos for creating assets are (or will be) in the [assets folder](https://github.com/BlueInt32/super-sprint/tree/master/app/assets)

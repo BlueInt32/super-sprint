@@ -8,6 +8,7 @@ var Race = require('./race.js');
 var StatsOverlay = require('./statsOverlay.js');
 var playerCommand = require('./playerCommand.js');
 var Menu = require('./Menu.js');
+var urlHelper = require('./utils/urlHelper.js');
 
 var Game = function() {
   // this.socketManager = new socketManager();
@@ -29,7 +30,9 @@ var Game = function() {
     },
     startRace: () => {
       console.log('Race creation !');
-      this.currentRace = new Race({trackId: 0, pixiFacade : this.pixiFacade});
+      var config = urlHelper.loadQueryConfig();
+      console.log('URL config:', config);
+      this.currentRace = new Race({trackId: config.track, pixiFacade : this.pixiFacade});
       window.requestAnimationFrame(this.gameEvents.frameStep);
     }
   };

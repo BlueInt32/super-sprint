@@ -1,5 +1,7 @@
 "use strict";
 
+var settings = require('../settings.js');
+
 var urlHelper = function() {
   var that = {};
 
@@ -9,14 +11,16 @@ var urlHelper = function() {
     urlParams = that.parseQueryString();
     queryParams = {};
     if (urlParams.hasOwnProperty('track')) {
-      queryParams.track = urlParams.track;
+      queryParams.track = parseInt(urlParams.track, 10);
     } else {
-      queryParams.track = defaultSetup.trackId;
+      queryParams.track = settings.defaultSetup.trackId;
     }
     if (urlParams.hasOwnProperty('cars')) {
-      queryParams.cars = urlParams.cars.split(',');
+      queryParams.cars = urlParams.cars.split(',').map(function(id) {
+        return parseInt(id, 10);
+      });
     } else {
-      queryParams.cars = defaultSetup.carIds;
+      queryParams.cars = settings.defaultSetup.carIds;
     }
     return queryParams;
   };
