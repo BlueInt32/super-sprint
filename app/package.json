@@ -2,6 +2,11 @@
   "name": "SuperSprint",
   "version": "0.2.0",
   "description": "A web version of the old Atari game !",
+  "scripts": {
+    "start": "http-server . -p 8000",
+    "build": "gulp",
+    "watch": "gulp watch"
+  },
   "devDependencies": {
     "babelify": "^7.2.0",
     "chalk": "^1.1.1",
@@ -11,6 +16,7 @@
     "gulp-sourcemaps": "^1.6.0",
     "gulp-util": "^3.0.7",
     "gulp-watch": "^4.3.5",
+    "http-server": "^0.9.0",
     "pixi.js": "^3.0.8",
     "vinyl-buffer": "^1.0.0",
     "vinyl-source-stream": "^1.1.0",
