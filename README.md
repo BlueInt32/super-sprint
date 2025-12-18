@@ -14,10 +14,9 @@ HOW TO START THE GAME
 
 First, run `npm install`.
 
-Then, run `npm run build` or `npm run watch`.
+Then, `npm run build`.
 
-
-In the app/ folder, you'll find a node server ([node_server.js](https://github.com/BlueInt32/super-sprint/blob/master/app/node_server.js)) you can start using the command `node node_server.js` (you have to install nodeJS first !). After that just `start chrome localhost:8000` and point to app/index.html.
+Finally, `npm start`.
 
 HOW TO CODE
 ---------------------
