@@ -9,6 +9,7 @@ var PixiFacade = function() {
   this.pixiRenderer = PIXI.autoDetectRenderer(settings.consts.STAGE_WIDTH_PIXEL, settings.consts.STAGE_HEIGHT_PIXEL, void 0, false);
   document.getElementById('gameContainer').appendChild(this.pixiRenderer.view);
   this.container = new PIXI.Container();
+  this.container.sortableChildren = true; // Enable z-index sorting
   console.log('Pixi stage created');
 };
 
