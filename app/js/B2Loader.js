@@ -85,13 +85,17 @@ B2Loader.prototype.extractAndPlaceLastCarAdded = function() {
 
   // Positioning the carB2BodiesSet elements
   var startPosition;
+  var initialAngle = -Math.PI / 2; // Point to the left (-90 degrees)
   startPosition = this.worldFacade.trackBodySet.startPositions[this.nextCarPositionAvailable].GetPosition();
   carB2BodiesSet.carBody.SetPosition(startPosition);
+  carB2BodiesSet.carBody.SetAngle(initialAngle);
   for (var i = 0; i < carB2BodiesSet.rearTires.length; i++) {
     carB2BodiesSet.rearTires[i].SetPosition(startPosition);
+    carB2BodiesSet.rearTires[i].SetAngle(initialAngle);
   }
   for (i = 0; i < carB2BodiesSet.frontTires.length; i++) {
     carB2BodiesSet.frontTires[i].SetPosition(startPosition);
+    carB2BodiesSet.frontTires[i].SetAngle(initialAngle);
   }
 
   return carB2BodiesSet;
