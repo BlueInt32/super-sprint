@@ -16,12 +16,12 @@ var Game = function() {
   this.menu = null;
   this.pixiFacade = new PixiFacade();
   this.gameEvents = {
-    frameStep: (timestamp) => {
-      if (settings.technical.pixiActivated) {
-        this.pixiFacade.step();
-      }
+    frameStep: () => {
       if(this.currentRace) {
         this.currentRace.update();
+      }
+      if (settings.technical.pixiActivated) {
+        this.pixiFacade.step();
       }
       window.requestAnimationFrame(this.gameEvents.frameStep);
     },

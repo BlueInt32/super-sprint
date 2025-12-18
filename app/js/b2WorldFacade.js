@@ -13,6 +13,8 @@ var B2WorldFacade = function(debugDrawActive) {
   this.otherCars = [];
   this.trackBodySet = {};
   this.b2Loader = new B2Loader(this);
+  this.contactManager = null;
+  this.debugDrawActive = debugDrawActive;
   if (debugDrawActive) {
     B2Helper.initDebugDraw(this.b2World);
   }
@@ -32,7 +34,9 @@ B2WorldFacade.prototype.update = function() {
   this.b2World.DrawDebugData();
   this.playerCar.updateData();
   this.playerCar.handleKeyboard(playerCommand.keys);
-	this.contactManager = new ContactManager(this.b2World, [this.playerCar]);
+  if (!this.contactManager) {
+    this.contactManager = new ContactManager(this.b2World, [this.playerCar]);
+  }
   for (j = 0, len = this.otherCars.length; j < len; j++) {
     car = this.otherCars[j];
     car.updateData();
