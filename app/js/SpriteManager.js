@@ -20,6 +20,7 @@ var SpriteManager = function(specs) {
       this.sprite = new PIXI.AnimatedSprite(this.sequences);
       this.pixiContainer.addChild(this.sprite);
       this.sprite.gotoAndStop('still');
+      this.sprite.visible = false; // Hide the sprite, showing only the wireframe
       break;
   }
 };

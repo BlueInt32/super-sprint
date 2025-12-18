@@ -6,43 +6,62 @@ var settings = require('./settings.js');
 
 var Menu = function(specs) {
   this.pixiStage = specs.pixiStage;
+  this.button = null;
+  var self = this;
   this.addButton({
     spriteAtlasId: settings.spritesMapping.buttons.createRace,
     position: { x: 100, y: 100 },
-    clickCallback: specs.onStartRace
+    clickCallback: function() {
+      self.hideButton();
+      specs.onStartRace();
+    }
   });
   specs.onMenuLoaded();
 };
 
 Menu.prototype.addButton = function(specs) {
-  var button, buttonTexture;
+  var button, buttonText;
 
-  buttonTexture = PIXI.Texture.fromFrame(specs.spriteAtlasId);
-  button = new PIXI.Sprite(buttonTexture);
+  // Create a visible text-based button instead of the dark sprite
+  var graphics = new PIXI.Graphics();
+  graphics.beginFill(0x00FF00); // Green fill
+  graphics.lineStyle(2, 0xFFFFFF); // White border
+  graphics.drawRoundedRect(0, 0, 200, 60, 10);
+  graphics.endFill();
 
-  button.anchor.x = typeof specs.anchor !== 'undefined' ? specs.anchor.x : 0.5;
-  button.anchor.y = typeof specs.anchor !== 'undefined' ? specs.anchor.y : 0.5;
+  button = new PIXI.Container();
+  button.addChild(graphics);
+
+  // Add text to the button
+  buttonText = new PIXI.Text('START RACE', {
+    fontFamily: 'Arial',
+    fontSize: 24,
+    fill: 0x000000,
+    align: 'center'
+  });
+  buttonText.anchor.set(0.5);
+  buttonText.position.x = 100;
+  buttonText.position.y = 30;
+  button.addChild(buttonText);
 
   button.position.x = specs.position.x;
   button.position.y = specs.position.y;
 
   button.interactive = true;
-  //
-  //// set the mousedown and touchstart callback..
-  //button.mousedown = button.touchstart = function(data) {
-  //
-  //  this.isdown = true;
-  //  this.alpha = 1;
-  //};
-  //
-  //// set the mouseup and touchend callback..
-  //button.mouseup = button.touchend = function(data) {
-  //  this.isdown = false;
-  //};
+  button.buttonMode = true;
 
   button.click = specs.clickCallback;
+  button.tap = specs.clickCallback; // For touch devices
+
   this.pixiStage.addChild(button);
+  this.button = button; // Store reference to the button
 };
 
+Menu.prototype.hideButton = function() {
+  if (this.button) {
+    this.pixiStage.removeChild(this.button);
+    this.button = null;
+  }
+};
 
 module.exports = Menu;
