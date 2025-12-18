@@ -1,6 +1,6 @@
 "use strict";
 
-var pixiFacade = require('./PixiFacade.js');
+var pixiFacade = require('./pixiFacade.js');
 var PIXI = require('pixi.js');
 var settings = require('./settings.js');
 

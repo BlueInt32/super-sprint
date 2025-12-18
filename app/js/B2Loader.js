@@ -5,7 +5,7 @@
 
 var LinkedList = require("./utils/LinkedList.js");
 var request = require("then-request");
-var RubeFileLoader = require("./libs/RubeFileLoader.js");
+var RubeFileLoader = require("./libs/rubeFileLoader.js");
 var B2Helper = require("./utils/B2Helper.js");
 var PlayerCar = require("./PlayerCar.js");
 var CheckpointManager = require("./CheckpointManager.js");

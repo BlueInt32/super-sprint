@@ -1,12 +1,10 @@
-"use strict";
 /*eslint no-undef: 2*/
 
 var Box2D = require('./box2dweb/Box2dWeb-2.1.a.3.js');
 var b2 = require('../utils/B2Helper.js');
 
-Object.prototype.hasOwnProperty = function(property) {
-  return typeof(this[property]) !== 'undefined';
-};
+// Removed "use strict" and Object.prototype override to fix TypeError
+// Objects have native hasOwnProperty method
 var b2CircleShape = Box2D.Collision.Shapes.b2CircleShape,
   b2PolygonShape = Box2D.Collision.Shapes.b2PolygonShape,
   b2Vec2 = Box2D.Common.Math.b2Vec2,

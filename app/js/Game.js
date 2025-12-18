@@ -3,10 +3,10 @@
 var settings = require('./settings.js');
 var player = require('./player.js');
 var PixiFacade = require('./pixiFacade.js');
-var Race = require('./Race.js');
+var Race = require('./race.js');
 var socketManager = require('./socketManager.js');
 var StatsOverlay = require('./statsOverlay.js');
-var playerCommand = require('./PlayerCommand.js');
+var playerCommand = require('./playerCommand.js');
 var Menu = require('./Menu.js');
 
 var Game = function() {

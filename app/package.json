@@ -4,14 +4,15 @@
   "description": "A web version of the old Atari game !",
   "scripts": {
     "start": "http-server . -p 8000",
-    "build": "gulp",
+    "build": "node build.js",
+    "build:gulp": "gulp",
     "watch": "gulp watch"
   },
   "devDependencies": {
     "babelify": "^7.2.0",
     "chalk": "^1.1.1",
     "dat-gui": "^0.5.0",
-    "gulp": "^3.9.0",
+    "gulp": "^4.0.2",
     "gulp-browserify": "^0.5.1",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-util": "^3.0.7",
@@ -25,6 +26,7 @@
   "dependencies": {
     "jquery": "^2.1.4",
     "signalr-client": "0.0.16",
+    "then-request": "^6.0.2",
     "websocket": "^1.0.22"
   },
   "browser": {

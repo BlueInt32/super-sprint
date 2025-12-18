@@ -2,7 +2,7 @@
 
 var B2Helper = require('./utils/B2Helper.js');
 var B2Loader = require('./B2Loader.js');
-var playerCommand = require('./PlayerCommand.js');
+var playerCommand = require('./playerCommand.js');
 var dat = require('dat-gui');
 var ContactManager = require('./ContactManager.js');
 

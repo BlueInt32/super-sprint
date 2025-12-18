@@ -1,6 +1,6 @@
 "use strict";
 
-var B2WorldFacade = require('./B2WorldFacade.js');
+var B2WorldFacade = require('./b2WorldFacade.js');
 var settings = require('./settings.js');
 var PlayerCar = require('./PlayerCar.js');
 var CheckpointManager = require('./CheckpointManager.js');
