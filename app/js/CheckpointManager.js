@@ -44,12 +44,12 @@ CheckpointManager.prototype.step = function(checkpointIndex) {
 };
 
 CheckpointManager.prototype.updateLapTime = function(valueInMs) {
-  var strValue = typeof valueInMs !== 'undefined' ? valueInMs / 1000 + "s" : "---";
-  document.getElementById("lapTime").innerHTML = "Lap : " + strValue;
+  var strValue = typeof valueInMs !== 'undefined' ? (valueInMs / 1000).toFixed(2) + "s" : "---";
+  document.getElementById("lapTime").innerHTML = "<span style='color: #AAA;'>Lap:</span> " + strValue;
 };
 CheckpointManager.prototype.updateBestLapTime = function(valueInMs) {
-  var strValue = typeof valueInMs !== 'undefined' ? valueInMs / 1000 + "s" : "---";
-  document.getElementById("bestLapTime").innerHTML = "Best : " + strValue;
+  var strValue = typeof valueInMs !== 'undefined' ? (valueInMs / 1000).toFixed(2) + "s" : "---";
+  document.getElementById("bestLapTime").innerHTML = "<span style='color: #AAA;'>Best:</span> " + strValue;
 };
 
 module.exports = CheckpointManager;

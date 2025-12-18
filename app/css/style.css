@@ -109,21 +109,25 @@ body div#gameContainer #menuButton:hover {
 body div#gameContainer div#lapTime {
     position: absolute;
     z-index: 10;
-    top: 244px;
-    right: 511px;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
     color: #FFF;
-    font-size: 18px;
+    font-size: 24px;
     font-weight: bold;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8);
 }
 
 body div#gameContainer div#bestLapTime {
     position: absolute;
     z-index: 10;
-    top: 264px;
-    right: 504px;
-    color: #FF0;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #FFD700;
     font-weight: bold;
-    font-size: 18px;
+    font-size: 24px;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
 }
 
 body div#gameContainer #info {
