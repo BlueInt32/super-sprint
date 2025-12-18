@@ -1,1 +1,141 @@
-body{font-family:Arial,Helvetica,sans-serif;padding:0;background-color:#000}body div#gameContainer{top:30px;text-align:center}body div#gameContainer canvas{left:0;right:0;margin-left:auto;margin-right:auto;border:1px solid white}body div#gameContainer div#lapTime{position:absolute;z-index:10;top:244px;right:511px;color:#FFF}body div#gameContainer div#bestLapTime{position:absolute;z-index:10;top:264px;right:504px;color:#FF0;font-weight:bold}body div#gameContainer #info{top:10px;left:10px;position:absolute;border-radius:5px;-webkit-border-radius:5px;-moz-border-radius:5px;width:300px;height:200px;border:1px solid black}body div#gameContainer #info span{color:black}
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0;
+    margin: 0;
+    background-color: #000;
+    overflow: hidden;
+}
+
+body div#gameContainer {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body div#gameContainer canvas {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: none;
+}
+
+body div#gameContainer #menuContainer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 500;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+
+body div#gameContainer #gameTitle {
+    color: #00FF00;
+    font-size: 72px;
+    font-weight: bold;
+    text-align: center;
+    margin: 0;
+    text-shadow: 0 0 20px #00FF00, 0 0 40px #00FF00;
+    letter-spacing: 8px;
+}
+
+body div#gameContainer #trackSelection {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+}
+
+body div#gameContainer .trackButton {
+    display: block;
+    background: linear-gradient(145deg, #00FF00, #00CC00);
+    color: #000;
+    border: 3px solid #FFF;
+    border-radius: 12px;
+    width: 240px;
+    height: 70px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 255, 0, 0.3);
+}
+
+body div#gameContainer .trackButton:hover {
+    background: linear-gradient(145deg, #00FF33, #00DD00);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 255, 0, 0.5);
+}
+
+body div#gameContainer .trackButton:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 10px rgba(0, 255, 0, 0.4);
+}
+
+body div#gameContainer #menuButton {
+    display: none;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: linear-gradient(145deg, #FF6600, #DD5500);
+    color: #FFF;
+    border: 3px solid #FFF;
+    border-radius: 10px;
+    width: 140px;
+    height: 60px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 22px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 102, 0, 0.3);
+}
+
+body div#gameContainer #menuButton:hover {
+    background: linear-gradient(145deg, #FF7722, #EE6611);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 102, 0, 0.5);
+}
+
+body div#gameContainer div#lapTime {
+    position: absolute;
+    z-index: 10;
+    top: 244px;
+    right: 511px;
+    color: #FFF;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+body div#gameContainer div#bestLapTime {
+    position: absolute;
+    z-index: 10;
+    top: 264px;
+    right: 504px;
+    color: #FF0;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+body div#gameContainer #info {
+    top: 10px;
+    left: 10px;
+    position: absolute;
+    border-radius: 5px;
+    width: 300px;
+    height: 200px;
+    border: 1px solid black;
+}
+
+body div#gameContainer #info span {
+    color: black;
+}

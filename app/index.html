@@ -7,18 +7,19 @@
 		<link href="css/style.css" rel="stylesheet"/>
 		<link rel="icon" href="data:,">
 	</head>
-	<body background-color="#000000">
+	<body>
 		<div id="gameContainer">
-			<canvas id="canvas" style="position:absolute;"></canvas>
-			<!-- <p id="info" style="z-index:10;position:absolute; top:10px; left:10px;">0</p>
-			<p id="info2" style="z-index:10;position:absolute; top:40px; left:10px;">0</p> -->
+			<canvas id="canvas"></canvas>
 			<div id="lapTime"></div>
 			<div id="bestLapTime"></div>
-			<div id="menuContainer" style="position:absolute; top:0; left:0; width:1000px; height:750px; z-index:500; display:flex; flex-direction:column; justify-content:flex-start; padding:100px 0 0 100px; pointer-events:none;">
-				<button id="track0Button" class="trackButton" style="display:block; margin-bottom:20px; background-color:#00FF00; color:black; border:2px solid white; border-radius:10px; width:200px; height:60px; font-family:Arial; font-size:24px; cursor:pointer; pointer-events:auto;">TRACK 0</button>
-				<button id="track1Button" class="trackButton" style="display:block; background-color:#00FF00; color:black; border:2px solid white; border-radius:10px; width:200px; height:60px; font-family:Arial; font-size:24px; cursor:pointer; pointer-events:auto;">TRACK 1</button>
+			<div id="menuContainer">
+				<h1 id="gameTitle">SUPER SPRINT</h1>
+				<div id="trackSelection">
+					<button id="track0Button" class="trackButton">TRACK 0</button>
+					<button id="track1Button" class="trackButton">TRACK 1</button>
+				</div>
 			</div>
-			<button id="menuButton" style="display:none; position:absolute; top:10px; right:10px; z-index:1000; background-color:#FF6600; color:white; border:2px solid white; border-radius:8px; width:120px; height:50px; font-family:Arial; font-size:20px; cursor:pointer;">MENU</button>
+			<button id="menuButton">MENU</button>
 
 			<!-- build:js js/min.js -->
 			<!--libs -->

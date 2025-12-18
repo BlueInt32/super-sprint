@@ -34,6 +34,7 @@ B2Helper.prototype.initDebugDraw = function (b2World) {
   var canvas = document.getElementById('canvas');
   canvas.width = settings.consts.STAGE_WIDTH_PIXEL;
   canvas.height = settings.consts.STAGE_HEIGHT_PIXEL;
+  canvas.style.display = 'block';
   debugDrawer = new this.dyn.b2DebugDraw();
   debugDrawer.SetSprite(document.getElementById("canvas").getContext("2d"));
   debugDrawer.SetDrawScale(100.0);
