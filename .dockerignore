@@ -1,0 +1,28 @@
+# Git
+.git
+.gitignore
+
+# Node modules (will be installed in container)
+app/node_modules
+
+# Build artifacts
+app/build
+
+# Documentation and resources
+resources/
+supersprint-publish/
+front-only-version/
+
+# IDE files
+.vscode
+.idea
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*

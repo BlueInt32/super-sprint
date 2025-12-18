@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  supersprint:
+    image: blueint32/supersprint:latest
+    container_name: supersprint
+    restart: unless-stopped
+    networks:
+      - proxy-network
+
+networks:
+  proxy-network:
+    external: true
