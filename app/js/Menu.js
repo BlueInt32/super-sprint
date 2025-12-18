@@ -13,12 +13,14 @@ var Menu = function(specs) {
   this.menuContainer = document.getElementById('menuContainer');
   this.track0Button = document.getElementById('track0Button');
   this.track1Button = document.getElementById('track1Button');
+  this.controlsElement = document.getElementById('controls');
 
   // Setup track buttons
   if (this.track0Button) {
     this.track0Button.onclick = function() {
       self.hideTrackButtons();
       self.showMenuButton();
+      self.showControls();
       specs.onStartRace(0);
     };
   }
@@ -27,6 +29,7 @@ var Menu = function(specs) {
     this.track1Button.onclick = function() {
       self.hideTrackButtons();
       self.showMenuButton();
+      self.showControls();
       specs.onStartRace(1);
     };
   }
@@ -69,6 +72,18 @@ Menu.prototype.showMenuButton = function() {
 Menu.prototype.hideMenuButton = function() {
   if (this.menuButton) {
     this.menuButton.style.display = 'none';
+  }
+};
+
+Menu.prototype.showControls = function() {
+  if (this.controlsElement) {
+    this.controlsElement.style.display = 'flex';
+  }
+};
+
+Menu.prototype.hideControls = function() {
+  if (this.controlsElement) {
+    this.controlsElement.style.display = 'none';
   }
 };
 
