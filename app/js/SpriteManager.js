@@ -12,6 +12,8 @@ var SpriteManager = function(specs) {
   this.sprite = null;
   this.sequences = {};
   this.pixiContainer = specs.pixiContainer;
+  this.currentDirection = 'still'; // Track the current turn state
+  this.isTransitioning = false; // Track if we're playing a transition animation
 
   switch (this.spriteType) {
     case 'ship':
@@ -28,7 +30,34 @@ var SpriteManager = function(specs) {
 };
 
 SpriteManager.prototype.setState = function(sequenceName){
-  this.sprite.gotoAndPlay(sequenceName);
+  // Don't do anything if we're already in the requested state or transitioning
+  if (this.currentDirection === sequenceName || this.isTransitioning) {
+    return;
+  }
+
+  // If transitioning from turn to still, play the reverse animation
+  if (sequenceName === 'still' && this.currentDirection !== 'still') {
+    this.isTransitioning = true;
+    if (this.currentDirection === 'turnRight') {
+      this.sprite.setOnComplete(() => {
+        this.sprite.gotoAndStop('still');
+        this.sprite.clearOnComplete();
+        this.isTransitioning = false;
+      });
+      this.sprite.gotoAndPlay('turnRightReverse');
+    } else if (this.currentDirection === 'turnLeft') {
+      this.sprite.setOnComplete(() => {
+        this.sprite.gotoAndStop('still');
+        this.sprite.clearOnComplete();
+        this.isTransitioning = false;
+      });
+      this.sprite.gotoAndPlay('turnLeftReverse');
+    }
+    this.currentDirection = sequenceName;
+  } else {
+    this.sprite.gotoAndPlay(sequenceName);
+    this.currentDirection = sequenceName;
+  }
 };
 
 SpriteManager.prototype.buildMovingObjectSequences = function() {
@@ -44,6 +73,8 @@ SpriteManager.prototype.buildMovingObjectSequences = function() {
     turnRightTextures.push(PIXI.Texture.from('right.0' + val + '.png'));
   }
   this.sequences.turnRight = turnRightTextures;
+  // Create reversed sequence for returning to still
+  this.sequences.turnRightReverse = turnRightTextures.slice().reverse();
 
   var turnLeftTextures = [];
 
@@ -53,6 +84,8 @@ SpriteManager.prototype.buildMovingObjectSequences = function() {
     turnLeftTextures.push(PIXI.Texture.from('left.0' + val + '.png'));
   }
   this.sequences.turnLeft = turnLeftTextures;
+  // Create reversed sequence for returning to still
+  this.sequences.turnLeftReverse = turnLeftTextures.slice().reverse();
 
 };
 

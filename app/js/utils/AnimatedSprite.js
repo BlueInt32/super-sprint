@@ -34,21 +34,29 @@ class CustomAnimatedSprite extends PIXI.AnimatedSprite {
     // Set properties
     this.anchor.set(0.5, 0.5);
     this.animationSpeed = (frameRate || 60) / 60;
-    this.onComplete = null;
+    this.loop = false; // Do not loop animations by default
+
+    // Store custom onComplete callback
+    this._customOnComplete = null;
+
+    // Listen to the native onComplete event
+    this.onComplete = () => {
+      if (this._customOnComplete) {
+        this._customOnComplete();
+      }
+    };
   }
 
   // Override gotoAndPlay to work with sequence names
   gotoAndPlay(where) {
     if (typeof where === 'string') {
-      if (this.currentSequence === where && this.playing) {
-        return; // already playing this sequence
-      }
       this.currentSequence = where;
       const textures = Array.isArray(this.sequences[where])
         ? this.sequences[where]
         : [this.sequences[where]];
       this.textures = textures;
       this.currentFrame = 0;
+      this.loop = false; // Ensure loop is always false
     } else {
       this.currentFrame = where;
     }
@@ -71,6 +79,16 @@ class CustomAnimatedSprite extends PIXI.AnimatedSprite {
       this.currentFrame = where;
     }
     this.stop();
+  }
+
+  // Custom setter to allow external code to set onComplete callback
+  setOnComplete(callback) {
+    this._customOnComplete = callback;
+  }
+
+  // Custom method to clear the onComplete callback
+  clearOnComplete() {
+    this._customOnComplete = null;
   }
 }
 
