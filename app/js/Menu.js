@@ -7,6 +7,7 @@ var settings = require('./settings.js');
 var Menu = function(specs) {
   this.pixiStage = specs.pixiStage;
   this.specs = specs;
+  this.currentRace = null; // Reference to the current race
   var self = this;
 
   // Get HTML elements
@@ -94,9 +95,25 @@ Menu.prototype.hideControls = function() {
 };
 
 Menu.prototype.createDebugToggleButton = function() {
+  var self = this;
   if (this.debugToggleButton) {
     this.debugToggleButton.onclick = function() {
-      window.location.href = window.location.pathname + '?debug=' + (!settings.technical.debugDraw);
+      // Toggle debug mode in real-time
+      settings.technical.debugDraw = !settings.technical.debugDraw;
+
+      // Update button text
+      self.debugToggleButton.textContent = settings.technical.debugDraw ? 'SPRITES' : 'DEBUG';
+
+      // Toggle debug draw in the active race
+      if (self.currentRace) {
+        if (self.currentRace.b2WorldFacade) {
+          self.currentRace.b2WorldFacade.toggleDebugDraw();
+        }
+        // Hide/show Pixi sprites based on debug mode
+        if (self.currentRace.pixiFacade) {
+          self.currentRace.pixiFacade.setVisible(!settings.technical.debugDraw);
+        }
+      }
     };
   }
 };
@@ -104,8 +121,18 @@ Menu.prototype.createDebugToggleButton = function() {
 Menu.prototype.showDebugToggleButton = function() {
   if (this.debugToggleButton) {
     this.debugToggleButton.style.display = 'block';
+    this.updateDebugButtonText();
+  }
+};
+
+Menu.prototype.updateDebugButtonText = function() {
+  if (this.debugToggleButton) {
     this.debugToggleButton.textContent = settings.technical.debugDraw ? 'SPRITES' : 'DEBUG';
   }
+};
+
+Menu.prototype.setCurrentRace = function(race) {
+  this.currentRace = race;
 };
 
 module.exports = Menu;

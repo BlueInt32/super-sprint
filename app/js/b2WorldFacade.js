@@ -47,4 +47,19 @@ B2WorldFacade.prototype.update = function() {
   }
 };
 
+B2WorldFacade.prototype.toggleDebugDraw = function() {
+  this.debugDrawActive = !this.debugDrawActive;
+
+  // Initialize debug draw if it wasn't initialized before
+  if (this.debugDrawActive && !this.b2World.m_debugDraw) {
+    B2Helper.initDebugDraw(this.b2World);
+  }
+
+  // Show or hide the debug canvas
+  var canvas = document.getElementById('canvas');
+  if (canvas) {
+    canvas.style.display = this.debugDrawActive ? 'block' : 'none';
+  }
+};
+
 module.exports = B2WorldFacade;

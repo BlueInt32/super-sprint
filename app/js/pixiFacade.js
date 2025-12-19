@@ -35,6 +35,10 @@ PixiFacade.prototype.step = function() {
   this.pixiRenderer.render(this.container);
 };
 
+PixiFacade.prototype.setVisible = function(visible) {
+  this.pixiRenderer.view.style.display = visible ? 'block' : 'none';
+};
+
 
 
 module.exports = PixiFacade;

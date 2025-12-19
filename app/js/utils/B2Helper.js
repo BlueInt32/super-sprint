@@ -32,11 +32,26 @@ B2Helper.prototype.initDebugDraw = function (b2World) {
   var debugDrawer;
 
   var canvas = document.getElementById('canvas');
+
+  // Create canvas if it doesn't exist
+  if (!canvas) {
+    canvas = document.createElement('canvas');
+    canvas.id = 'canvas';
+    canvas.style.position = 'absolute';
+    canvas.style.left = '50%';
+    canvas.style.top = '50%';
+    canvas.style.transform = 'translate(-50%, -50%)';
+    canvas.style.zIndex = '100';
+    canvas.style.pointerEvents = 'none';
+    document.getElementById('gameContainer').appendChild(canvas);
+  }
+
   canvas.width = settings.consts.STAGE_WIDTH_PIXEL;
   canvas.height = settings.consts.STAGE_HEIGHT_PIXEL;
   canvas.style.display = 'block';
+
   debugDrawer = new this.dyn.b2DebugDraw();
-  debugDrawer.SetSprite(document.getElementById("canvas").getContext("2d"));
+  debugDrawer.SetSprite(canvas.getContext("2d"));
   debugDrawer.SetDrawScale(100.0);
   debugDrawer.SetFillAlpha(0.3);
   debugDrawer.SetLineThickness(2.0);

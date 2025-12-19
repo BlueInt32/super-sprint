@@ -44,6 +44,7 @@ var Game = function() {
       var selectedTrackId = (trackId !== undefined) ? trackId : config.track;
       console.log('Selected track:', selectedTrackId);
       this.currentRace = new Race({trackId: selectedTrackId, pixiFacade : this.pixiFacade});
+      this.menu.setCurrentRace(this.currentRace);
       this.menu.showMenuButton();
       window.requestAnimationFrame(this.gameEvents.frameStep);
     }
