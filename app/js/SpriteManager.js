@@ -1,9 +1,9 @@
 "use strict";
 
 
-var settings = require('./settings.js');
-var PIXI = require('pixi.js');
-require('./utils/AnimatedSprite.js');
+import settings from './settings.js';
+import * as PIXI from 'pixi.js';
+import CustomAnimatedSprite from './utils/AnimatedSprite.js';
 
 var SpriteManager = function(specs) {
 
@@ -17,7 +17,7 @@ var SpriteManager = function(specs) {
     case 'ship':
       this.texturesMapping = settings.spritesMapping.ships[specs.index];
       this.buildMovingObjectSequences();
-      this.sprite = new PIXI.AnimatedSprite(this.sequences);
+      this.sprite = new CustomAnimatedSprite(this.sequences);
       this.sprite.zIndex = 10; // Put car above track
       this.pixiContainer.addChild(this.sprite);
       this.sprite.gotoAndStop('still');
@@ -33,14 +33,15 @@ SpriteManager.prototype.setState = function(sequenceName){
 
 SpriteManager.prototype.buildMovingObjectSequences = function() {
   var i, val;
-  this.sequences.still = [PIXI.Texture.fromFrame(this.texturesMapping.still)];
+  // PixiJS v8 utilise Texture.from au lieu de fromFrame
+  this.sequences.still = [PIXI.Texture.from(this.texturesMapping.still)];
   var turnRightTextures = [];
 
   for (i = 1; i <= this.texturesMapping.turnRight.frames; i++) {
     val = i + this.texturesMapping.turnRight.offset;
     val = val < 10 ? '0' + val : val;
 
-    turnRightTextures.push(PIXI.Texture.fromFrame('right.0' + val + '.png'));
+    turnRightTextures.push(PIXI.Texture.from('right.0' + val + '.png'));
   }
   this.sequences.turnRight = turnRightTextures;
 
@@ -49,10 +50,10 @@ SpriteManager.prototype.buildMovingObjectSequences = function() {
   for (i = 0; i < this.texturesMapping.turnLeft.frames; i++) {
     val = i + this.texturesMapping.turnLeft.offset;
     val = val < 10 ? '0' + val : val;
-    turnLeftTextures.push(PIXI.Texture.fromFrame('left.0' + val + '.png'));
+    turnLeftTextures.push(PIXI.Texture.from('left.0' + val + '.png'));
   }
   this.sequences.turnLeft = turnLeftTextures;
 
 };
 
-module.exports = SpriteManager;
+export default SpriteManager;

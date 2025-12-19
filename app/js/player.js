@@ -1,8 +1,8 @@
 "use strict";
 
-var keyboardHandler = require('./keyboardHandler.js');
+import keyboardHandler from './keyboardHandler.js';
 
 var Player = function() {
 };
 
-module.exports = new Player();
+export default new Player();

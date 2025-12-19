@@ -79,4 +79,4 @@ var settings = {
   }
 };
 
-module.exports = settings;
+export default settings;

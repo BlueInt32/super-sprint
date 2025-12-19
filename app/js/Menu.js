@@ -1,8 +1,8 @@
 "use strict";
 
-var pixiFacade = require('./pixiFacade.js');
-var PIXI = require('pixi.js');
-var settings = require('./settings.js');
+import pixiFacade from './pixiFacade.js';
+import * as PIXI from 'pixi.js';
+import settings from './settings.js';
 
 var Menu = function(specs) {
   this.pixiStage = specs.pixiStage;
@@ -135,4 +135,4 @@ Menu.prototype.setCurrentRace = function(race) {
   this.currentRace = race;
 };
 
-module.exports = Menu;
+export default Menu;

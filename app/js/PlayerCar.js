@@ -1,9 +1,9 @@
 "use strict";
 
-var B2Helper = require('./utils/B2Helper.js');
-var settings = require('./settings.js');
-var Car = require('./Car.js');
-var SpriteManager = require('./SpriteManager.js');
+import B2Helper from './utils/B2Helper.js';
+import settings from './settings.js';
+import Car from './Car.js';
+import SpriteManager from './SpriteManager.js';
 
 var PlayerCar = function(carIndex, pixiContainer) {
   this.carConfig = settings.cars[carIndex];
@@ -100,4 +100,4 @@ PlayerCar.prototype.handBrakeRelease = function() {
   this.drifting = false;
 };
 
-module.exports = PlayerCar;
+export default PlayerCar;

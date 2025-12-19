@@ -1,6 +1,6 @@
 "use strict";
 
-var B2Helper = require('./utils/B2Helper.js');
+import B2Helper from './utils/B2Helper.js';
 
 var ContactManager = function (world, cars) {
 	this.cars = cars;
@@ -71,4 +71,4 @@ ContactManager.prototype.ExtractContactType = function (contact) {
     };
   return { 'type': '' };
 };
-module.exports = ContactManager;
+export default ContactManager;

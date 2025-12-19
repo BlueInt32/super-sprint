@@ -42,4 +42,4 @@ LinkedList.prototype.removeFirst = function() {
 LinkedList.prototype.getLength = function(){
 	return this.size;
 };
-module.exports = LinkedList;
+export default LinkedList;

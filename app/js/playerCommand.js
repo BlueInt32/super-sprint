@@ -82,4 +82,4 @@ PlayerCommand.prototype.handleKeyUp = function (event) {
   }
 };
 
-module.exports = new PlayerCommand();
+export default new PlayerCommand();

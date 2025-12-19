@@ -2,7 +2,7 @@
  * Created by Simon on 15/11/2015.
  */
 "use strict";
-var Stats = require('./libs/Stats.js');
+import Stats from './libs/Stats.js';
 
 var StatsOverlay = function() {
   var container;
@@ -13,4 +13,4 @@ var StatsOverlay = function() {
   stats.domElement.style.position = "absolute";
 };
 
-module.exports = StatsOverlay;
+export default StatsOverlay;

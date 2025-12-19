@@ -1,10 +1,10 @@
 "use strict";
 
-var B2Helper = require('./utils/B2Helper.js');
-var B2Loader = require('./B2Loader.js');
-var playerCommand = require('./playerCommand.js');
-var dat = require('dat-gui');
-var ContactManager = require('./ContactManager.js');
+import B2Helper from './utils/B2Helper.js';
+import B2Loader from './B2Loader.js';
+import playerCommand from './playerCommand.js';
+import dat from 'dat-gui';
+import ContactManager from './ContactManager.js';
 
 
 var B2WorldFacade = function(debugDrawActive) {
@@ -62,4 +62,4 @@ B2WorldFacade.prototype.toggleDebugDraw = function() {
   }
 };
 
-module.exports = B2WorldFacade;
+export default B2WorldFacade;

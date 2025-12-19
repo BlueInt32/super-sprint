@@ -1,14 +1,14 @@
 "use strict";
 
-var settings = require('./settings.js');
-var player = require('./player.js');
-var PixiFacade = require('./pixiFacade.js');
-var Race = require('./race.js');
-// var socketManager = require('./socketManager.js');
-var StatsOverlay = require('./statsOverlay.js');
-var playerCommand = require('./playerCommand.js');
-var Menu = require('./Menu.js');
-var urlHelper = require('./utils/urlHelper.js');
+import settings from './settings.js';
+import player from './player.js';
+import PixiFacade from './pixiFacade.js';
+import Race from './race.js';
+// import socketManager from './socketManager.js';
+import StatsOverlay from './statsOverlay.js';
+import playerCommand from './playerCommand.js';
+import Menu from './Menu.js';
+import urlHelper from './utils/urlHelper.js';
 
 var Game = function() {
   // this.socketManager = new socketManager();

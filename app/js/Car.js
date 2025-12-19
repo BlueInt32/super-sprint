@@ -1,7 +1,7 @@
 "use strict";
 
-var settings = require('./settings.js');
-var B2Helper = require('./utils/B2Helper.js');
+import settings from './settings.js';
+import B2Helper from './utils/B2Helper.js';
 
 var Car = function() {
   // B2
@@ -129,4 +129,4 @@ Car.prototype.foreachTire = function(perTireAction){
   }
 };
 
-module.exports = Car;
+export default Car;

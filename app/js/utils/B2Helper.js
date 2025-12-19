@@ -1,7 +1,7 @@
 "use strict";
 
-var Box2D = require('../libs/box2dweb/Box2dWeb-2.1.a.3.js');
-var settings = require('../settings.js');
+import Box2D from '../libs/box2dweb/Box2dWeb-2.1.a.3.js';
+import settings from '../settings.js';
 
 function B2Helper() {
   this.dyn = Box2D.Dynamics;
@@ -75,4 +75,4 @@ Box2D.Dynamics.b2Body.prototype.LogPosition = function () {
   var pos = this.GetPosition();
 };
 
-module.exports = new B2Helper();
+export default new B2Helper();

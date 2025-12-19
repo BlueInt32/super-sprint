@@ -3,12 +3,12 @@
  */
 "use strict";
 
-var LinkedList = require("./utils/LinkedList.js");
-var request = require("then-request");
-var RubeFileLoader = require("./libs/rubeFileLoader.js");
-var B2Helper = require("./utils/B2Helper.js");
-var PlayerCar = require("./PlayerCar.js");
-var CheckpointManager = require("./CheckpointManager.js");
+import LinkedList from "./utils/LinkedList.js";
+import request from "then-request";
+import RubeFileLoader from "./libs/rubeFileLoader.js";
+import B2Helper from "./utils/B2Helper.js";
+import PlayerCar from "./PlayerCar.js";
+import CheckpointManager from "./CheckpointManager.js";
 
 var B2Loader = function(worldFacade) {
   this.elementsList = new LinkedList();
@@ -118,4 +118,4 @@ B2Loader.prototype.findJointInWorld = function(name) {
 };
 
 
-module.exports = B2Loader;
+export default B2Loader;

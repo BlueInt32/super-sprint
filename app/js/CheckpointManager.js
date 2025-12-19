@@ -52,4 +52,4 @@ CheckpointManager.prototype.updateBestLapTime = function(valueInMs) {
   document.getElementById("bestLapTime").innerHTML = "<span style='color: #AAA;'>Best:</span> " + strValue;
 };
 
-module.exports = CheckpointManager;
+export default CheckpointManager;

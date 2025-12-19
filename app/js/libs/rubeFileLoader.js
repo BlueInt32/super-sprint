@@ -1,7 +1,7 @@
 /*eslint no-undef: 2*/
 
-var Box2D = require('./box2dweb/Box2dWeb-2.1.a.3.js');
-var b2 = require('../utils/B2Helper.js');
+import Box2D from './box2dweb/Box2dWeb-2.1.a.3.js';
+import b2 from '../utils/B2Helper.js';
 
 // Removed "use strict" and Object.prototype override to fix TypeError
 // Objects have native hasOwnProperty method
@@ -565,4 +565,4 @@ RubeFileLoader.prototype.preprocessRube = function(parsedJson) {
   return parsedJson;
 };
 
-module.exports = RubeFileLoader;
+export default RubeFileLoader;

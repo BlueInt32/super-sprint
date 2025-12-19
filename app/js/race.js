@@ -1,9 +1,9 @@
 "use strict";
 
-var B2WorldFacade = require('./b2WorldFacade.js');
-var settings = require('./settings.js');
-var PlayerCar = require('./PlayerCar.js');
-var CheckpointManager = require('./CheckpointManager.js');
+import B2WorldFacade from './b2WorldFacade.js';
+import settings from './settings.js';
+import PlayerCar from './PlayerCar.js';
+import CheckpointManager from './CheckpointManager.js';
 
 var Race = function(raceSpecs) {
 
@@ -50,4 +50,4 @@ Race.prototype.update = function() {
   this.b2WorldFacade.update();
 };
 
-module.exports = Race;
+export default Race;

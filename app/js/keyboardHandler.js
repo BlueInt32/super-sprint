@@ -78,4 +78,4 @@ KeyboardHandler.prototype.handleKeyUp = function (event) {
   }
 };
 
-module.exports = new KeyboardHandler();
+export default new KeyboardHandler();

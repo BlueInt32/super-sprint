@@ -1,6 +1,6 @@
 "use strict";
 
-var settings = require('../settings.js');
+import settings from '../settings.js';
 
 var urlHelper = function() {
   var that = {};
@@ -46,4 +46,4 @@ var urlHelper = function() {
   return that;
 }
 
-module.exports = urlHelper();
+export default urlHelper();

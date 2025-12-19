@@ -1,100 +1,78 @@
 /**
  * Created by Simon on 30/12/2015.
+ * Updated for PixiJS v8 - Wrapper around native AnimatedSprite
  */
-  /** Taken from http://www.html5gamedevs.com/topic/704-multiple-sequences-sprite-constructor-that-might-be-useful-to-you/ **/
 
-var PIXI = require('pixi.js');
+import * as PIXI from 'pixi.js';
 
-PIXI.AnimatedSprite = function(sequences, frameRate, firstSequence) {
-  this.sequences = sequences;
-  if (firstSequence == undefined) {
-    for (var key in sequences) {
-      this.currentSequence = key;
-      break;
+// Wrapper qui adapte l'ancienne interface à la nouvelle API PixiJS v8
+class CustomAnimatedSprite extends PIXI.AnimatedSprite {
+  constructor(sequences, frameRate, firstSequence) {
+    // Find the first sequence
+    let currentSequence;
+    if (firstSequence == undefined) {
+      for (let key in sequences) {
+        currentSequence = key;
+        break;
+      }
+    } else {
+      currentSequence = firstSequence;
     }
-  }
-  else {
-    this.currentSequence = firstSequence;
-  }
-  PIXI.Sprite.call(this, this.sequences[this.currentSequence][0]);
-  this.anchor.x = this.anchor.y = .5;
-  this.frameRate = frameRate || 60;
-  this.onComplete = null;
-  this.currentFrame = 0;
-  this.playing = false;
-  this.loop = false;
-};
-//animatedSprite
-PIXI.AnimatedSprite.constructor = PIXI.AnimatedSprite;
-PIXI.AnimatedSprite.prototype = Object.create(PIXI.Sprite.prototype);
 
-PIXI.AnimatedSprite.prototype.gotoAndPlay = function(where) {
-  if(this.currentSequence === where) // already playing
-    return;
-  if (Object.prototype.toString.call(where) == '[object String]') {
-    this.currentFrame = 0;
-    this.currentSequence = where;
-  }
-  else {
-    this.currentFrame = where;
-  }
-  this.playing = true;
-};
+    // Get initial textures
+    const initialTextures = Array.isArray(sequences[currentSequence])
+      ? sequences[currentSequence]
+      : [sequences[currentSequence]];
 
-PIXI.AnimatedSprite.prototype.gotoAndStop = function(where) {
+    // Call parent constructor with initial textures
+    super(initialTextures);
 
-  if(this.currentSequence === where && this.playing) // already playing
-    return;
-  if (Object.prototype.toString.call(where) == '[object String]') {
-    this.currentFrame = 0;
-    this.currentSequence = where;
-  }
-  else {
-    this.currentFrame = where;
-  }
-  this.texture = this.sequences[this.currentSequence][this.currentFrame];
+    // Store sequences and current sequence
+    this.sequences = sequences;
+    this.currentSequence = currentSequence;
 
-  this.playing = false;
-};
-PIXI.AnimatedSprite.prototype.updateTransform = function(){
-  PIXI.Sprite.prototype.updateTransform.call(this);
-  this.advanceTime();
-};
-PIXI.AnimatedSprite.prototype.play = function() {
-  this.playing = true;
-};
-
-PIXI.AnimatedSprite.prototype.stop = function() {
-  this.playing = false;
-};
-
-
-PIXI.AnimatedSprite.prototype.advanceTime = function(dt) {
-
-  if (typeof dt == "undefined") {
-    dt = 1 / 60;
+    // Set properties
+    this.anchor.set(0.5, 0.5);
+    this.animationSpeed = (frameRate || 60) / 60;
+    this.onComplete = null;
   }
 
-  if (this.playing) {
-    this.currentFrame += this.frameRate * dt;
-
-    var constrainedFrame = Math.floor(Math.min(this.currentFrame, this.sequences[this.currentSequence].length - 1));
-    this.texture = this.sequences[this.currentSequence][constrainedFrame];
-
-    if (this.currentFrame >= this.sequences[this.currentSequence].length) {
-
-      if (this.loop) {
-        this.gotoAndPlay(0);
+  // Override gotoAndPlay to work with sequence names
+  gotoAndPlay(where) {
+    if (typeof where === 'string') {
+      if (this.currentSequence === where && this.playing) {
+        return; // already playing this sequence
       }
-      else {
-        this.stop();
-      }
-      if (this.onComplete) {
-        console.log('looping ?', this.loop);
-        this.onComplete(this.currentSequence);
-      }
+      this.currentSequence = where;
+      const textures = Array.isArray(this.sequences[where])
+        ? this.sequences[where]
+        : [this.sequences[where]];
+      this.textures = textures;
+      this.currentFrame = 0;
+    } else {
+      this.currentFrame = where;
     }
+    this.play();
   }
-};
 
-//module.exports = PIXI_AnimatedSprite;
+  // Override gotoAndStop to work with sequence names
+  gotoAndStop(where) {
+    if (typeof where === 'string') {
+      if (this.currentSequence === where && !this.playing) {
+        return; // already stopped on this sequence
+      }
+      this.currentSequence = where;
+      const textures = Array.isArray(this.sequences[where])
+        ? this.sequences[where]
+        : [this.sequences[where]];
+      this.textures = textures;
+      this.currentFrame = 0;
+    } else {
+      this.currentFrame = where;
+    }
+    this.stop();
+  }
+}
+
+// Export our custom class
+export default CustomAnimatedSprite;
