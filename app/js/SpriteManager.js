@@ -18,9 +18,11 @@ var SpriteManager = function(specs) {
       this.texturesMapping = settings.spritesMapping.ships[specs.index];
       this.buildMovingObjectSequences();
       this.sprite = new PIXI.AnimatedSprite(this.sequences);
+      this.sprite.zIndex = 10; // Put car above track
       this.pixiContainer.addChild(this.sprite);
       this.sprite.gotoAndStop('still');
-      this.sprite.visible = false; // Hide the sprite, showing only the wireframe
+      this.sprite.visible = true; // Show the sprite now that debugDraw is off
+      console.log('Car sprite created');
       break;
   }
 };

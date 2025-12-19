@@ -43,7 +43,7 @@ PlayerCar.prototype.handleKeyboard = function(keyboardData) {
 };
 
 PlayerCar.prototype.updateSteering = function(keyboardData) {
-  var angleNow, angleToTurn, newAngle, position;
+  var angleNow, angleToTurn, newAngle;
   if (keyboardData.right && !this.puddleEffect) {
     this.spriteManager.setState('turnRight');
     this.desiredAngle = this.lockAngleDeg * settings.consts.DEGTORAD;
@@ -65,11 +65,13 @@ PlayerCar.prototype.updateSteering = function(keyboardData) {
   this.directionJoints[0].SetLimits(newAngle, newAngle);
   this.directionJoints[1].SetLimits(newAngle, newAngle);
   this.updateFriction();
-  position = this.b2Body.GetPosition();
+};
+
+PlayerCar.prototype.updateSpritePosition = function() {
+  var position = this.b2Body.GetPosition();
   this.spriteManager.sprite.position.x = position.x * settings.consts.METER;
   this.spriteManager.sprite.position.y = position.y * settings.consts.METER;
   this.spriteManager.sprite.rotation = this.b2Body.GetAngle();
-
 };
 
 PlayerCar.prototype.accelerate = function() {

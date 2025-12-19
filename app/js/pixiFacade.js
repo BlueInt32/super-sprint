@@ -6,7 +6,7 @@ var PIXI = require('pixi.js');
 var settings = require('./settings.js');
 
 var PixiFacade = function() {
-  this.pixiRenderer = PIXI.autoDetectRenderer(settings.consts.STAGE_WIDTH_PIXEL, settings.consts.STAGE_HEIGHT_PIXEL, void 0, false);
+  this.pixiRenderer = PIXI.autoDetectRenderer(settings.consts.STAGE_WIDTH_PIXEL, settings.consts.STAGE_HEIGHT_PIXEL, {backgroundColor: 0x333333}, false);
   document.getElementById('gameContainer').appendChild(this.pixiRenderer.view);
   this.container = new PIXI.Container();
   this.container.sortableChildren = true; // Enable z-index sorting

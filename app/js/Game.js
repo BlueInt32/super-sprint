@@ -12,6 +12,13 @@ var urlHelper = require('./utils/urlHelper.js');
 
 var Game = function() {
   // this.socketManager = new socketManager();
+
+  // Check URL for debug parameter
+  var config = urlHelper.loadQueryConfig();
+  if (config.debug !== undefined) {
+    settings.technical.debugDraw = (config.debug === 'true' || config.debug === true);
+  }
+
   this.currentRace = null;
   this.menu = null;
   this.pixiFacade = new PixiFacade();

@@ -14,12 +14,14 @@ var Menu = function(specs) {
   this.track0Button = document.getElementById('track0Button');
   this.track1Button = document.getElementById('track1Button');
   this.controlsElement = document.getElementById('controls');
+  this.debugToggleButton = document.getElementById('debugToggleButton');
 
   // Setup track buttons
   if (this.track0Button) {
     this.track0Button.onclick = function() {
       self.hideTrackButtons();
       self.showMenuButton();
+      self.showDebugToggleButton();
       self.showControls();
       specs.onStartRace(0);
     };
@@ -29,6 +31,7 @@ var Menu = function(specs) {
     this.track1Button.onclick = function() {
       self.hideTrackButtons();
       self.showMenuButton();
+      self.showDebugToggleButton();
       self.showControls();
       specs.onStartRace(1);
     };
@@ -36,6 +39,9 @@ var Menu = function(specs) {
 
   // Create permanent menu button (top right corner)
   this.createMenuButton();
+
+  // Create debug toggle button
+  this.createDebugToggleButton();
 
   specs.onMenuLoaded();
 };
@@ -84,6 +90,21 @@ Menu.prototype.showControls = function() {
 Menu.prototype.hideControls = function() {
   if (this.controlsElement) {
     this.controlsElement.style.display = 'none';
+  }
+};
+
+Menu.prototype.createDebugToggleButton = function() {
+  if (this.debugToggleButton) {
+    this.debugToggleButton.onclick = function() {
+      window.location.href = window.location.pathname + '?debug=' + (!settings.technical.debugDraw);
+    };
+  }
+};
+
+Menu.prototype.showDebugToggleButton = function() {
+  if (this.debugToggleButton) {
+    this.debugToggleButton.style.display = 'block';
+    this.debugToggleButton.textContent = settings.technical.debugDraw ? 'SPRITES' : 'DEBUG';
   }
 };
 

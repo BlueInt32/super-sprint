@@ -29,8 +29,10 @@ B2Loader.prototype.continueLoadingList = function(onAddedAndPlaced) {
   if (this.elementsList.size > 0) {
     var resourceNode = this.elementsList.firstNode;
     this.elementsList.removeFirst();
+    console.log('Loading B2 element:', resourceNode.dataType, 'from', resourceNode.data.jsonPath);
     request('GET', resourceNode.data.jsonPath)
       .done((retrievedData) => {
+        console.log('B2 element loaded:', resourceNode.dataType);
         var subWorldJson = retrievedData.getBody();
         this.loadRawJson(subWorldJson, resourceNode, onAddedAndPlaced);
         this.continueLoadingList();
@@ -54,7 +56,9 @@ B2Loader.prototype.loadRawJson = function(rawJson, resourceNode, onAddedAndPlace
     this.nextCarPositionAvailable += 1;
   }
   this.resourceLoadingIndex += 1;
+  console.log('Calling onAddedAndPlaced for', resourceNode.dataType);
   onAddedAndPlaced.call(this, this.loaded[resourceNode.id]);
+  console.log('onAddedAndPlaced finished for', resourceNode.dataType);
 };
 
 B2Loader.prototype.extractAndPlaceTrack = function() {

@@ -15,11 +15,13 @@ var Race = function(raceSpecs) {
       type: 'track',
       data: settings.tracks[raceSpecs.trackId],
       onAddedAndPlaced: (trackBodySet) => {
-        // Track sprite hidden - only showing Box2D wireframe
-        // this.pixiFacade.createThenAddSprite({
-        //   frameId: "track" + raceSpecs.trackId + ".png",
-        //   anchor: 0
-        // });
+        console.log('Adding track sprite, trackId:', raceSpecs.trackId);
+        var trackSprite = this.pixiFacade.createThenAddSprite({
+          frameId: "track" + raceSpecs.trackId + ".png",
+          anchor: 0
+        });
+        trackSprite.position.set(0, 0);
+        console.log('Track sprite created:', trackSprite);
       }
     }
   );

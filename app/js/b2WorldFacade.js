@@ -31,9 +31,12 @@ B2WorldFacade.prototype.update = function() {
   }
   this.b2World.Step(1 / 60, 3, 3);
   this.b2World.ClearForces();
-  this.b2World.DrawDebugData();
+  if (this.debugDrawActive) {
+    this.b2World.DrawDebugData();
+  }
   this.playerCar.updateData();
   this.playerCar.handleKeyboard(playerCommand.keys);
+  this.playerCar.updateSpritePosition();
   if (!this.contactManager) {
     this.contactManager = new ContactManager(this.b2World, [this.playerCar]);
   }

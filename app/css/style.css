@@ -20,7 +20,6 @@ body div#gameContainer canvas {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    display: none;
 }
 
 body div#gameContainer #controls {
@@ -133,6 +132,30 @@ body div#gameContainer #menuButton {
 
 body div#gameContainer #menuButton:hover {
     background: #DD6611;
+    transform: translateY(-2px);
+}
+
+body div#gameContainer #debugToggleButton {
+    display: none;
+    position: absolute;
+    top: 80px;
+    right: 20px;
+    z-index: 1000;
+    background: #0055AA;
+    color: #FFF;
+    border: 2px solid #0077FF;
+    border-radius: 6px;
+    width: 120px;
+    height: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+body div#gameContainer #debugToggleButton:hover {
+    background: #0066CC;
     transform: translateY(-2px);
 }
 
