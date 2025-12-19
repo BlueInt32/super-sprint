@@ -32,6 +32,7 @@ obj/
 Publish/
 TestResults/
 node_modules/
+app/dist/
 ######################
 # Logs and databases #
 ######################
