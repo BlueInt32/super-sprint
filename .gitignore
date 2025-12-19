@@ -66,3 +66,4 @@ assets/**/*rube-backups/**
 *.ma
 
 supersprint-publish
+.env.deploy
