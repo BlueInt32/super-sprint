@@ -9,7 +9,7 @@ export default defineConfig({
     "process.env": {},
   },
   build: {
-    outDir: "../dist",
+    outDir: "dist",
     emptyOutDir: true,
     sourcemap: true,
     rollupOptions: {

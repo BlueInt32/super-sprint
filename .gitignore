@@ -29,10 +29,10 @@ _UpgradeReport_Files/
 ###############
 bin/
 obj/
-Publish/
 TestResults/
 node_modules/
 app/dist/
+dist/
 ######################
 # Logs and databases #
 ######################
@@ -50,13 +50,12 @@ app/js/min.js
 
 #rube data
 
-assets/**/*rube-backups/**
+app/assets/**/*rube-backups/**
 
 /backups/
 /resources/
-/app/build/
 /3D
-/docs/
+/docs/pixijs\&box2d\ sample
 /.idea/
 /.idea/workspace.xml
 
@@ -65,5 +64,4 @@ assets/**/*rube-backups/**
 *.*~
 *.ma
 
-supersprint-publish
 .env.deploy
