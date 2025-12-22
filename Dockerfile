@@ -1,5 +1,5 @@
 # Use Node.js LTS version
-FROM node:18-alpine
+FROM node:25-alpine
 
 # Set working directory
 WORKDIR /app
@@ -17,4 +17,4 @@ COPY app/ ./
 RUN npm run build
 
 # Start the application
-CMD ["npm", "start"]
+CMD ["npm", "run",  "dev"]
