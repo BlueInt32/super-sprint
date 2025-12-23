@@ -1,11 +1,9 @@
 "use strict";
 
-import LinkedList from "./utils/LinkedList.ts";
 import request from "then-request";
 import RubeFileLoader from "../js/libs/rubeFileLoader.js";
 import B2Helper from "./utils/B2Helper.ts";
-import PlayerCar from "./PlayerCar.ts";
-import CheckpointManager from "./CheckpointManager.ts";
+import LinkedList from "./utils/LinkedList.ts";
 
 var B2Loader = function(worldFacade) {
   this.elementsList = new LinkedList();
