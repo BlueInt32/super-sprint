@@ -1,9 +1,9 @@
 "use strict";
 
-import B2Helper from './utils/B2Helper.js';
-import settings from './settings.js';
-import Car from './Car.js';
-import SpriteManager from './SpriteManager.js';
+import B2Helper from './utils/B2Helper.ts';
+import settings from './settings.ts';
+import Car from './Car.ts';
+import SpriteManager from './SpriteManager.ts';
 
 var PlayerCar = function(carIndex, pixiContainer) {
   this.carConfig = settings.cars[carIndex];

@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    /* Language and Environment */
+    "target": "ES2020",                        // Compile vers JavaScript ES2020 (moderne, supporté partout)
+    "useDefineForClassFields": true,           // Syntaxe moderne pour les champs de classe
+    "module": "ESNext",                        // Utilise les modules ES (import/export)
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],  // APIs disponibles: JavaScript moderne + navigateur
+
+    /* Module Resolution */
+    "moduleResolution": "bundler",             // Optimisé pour Vite
+    "allowImportingTsExtensions": true,        // Permet import './file.ts'
+    "resolveJsonModule": true,                 // Permet import de fichiers JSON
+    "isolatedModules": true,                   // Chaque fichier compilable indépendamment (requis par Vite)
+    "noEmit": true,                            // Vite gère la compilation, pas TypeScript
+
+    /* Type Checking - Mode permissif temporairement pour migration */
+    "strict": false,                           // Désactivé temporairement
+    "noUnusedLocals": false,                   // Désactivé temporairement
+    "noUnusedParameters": false,               // Désactivé temporairement
+    "noFallthroughCasesInSwitch": false,       // Désactivé temporairement
+
+    /* Other */
+    "skipLibCheck": true,                      // Ignore vérification des types dans node_modules (plus rapide)
+
+    /* Paths */
+    "baseUrl": ".",                            // Racine pour les imports
+    "paths": {
+      "@/*": ["./src/*"]                       // Permet d'écrire import '@/utils/helper'
+    }
+  },
+  "include": ["src/**/*"],                     // Tous les fichiers dans src/
+  "exclude": ["node_modules"]                  // Exclut node_modules
+}

@@ -1,7 +1,7 @@
 "use strict";
 
-import settings from './settings.js';
-import B2Helper from './utils/B2Helper.js';
+import settings from './settings.ts';
+import B2Helper from './utils/B2Helper.ts';
 
 var Car = function() {
   // B2

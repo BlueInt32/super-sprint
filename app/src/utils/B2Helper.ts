@@ -1,7 +1,7 @@
 "use strict";
 
-import Box2D from '../libs/box2dweb/Box2dWeb-2.1.a.3.js';
-import settings from '../settings.js';
+import Box2D from '../../js/libs/box2dweb/Box2dWeb-2.1.a.3.js';
+import settings from '../settings.ts';
 
 function B2Helper() {
   this.dyn = Box2D.Dynamics;
@@ -31,7 +31,7 @@ B2Helper.prototype.findCustomPropertyValue = function (b2Body, cPropertyName, ty
 B2Helper.prototype.initDebugDraw = function (b2World) {
   var debugDrawer;
 
-  var canvas = document.getElementById('canvas');
+  let canvas = document.getElementById('canvas') as HTMLCanvasElement;
 
   // Create canvas if it doesn't exist
   if (!canvas) {
@@ -43,7 +43,7 @@ B2Helper.prototype.initDebugDraw = function (b2World) {
     canvas.style.transform = 'translate(-50%, -50%)';
     canvas.style.zIndex = '100';
     canvas.style.pointerEvents = 'none';
-    document.getElementById('gameContainer').appendChild(canvas);
+    document.getElementById('gameContainer')!.appendChild(canvas);
   }
 
   canvas.width = settings.consts.STAGE_WIDTH_PIXEL;

@@ -1,9 +1,9 @@
 "use strict";
 
 
-import settings from './settings.js';
+import settings from './settings.ts';
 import * as PIXI from 'pixi.js';
-import CustomAnimatedSprite from './utils/AnimatedSprite.js';
+import CustomAnimatedSprite from './utils/AnimatedSprite.ts';
 
 var SpriteManager = function(specs) {
 

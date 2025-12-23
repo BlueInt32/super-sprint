@@ -1,6 +1,6 @@
 "use strict";
 
-import B2Helper from './utils/B2Helper.js';
+import B2Helper from './utils/B2Helper.ts';
 
 var ContactManager = function (world, cars) {
 	this.cars = cars;

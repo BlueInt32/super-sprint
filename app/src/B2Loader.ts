@@ -1,14 +1,11 @@
-/**
- * Created by Simon on 15/11/2015.
- */
 "use strict";
 
-import LinkedList from "./utils/LinkedList.js";
+import LinkedList from "./utils/LinkedList.ts";
 import request from "then-request";
-import RubeFileLoader from "./libs/rubeFileLoader.js";
-import B2Helper from "./utils/B2Helper.js";
-import PlayerCar from "./PlayerCar.js";
-import CheckpointManager from "./CheckpointManager.js";
+import RubeFileLoader from "../js/libs/rubeFileLoader.js";
+import B2Helper from "./utils/B2Helper.ts";
+import PlayerCar from "./PlayerCar.ts";
+import CheckpointManager from "./CheckpointManager.ts";
 
 var B2Loader = function(worldFacade) {
   this.elementsList = new LinkedList();

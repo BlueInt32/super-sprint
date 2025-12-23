@@ -1,4 +1,74 @@
-var settings = {
+// Types pour les configurations
+type TrackConfig = {
+  id: number;
+  nbCheckpoints: number;
+  jsonPath: string;
+  imagePath: string;
+};
+
+type CarConfig = {
+  width: number;
+  height: number;
+  spritePath: string;
+  jsonPath: string;
+  probesSystemPath: string;
+  accelerationFactor: number;
+  driftTrigger: number;
+  driftTriggerWithHandbrake: number;
+  natural_deceleration: number;
+  steeringWheelSpeed: number;
+  wheelMaxAngle: number;
+  normalAdherenceFactor: number;
+  driftAdherenceFactor: number;
+  restitution: number;
+  puddleFactor: number;
+};
+
+type SpriteAnimationConfig = {
+  path: string;
+  frames: number;
+  offset: number;
+};
+
+type ShipSpriteMapping = {
+  still: string;
+  turnRight: SpriteAnimationConfig;
+  turnLeft: SpriteAnimationConfig;
+};
+
+type Settings = {
+  consts: {
+    METER: number;
+    STAGE_WIDTH_PIXEL: number;
+    STAGE_HEIGHT_PIXEL: number;
+    DEGTORAD: number;
+  };
+  tracks: TrackConfig[];
+  cars: CarConfig[];
+  sprites: {
+    buttons: {
+      createRace: string;
+    };
+  };
+  defaultSetup: {
+    trackId: number;
+    carIds: number[];
+  };
+  technical: {
+    debugDraw: boolean;
+    pixiActivated: boolean;
+    statsOverlay: boolean;
+  };
+  atlas: string;
+  spritesMapping: {
+    ships: ShipSpriteMapping[];
+    buttons: {
+      createRace: string;
+    };
+  };
+};
+
+const settings: Settings = {
   consts: {
     METER: 100,
     STAGE_WIDTH_PIXEL: 1000,
@@ -64,12 +134,12 @@ var settings = {
         turnRight: {
           path: 'right.0##.png',
           frames: 20,
-          offset:0
+          offset: 0
         },
         turnLeft: {
           path: 'left.0##.png',
           frames: 20,
-          offset:40
+          offset: 40
         }
       }
     ],
@@ -80,3 +150,4 @@ var settings = {
 };
 
 export default settings;
+export type { Settings, TrackConfig, CarConfig, SpriteAnimationConfig, ShipSpriteMapping };

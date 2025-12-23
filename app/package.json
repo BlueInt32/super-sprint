@@ -4,13 +4,17 @@
   "description": "A web version of the old Atari game !",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "build": "tsc --noEmit && vite build",
+    "build:skip-check": "vite build",
+    "preview": "vite preview",
+    "type-check": "tsc --noEmit"
   },
   "devDependencies": {
+    "@types/node": "^25.0.3",
     "chalk": "^1.1.1",
     "dat-gui": "^0.5.0",
     "http-server": "^0.9.0",
+    "typescript": "^5.9.3",
     "vite": "^7.3.0"
   },
   "dependencies": {

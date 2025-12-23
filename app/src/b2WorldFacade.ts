@@ -1,13 +1,11 @@
 "use strict";
 
-import B2Helper from './utils/B2Helper.js';
-import B2Loader from './B2Loader.js';
-import playerCommand from './playerCommand.js';
-import dat from 'dat-gui';
-import ContactManager from './ContactManager.js';
+import B2Helper from './utils/B2Helper.ts';
+import B2Loader from './B2Loader.ts';
+import playerCommand from './playerCommand.ts';
+import ContactManager from './ContactManager.ts';
 
-
-var B2WorldFacade = function(debugDrawActive) {
+var B2WorldFacade = function(debugDrawActive: boolean) {
   this.b2World = new B2Helper.dyn.b2World(new B2Helper.cMath.b2Vec2(0, 0), true);
   this.playerCar = null;
   this.otherCars = [];
@@ -18,9 +16,9 @@ var B2WorldFacade = function(debugDrawActive) {
   if (debugDrawActive) {
     B2Helper.initDebugDraw(this.b2World);
   }
-};
+} as any;
 
-B2WorldFacade.prototype.addB2Element = function(specs) {
+B2WorldFacade.prototype.addB2Element = function(specs: any) {
   this.b2Loader.addElement(specs);
 };
 
