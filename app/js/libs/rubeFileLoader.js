@@ -1,7 +1,7 @@
 /*eslint no-undef: 2*/
 
 import Box2D from './box2dweb/Box2dWeb-2.1.a.3.js';
-import b2 from '../utils/B2Helper.js';
+import b2 from '../../src/utils/B2Helper.ts';
 
 // Removed "use strict" and Object.prototype override to fix TypeError
 // Objects have native hasOwnProperty method
