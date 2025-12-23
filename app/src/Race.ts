@@ -1,8 +1,8 @@
-import B2WorldFacade from './b2WorldFacade.ts';
-import settings from './settings.ts';
-import PlayerCar from './PlayerCar.ts';
+import B2WorldFacade from './B2WorldFacade.ts';
 import CheckpointManager from './CheckpointManager.ts';
 import PixiFacade from './PixiFacade.ts';
+import PlayerCar from './PlayerCar.ts';
+import settings from './settings.ts';
 
 type RaceSpecs = {
   trackId: number;
