@@ -1,4 +1,3 @@
-import request from "then-request";
 import RubeFileLoader from "../js/libs/rubeFileLoader.js";
 import B2Helper from "./utils/B2Helper.ts";
 import LinkedList from "./utils/LinkedList.ts";
@@ -25,18 +24,20 @@ class B2Loader {
     this.continueLoadingList(specs.onAddedAndPlaced);
   }
 
-  continueLoadingList(onAddedAndPlaced?: any) {
+  async continueLoadingList(onAddedAndPlaced?: any) {
     if (this.elementsList.size > 0) {
       const resourceNode = this.elementsList.firstNode;
       this.elementsList.removeFirst();
       console.log('Loading B2 element:', resourceNode.dataType, 'from', resourceNode.data.jsonPath);
-      request('GET', resourceNode.data.jsonPath)
-        .done((retrievedData: any) => {
-          console.log('B2 element loaded:', resourceNode.dataType);
-          const subWorldJson = retrievedData.getBody();
-          this.loadRawJson(subWorldJson, resourceNode, onAddedAndPlaced);
-          this.continueLoadingList();
-        });
+      try {
+        const response = await fetch(resourceNode.data.jsonPath);
+        const subWorldJson = await response.text();
+        console.log('B2 element loaded:', resourceNode.dataType);
+        this.loadRawJson(subWorldJson, resourceNode, onAddedAndPlaced);
+        await this.continueLoadingList();
+      } catch (error) {
+        console.error('Failed to load B2 element:', resourceNode.dataType, error);
+      }
     }
   }
 

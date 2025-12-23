@@ -11,20 +11,10 @@
   },
   "devDependencies": {
     "@types/node": "^25.0.3",
-    "chalk": "^1.1.1",
-    "dat-gui": "^0.5.0",
-    "http-server": "^0.9.0",
     "typescript": "^5.9.3",
     "vite": "^7.3.0"
   },
   "dependencies": {
-    "jquery": "^2.1.4",
-    "pixi.js": "^8.14.3",
-    "signalr-client": "0.0.16",
-    "then-request": "^6.0.2",
-    "websocket": "^1.0.22"
-  },
-  "browser": {
-    "signalr": "./js/libs/jquery.signalR-2.2.0.js"
+    "pixi.js": "^8.14.3"
   }
 }
